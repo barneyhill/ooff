@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render measured 8-thread runtime/recovery curves, never substitute fabricated data."""
+"""Plot separately measured index build plus verified screening time across ASO counts."""
 import argparse,csv,json,statistics
 from collections import defaultdict
 from pathlib import Path
@@ -7,6 +7,10 @@ from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--root',type=Path,default=Path('benchmarks/classic/iterations'));p.add_argument('--output',type=Path,default=Path('docs/images/classic-scaling'));a=p.parse_args()
 # README batches follow powers of ten; other measurements remain in the ledger.
 plot_counts={10,100,1000,10000,100000}
+build_names={'ooff':'ooff','BWA':'bwa','BLAST':'blast','minimap2':'minimap2'}
+with Path('docs/images/classic-index-builds.csv').open() as f:
+    builds={build_names[r['tool']]:r for r in csv.DictReader(f) if int(r['returncode'])==0}
+assert set(builds)==set(build_names.values()), 'Need all four successful measured builds'
 records=[]
 for path in sorted(a.root.glob('*/screening.json')):
     x=json.loads(path.read_text())
@@ -34,6 +38,9 @@ rows=[];groups=defaultdict(list)
 for x in records:
     row={k:x[k] for k in ['tool','queries','repetition','phase','threads','complete','timed_out','wall_seconds','artifact','failure_reason']}
     row.update({k:x[k] for k in ['search_seconds','conversion_seconds','verification_seconds','tool_seconds']})
+    row['index_build_seconds']=float(builds[x['tool']]['seconds'])
+    row['index_build_artifact']=builds[x['tool']]['artifact']
+    row['build_plus_search_seconds']=row['index_build_seconds']+x['wall_seconds'] if x['complete'] or x['timed_out'] else ''
     row['recovered']=x.get('recovered','');row['recovery_percent']=''
     if x['complete'] and x['queries'] in truth:
         ids=set(x['witness_query_ids'] if x['tool']=='ooff' else x['witnesses'])
@@ -53,38 +60,31 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,'axes.spines.right':False,'svg.fonttype':'none'})
-fig,axes=plt.subplots(1,2,figsize=(11,5.1),gridspec_kw={'width_ratios':[1.35,1]})
-labels={'ooff':'ooff','bwa':'BWA-aln','blast':'BLASTN-short','minimap2':'minimap2 (20mer settings)'}
+fig,ax=plt.subplots(figsize=(8.5,4.8))
+labels={'ooff':'ooff','bwa':'BWA-aln','blast':'BLASTN-short','minimap2':'minimap2'}
 colors={'ooff':'#007C91','bwa':'#C85132','blast':'#7965AC','minimap2':'#88703A'}
 for tool in tools:
     ns=sorted(n for (t,n),rs in groups.items() if t==tool and len(rs)>=3)
-    ys=[];low=[];high=[];recovery=[]
-    for n in ns:
-        rs=sorted(groups[(tool,n)],key=lambda r:r['artifact'])[-3:]
-        times=[r['wall_seconds'] for r in rs];median=statistics.median(times)
-        ys.append(median);low.append(median-min(times));high.append(max(times)-median)
-        recovery.append(statistics.median(r['recovery_percent'] for r in rs))
-    axes[0].errorbar(ns,ys,yerr=[low,high],label=labels[tool],color=colors[tool],marker='o',linewidth=2 if tool=='ooff' else 1.5,capsize=3)
-    axes[1].plot(ns,recovery,label=labels[tool],color=colors[tool],marker='o',linewidth=2 if tool=='ooff' else 1.5)
-    censored=[r for r in records if r['tool']==tool and r['timed_out']]
+    ys=[statistics.median(r['build_plus_search_seconds'] for r in groups[(tool,n)]) for n in ns]
+    ax.plot(ns,ys,label=labels[tool],color=colors[tool],marker='o',linewidth=2)
+    censored=[r for r in rows if r['tool']==tool and r['timed_out']]
     for n in sorted({r['queries'] for r in censored}):
-        lower_bound=statistics.median(r['wall_seconds'] for r in censored if r['queries']==n)
-        axes[0].scatter([n],[lower_bound],marker='^',facecolors='none',edgecolors=colors[tool],s=60,zorder=5)
-for r in records:
+        lower_bound=statistics.median(r['build_plus_search_seconds'] for r in censored if r['queries']==n)
+        ax.scatter([n],[lower_bound],marker='^',facecolors='none',edgecolors=colors[tool],s=65,zorder=5)
+for r in rows:
     if r['failure_reason']=='out_of_memory':
-        axes[1].annotate(f"{r['queries']:,} ASOs: {r['tool']} OOM (32 GiB)",
-                         xy=(r['queries'], .82), xycoords=axes[1].get_xaxis_transform(),
-                         ha='right', va='top', fontsize=8, color=colors[r['tool']])
-for ax in axes:
-    ax.set_xscale('log',base=10);ax.set_xlabel('Number of 20nt ASOs');ax.grid(alpha=.17)
-    ticks=sorted({r['queries'] for r in records});ax.set_xticks(ticks,[f'{n:,}' for n in ticks]);ax.tick_params(axis='x',labelrotation=25)
-axes[0].set_yscale('log',base=10);axes[0].set_ylabel('Elapsed seconds · lower is faster');axes[0].set_title('Time to verified screening results',loc='left',fontsize=12)
-axes[1].set_ylim(-3,103);axes[1].set_ylabel('Verified witness recovery (%)');axes[1].set_title('Off-target witness recovery',loc='left',fontsize=12)
-handles,names=axes[0].get_legend_handles_labels();fig.legend(handles,names,loc='lower center',bbox_to_anchor=(.5,.10),ncol=4,frameon=False,fontsize=9)
-fig.suptitle('ASO screening against the human RNA reference · 8 threads',x=.07,ha='left',fontsize=15,fontweight='bold')
-fig.text(.07,.895,'Ensembl 110 / GRCh38 gene bodies + transcripts · SCN2A-derived ASOs · ≤3 total edits',fontsize=10,color='#444444')
-fig.text(.07,.027,'Medians and ranges of 3 fresh-process runs; OS cache retained. Loading, output and verification included; index build excluded.\nSeparate EC2 workers: 8 vCPUs / 4 physical cores; 16 GiB (minimap2: 32 GiB). Recovery is relative to native-positive queries.\nOpen triangles: timeout lower bounds. OOM is labelled without a timing/recovery estimate. Heuristic comparators may miss witnesses.',fontsize=8,color='#444444')
-fig.subplots_adjust(left=.07,right=.98,top=.79,bottom=.32,wspace=.32)
+        ax.text(.98,.04,f"{labels[r['tool']]}: OOM at {r['queries']:,} ASOs (32 GiB)",
+                transform=ax.transAxes,ha='right',fontsize=9,color=colors[r['tool']])
+ax.set_xscale('log',base=10);ax.set_yscale('log',base=10)
+ticks=sorted(plot_counts);ax.set_xticks(ticks,[f'{n:,}' for n in ticks])
+ax.set_xlabel('Number of ASOs');ax.set_ylabel('Index build + search (seconds)')
+ax.grid(axis='y',alpha=.17);ax.set_axisbelow(True)
+ax.legend(ncol=4,loc='upper left',frameon=False,fontsize=9)
+ax.set_ylim(10,9000)
+fig.suptitle('ASO screening against the human RNA reference',x=.10,ha='left',fontsize=15,fontweight='bold')
+fig.text(.10,.885,'One index build + median search time · 8 search threads · log10 axes',fontsize=10,color='#444444')
+fig.text(.10,.035,'Index builds measured separately; indexes are reusable. Search includes loading, output and verification.\n△ Timeout lower bound. Heuristic tools may miss hits; recovery, memory and build details are in the methods.',fontsize=8,color='#444444')
+fig.subplots_adjust(left=.10,right=.98,top=.83,bottom=.23)
 for suffix in ['.svg','.png']:
     fig.savefig(a.output.with_suffix(suffix),dpi=180,facecolor='white')
 print(a.output.with_suffix('.png'))

@@ -1,6 +1,6 @@
 # Classic-aligner scaling benchmark
 
-Status: measured screening and separate index-build figures are in the README.
+Status: the README has one line plot of measured index build plus screening time.
 ooff and BWA have completed all eight sizes through 100,000 ASOs. BLAST finished
 its series, with timeouts from 1,000 ASOs upward. Minimap2’s 100,000-ASO attempt exhausted 32 GiB of RAM after 421.16 seconds
 (exit 137, confirmed by the kernel OOM log). This is a terminal resource failure,
@@ -12,7 +12,7 @@ The remaining minimap2 26,643 repetitions were cancelled at the user’s request
 the recorded cancellation is neither a timeout nor a completed timing point.
 Only completed three-repetition points are drawn as timing curves.
 
-The first figure uses the existing Ensembl 110 GRCh38-derived RNA reference:
+The figure uses the existing Ensembl 110 GRCh38-derived RNA reference:
 RNA-sense gene bodies and mature transcripts, with SCN2A-only records excluded
 under the same other-gene policy used by ooff. This is not the whole genomic
 primary assembly including intergenic DNA. The prepared reference manifest
@@ -31,7 +31,7 @@ is checked against the actual reference bases by an independent scalar global
 alignment, rejecting reverse-strand and ambiguous-base matches. Recovery is the
 fraction of native-positive queries for which a comparator returns a verified
 witness; it is not an all-sites recall measurement. Mapper heuristics may miss
-valid witnesses, which must remain visible beside the timing plot.
+valid witnesses; recovery values remain in the plot CSV and are disclosed in the README and result table.
 
 Comparators are BWA-aln, BLASTN-short, and minimap2. Bowtie and Bowtie 2 are
 excluded following the user's request. Sassy remains solely an external EC2
@@ -67,11 +67,11 @@ thread flags and the independent multiprocessing verifier receive all eight
 CPUs. BWA samse, BWA index and makeblastdb expose no parallel-thread option.
 Providing all CPUs does not imply each program can keep them all busy.
 
-The primary timing is elapsed process time through independently verified screening results,
-including index loading, mapper output, and scalar verification; index construction
-is measured separately. Each completed point has three fresh-process runs. Tools run independently
-on separate workers, sequentially within each worker. OS page cache is not flushed. Report medians and individual
-observations/ranges; do not call these cold-start timings. Failed/time-limited
+The README plots one separately measured index build plus median elapsed process
+time through independently verified screening results, including index loading,
+mapper output and scalar verification. The sum is derived from separate measurements;
+it is not a timed cold-start pipeline. Reusing an index avoids its build cost. Each completed point has three fresh-process runs. Tools run independently
+on separate workers, sequentially within each worker. OS page cache is not flushed. The chart shows medians; individual observations and ranges remain in the CSV; do not call these cold-start timings. Failed/time-limited
 runs are retained and must not be plotted as completed fast searches.
 
 Every preparation, build, pilot, search, conversion and verification invocation is
@@ -88,7 +88,7 @@ rendered from these measured artifacts using matplotlib.
 
 ## Index preparation
 
-Build time is reported separately from every search point, with peak process RSS,
+Build time is measured separately and then added to each README point. The build CSV retains peak process RSS,
 CPU use and actual commands. These are single measured builds, not three-run
 medians. BWA's existing build ran on the original 16-vCPU/32-GiB c7i.4xlarge;
 its builder is single-threaded, and the resulting index was hash-verified on the
@@ -96,7 +96,7 @@ its builder is single-threaded, and the resulting index was hash-verified on the
 vCPUs/16 GiB. Native construction includes 21 intended-only records subsequently
 filtered from search (321,668 additional bases, about 0.013%); competitors index
 the already eligible reference. The screening plot uses only the forward native
-index, so its separate build figure does not include the optional reverse index
+index, so its build component does not include the optional reverse index
 used for exhaustive-site optimization experiments. Build cache state was not
 normalized. The 16-GiB minimap2 OOM remains in the ledger alongside the successful
 32-GiB retry.
@@ -142,8 +142,8 @@ identity cannot read Service Quotas; no increase was submitted. Spot has a
 separate quota. See [AWS quota instructions](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html).
 
 The screening timing plot uses base-10 logarithmic axes for ASO count and elapsed
-time. The recovery panel uses a logarithmic count axis and linear percentages.
-Index-build time and peak-memory axes are also explicitly base-10 logarithmic.
+time. The README contains no recovery or memory panel; those measurements remain
+in the linked CSVs and methods. Earlier separate figures are retained as artifacts.
 
 The minimap2 disk was expanded online from 50 to 100 GiB during the first
 26,643-ASO search to retain raw outputs; provisioned IOPS/throughput were unchanged.

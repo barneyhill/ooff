@@ -126,21 +126,22 @@
   },
   "bwa_to_ooff_100000_ratio": 77.36430463129143,
   "artifact_sha256": {
-    "README.md": "3434d38673358b02bd048668b90f15929f48ed10170909081754b2e3bad4e65d",
-    "docs/CLASSIC_BENCHMARK.md": "5b45ad397f988c53815075a5988f9c5b26330f198fdc8958aacabdd0d49139b1",
+    "README.md": "37fe1744cea5ffc711437db6b69a705b7dc459f9b385ea8b0772cefb537c9157",
+    "docs/CLASSIC_BENCHMARK.md": "95f898ac2c904bbd54c651556d7200532056456b7542fb703138c771cde9a503",
     "docs/VERIFICATION.md": "7d014ec94db3d0a85673315fce35439c8240b90e0960eb25400d90a4bb561b68",
     "docs/ARTIFACTS.md": "71fc47d6f080f249be90d79ba3fae8871d87abe9cd3beb93984c8b5cfdda092a",
     "benchmarks/classic/series-audit.json": "920b88218aabbc45743813b535322af6c7226ab2306993a8e23801959cbe550d",
     "benchmarks/CLASSIC_ITERATIONS.md": "f6da4c13c28f4f26ab792d0601e8e46e494de21eadf9722e66045d2af001999e",
     "benchmarks/classic/summary.csv": "17b0333ef5eefef5512bd176721c39c2e406b6ca0dd39bb9d1ad2adc3b82722f",
-    "docs/images/classic-scaling.svg": "4ae1df3183bd306e4df4356ccc18c59c8520c3ffb3e1bcc8dadbe128cc25b5f6",
-    "docs/images/classic-scaling.png": "c9e755c68f5b3db36361d7bb6f938d2eb17ed00a7ebbdd6089ae798de6eb3ade",
-    "docs/images/classic-scaling.csv": "b83603a1f7f937e126840dd69cbb4a3cd30db9e68b7fcc7de054e359869eb7af",
+    "docs/images/classic-scaling.svg": "74b10d9360e507f1fe73df91de4a2036a1d3ddc3aef514f75be8310c2efc50b1",
+    "docs/images/classic-scaling.png": "5007b930980f56d0d674bbbc76ad939bbc0674168185fda78f371e6e1227d0a6",
+    "docs/images/classic-scaling.csv": "2ff2a65113a2637d9aa832d77c7db50d05d0ce4a2ee9117dfb7183a14f76d71c",
     "docs/images/classic-index-builds.svg": "427cc121a80360d2121759c8dfbfb78f6f58ae3210c05ac0c4f39ee0df7e76cb",
     "docs/images/classic-index-builds.png": "ed3e6610645ebadf71eb7df823a56832dff50d45f3846dd8aa2580f22173557a",
     "docs/images/classic-index-builds.csv": "bf8b037cc92c0a762838c3ddc98ac73673f48488d9264cb2154e59221eebd2e2",
     "benchmarks/WORD_CACHE_EXPERIMENT.md": "81f715e88f8c1188e1169bab07c47fdafbbe3f301f89cfb91729b5a541c3d442",
     "benchmarks/EXTENSION_EXPERIMENT.md": "84806809a310beb3332b01a488364e9540ab35bfeb64fa4c162dc8b502ba445b",
     "docs/OPTIMIZATION_RESEARCH.md": "2fb9c2e3cb4d7edb888a430c3946f1b410ed791b4f91bafe92f58bbaba4bcde4"
-  }
+  },
+  "readme_plot_metric": "Separately measured index build plus median verified screening time; log10 axes, five powers-of-ten counts."
 }

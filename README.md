@@ -29,31 +29,29 @@ included.
 
 ## Eight-thread screening benchmark
 
-![Measured ASO screening time and witness recovery](docs/images/classic-scaling.svg)
+![Measured index build plus ASO screening time](docs/images/classic-scaling.svg)
 
-Three runs per completed point, using Ensembl 110 human RNA-sense gene bodies
-and transcripts, with up to three edits. Time includes index loading, output,
-and independent witness verification. This is screening for one other-gene
-witness, not exhaustive site enumeration or whole intergenic genomic DNA.
-Use **`ooff report`** for all annotated hits: off-target gene IDs, transcript IDs,
-chromosome, strand, genomic blocks and edit alignments. These report timings
-include substantially more output than the screening graph.
-BWA and ooff have completed the series through 100,000 unique ASOs. BLAST
-reached the 600-second limit at every plotted size from 1,000 upward; minimap2’s
-100,000-ASO attempt exhausted its 32-GiB worker’s memory. The largest batch combines the original
-allele pool with reference-derived SCN2A 20mers. A configurable complete-run
-timeout applies to the new 100,000-ASO runs. Missing points are not zero-time results. All tools receive
-eight CPUs where supported; minimap2 required a 32-GiB worker, versus 16 GiB
-for the other search jobs. See [methods and reproducible EC2 jobs](docs/CLASSIC_BENCHMARK.md),
-[plot data](docs/images/classic-scaling.csv), and [every iteration](benchmarks/CLASSIC_ITERATIONS.md).
+Each line adds one measured index build to the median of three screening runs,
+for **10, 100, 1,000, 10,000 and 100,000 ASOs**, on log10 axes. **Indexes are
+reusable**: subsequent batches avoid the build cost. The components were measured
+separately with OS cache retained, so this is not a cold-start measurement.
+Search includes index loading, output and independent witness verification.
 
-The scaling graph uses **10, 100, 1,000, 10,000 and 100,000 ASOs**, with log10 axes.
+The reference is Ensembl 110 human RNA-sense gene bodies and transcripts, with
+up to three edits. All tools receive eight CPUs where supported; BWA and BLAST
+index builders are single-threaded. BLAST timed out from 1,000 ASOs upward;
+minimap2 exhausted 32 GiB at 100,000. Heuristic comparators can miss valid hits:
+at 100,000, BWA recovered 98.774% of native-positive queries. The largest batch
+combines allele-derived and reference-derived SCN2A 20mers.
 
-![Separately measured index construction time and memory](docs/images/classic-index-builds.svg)
+Use **`ooff report`** for all annotated hits, including gene/transcript IDs,
+chromosome, strand, genomic blocks and edit alignments. The graph measures
+screening for one other-gene witness per ASO.
 
-Index preparation is excluded from search times and shown separately above.
-These are single builds with the hardware and cache caveats shown in the figure.
-[Build data](docs/images/classic-index-builds.csv).
+[Methods and reproducible EC2 jobs](docs/CLASSIC_BENCHMARK.md) ·
+[Plot data](docs/images/classic-scaling.csv) ·
+[Separate build time and memory data](docs/images/classic-index-builds.csv) ·
+[Every iteration](benchmarks/CLASSIC_ITERATIONS.md)
 
 ## Run the fixture
 
