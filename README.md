@@ -29,13 +29,18 @@ included.
 
 ## Eight-thread screening benchmark
 
-![Measured index build plus ASO screening time](docs/images/classic-scaling.svg)
+![Measured ASO screening time including Sassy2](docs/images/classic-scaling.svg)
 
-Each line adds one measured index build to the median of three screening runs,
-for **10, 100, 1,000, 10,000 and 100,000 ASOs**, on log10 axes. **Indexes are
-reusable**: subsequent batches avoid the build cost. The components were measured
-separately with OS cache retained, so this is not a cold-start measurement.
-Search includes index loading, output and independent witness verification.
+Each line shows the median of three screening runs for **10, 100, 1,000, 10,000
+and 100,000 ASOs**, on log10 axes. Search includes reference/index loading,
+output and independent witness verification. Reusable index-build costs are
+excluded and listed in the caption. OS cache is retained; these are not
+cold-start measurements.
+
+Sassy2 now uses the same eight-CPU screening workload. At 100,000 ASOs, both
+ooff and Sassy2 recover all 100,000 witnesses: **3.19 s versus 19.32 s** median
+(**6.05×**). The earlier 10.67× result above is the separate one-thread full-output
+comparison.
 
 The reference is Ensembl 110 human RNA-sense gene bodies and transcripts, with
 up to three edits. All tools receive eight CPUs where supported; BWA and BLAST

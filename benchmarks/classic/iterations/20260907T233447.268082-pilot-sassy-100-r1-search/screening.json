@@ -1,0 +1,626 @@
+{
+  "tool": "sassy",
+  "queries": 100,
+  "repetition": 1,
+  "phase": "pilot",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "stage_timeout_seconds": 600.0,
+  "run_timeout_seconds": 600.0,
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T233447.268082-pilot-sassy-100-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T233505.777525-pilot-sassy-100-r1-verify/result.json"
+  ],
+  "wall_seconds": 18.58467479799998,
+  "utc": "2026-09-07T23:35:06.599461+00:00",
+  "recovered": 100,
+  "witnesses": {
+    "q0": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260285,
+      "distance": 3
+    },
+    "q1": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260286,
+      "distance": 3
+    },
+    "q2": {
+      "record": "r1",
+      "start": 74787,
+      "end": 74805,
+      "distance": 3
+    },
+    "q3": {
+      "record": "r1",
+      "start": 74788,
+      "end": 74806,
+      "distance": 3
+    },
+    "q4": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155617,
+      "distance": 3
+    },
+    "q5": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155618,
+      "distance": 3
+    },
+    "q6": {
+      "record": "r1",
+      "start": 155600,
+      "end": 155618,
+      "distance": 3
+    },
+    "q7": {
+      "record": "r1",
+      "start": 80613,
+      "end": 80634,
+      "distance": 3
+    },
+    "q8": {
+      "record": "r13",
+      "start": 251,
+      "end": 272,
+      "distance": 3
+    },
+    "q9": {
+      "record": "r1",
+      "start": 75113,
+      "end": 75134,
+      "distance": 3
+    },
+    "q10": {
+      "record": "r99",
+      "start": 973169,
+      "end": 973189,
+      "distance": 3
+    },
+    "q11": {
+      "record": "r106",
+      "start": 86814,
+      "end": 86834,
+      "distance": 3
+    },
+    "q12": {
+      "record": "r120",
+      "start": 138154,
+      "end": 138171,
+      "distance": 3
+    },
+    "q13": {
+      "record": "r1",
+      "start": 14386,
+      "end": 14405,
+      "distance": 3
+    },
+    "q14": {
+      "record": "r124",
+      "start": 20439,
+      "end": 20458,
+      "distance": 3
+    },
+    "q15": {
+      "record": "r99",
+      "start": 371110,
+      "end": 371128,
+      "distance": 3
+    },
+    "q16": {
+      "record": "r18",
+      "start": 9510,
+      "end": 9529,
+      "distance": 3
+    },
+    "q17": {
+      "record": "r18",
+      "start": 9511,
+      "end": 9530,
+      "distance": 3
+    },
+    "q18": {
+      "record": "r29",
+      "start": 61623,
+      "end": 61641,
+      "distance": 3
+    },
+    "q19": {
+      "record": "r29",
+      "start": 61624,
+      "end": 61642,
+      "distance": 3
+    },
+    "q20": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260285,
+      "distance": 3
+    },
+    "q21": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260286,
+      "distance": 3
+    },
+    "q22": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260287,
+      "distance": 3
+    },
+    "q23": {
+      "record": "r1",
+      "start": 260269,
+      "end": 260288,
+      "distance": 3
+    },
+    "q24": {
+      "record": "r1",
+      "start": 260270,
+      "end": 260288,
+      "distance": 3
+    },
+    "q25": {
+      "record": "r1",
+      "start": 159890,
+      "end": 159908,
+      "distance": 3
+    },
+    "q26": {
+      "record": "r1",
+      "start": 260271,
+      "end": 260289,
+      "distance": 3
+    },
+    "q27": {
+      "record": "r1",
+      "start": 159891,
+      "end": 159909,
+      "distance": 3
+    },
+    "q28": {
+      "record": "r26",
+      "start": 46133,
+      "end": 46152,
+      "distance": 3
+    },
+    "q29": {
+      "record": "r1",
+      "start": 30955,
+      "end": 30973,
+      "distance": 3
+    },
+    "q30": {
+      "record": "r12",
+      "start": 1991,
+      "end": 2011,
+      "distance": 3
+    },
+    "q31": {
+      "record": "r12",
+      "start": 1992,
+      "end": 2011,
+      "distance": 3
+    },
+    "q32": {
+      "record": "r46",
+      "start": 1070,
+      "end": 1089,
+      "distance": 3
+    },
+    "q33": {
+      "record": "r26",
+      "start": 46137,
+      "end": 46154,
+      "distance": 3
+    },
+    "q34": {
+      "record": "r1",
+      "start": 259235,
+      "end": 259253,
+      "distance": 3
+    },
+    "q35": {
+      "record": "r53",
+      "start": 65454,
+      "end": 65472,
+      "distance": 3
+    },
+    "q36": {
+      "record": "r1",
+      "start": 126735,
+      "end": 126755,
+      "distance": 3
+    },
+    "q37": {
+      "record": "r1",
+      "start": 259238,
+      "end": 259256,
+      "distance": 3
+    },
+    "q38": {
+      "record": "r1",
+      "start": 220340,
+      "end": 220359,
+      "distance": 3
+    },
+    "q39": {
+      "record": "r1",
+      "start": 220341,
+      "end": 220360,
+      "distance": 3
+    },
+    "q40": {
+      "record": "r99",
+      "start": 223837,
+      "end": 223856,
+      "distance": 3
+    },
+    "q41": {
+      "record": "r593",
+      "start": 44861,
+      "end": 44879,
+      "distance": 3
+    },
+    "q42": {
+      "record": "r1",
+      "start": 105091,
+      "end": 105108,
+      "distance": 3
+    },
+    "q43": {
+      "record": "r1",
+      "start": 105092,
+      "end": 105109,
+      "distance": 3
+    },
+    "q44": {
+      "record": "r39",
+      "start": 259711,
+      "end": 259728,
+      "distance": 3
+    },
+    "q45": {
+      "record": "r39",
+      "start": 259712,
+      "end": 259729,
+      "distance": 3
+    },
+    "q46": {
+      "record": "r254",
+      "start": 327298,
+      "end": 327317,
+      "distance": 3
+    },
+    "q47": {
+      "record": "r517",
+      "start": 72856,
+      "end": 72875,
+      "distance": 3
+    },
+    "q48": {
+      "record": "r85",
+      "start": 32246,
+      "end": 32263,
+      "distance": 3
+    },
+    "q49": {
+      "record": "r99",
+      "start": 587058,
+      "end": 587077,
+      "distance": 3
+    },
+    "q50": {
+      "record": "r161",
+      "start": 31107,
+      "end": 31124,
+      "distance": 3
+    },
+    "q51": {
+      "record": "r90",
+      "start": 41206,
+      "end": 41224,
+      "distance": 3
+    },
+    "q52": {
+      "record": "r171",
+      "start": 242094,
+      "end": 242113,
+      "distance": 3
+    },
+    "q53": {
+      "record": "r29",
+      "start": 66277,
+      "end": 66295,
+      "distance": 3
+    },
+    "q54": {
+      "record": "r39",
+      "start": 178648,
+      "end": 178667,
+      "distance": 3
+    },
+    "q55": {
+      "record": "r43",
+      "start": 65328,
+      "end": 65348,
+      "distance": 3
+    },
+    "q56": {
+      "record": "r43",
+      "start": 65328,
+      "end": 65350,
+      "distance": 3
+    },
+    "q57": {
+      "record": "r43",
+      "start": 65330,
+      "end": 65351,
+      "distance": 3
+    },
+    "q58": {
+      "record": "r43",
+      "start": 65330,
+      "end": 65353,
+      "distance": 3
+    },
+    "q59": {
+      "record": "r31",
+      "start": 75438,
+      "end": 75456,
+      "distance": 3
+    },
+    "q60": {
+      "record": "r346",
+      "start": 793376,
+      "end": 793395,
+      "distance": 3
+    },
+    "q61": {
+      "record": "r346",
+      "start": 793377,
+      "end": 793396,
+      "distance": 3
+    },
+    "q62": {
+      "record": "r337",
+      "start": 220394,
+      "end": 220414,
+      "distance": 3
+    },
+    "q63": {
+      "record": "r337",
+      "start": 220395,
+      "end": 220415,
+      "distance": 3
+    },
+    "q64": {
+      "record": "r39",
+      "start": 259711,
+      "end": 259728,
+      "distance": 3
+    },
+    "q65": {
+      "record": "r39",
+      "start": 259712,
+      "end": 259729,
+      "distance": 3
+    },
+    "q66": {
+      "record": "r243",
+      "start": 218430,
+      "end": 218450,
+      "distance": 3
+    },
+    "q67": {
+      "record": "r108",
+      "start": 4024,
+      "end": 4043,
+      "distance": 3
+    },
+    "q68": {
+      "record": "r108",
+      "start": 4026,
+      "end": 4043,
+      "distance": 3
+    },
+    "q69": {
+      "record": "r99",
+      "start": 587058,
+      "end": 587077,
+      "distance": 3
+    },
+    "q70": {
+      "record": "r108",
+      "start": 4027,
+      "end": 4046,
+      "distance": 3
+    },
+    "q71": {
+      "record": "r97",
+      "start": 24079,
+      "end": 24099,
+      "distance": 3
+    },
+    "q72": {
+      "record": "r162",
+      "start": 4601,
+      "end": 4621,
+      "distance": 3
+    },
+    "q73": {
+      "record": "r31",
+      "start": 63947,
+      "end": 63966,
+      "distance": 3
+    },
+    "q74": {
+      "record": "r5",
+      "start": 6085,
+      "end": 6103,
+      "distance": 3
+    },
+    "q75": {
+      "record": "r39",
+      "start": 64202,
+      "end": 64221,
+      "distance": 3
+    },
+    "q76": {
+      "record": "r42",
+      "start": 5479,
+      "end": 5497,
+      "distance": 3
+    },
+    "q77": {
+      "record": "r39",
+      "start": 227055,
+      "end": 227073,
+      "distance": 3
+    },
+    "q78": {
+      "record": "r43",
+      "start": 35627,
+      "end": 35644,
+      "distance": 3
+    },
+    "q79": {
+      "record": "r31",
+      "start": 75438,
+      "end": 75456,
+      "distance": 3
+    },
+    "q80": {
+      "record": "r23",
+      "start": 20600,
+      "end": 20618,
+      "distance": 3
+    },
+    "q81": {
+      "record": "r23",
+      "start": 20601,
+      "end": 20619,
+      "distance": 3
+    },
+    "q82": {
+      "record": "r137",
+      "start": 32502,
+      "end": 32520,
+      "distance": 3
+    },
+    "q83": {
+      "record": "r39",
+      "start": 24333,
+      "end": 24350,
+      "distance": 3
+    },
+    "q84": {
+      "record": "r1",
+      "start": 21712,
+      "end": 21731,
+      "distance": 3
+    },
+    "q85": {
+      "record": "r154",
+      "start": 37236,
+      "end": 37254,
+      "distance": 3
+    },
+    "q86": {
+      "record": "r99",
+      "start": 15501,
+      "end": 15521,
+      "distance": 3
+    },
+    "q87": {
+      "record": "r154",
+      "start": 37237,
+      "end": 37256,
+      "distance": 3
+    },
+    "q88": {
+      "record": "r99",
+      "start": 999397,
+      "end": 999415,
+      "distance": 3
+    },
+    "q89": {
+      "record": "r37",
+      "start": 7180,
+      "end": 7200,
+      "distance": 3
+    },
+    "q90": {
+      "record": "r90",
+      "start": 70710,
+      "end": 70729,
+      "distance": 3
+    },
+    "q91": {
+      "record": "r23",
+      "start": 5823,
+      "end": 5843,
+      "distance": 3
+    },
+    "q92": {
+      "record": "r546",
+      "start": 4722,
+      "end": 4741,
+      "distance": 3
+    },
+    "q93": {
+      "record": "r147",
+      "start": 60196,
+      "end": 60216,
+      "distance": 3
+    },
+    "q94": {
+      "record": "r147",
+      "start": 60197,
+      "end": 60217,
+      "distance": 3
+    },
+    "q95": {
+      "record": "r607",
+      "start": 118943,
+      "end": 118961,
+      "distance": 3
+    },
+    "q96": {
+      "record": "r8",
+      "start": 18830,
+      "end": 18849,
+      "distance": 3
+    },
+    "q97": {
+      "record": "r53",
+      "start": 28288,
+      "end": 28307,
+      "distance": 3
+    },
+    "q98": {
+      "record": "r61",
+      "start": 5918,
+      "end": 5935,
+      "distance": 3
+    },
+    "q99": {
+      "record": "r61",
+      "start": 5918,
+      "end": 5937,
+      "distance": 3
+    }
+  },
+  "candidate_rows": 100,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.3414453720000097,
+  "verification_workers": 8
+}

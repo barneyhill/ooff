@@ -32,7 +32,7 @@ for path in sorted(root.glob('*/screening.json')):
     groups[row['tool'], row['queries']].append(row)
 
 checks = []
-for tool in ['ooff', 'bwa', 'blast', 'minimap2']:
+for tool in ['ooff', 'bwa', 'blast', 'minimap2', 'sassy']:
     for count in [10, 100, 1000, 10000, 100000]:
         rows = groups[tool, count]
         complete = [r for r in rows if r['complete']]

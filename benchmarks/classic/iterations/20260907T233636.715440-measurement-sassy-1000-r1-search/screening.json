@@ -1,0 +1,6026 @@
+{
+  "tool": "sassy",
+  "queries": 1000,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "stage_timeout_seconds": 600.0,
+  "run_timeout_seconds": 600.0,
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T233636.715440-measurement-sassy-1000-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T233639.735939-measurement-sassy-1000-r1-verify/result.json"
+  ],
+  "wall_seconds": 3.0375753929999973,
+  "utc": "2026-09-07T23:36:40.450487+00:00",
+  "recovered": 1000,
+  "witnesses": {
+    "q0": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260285,
+      "distance": 3
+    },
+    "q1": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260286,
+      "distance": 3
+    },
+    "q2": {
+      "record": "r1",
+      "start": 74787,
+      "end": 74805,
+      "distance": 3
+    },
+    "q3": {
+      "record": "r1",
+      "start": 74788,
+      "end": 74806,
+      "distance": 3
+    },
+    "q4": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155617,
+      "distance": 3
+    },
+    "q5": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155618,
+      "distance": 3
+    },
+    "q6": {
+      "record": "r1",
+      "start": 155600,
+      "end": 155618,
+      "distance": 3
+    },
+    "q7": {
+      "record": "r1",
+      "start": 80613,
+      "end": 80634,
+      "distance": 3
+    },
+    "q8": {
+      "record": "r13",
+      "start": 251,
+      "end": 272,
+      "distance": 3
+    },
+    "q9": {
+      "record": "r1",
+      "start": 75113,
+      "end": 75134,
+      "distance": 3
+    },
+    "q10": {
+      "record": "r99",
+      "start": 973169,
+      "end": 973189,
+      "distance": 3
+    },
+    "q11": {
+      "record": "r106",
+      "start": 86814,
+      "end": 86834,
+      "distance": 3
+    },
+    "q12": {
+      "record": "r120",
+      "start": 138154,
+      "end": 138171,
+      "distance": 3
+    },
+    "q13": {
+      "record": "r1",
+      "start": 14386,
+      "end": 14405,
+      "distance": 3
+    },
+    "q14": {
+      "record": "r124",
+      "start": 20439,
+      "end": 20458,
+      "distance": 3
+    },
+    "q15": {
+      "record": "r99",
+      "start": 371110,
+      "end": 371128,
+      "distance": 3
+    },
+    "q16": {
+      "record": "r18",
+      "start": 9510,
+      "end": 9529,
+      "distance": 3
+    },
+    "q17": {
+      "record": "r18",
+      "start": 9511,
+      "end": 9530,
+      "distance": 3
+    },
+    "q18": {
+      "record": "r29",
+      "start": 61623,
+      "end": 61641,
+      "distance": 3
+    },
+    "q19": {
+      "record": "r29",
+      "start": 61624,
+      "end": 61642,
+      "distance": 3
+    },
+    "q20": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260285,
+      "distance": 3
+    },
+    "q21": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260286,
+      "distance": 3
+    },
+    "q22": {
+      "record": "r1",
+      "start": 260268,
+      "end": 260287,
+      "distance": 3
+    },
+    "q23": {
+      "record": "r1",
+      "start": 260269,
+      "end": 260288,
+      "distance": 3
+    },
+    "q24": {
+      "record": "r1",
+      "start": 260270,
+      "end": 260288,
+      "distance": 3
+    },
+    "q25": {
+      "record": "r1",
+      "start": 159890,
+      "end": 159908,
+      "distance": 3
+    },
+    "q26": {
+      "record": "r1",
+      "start": 260271,
+      "end": 260289,
+      "distance": 3
+    },
+    "q27": {
+      "record": "r1",
+      "start": 159891,
+      "end": 159909,
+      "distance": 3
+    },
+    "q28": {
+      "record": "r26",
+      "start": 46133,
+      "end": 46152,
+      "distance": 3
+    },
+    "q29": {
+      "record": "r1",
+      "start": 30955,
+      "end": 30973,
+      "distance": 3
+    },
+    "q30": {
+      "record": "r12",
+      "start": 1991,
+      "end": 2011,
+      "distance": 3
+    },
+    "q31": {
+      "record": "r12",
+      "start": 1992,
+      "end": 2011,
+      "distance": 3
+    },
+    "q32": {
+      "record": "r46",
+      "start": 1070,
+      "end": 1089,
+      "distance": 3
+    },
+    "q33": {
+      "record": "r26",
+      "start": 46137,
+      "end": 46154,
+      "distance": 3
+    },
+    "q34": {
+      "record": "r1",
+      "start": 259235,
+      "end": 259253,
+      "distance": 3
+    },
+    "q35": {
+      "record": "r53",
+      "start": 65454,
+      "end": 65472,
+      "distance": 3
+    },
+    "q36": {
+      "record": "r1",
+      "start": 126735,
+      "end": 126755,
+      "distance": 3
+    },
+    "q37": {
+      "record": "r1",
+      "start": 259238,
+      "end": 259256,
+      "distance": 3
+    },
+    "q38": {
+      "record": "r1",
+      "start": 220340,
+      "end": 220359,
+      "distance": 3
+    },
+    "q39": {
+      "record": "r1",
+      "start": 220341,
+      "end": 220360,
+      "distance": 3
+    },
+    "q40": {
+      "record": "r99",
+      "start": 223837,
+      "end": 223856,
+      "distance": 3
+    },
+    "q41": {
+      "record": "r593",
+      "start": 44861,
+      "end": 44879,
+      "distance": 3
+    },
+    "q42": {
+      "record": "r1",
+      "start": 105091,
+      "end": 105108,
+      "distance": 3
+    },
+    "q43": {
+      "record": "r1",
+      "start": 105092,
+      "end": 105109,
+      "distance": 3
+    },
+    "q44": {
+      "record": "r39",
+      "start": 259711,
+      "end": 259728,
+      "distance": 3
+    },
+    "q45": {
+      "record": "r39",
+      "start": 259712,
+      "end": 259729,
+      "distance": 3
+    },
+    "q46": {
+      "record": "r254",
+      "start": 327298,
+      "end": 327317,
+      "distance": 3
+    },
+    "q47": {
+      "record": "r517",
+      "start": 72856,
+      "end": 72875,
+      "distance": 3
+    },
+    "q48": {
+      "record": "r85",
+      "start": 32246,
+      "end": 32263,
+      "distance": 3
+    },
+    "q49": {
+      "record": "r99",
+      "start": 587058,
+      "end": 587077,
+      "distance": 3
+    },
+    "q50": {
+      "record": "r161",
+      "start": 31107,
+      "end": 31124,
+      "distance": 3
+    },
+    "q51": {
+      "record": "r90",
+      "start": 41206,
+      "end": 41224,
+      "distance": 3
+    },
+    "q52": {
+      "record": "r171",
+      "start": 242094,
+      "end": 242113,
+      "distance": 3
+    },
+    "q53": {
+      "record": "r29",
+      "start": 66277,
+      "end": 66295,
+      "distance": 3
+    },
+    "q54": {
+      "record": "r39",
+      "start": 178648,
+      "end": 178667,
+      "distance": 3
+    },
+    "q55": {
+      "record": "r43",
+      "start": 65328,
+      "end": 65348,
+      "distance": 3
+    },
+    "q56": {
+      "record": "r43",
+      "start": 65328,
+      "end": 65350,
+      "distance": 3
+    },
+    "q57": {
+      "record": "r43",
+      "start": 65330,
+      "end": 65351,
+      "distance": 3
+    },
+    "q58": {
+      "record": "r43",
+      "start": 65330,
+      "end": 65353,
+      "distance": 3
+    },
+    "q59": {
+      "record": "r31",
+      "start": 75438,
+      "end": 75456,
+      "distance": 3
+    },
+    "q60": {
+      "record": "r346",
+      "start": 793376,
+      "end": 793395,
+      "distance": 3
+    },
+    "q61": {
+      "record": "r346",
+      "start": 793377,
+      "end": 793396,
+      "distance": 3
+    },
+    "q62": {
+      "record": "r337",
+      "start": 220394,
+      "end": 220414,
+      "distance": 3
+    },
+    "q63": {
+      "record": "r337",
+      "start": 220395,
+      "end": 220415,
+      "distance": 3
+    },
+    "q64": {
+      "record": "r39",
+      "start": 259711,
+      "end": 259728,
+      "distance": 3
+    },
+    "q65": {
+      "record": "r39",
+      "start": 259712,
+      "end": 259729,
+      "distance": 3
+    },
+    "q66": {
+      "record": "r243",
+      "start": 218430,
+      "end": 218450,
+      "distance": 3
+    },
+    "q67": {
+      "record": "r108",
+      "start": 4024,
+      "end": 4043,
+      "distance": 3
+    },
+    "q68": {
+      "record": "r108",
+      "start": 4026,
+      "end": 4043,
+      "distance": 3
+    },
+    "q69": {
+      "record": "r99",
+      "start": 587058,
+      "end": 587077,
+      "distance": 3
+    },
+    "q70": {
+      "record": "r108",
+      "start": 4027,
+      "end": 4046,
+      "distance": 3
+    },
+    "q71": {
+      "record": "r97",
+      "start": 24079,
+      "end": 24099,
+      "distance": 3
+    },
+    "q72": {
+      "record": "r162",
+      "start": 4601,
+      "end": 4621,
+      "distance": 3
+    },
+    "q73": {
+      "record": "r31",
+      "start": 63947,
+      "end": 63966,
+      "distance": 3
+    },
+    "q74": {
+      "record": "r5",
+      "start": 6085,
+      "end": 6103,
+      "distance": 3
+    },
+    "q75": {
+      "record": "r39",
+      "start": 64202,
+      "end": 64221,
+      "distance": 3
+    },
+    "q76": {
+      "record": "r42",
+      "start": 5479,
+      "end": 5497,
+      "distance": 3
+    },
+    "q77": {
+      "record": "r39",
+      "start": 227055,
+      "end": 227073,
+      "distance": 3
+    },
+    "q78": {
+      "record": "r43",
+      "start": 35627,
+      "end": 35644,
+      "distance": 3
+    },
+    "q79": {
+      "record": "r31",
+      "start": 75438,
+      "end": 75456,
+      "distance": 3
+    },
+    "q80": {
+      "record": "r23",
+      "start": 20600,
+      "end": 20618,
+      "distance": 3
+    },
+    "q81": {
+      "record": "r23",
+      "start": 20601,
+      "end": 20619,
+      "distance": 3
+    },
+    "q82": {
+      "record": "r137",
+      "start": 32502,
+      "end": 32520,
+      "distance": 3
+    },
+    "q83": {
+      "record": "r39",
+      "start": 24333,
+      "end": 24350,
+      "distance": 3
+    },
+    "q84": {
+      "record": "r1",
+      "start": 21712,
+      "end": 21731,
+      "distance": 3
+    },
+    "q85": {
+      "record": "r154",
+      "start": 37236,
+      "end": 37254,
+      "distance": 3
+    },
+    "q86": {
+      "record": "r99",
+      "start": 15501,
+      "end": 15521,
+      "distance": 3
+    },
+    "q87": {
+      "record": "r154",
+      "start": 37237,
+      "end": 37256,
+      "distance": 3
+    },
+    "q88": {
+      "record": "r99",
+      "start": 999397,
+      "end": 999415,
+      "distance": 3
+    },
+    "q89": {
+      "record": "r37",
+      "start": 7180,
+      "end": 7200,
+      "distance": 3
+    },
+    "q90": {
+      "record": "r90",
+      "start": 70710,
+      "end": 70729,
+      "distance": 3
+    },
+    "q91": {
+      "record": "r23",
+      "start": 5823,
+      "end": 5843,
+      "distance": 3
+    },
+    "q92": {
+      "record": "r546",
+      "start": 4722,
+      "end": 4741,
+      "distance": 3
+    },
+    "q93": {
+      "record": "r147",
+      "start": 60196,
+      "end": 60216,
+      "distance": 3
+    },
+    "q94": {
+      "record": "r147",
+      "start": 60197,
+      "end": 60217,
+      "distance": 3
+    },
+    "q95": {
+      "record": "r607",
+      "start": 118943,
+      "end": 118961,
+      "distance": 3
+    },
+    "q96": {
+      "record": "r8",
+      "start": 18830,
+      "end": 18849,
+      "distance": 3
+    },
+    "q97": {
+      "record": "r53",
+      "start": 28288,
+      "end": 28307,
+      "distance": 3
+    },
+    "q98": {
+      "record": "r61",
+      "start": 5918,
+      "end": 5935,
+      "distance": 3
+    },
+    "q99": {
+      "record": "r61",
+      "start": 5918,
+      "end": 5937,
+      "distance": 3
+    },
+    "q100": {
+      "record": "r124",
+      "start": 150347,
+      "end": 150366,
+      "distance": 3
+    },
+    "q101": {
+      "record": "r178",
+      "start": 79772,
+      "end": 79790,
+      "distance": 3
+    },
+    "q102": {
+      "record": "r554",
+      "start": 17611,
+      "end": 17628,
+      "distance": 3
+    },
+    "q103": {
+      "record": "r39",
+      "start": 24333,
+      "end": 24350,
+      "distance": 3
+    },
+    "q104": {
+      "record": "r152",
+      "start": 253251,
+      "end": 253271,
+      "distance": 3
+    },
+    "q105": {
+      "record": "r152",
+      "start": 253252,
+      "end": 253272,
+      "distance": 3
+    },
+    "q106": {
+      "record": "r152",
+      "start": 253253,
+      "end": 253273,
+      "distance": 3
+    },
+    "q107": {
+      "record": "r169",
+      "start": 12830,
+      "end": 12847,
+      "distance": 3
+    },
+    "q108": {
+      "record": "r222",
+      "start": 81754,
+      "end": 81774,
+      "distance": 3
+    },
+    "q109": {
+      "record": "r37",
+      "start": 70783,
+      "end": 70802,
+      "distance": 3
+    },
+    "q110": {
+      "record": "r37",
+      "start": 70784,
+      "end": 70803,
+      "distance": 3
+    },
+    "q111": {
+      "record": "r206",
+      "start": 120383,
+      "end": 120403,
+      "distance": 3
+    },
+    "q112": {
+      "record": "r147",
+      "start": 60196,
+      "end": 60215,
+      "distance": 3
+    },
+    "q113": {
+      "record": "r147",
+      "start": 60197,
+      "end": 60216,
+      "distance": 3
+    },
+    "q114": {
+      "record": "r134",
+      "start": 26450,
+      "end": 26469,
+      "distance": 3
+    },
+    "q115": {
+      "record": "r147",
+      "start": 60199,
+      "end": 60218,
+      "distance": 3
+    },
+    "q116": {
+      "record": "r758",
+      "start": 100742,
+      "end": 100762,
+      "distance": 3
+    },
+    "q117": {
+      "record": "r285",
+      "start": 620733,
+      "end": 620753,
+      "distance": 3
+    },
+    "q118": {
+      "record": "r97",
+      "start": 76168,
+      "end": 76186,
+      "distance": 3
+    },
+    "q119": {
+      "record": "r221",
+      "start": 246913,
+      "end": 246932,
+      "distance": 3
+    },
+    "q120": {
+      "record": "r265",
+      "start": 24584,
+      "end": 24602,
+      "distance": 3
+    },
+    "q121": {
+      "record": "r45",
+      "start": 2334,
+      "end": 2354,
+      "distance": 3
+    },
+    "q122": {
+      "record": "r45",
+      "start": 2335,
+      "end": 2355,
+      "distance": 3
+    },
+    "q123": {
+      "record": "r406",
+      "start": 3645,
+      "end": 3664,
+      "distance": 3
+    },
+    "q124": {
+      "record": "r243",
+      "start": 168189,
+      "end": 168208,
+      "distance": 3
+    },
+    "q125": {
+      "record": "r262",
+      "start": 73751,
+      "end": 73769,
+      "distance": 3
+    },
+    "q126": {
+      "record": "r1191",
+      "start": 34916,
+      "end": 34935,
+      "distance": 3
+    },
+    "q127": {
+      "record": "r239",
+      "start": 119184,
+      "end": 119205,
+      "distance": 3
+    },
+    "q128": {
+      "record": "r216",
+      "start": 80411,
+      "end": 80429,
+      "distance": 3
+    },
+    "q129": {
+      "record": "r99",
+      "start": 832608,
+      "end": 832625,
+      "distance": 3
+    },
+    "q130": {
+      "record": "r99",
+      "start": 402491,
+      "end": 402511,
+      "distance": 3
+    },
+    "q131": {
+      "record": "r26",
+      "start": 28526,
+      "end": 28546,
+      "distance": 3
+    },
+    "q132": {
+      "record": "r43",
+      "start": 81950,
+      "end": 81969,
+      "distance": 3
+    },
+    "q133": {
+      "record": "r43",
+      "start": 81950,
+      "end": 81970,
+      "distance": 3
+    },
+    "q134": {
+      "record": "r99",
+      "start": 832611,
+      "end": 832630,
+      "distance": 3
+    },
+    "q135": {
+      "record": "r39",
+      "start": 51198,
+      "end": 51216,
+      "distance": 3
+    },
+    "q136": {
+      "record": "r222",
+      "start": 23760,
+      "end": 23780,
+      "distance": 3
+    },
+    "q137": {
+      "record": "r99",
+      "start": 1040062,
+      "end": 1040079,
+      "distance": 3
+    },
+    "q138": {
+      "record": "r99",
+      "start": 275845,
+      "end": 275866,
+      "distance": 3
+    },
+    "q139": {
+      "record": "r291",
+      "start": 842044,
+      "end": 842065,
+      "distance": 3
+    },
+    "q140": {
+      "record": "r45",
+      "start": 2334,
+      "end": 2353,
+      "distance": 3
+    },
+    "q141": {
+      "record": "r45",
+      "start": 2335,
+      "end": 2354,
+      "distance": 3
+    },
+    "q142": {
+      "record": "r6",
+      "start": 1499,
+      "end": 1517,
+      "distance": 3
+    },
+    "q143": {
+      "record": "r43",
+      "start": 91477,
+      "end": 91497,
+      "distance": 3
+    },
+    "q144": {
+      "record": "r39",
+      "start": 29275,
+      "end": 29292,
+      "distance": 3
+    },
+    "q145": {
+      "record": "r25",
+      "start": 11708,
+      "end": 11727,
+      "distance": 3
+    },
+    "q146": {
+      "record": "r63",
+      "start": 35418,
+      "end": 35436,
+      "distance": 3
+    },
+    "q147": {
+      "record": "r31",
+      "start": 86377,
+      "end": 86395,
+      "distance": 3
+    },
+    "q148": {
+      "record": "r31",
+      "start": 86377,
+      "end": 86396,
+      "distance": 3
+    },
+    "q149": {
+      "record": "r39",
+      "start": 177497,
+      "end": 177516,
+      "distance": 3
+    },
+    "q150": {
+      "record": "r25",
+      "start": 11712,
+      "end": 11732,
+      "distance": 3
+    },
+    "q151": {
+      "record": "r39",
+      "start": 114177,
+      "end": 114195,
+      "distance": 3
+    },
+    "q152": {
+      "record": "r43",
+      "start": 81950,
+      "end": 81969,
+      "distance": 3
+    },
+    "q153": {
+      "record": "r43",
+      "start": 81950,
+      "end": 81970,
+      "distance": 3
+    },
+    "q154": {
+      "record": "r39",
+      "start": 95787,
+      "end": 95806,
+      "distance": 3
+    },
+    "q155": {
+      "record": "r31",
+      "start": 87711,
+      "end": 87729,
+      "distance": 3
+    },
+    "q156": {
+      "record": "r1",
+      "start": 79675,
+      "end": 79693,
+      "distance": 3
+    },
+    "q157": {
+      "record": "r1",
+      "start": 79676,
+      "end": 79694,
+      "distance": 3
+    },
+    "q158": {
+      "record": "r1",
+      "start": 79677,
+      "end": 79695,
+      "distance": 3
+    },
+    "q159": {
+      "record": "r47",
+      "start": 46226,
+      "end": 46244,
+      "distance": 3
+    },
+    "q160": {
+      "record": "r8",
+      "start": 1584,
+      "end": 1602,
+      "distance": 3
+    },
+    "q161": {
+      "record": "r1",
+      "start": 59166,
+      "end": 59186,
+      "distance": 3
+    },
+    "q162": {
+      "record": "r1",
+      "start": 59167,
+      "end": 59187,
+      "distance": 3
+    },
+    "q163": {
+      "record": "r1",
+      "start": 59168,
+      "end": 59188,
+      "distance": 3
+    },
+    "q164": {
+      "record": "r39",
+      "start": 212250,
+      "end": 212269,
+      "distance": 3
+    },
+    "q165": {
+      "record": "r99",
+      "start": 119567,
+      "end": 119586,
+      "distance": 3
+    },
+    "q166": {
+      "record": "r8",
+      "start": 126400,
+      "end": 126421,
+      "distance": 3
+    },
+    "q167": {
+      "record": "r31",
+      "start": 36601,
+      "end": 36620,
+      "distance": 3
+    },
+    "q168": {
+      "record": "r90",
+      "start": 60829,
+      "end": 60848,
+      "distance": 3
+    },
+    "q169": {
+      "record": "r61",
+      "start": 9795,
+      "end": 9817,
+      "distance": 3
+    },
+    "q170": {
+      "record": "r29",
+      "start": 31075,
+      "end": 31094,
+      "distance": 3
+    },
+    "q171": {
+      "record": "r182",
+      "start": 43387,
+      "end": 43405,
+      "distance": 3
+    },
+    "q172": {
+      "record": "r29",
+      "start": 59381,
+      "end": 59398,
+      "distance": 3
+    },
+    "q173": {
+      "record": "r29",
+      "start": 59382,
+      "end": 59399,
+      "distance": 3
+    },
+    "q174": {
+      "record": "r106",
+      "start": 139756,
+      "end": 139776,
+      "distance": 3
+    },
+    "q175": {
+      "record": "r29",
+      "start": 59383,
+      "end": 59400,
+      "distance": 3
+    },
+    "q176": {
+      "record": "r29",
+      "start": 59384,
+      "end": 59401,
+      "distance": 3
+    },
+    "q177": {
+      "record": "r117",
+      "start": 38850,
+      "end": 38869,
+      "distance": 3
+    },
+    "q178": {
+      "record": "r29",
+      "start": 59385,
+      "end": 59403,
+      "distance": 3
+    },
+    "q179": {
+      "record": "r183",
+      "start": 48099,
+      "end": 48117,
+      "distance": 3
+    },
+    "q180": {
+      "record": "r8",
+      "start": 33254,
+      "end": 33274,
+      "distance": 3
+    },
+    "q181": {
+      "record": "r37",
+      "start": 23387,
+      "end": 23405,
+      "distance": 3
+    },
+    "q182": {
+      "record": "r27",
+      "start": 17103,
+      "end": 17122,
+      "distance": 3
+    },
+    "q183": {
+      "record": "r27",
+      "start": 17105,
+      "end": 17123,
+      "distance": 3
+    },
+    "q184": {
+      "record": "r27",
+      "start": 17105,
+      "end": 17124,
+      "distance": 3
+    },
+    "q185": {
+      "record": "r27",
+      "start": 17106,
+      "end": 17124,
+      "distance": 3
+    },
+    "q186": {
+      "record": "r27",
+      "start": 17107,
+      "end": 17125,
+      "distance": 3
+    },
+    "q187": {
+      "record": "r27",
+      "start": 17108,
+      "end": 17126,
+      "distance": 3
+    },
+    "q188": {
+      "record": "r99",
+      "start": 965041,
+      "end": 965062,
+      "distance": 3
+    },
+    "q189": {
+      "record": "r61",
+      "start": 9795,
+      "end": 9817,
+      "distance": 3
+    },
+    "q190": {
+      "record": "r1",
+      "start": 249321,
+      "end": 249340,
+      "distance": 3
+    },
+    "q191": {
+      "record": "r99",
+      "start": 345268,
+      "end": 345288,
+      "distance": 3
+    },
+    "q192": {
+      "record": "r99",
+      "start": 345269,
+      "end": 345289,
+      "distance": 3
+    },
+    "q193": {
+      "record": "r99",
+      "start": 965047,
+      "end": 965067,
+      "distance": 3
+    },
+    "q194": {
+      "record": "r99",
+      "start": 712713,
+      "end": 712731,
+      "distance": 3
+    },
+    "q195": {
+      "record": "r99",
+      "start": 712714,
+      "end": 712732,
+      "distance": 3
+    },
+    "q196": {
+      "record": "r79",
+      "start": 4332,
+      "end": 4349,
+      "distance": 3
+    },
+    "q197": {
+      "record": "r79",
+      "start": 4333,
+      "end": 4350,
+      "distance": 3
+    },
+    "q198": {
+      "record": "r8",
+      "start": 50578,
+      "end": 50596,
+      "distance": 3
+    },
+    "q199": {
+      "record": "r8",
+      "start": 50579,
+      "end": 50597,
+      "distance": 3
+    },
+    "q200": {
+      "record": "r31",
+      "start": 52183,
+      "end": 52203,
+      "distance": 3
+    },
+    "q201": {
+      "record": "r1",
+      "start": 249611,
+      "end": 249629,
+      "distance": 3
+    },
+    "q202": {
+      "record": "r31",
+      "start": 52185,
+      "end": 52205,
+      "distance": 3
+    },
+    "q203": {
+      "record": "r90",
+      "start": 24440,
+      "end": 24459,
+      "distance": 3
+    },
+    "q204": {
+      "record": "r90",
+      "start": 24440,
+      "end": 24461,
+      "distance": 3
+    },
+    "q205": {
+      "record": "r43",
+      "start": 57595,
+      "end": 57614,
+      "distance": 3
+    },
+    "q206": {
+      "record": "r297",
+      "start": 150607,
+      "end": 150625,
+      "distance": 3
+    },
+    "q207": {
+      "record": "r147",
+      "start": 151954,
+      "end": 151972,
+      "distance": 3
+    },
+    "q208": {
+      "record": "r593",
+      "start": 13030,
+      "end": 13049,
+      "distance": 3
+    },
+    "q209": {
+      "record": "r147",
+      "start": 151956,
+      "end": 151974,
+      "distance": 3
+    },
+    "q210": {
+      "record": "r229",
+      "start": 46438,
+      "end": 46459,
+      "distance": 3
+    },
+    "q211": {
+      "record": "r180",
+      "start": 5146,
+      "end": 5164,
+      "distance": 3
+    },
+    "q212": {
+      "record": "r180",
+      "start": 5147,
+      "end": 5165,
+      "distance": 3
+    },
+    "q213": {
+      "record": "r306",
+      "start": 5283,
+      "end": 5303,
+      "distance": 3
+    },
+    "q214": {
+      "record": "r117",
+      "start": 65950,
+      "end": 65968,
+      "distance": 3
+    },
+    "q215": {
+      "record": "r163",
+      "start": 1540,
+      "end": 1559,
+      "distance": 3
+    },
+    "q216": {
+      "record": "r163",
+      "start": 1541,
+      "end": 1560,
+      "distance": 3
+    },
+    "q217": {
+      "record": "r183",
+      "start": 36848,
+      "end": 36867,
+      "distance": 3
+    },
+    "q218": {
+      "record": "r99",
+      "start": 357714,
+      "end": 357735,
+      "distance": 3
+    },
+    "q219": {
+      "record": "r210",
+      "start": 19501,
+      "end": 19520,
+      "distance": 3
+    },
+    "q220": {
+      "record": "r254",
+      "start": 344359,
+      "end": 344377,
+      "distance": 3
+    },
+    "q221": {
+      "record": "r99",
+      "start": 2256,
+      "end": 2274,
+      "distance": 3
+    },
+    "q222": {
+      "record": "r152",
+      "start": 30536,
+      "end": 30556,
+      "distance": 3
+    },
+    "q223": {
+      "record": "r537",
+      "start": 18761,
+      "end": 18780,
+      "distance": 3
+    },
+    "q224": {
+      "record": "r31",
+      "start": 25209,
+      "end": 25229,
+      "distance": 3
+    },
+    "q225": {
+      "record": "r279",
+      "start": 164208,
+      "end": 164228,
+      "distance": 3
+    },
+    "q226": {
+      "record": "r368",
+      "start": 110431,
+      "end": 110451,
+      "distance": 3
+    },
+    "q227": {
+      "record": "r134",
+      "start": 2870,
+      "end": 2887,
+      "distance": 3
+    },
+    "q228": {
+      "record": "r285",
+      "start": 201013,
+      "end": 201034,
+      "distance": 3
+    },
+    "q229": {
+      "record": "r99",
+      "start": 921408,
+      "end": 921429,
+      "distance": 3
+    },
+    "q230": {
+      "record": "r238",
+      "start": 241933,
+      "end": 241953,
+      "distance": 3
+    },
+    "q231": {
+      "record": "r124",
+      "start": 34122,
+      "end": 34140,
+      "distance": 3
+    },
+    "q232": {
+      "record": "r124",
+      "start": 99706,
+      "end": 99724,
+      "distance": 3
+    },
+    "q233": {
+      "record": "r584",
+      "start": 32642,
+      "end": 32662,
+      "distance": 3
+    },
+    "q234": {
+      "record": "r89",
+      "start": 8437,
+      "end": 8457,
+      "distance": 3
+    },
+    "q235": {
+      "record": "r213",
+      "start": 134520,
+      "end": 134538,
+      "distance": 3
+    },
+    "q236": {
+      "record": "r209",
+      "start": 19102,
+      "end": 19121,
+      "distance": 3
+    },
+    "q237": {
+      "record": "r89",
+      "start": 8440,
+      "end": 8459,
+      "distance": 3
+    },
+    "q238": {
+      "record": "r43",
+      "start": 52046,
+      "end": 52067,
+      "distance": 3
+    },
+    "q239": {
+      "record": "r43",
+      "start": 52047,
+      "end": 52068,
+      "distance": 3
+    },
+    "q240": {
+      "record": "r105",
+      "start": 26612,
+      "end": 26630,
+      "distance": 3
+    },
+    "q241": {
+      "record": "r105",
+      "start": 26612,
+      "end": 26631,
+      "distance": 3
+    },
+    "q242": {
+      "record": "r5",
+      "start": 66380,
+      "end": 66398,
+      "distance": 3
+    },
+    "q243": {
+      "record": "r5",
+      "start": 66381,
+      "end": 66399,
+      "distance": 3
+    },
+    "q244": {
+      "record": "r3",
+      "start": 8383,
+      "end": 8402,
+      "distance": 3
+    },
+    "q245": {
+      "record": "r212",
+      "start": 15317,
+      "end": 15336,
+      "distance": 3
+    },
+    "q246": {
+      "record": "r89",
+      "start": 9631,
+      "end": 9652,
+      "distance": 3
+    },
+    "q247": {
+      "record": "r37",
+      "start": 44019,
+      "end": 44038,
+      "distance": 3
+    },
+    "q248": {
+      "record": "r97",
+      "start": 32538,
+      "end": 32556,
+      "distance": 3
+    },
+    "q249": {
+      "record": "r92",
+      "start": 4939,
+      "end": 4958,
+      "distance": 3
+    },
+    "q250": {
+      "record": "r35",
+      "start": 1560,
+      "end": 1580,
+      "distance": 3
+    },
+    "q251": {
+      "record": "r63",
+      "start": 70993,
+      "end": 71012,
+      "distance": 3
+    },
+    "q252": {
+      "record": "r63",
+      "start": 70994,
+      "end": 71013,
+      "distance": 3
+    },
+    "q253": {
+      "record": "r63",
+      "start": 70997,
+      "end": 71014,
+      "distance": 3
+    },
+    "q254": {
+      "record": "r29",
+      "start": 13156,
+      "end": 13176,
+      "distance": 3
+    },
+    "q255": {
+      "record": "r8",
+      "start": 106194,
+      "end": 106212,
+      "distance": 3
+    },
+    "q256": {
+      "record": "r8",
+      "start": 106195,
+      "end": 106213,
+      "distance": 3
+    },
+    "q257": {
+      "record": "r8",
+      "start": 78533,
+      "end": 78551,
+      "distance": 3
+    },
+    "q258": {
+      "record": "r39",
+      "start": 271069,
+      "end": 271086,
+      "distance": 3
+    },
+    "q259": {
+      "record": "r8",
+      "start": 113334,
+      "end": 113352,
+      "distance": 3
+    },
+    "q260": {
+      "record": "r63",
+      "start": 73343,
+      "end": 73360,
+      "distance": 3
+    },
+    "q261": {
+      "record": "r105",
+      "start": 24221,
+      "end": 24238,
+      "distance": 3
+    },
+    "q262": {
+      "record": "r99",
+      "start": 294452,
+      "end": 294471,
+      "distance": 3
+    },
+    "q263": {
+      "record": "r61",
+      "start": 12549,
+      "end": 12567,
+      "distance": 3
+    },
+    "q264": {
+      "record": "r212",
+      "start": 15316,
+      "end": 15334,
+      "distance": 3
+    },
+    "q265": {
+      "record": "r14",
+      "start": 47606,
+      "end": 47626,
+      "distance": 3
+    },
+    "q266": {
+      "record": "r213",
+      "start": 132020,
+      "end": 132038,
+      "distance": 3
+    },
+    "q267": {
+      "record": "r37",
+      "start": 44019,
+      "end": 44038,
+      "distance": 3
+    },
+    "q268": {
+      "record": "r99",
+      "start": 65810,
+      "end": 65829,
+      "distance": 3
+    },
+    "q269": {
+      "record": "r99",
+      "start": 454193,
+      "end": 454212,
+      "distance": 3
+    },
+    "q270": {
+      "record": "r35",
+      "start": 1560,
+      "end": 1580,
+      "distance": 3
+    },
+    "q271": {
+      "record": "r63",
+      "start": 70993,
+      "end": 71012,
+      "distance": 3
+    },
+    "q272": {
+      "record": "r63",
+      "start": 70994,
+      "end": 71013,
+      "distance": 3
+    },
+    "q273": {
+      "record": "r63",
+      "start": 70997,
+      "end": 71014,
+      "distance": 3
+    },
+    "q274": {
+      "record": "r39",
+      "start": 120314,
+      "end": 120333,
+      "distance": 3
+    },
+    "q275": {
+      "record": "r8",
+      "start": 41821,
+      "end": 41840,
+      "distance": 3
+    },
+    "q276": {
+      "record": "r39",
+      "start": 120315,
+      "end": 120333,
+      "distance": 3
+    },
+    "q277": {
+      "record": "r1",
+      "start": 323252,
+      "end": 323271,
+      "distance": 3
+    },
+    "q278": {
+      "record": "r8",
+      "start": 143050,
+      "end": 143068,
+      "distance": 3
+    },
+    "q279": {
+      "record": "r47",
+      "start": 62103,
+      "end": 62122,
+      "distance": 3
+    },
+    "q280": {
+      "record": "r66",
+      "start": 7118,
+      "end": 7135,
+      "distance": 3
+    },
+    "q281": {
+      "record": "r8",
+      "start": 52057,
+      "end": 52077,
+      "distance": 3
+    },
+    "q282": {
+      "record": "r8",
+      "start": 52058,
+      "end": 52078,
+      "distance": 3
+    },
+    "q283": {
+      "record": "r156",
+      "start": 9969,
+      "end": 9986,
+      "distance": 3
+    },
+    "q284": {
+      "record": "r176",
+      "start": 1605,
+      "end": 1624,
+      "distance": 3
+    },
+    "q285": {
+      "record": "r8",
+      "start": 52061,
+      "end": 52080,
+      "distance": 3
+    },
+    "q286": {
+      "record": "r99",
+      "start": 112923,
+      "end": 112940,
+      "distance": 3
+    },
+    "q287": {
+      "record": "r63",
+      "start": 6139,
+      "end": 6159,
+      "distance": 3
+    },
+    "q288": {
+      "record": "r1",
+      "start": 185565,
+      "end": 185584,
+      "distance": 3
+    },
+    "q289": {
+      "record": "r1",
+      "start": 185566,
+      "end": 185585,
+      "distance": 3
+    },
+    "q290": {
+      "record": "r1",
+      "start": 185566,
+      "end": 185587,
+      "distance": 3
+    },
+    "q291": {
+      "record": "r1",
+      "start": 185567,
+      "end": 185587,
+      "distance": 3
+    },
+    "q292": {
+      "record": "r108",
+      "start": 58963,
+      "end": 58983,
+      "distance": 3
+    },
+    "q293": {
+      "record": "r108",
+      "start": 58964,
+      "end": 58984,
+      "distance": 3
+    },
+    "q294": {
+      "record": "r198",
+      "start": 26061,
+      "end": 26083,
+      "distance": 3
+    },
+    "q295": {
+      "record": "r108",
+      "start": 58965,
+      "end": 58986,
+      "distance": 3
+    },
+    "q296": {
+      "record": "r43",
+      "start": 56537,
+      "end": 56556,
+      "distance": 3
+    },
+    "q297": {
+      "record": "r240",
+      "start": 55143,
+      "end": 55163,
+      "distance": 3
+    },
+    "q298": {
+      "record": "r99",
+      "start": 997780,
+      "end": 997799,
+      "distance": 3
+    },
+    "q299": {
+      "record": "r99",
+      "start": 879118,
+      "end": 879138,
+      "distance": 3
+    },
+    "q300": {
+      "record": "r66",
+      "start": 7118,
+      "end": 7136,
+      "distance": 3
+    },
+    "q301": {
+      "record": "r216",
+      "start": 24094,
+      "end": 24114,
+      "distance": 3
+    },
+    "q302": {
+      "record": "r398",
+      "start": 132349,
+      "end": 132369,
+      "distance": 3
+    },
+    "q303": {
+      "record": "r99",
+      "start": 593825,
+      "end": 593843,
+      "distance": 3
+    },
+    "q304": {
+      "record": "r194",
+      "start": 162336,
+      "end": 162355,
+      "distance": 3
+    },
+    "q305": {
+      "record": "r99",
+      "start": 593826,
+      "end": 593844,
+      "distance": 3
+    },
+    "q306": {
+      "record": "r99",
+      "start": 112923,
+      "end": 112940,
+      "distance": 3
+    },
+    "q307": {
+      "record": "r68",
+      "start": 1403,
+      "end": 1423,
+      "distance": 3
+    },
+    "q308": {
+      "record": "r47",
+      "start": 51939,
+      "end": 51957,
+      "distance": 3
+    },
+    "q309": {
+      "record": "r1",
+      "start": 185565,
+      "end": 185585,
+      "distance": 3
+    },
+    "q310": {
+      "record": "r152",
+      "start": 61477,
+      "end": 61494,
+      "distance": 3
+    },
+    "q311": {
+      "record": "r152",
+      "start": 61477,
+      "end": 61497,
+      "distance": 3
+    },
+    "q312": {
+      "record": "r152",
+      "start": 61478,
+      "end": 61495,
+      "distance": 3
+    },
+    "q313": {
+      "record": "r308",
+      "start": 72519,
+      "end": 72538,
+      "distance": 3
+    },
+    "q314": {
+      "record": "r295",
+      "start": 54033,
+      "end": 54054,
+      "distance": 3
+    },
+    "q315": {
+      "record": "r224",
+      "start": 73694,
+      "end": 73715,
+      "distance": 3
+    },
+    "q316": {
+      "record": "r128",
+      "start": 5491,
+      "end": 5510,
+      "distance": 3
+    },
+    "q317": {
+      "record": "r223",
+      "start": 47406,
+      "end": 47425,
+      "distance": 3
+    },
+    "q318": {
+      "record": "r223",
+      "start": 47408,
+      "end": 47426,
+      "distance": 3
+    },
+    "q319": {
+      "record": "r99",
+      "start": 879120,
+      "end": 879138,
+      "distance": 3
+    },
+    "q320": {
+      "record": "r5",
+      "start": 80162,
+      "end": 80182,
+      "distance": 3
+    },
+    "q321": {
+      "record": "r5",
+      "start": 80164,
+      "end": 80183,
+      "distance": 3
+    },
+    "q322": {
+      "record": "r5",
+      "start": 80164,
+      "end": 80184,
+      "distance": 3
+    },
+    "q323": {
+      "record": "r39",
+      "start": 84672,
+      "end": 84689,
+      "distance": 3
+    },
+    "q324": {
+      "record": "r39",
+      "start": 84673,
+      "end": 84690,
+      "distance": 3
+    },
+    "q325": {
+      "record": "r39",
+      "start": 84673,
+      "end": 84691,
+      "distance": 3
+    },
+    "q326": {
+      "record": "r31",
+      "start": 13824,
+      "end": 13842,
+      "distance": 3
+    },
+    "q327": {
+      "record": "r14",
+      "start": 72626,
+      "end": 72646,
+      "distance": 3
+    },
+    "q328": {
+      "record": "r73",
+      "start": 24996,
+      "end": 25016,
+      "distance": 3
+    },
+    "q329": {
+      "record": "r97",
+      "start": 65835,
+      "end": 65854,
+      "distance": 3
+    },
+    "q330": {
+      "record": "r169",
+      "start": 16345,
+      "end": 16363,
+      "distance": 3
+    },
+    "q331": {
+      "record": "r112",
+      "start": 9937,
+      "end": 9955,
+      "distance": 3
+    },
+    "q332": {
+      "record": "r112",
+      "start": 9938,
+      "end": 9956,
+      "distance": 3
+    },
+    "q333": {
+      "record": "r112",
+      "start": 9939,
+      "end": 9957,
+      "distance": 3
+    },
+    "q334": {
+      "record": "r112",
+      "start": 9940,
+      "end": 9958,
+      "distance": 3
+    },
+    "q335": {
+      "record": "r43",
+      "start": 67556,
+      "end": 67577,
+      "distance": 3
+    },
+    "q336": {
+      "record": "r43",
+      "start": 67556,
+      "end": 67579,
+      "distance": 3
+    },
+    "q337": {
+      "record": "r43",
+      "start": 67557,
+      "end": 67580,
+      "distance": 3
+    },
+    "q338": {
+      "record": "r213",
+      "start": 92926,
+      "end": 92947,
+      "distance": 3
+    },
+    "q339": {
+      "record": "r99",
+      "start": 374325,
+      "end": 374344,
+      "distance": 3
+    },
+    "q340": {
+      "record": "r1",
+      "start": 120409,
+      "end": 120428,
+      "distance": 3
+    },
+    "q341": {
+      "record": "r31",
+      "start": 13821,
+      "end": 13838,
+      "distance": 3
+    },
+    "q342": {
+      "record": "r31",
+      "start": 13821,
+      "end": 13839,
+      "distance": 3
+    },
+    "q343": {
+      "record": "r31",
+      "start": 13822,
+      "end": 13840,
+      "distance": 3
+    },
+    "q344": {
+      "record": "r31",
+      "start": 13823,
+      "end": 13840,
+      "distance": 3
+    },
+    "q345": {
+      "record": "r31",
+      "start": 13824,
+      "end": 13841,
+      "distance": 3
+    },
+    "q346": {
+      "record": "r9",
+      "start": 15147,
+      "end": 15167,
+      "distance": 3
+    },
+    "q347": {
+      "record": "r31",
+      "start": 13826,
+      "end": 13843,
+      "distance": 3
+    },
+    "q348": {
+      "record": "r9",
+      "start": 15150,
+      "end": 15168,
+      "distance": 3
+    },
+    "q349": {
+      "record": "r9",
+      "start": 15152,
+      "end": 15169,
+      "distance": 3
+    },
+    "q350": {
+      "record": "r1",
+      "start": 236708,
+      "end": 236728,
+      "distance": 3
+    },
+    "q351": {
+      "record": "r1",
+      "start": 236709,
+      "end": 236728,
+      "distance": 3
+    },
+    "q352": {
+      "record": "r47",
+      "start": 64051,
+      "end": 64071,
+      "distance": 3
+    },
+    "q353": {
+      "record": "r1",
+      "start": 236710,
+      "end": 236729,
+      "distance": 3
+    },
+    "q354": {
+      "record": "r1",
+      "start": 236711,
+      "end": 236730,
+      "distance": 3
+    },
+    "q355": {
+      "record": "r47",
+      "start": 64055,
+      "end": 64074,
+      "distance": 3
+    },
+    "q356": {
+      "record": "r27",
+      "start": 13722,
+      "end": 13743,
+      "distance": 3
+    },
+    "q357": {
+      "record": "r99",
+      "start": 71377,
+      "end": 71395,
+      "distance": 3
+    },
+    "q358": {
+      "record": "r99",
+      "start": 71378,
+      "end": 71396,
+      "distance": 3
+    },
+    "q359": {
+      "record": "r23",
+      "start": 31773,
+      "end": 31791,
+      "distance": 3
+    },
+    "q360": {
+      "record": "r99",
+      "start": 218641,
+      "end": 218662,
+      "distance": 3
+    },
+    "q361": {
+      "record": "r72",
+      "start": 21793,
+      "end": 21811,
+      "distance": 3
+    },
+    "q362": {
+      "record": "r75",
+      "start": 6349,
+      "end": 6369,
+      "distance": 3
+    },
+    "q363": {
+      "record": "r285",
+      "start": 668345,
+      "end": 668364,
+      "distance": 3
+    },
+    "q364": {
+      "record": "r111",
+      "start": 686,
+      "end": 706,
+      "distance": 3
+    },
+    "q365": {
+      "record": "r70",
+      "start": 27180,
+      "end": 27197,
+      "distance": 3
+    },
+    "q366": {
+      "record": "r72",
+      "start": 9974,
+      "end": 9992,
+      "distance": 3
+    },
+    "q367": {
+      "record": "r72",
+      "start": 9975,
+      "end": 9993,
+      "distance": 3
+    },
+    "q368": {
+      "record": "r72",
+      "start": 9976,
+      "end": 9994,
+      "distance": 3
+    },
+    "q369": {
+      "record": "r147",
+      "start": 67619,
+      "end": 67639,
+      "distance": 3
+    },
+    "q370": {
+      "record": "r8",
+      "start": 61697,
+      "end": 61717,
+      "distance": 3
+    },
+    "q371": {
+      "record": "r72",
+      "start": 9979,
+      "end": 9996,
+      "distance": 3
+    },
+    "q372": {
+      "record": "r72",
+      "start": 9980,
+      "end": 9997,
+      "distance": 3
+    },
+    "q373": {
+      "record": "r72",
+      "start": 9981,
+      "end": 9998,
+      "distance": 3
+    },
+    "q374": {
+      "record": "r200",
+      "start": 11276,
+      "end": 11294,
+      "distance": 3
+    },
+    "q375": {
+      "record": "r152",
+      "start": 187668,
+      "end": 187688,
+      "distance": 3
+    },
+    "q376": {
+      "record": "r99",
+      "start": 262565,
+      "end": 262582,
+      "distance": 3
+    },
+    "q377": {
+      "record": "r99",
+      "start": 782723,
+      "end": 782743,
+      "distance": 3
+    },
+    "q378": {
+      "record": "r99",
+      "start": 782724,
+      "end": 782744,
+      "distance": 3
+    },
+    "q379": {
+      "record": "r112",
+      "start": 44374,
+      "end": 44391,
+      "distance": 3
+    },
+    "q380": {
+      "record": "r169",
+      "start": 141642,
+      "end": 141662,
+      "distance": 3
+    },
+    "q381": {
+      "record": "r83",
+      "start": 5106,
+      "end": 5124,
+      "distance": 3
+    },
+    "q382": {
+      "record": "r83",
+      "start": 5106,
+      "end": 5125,
+      "distance": 3
+    },
+    "q383": {
+      "record": "r83",
+      "start": 5107,
+      "end": 5125,
+      "distance": 3
+    },
+    "q384": {
+      "record": "r234",
+      "start": 61606,
+      "end": 61625,
+      "distance": 3
+    },
+    "q385": {
+      "record": "r106",
+      "start": 47856,
+      "end": 47874,
+      "distance": 3
+    },
+    "q386": {
+      "record": "r106",
+      "start": 47857,
+      "end": 47875,
+      "distance": 3
+    },
+    "q387": {
+      "record": "r43",
+      "start": 7784,
+      "end": 7801,
+      "distance": 3
+    },
+    "q388": {
+      "record": "r106",
+      "start": 47858,
+      "end": 47877,
+      "distance": 3
+    },
+    "q389": {
+      "record": "r234",
+      "start": 61610,
+      "end": 61630,
+      "distance": 3
+    },
+    "q390": {
+      "record": "r234",
+      "start": 61613,
+      "end": 61631,
+      "distance": 3
+    },
+    "q391": {
+      "record": "r99",
+      "start": 741630,
+      "end": 741649,
+      "distance": 3
+    },
+    "q392": {
+      "record": "r79",
+      "start": 28765,
+      "end": 28782,
+      "distance": 3
+    },
+    "q393": {
+      "record": "r78",
+      "start": 25908,
+      "end": 25926,
+      "distance": 3
+    },
+    "q394": {
+      "record": "r79",
+      "start": 28766,
+      "end": 28784,
+      "distance": 3
+    },
+    "q395": {
+      "record": "r79",
+      "start": 28767,
+      "end": 28785,
+      "distance": 3
+    },
+    "q396": {
+      "record": "r106",
+      "start": 51759,
+      "end": 51777,
+      "distance": 3
+    },
+    "q397": {
+      "record": "r106",
+      "start": 51759,
+      "end": 51778,
+      "distance": 3
+    },
+    "q398": {
+      "record": "r106",
+      "start": 51760,
+      "end": 51778,
+      "distance": 3
+    },
+    "q399": {
+      "record": "r25",
+      "start": 14899,
+      "end": 14919,
+      "distance": 3
+    },
+    "q400": {
+      "record": "r8",
+      "start": 50110,
+      "end": 50128,
+      "distance": 3
+    },
+    "q401": {
+      "record": "r8",
+      "start": 50111,
+      "end": 50129,
+      "distance": 3
+    },
+    "q402": {
+      "record": "r63",
+      "start": 106684,
+      "end": 106703,
+      "distance": 3
+    },
+    "q403": {
+      "record": "r79",
+      "start": 22421,
+      "end": 22441,
+      "distance": 3
+    },
+    "q404": {
+      "record": "r46",
+      "start": 745,
+      "end": 766,
+      "distance": 3
+    },
+    "q405": {
+      "record": "r79",
+      "start": 22424,
+      "end": 22443,
+      "distance": 3
+    },
+    "q406": {
+      "record": "r79",
+      "start": 22424,
+      "end": 22444,
+      "distance": 3
+    },
+    "q407": {
+      "record": "r224",
+      "start": 33516,
+      "end": 33537,
+      "distance": 3
+    },
+    "q408": {
+      "record": "r43",
+      "start": 84098,
+      "end": 84117,
+      "distance": 3
+    },
+    "q409": {
+      "record": "r42",
+      "start": 4423,
+      "end": 4443,
+      "distance": 3
+    },
+    "q410": {
+      "record": "r150",
+      "start": 15665,
+      "end": 15683,
+      "distance": 3
+    },
+    "q411": {
+      "record": "r461",
+      "start": 79688,
+      "end": 79705,
+      "distance": 3
+    },
+    "q412": {
+      "record": "r205",
+      "start": 94607,
+      "end": 94624,
+      "distance": 3
+    },
+    "q413": {
+      "record": "r117",
+      "start": 77381,
+      "end": 77400,
+      "distance": 3
+    },
+    "q414": {
+      "record": "r152",
+      "start": 95889,
+      "end": 95907,
+      "distance": 3
+    },
+    "q415": {
+      "record": "r152",
+      "start": 95890,
+      "end": 95908,
+      "distance": 3
+    },
+    "q416": {
+      "record": "r266",
+      "start": 36539,
+      "end": 36556,
+      "distance": 3
+    },
+    "q417": {
+      "record": "r134",
+      "start": 43199,
+      "end": 43219,
+      "distance": 3
+    },
+    "q418": {
+      "record": "r47",
+      "start": 65048,
+      "end": 65066,
+      "distance": 3
+    },
+    "q419": {
+      "record": "r1",
+      "start": 329507,
+      "end": 329525,
+      "distance": 3
+    },
+    "q420": {
+      "record": "r25",
+      "start": 14901,
+      "end": 14920,
+      "distance": 3
+    },
+    "q421": {
+      "record": "r1",
+      "start": 191437,
+      "end": 191456,
+      "distance": 3
+    },
+    "q422": {
+      "record": "r1",
+      "start": 191437,
+      "end": 191457,
+      "distance": 3
+    },
+    "q423": {
+      "record": "r1",
+      "start": 191438,
+      "end": 191456,
+      "distance": 3
+    },
+    "q424": {
+      "record": "r46",
+      "start": 187,
+      "end": 206,
+      "distance": 3
+    },
+    "q425": {
+      "record": "r37",
+      "start": 76429,
+      "end": 76447,
+      "distance": 3
+    },
+    "q426": {
+      "record": "r37",
+      "start": 76430,
+      "end": 76448,
+      "distance": 3
+    },
+    "q427": {
+      "record": "r233",
+      "start": 146454,
+      "end": 146474,
+      "distance": 3
+    },
+    "q428": {
+      "record": "r302",
+      "start": 45643,
+      "end": 45662,
+      "distance": 3
+    },
+    "q429": {
+      "record": "r243",
+      "start": 199696,
+      "end": 199714,
+      "distance": 3
+    },
+    "q430": {
+      "record": "r279",
+      "start": 80041,
+      "end": 80059,
+      "distance": 3
+    },
+    "q431": {
+      "record": "r285",
+      "start": 699319,
+      "end": 699339,
+      "distance": 3
+    },
+    "q432": {
+      "record": "r43",
+      "start": 46572,
+      "end": 46589,
+      "distance": 3
+    },
+    "q433": {
+      "record": "r117",
+      "start": 77381,
+      "end": 77400,
+      "distance": 3
+    },
+    "q434": {
+      "record": "r238",
+      "start": 207381,
+      "end": 207398,
+      "distance": 3
+    },
+    "q435": {
+      "record": "r43",
+      "start": 99138,
+      "end": 99158,
+      "distance": 3
+    },
+    "q436": {
+      "record": "r128",
+      "start": 27970,
+      "end": 27987,
+      "distance": 3
+    },
+    "q437": {
+      "record": "r128",
+      "start": 27970,
+      "end": 27988,
+      "distance": 3
+    },
+    "q438": {
+      "record": "r99",
+      "start": 447684,
+      "end": 447701,
+      "distance": 3
+    },
+    "q439": {
+      "record": "r257",
+      "start": 1471,
+      "end": 1488,
+      "distance": 3
+    },
+    "q440": {
+      "record": "r257",
+      "start": 1472,
+      "end": 1489,
+      "distance": 3
+    },
+    "q441": {
+      "record": "r99",
+      "start": 924838,
+      "end": 924859,
+      "distance": 3
+    },
+    "q442": {
+      "record": "r99",
+      "start": 924839,
+      "end": 924860,
+      "distance": 3
+    },
+    "q443": {
+      "record": "r285",
+      "start": 229658,
+      "end": 229677,
+      "distance": 3
+    },
+    "q444": {
+      "record": "r76",
+      "start": 5707,
+      "end": 5725,
+      "distance": 3
+    },
+    "q445": {
+      "record": "r76",
+      "start": 5708,
+      "end": 5726,
+      "distance": 3
+    },
+    "q446": {
+      "record": "r76",
+      "start": 5708,
+      "end": 5727,
+      "distance": 3
+    },
+    "q447": {
+      "record": "r76",
+      "start": 9183,
+      "end": 9201,
+      "distance": 3
+    },
+    "q448": {
+      "record": "r76",
+      "start": 9183,
+      "end": 9205,
+      "distance": 3
+    },
+    "q449": {
+      "record": "r76",
+      "start": 9184,
+      "end": 9203,
+      "distance": 3
+    },
+    "q450": {
+      "record": "r231",
+      "start": 7325,
+      "end": 7344,
+      "distance": 3
+    },
+    "q451": {
+      "record": "r163",
+      "start": 13232,
+      "end": 13253,
+      "distance": 3
+    },
+    "q452": {
+      "record": "r85",
+      "start": 34755,
+      "end": 34774,
+      "distance": 3
+    },
+    "q453": {
+      "record": "r53",
+      "start": 14574,
+      "end": 14593,
+      "distance": 3
+    },
+    "q454": {
+      "record": "r14",
+      "start": 13639,
+      "end": 13658,
+      "distance": 3
+    },
+    "q455": {
+      "record": "r342",
+      "start": 348968,
+      "end": 348985,
+      "distance": 3
+    },
+    "q456": {
+      "record": "r171",
+      "start": 298717,
+      "end": 298736,
+      "distance": 3
+    },
+    "q457": {
+      "record": "r279",
+      "start": 100177,
+      "end": 100195,
+      "distance": 3
+    },
+    "q458": {
+      "record": "r99",
+      "start": 803499,
+      "end": 803518,
+      "distance": 3
+    },
+    "q459": {
+      "record": "r279",
+      "start": 226920,
+      "end": 226940,
+      "distance": 3
+    },
+    "q460": {
+      "record": "r35",
+      "start": 11380,
+      "end": 11399,
+      "distance": 3
+    },
+    "q461": {
+      "record": "r147",
+      "start": 127059,
+      "end": 127079,
+      "distance": 3
+    },
+    "q462": {
+      "record": "r188",
+      "start": 5900,
+      "end": 5920,
+      "distance": 3
+    },
+    "q463": {
+      "record": "r147",
+      "start": 127061,
+      "end": 127080,
+      "distance": 3
+    },
+    "q464": {
+      "record": "r76",
+      "start": 5707,
+      "end": 5725,
+      "distance": 3
+    },
+    "q465": {
+      "record": "r73",
+      "start": 23809,
+      "end": 23828,
+      "distance": 3
+    },
+    "q466": {
+      "record": "r73",
+      "start": 23809,
+      "end": 23829,
+      "distance": 3
+    },
+    "q467": {
+      "record": "r22",
+      "start": 4926,
+      "end": 4945,
+      "distance": 3
+    },
+    "q468": {
+      "record": "r22",
+      "start": 4927,
+      "end": 4946,
+      "distance": 3
+    },
+    "q469": {
+      "record": "r178",
+      "start": 97607,
+      "end": 97624,
+      "distance": 3
+    },
+    "q470": {
+      "record": "r33",
+      "start": 1787,
+      "end": 1805,
+      "distance": 3
+    },
+    "q471": {
+      "record": "r178",
+      "start": 129577,
+      "end": 129595,
+      "distance": 3
+    },
+    "q472": {
+      "record": "r33",
+      "start": 1788,
+      "end": 1809,
+      "distance": 3
+    },
+    "q473": {
+      "record": "r9",
+      "start": 7495,
+      "end": 7514,
+      "distance": 3
+    },
+    "q474": {
+      "record": "r511",
+      "start": 21481,
+      "end": 21498,
+      "distance": 3
+    },
+    "q475": {
+      "record": "r9",
+      "start": 7496,
+      "end": 7515,
+      "distance": 3
+    },
+    "q476": {
+      "record": "r171",
+      "start": 298717,
+      "end": 298736,
+      "distance": 3
+    },
+    "q477": {
+      "record": "r204",
+      "start": 6611,
+      "end": 6629,
+      "distance": 3
+    },
+    "q478": {
+      "record": "r172",
+      "start": 48144,
+      "end": 48163,
+      "distance": 3
+    },
+    "q479": {
+      "record": "r106",
+      "start": 60196,
+      "end": 60215,
+      "distance": 3
+    },
+    "q480": {
+      "record": "r106",
+      "start": 60197,
+      "end": 60215,
+      "distance": 3
+    },
+    "q481": {
+      "record": "r106",
+      "start": 60198,
+      "end": 60216,
+      "distance": 3
+    },
+    "q482": {
+      "record": "r2",
+      "start": 994,
+      "end": 1013,
+      "distance": 3
+    },
+    "q483": {
+      "record": "r2",
+      "start": 995,
+      "end": 1014,
+      "distance": 3
+    },
+    "q484": {
+      "record": "r2",
+      "start": 996,
+      "end": 1015,
+      "distance": 3
+    },
+    "q485": {
+      "record": "r39",
+      "start": 95751,
+      "end": 95769,
+      "distance": 3
+    },
+    "q486": {
+      "record": "r39",
+      "start": 95752,
+      "end": 95770,
+      "distance": 3
+    },
+    "q487": {
+      "record": "r43",
+      "start": 31980,
+      "end": 31998,
+      "distance": 3
+    },
+    "q488": {
+      "record": "r94",
+      "start": 7918,
+      "end": 7938,
+      "distance": 3
+    },
+    "q489": {
+      "record": "r172",
+      "start": 44362,
+      "end": 44381,
+      "distance": 3
+    },
+    "q490": {
+      "record": "r94",
+      "start": 7920,
+      "end": 7940,
+      "distance": 3
+    },
+    "q491": {
+      "record": "r229",
+      "start": 13552,
+      "end": 13570,
+      "distance": 3
+    },
+    "q492": {
+      "record": "r238",
+      "start": 136085,
+      "end": 136103,
+      "distance": 3
+    },
+    "q493": {
+      "record": "r172",
+      "start": 44365,
+      "end": 44384,
+      "distance": 3
+    },
+    "q494": {
+      "record": "r23",
+      "start": 6112,
+      "end": 6132,
+      "distance": 3
+    },
+    "q495": {
+      "record": "r5",
+      "start": 101573,
+      "end": 101593,
+      "distance": 3
+    },
+    "q496": {
+      "record": "r48",
+      "start": 8718,
+      "end": 8737,
+      "distance": 3
+    },
+    "q497": {
+      "record": "r145",
+      "start": 11345,
+      "end": 11366,
+      "distance": 3
+    },
+    "q498": {
+      "record": "r108",
+      "start": 23474,
+      "end": 23492,
+      "distance": 3
+    },
+    "q499": {
+      "record": "r106",
+      "start": 60197,
+      "end": 60215,
+      "distance": 3
+    },
+    "q500": {
+      "record": "r99",
+      "start": 501862,
+      "end": 501881,
+      "distance": 3
+    },
+    "q501": {
+      "record": "r106",
+      "start": 60198,
+      "end": 60216,
+      "distance": 3
+    },
+    "q502": {
+      "record": "r75",
+      "start": 10251,
+      "end": 10268,
+      "distance": 3
+    },
+    "q503": {
+      "record": "r39",
+      "start": 93006,
+      "end": 93023,
+      "distance": 3
+    },
+    "q504": {
+      "record": "r39",
+      "start": 93007,
+      "end": 93027,
+      "distance": 3
+    },
+    "q505": {
+      "record": "r39",
+      "start": 95751,
+      "end": 95769,
+      "distance": 3
+    },
+    "q506": {
+      "record": "r39",
+      "start": 95752,
+      "end": 95770,
+      "distance": 3
+    },
+    "q507": {
+      "record": "r43",
+      "start": 31980,
+      "end": 31998,
+      "distance": 3
+    },
+    "q508": {
+      "record": "r99",
+      "start": 992815,
+      "end": 992835,
+      "distance": 3
+    },
+    "q509": {
+      "record": "r85",
+      "start": 24028,
+      "end": 24047,
+      "distance": 3
+    },
+    "q510": {
+      "record": "r39",
+      "start": 100399,
+      "end": 100419,
+      "distance": 3
+    },
+    "q511": {
+      "record": "r10",
+      "start": 8642,
+      "end": 8660,
+      "distance": 3
+    },
+    "q512": {
+      "record": "r85",
+      "start": 24030,
+      "end": 24049,
+      "distance": 3
+    },
+    "q513": {
+      "record": "r161",
+      "start": 27544,
+      "end": 27562,
+      "distance": 3
+    },
+    "q514": {
+      "record": "r23",
+      "start": 6112,
+      "end": 6132,
+      "distance": 3
+    },
+    "q515": {
+      "record": "r99",
+      "start": 1172148,
+      "end": 1172166,
+      "distance": 3
+    },
+    "q516": {
+      "record": "r1",
+      "start": 179500,
+      "end": 179521,
+      "distance": 3
+    },
+    "q517": {
+      "record": "r47",
+      "start": 50711,
+      "end": 50729,
+      "distance": 3
+    },
+    "q518": {
+      "record": "r47",
+      "start": 50712,
+      "end": 50730,
+      "distance": 3
+    },
+    "q519": {
+      "record": "r8",
+      "start": 93329,
+      "end": 93349,
+      "distance": 3
+    },
+    "q520": {
+      "record": "r39",
+      "start": 11472,
+      "end": 11490,
+      "distance": 3
+    },
+    "q521": {
+      "record": "r99",
+      "start": 149766,
+      "end": 149784,
+      "distance": 3
+    },
+    "q522": {
+      "record": "r37",
+      "start": 28617,
+      "end": 28636,
+      "distance": 3
+    },
+    "q523": {
+      "record": "r39",
+      "start": 92913,
+      "end": 92932,
+      "distance": 3
+    },
+    "q524": {
+      "record": "r39",
+      "start": 92914,
+      "end": 92933,
+      "distance": 3
+    },
+    "q525": {
+      "record": "r8",
+      "start": 14926,
+      "end": 14944,
+      "distance": 3
+    },
+    "q526": {
+      "record": "r19",
+      "start": 7550,
+      "end": 7569,
+      "distance": 3
+    },
+    "q527": {
+      "record": "r152",
+      "start": 225283,
+      "end": 225303,
+      "distance": 3
+    },
+    "q528": {
+      "record": "r152",
+      "start": 225283,
+      "end": 225304,
+      "distance": 3
+    },
+    "q529": {
+      "record": "r87",
+      "start": 36566,
+      "end": 36584,
+      "distance": 3
+    },
+    "q530": {
+      "record": "r342",
+      "start": 58335,
+      "end": 58353,
+      "distance": 3
+    },
+    "q531": {
+      "record": "r200",
+      "start": 95792,
+      "end": 95809,
+      "distance": 3
+    },
+    "q532": {
+      "record": "r39",
+      "start": 19517,
+      "end": 19535,
+      "distance": 3
+    },
+    "q533": {
+      "record": "r99",
+      "start": 493669,
+      "end": 493689,
+      "distance": 3
+    },
+    "q534": {
+      "record": "r99",
+      "start": 493669,
+      "end": 493690,
+      "distance": 3
+    },
+    "q535": {
+      "record": "r130",
+      "start": 25371,
+      "end": 25390,
+      "distance": 3
+    },
+    "q536": {
+      "record": "r87",
+      "start": 28500,
+      "end": 28521,
+      "distance": 3
+    },
+    "q537": {
+      "record": "r87",
+      "start": 28501,
+      "end": 28522,
+      "distance": 3
+    },
+    "q538": {
+      "record": "r1",
+      "start": 332478,
+      "end": 332497,
+      "distance": 3
+    },
+    "q539": {
+      "record": "r1",
+      "start": 225662,
+      "end": 225679,
+      "distance": 3
+    },
+    "q540": {
+      "record": "r99",
+      "start": 951451,
+      "end": 951470,
+      "distance": 3
+    },
+    "q541": {
+      "record": "r137",
+      "start": 6625,
+      "end": 6644,
+      "distance": 3
+    },
+    "q542": {
+      "record": "r20",
+      "start": 462,
+      "end": 480,
+      "distance": 3
+    },
+    "q543": {
+      "record": "r29",
+      "start": 18080,
+      "end": 18101,
+      "distance": 3
+    },
+    "q544": {
+      "record": "r39",
+      "start": 24367,
+      "end": 24386,
+      "distance": 3
+    },
+    "q545": {
+      "record": "r5",
+      "start": 63799,
+      "end": 63818,
+      "distance": 3
+    },
+    "q546": {
+      "record": "r5",
+      "start": 72178,
+      "end": 72195,
+      "distance": 3
+    },
+    "q547": {
+      "record": "r37",
+      "start": 42742,
+      "end": 42759,
+      "distance": 3
+    },
+    "q548": {
+      "record": "r8",
+      "start": 4101,
+      "end": 4119,
+      "distance": 3
+    },
+    "q549": {
+      "record": "r23",
+      "start": 12311,
+      "end": 12331,
+      "distance": 3
+    },
+    "q550": {
+      "record": "r39",
+      "start": 24372,
+      "end": 24391,
+      "distance": 3
+    },
+    "q551": {
+      "record": "r33",
+      "start": 628,
+      "end": 647,
+      "distance": 3
+    },
+    "q552": {
+      "record": "r99",
+      "start": 173751,
+      "end": 173770,
+      "distance": 3
+    },
+    "q553": {
+      "record": "r99",
+      "start": 767926,
+      "end": 767946,
+      "distance": 3
+    },
+    "q554": {
+      "record": "r33",
+      "start": 630,
+      "end": 650,
+      "distance": 3
+    },
+    "q555": {
+      "record": "r130",
+      "start": 25371,
+      "end": 25390,
+      "distance": 3
+    },
+    "q556": {
+      "record": "r130",
+      "start": 25371,
+      "end": 25391,
+      "distance": 3
+    },
+    "q557": {
+      "record": "r99",
+      "start": 379644,
+      "end": 379665,
+      "distance": 3
+    },
+    "q558": {
+      "record": "r39",
+      "start": 180807,
+      "end": 180825,
+      "distance": 3
+    },
+    "q559": {
+      "record": "r1",
+      "start": 97997,
+      "end": 98014,
+      "distance": 3
+    },
+    "q560": {
+      "record": "r245",
+      "start": 34444,
+      "end": 34462,
+      "distance": 3
+    },
+    "q561": {
+      "record": "r90",
+      "start": 54479,
+      "end": 54497,
+      "distance": 3
+    },
+    "q562": {
+      "record": "r1",
+      "start": 97999,
+      "end": 98017,
+      "distance": 3
+    },
+    "q563": {
+      "record": "r1",
+      "start": 98000,
+      "end": 98018,
+      "distance": 3
+    },
+    "q564": {
+      "record": "r80",
+      "start": 4222,
+      "end": 4241,
+      "distance": 3
+    },
+    "q565": {
+      "record": "r8",
+      "start": 108321,
+      "end": 108340,
+      "distance": 3
+    },
+    "q566": {
+      "record": "r43",
+      "start": 45952,
+      "end": 45970,
+      "distance": 3
+    },
+    "q567": {
+      "record": "r43",
+      "start": 45953,
+      "end": 45971,
+      "distance": 3
+    },
+    "q568": {
+      "record": "r70",
+      "start": 10635,
+      "end": 10657,
+      "distance": 3
+    },
+    "q569": {
+      "record": "r171",
+      "start": 189588,
+      "end": 189606,
+      "distance": 3
+    },
+    "q570": {
+      "record": "r124",
+      "start": 176325,
+      "end": 176345,
+      "distance": 3
+    },
+    "q571": {
+      "record": "r1",
+      "start": 81388,
+      "end": 81407,
+      "distance": 3
+    },
+    "q572": {
+      "record": "r1",
+      "start": 81388,
+      "end": 81408,
+      "distance": 3
+    },
+    "q573": {
+      "record": "r8",
+      "start": 126469,
+      "end": 126490,
+      "distance": 3
+    },
+    "q574": {
+      "record": "r37",
+      "start": 73395,
+      "end": 73414,
+      "distance": 3
+    },
+    "q575": {
+      "record": "r42",
+      "start": 28772,
+      "end": 28791,
+      "distance": 3
+    },
+    "q576": {
+      "record": "r39",
+      "start": 35167,
+      "end": 35187,
+      "distance": 3
+    },
+    "q577": {
+      "record": "r27",
+      "start": 16521,
+      "end": 16539,
+      "distance": 3
+    },
+    "q578": {
+      "record": "r27",
+      "start": 16522,
+      "end": 16540,
+      "distance": 3
+    },
+    "q579": {
+      "record": "r29",
+      "start": 11180,
+      "end": 11199,
+      "distance": 3
+    },
+    "q580": {
+      "record": "r1",
+      "start": 210817,
+      "end": 210835,
+      "distance": 3
+    },
+    "q581": {
+      "record": "r8",
+      "start": 101405,
+      "end": 101425,
+      "distance": 3
+    },
+    "q582": {
+      "record": "r8",
+      "start": 64486,
+      "end": 64506,
+      "distance": 3
+    },
+    "q583": {
+      "record": "r8",
+      "start": 64486,
+      "end": 64507,
+      "distance": 3
+    },
+    "q584": {
+      "record": "r47",
+      "start": 9630,
+      "end": 9649,
+      "distance": 3
+    },
+    "q585": {
+      "record": "r37",
+      "start": 69317,
+      "end": 69335,
+      "distance": 3
+    },
+    "q586": {
+      "record": "r90",
+      "start": 54483,
+      "end": 54503,
+      "distance": 3
+    },
+    "q587": {
+      "record": "r37",
+      "start": 69319,
+      "end": 69337,
+      "distance": 3
+    },
+    "q588": {
+      "record": "r37",
+      "start": 69320,
+      "end": 69338,
+      "distance": 3
+    },
+    "q589": {
+      "record": "r113",
+      "start": 236,
+      "end": 256,
+      "distance": 3
+    },
+    "q590": {
+      "record": "r39",
+      "start": 24437,
+      "end": 24457,
+      "distance": 3
+    },
+    "q591": {
+      "record": "r31",
+      "start": 88353,
+      "end": 88370,
+      "distance": 3
+    },
+    "q592": {
+      "record": "r39",
+      "start": 24441,
+      "end": 24459,
+      "distance": 3
+    },
+    "q593": {
+      "record": "r39",
+      "start": 24439,
+      "end": 24461,
+      "distance": 3
+    },
+    "q594": {
+      "record": "r25",
+      "start": 3888,
+      "end": 3905,
+      "distance": 3
+    },
+    "q595": {
+      "record": "r25",
+      "start": 3889,
+      "end": 3906,
+      "distance": 3
+    },
+    "q596": {
+      "record": "r39",
+      "start": 24443,
+      "end": 24462,
+      "distance": 3
+    },
+    "q597": {
+      "record": "r8",
+      "start": 64486,
+      "end": 64506,
+      "distance": 3
+    },
+    "q598": {
+      "record": "r99",
+      "start": 459353,
+      "end": 459371,
+      "distance": 3
+    },
+    "q599": {
+      "record": "r1",
+      "start": 92713,
+      "end": 92733,
+      "distance": 3
+    },
+    "q600": {
+      "record": "r9",
+      "start": 3622,
+      "end": 3640,
+      "distance": 3
+    },
+    "q601": {
+      "record": "r5",
+      "start": 80140,
+      "end": 80158,
+      "distance": 3
+    },
+    "q602": {
+      "record": "r1",
+      "start": 233818,
+      "end": 233838,
+      "distance": 3
+    },
+    "q603": {
+      "record": "r1",
+      "start": 233819,
+      "end": 233839,
+      "distance": 3
+    },
+    "q604": {
+      "record": "r18",
+      "start": 510,
+      "end": 528,
+      "distance": 3
+    },
+    "q605": {
+      "record": "r1",
+      "start": 233820,
+      "end": 233841,
+      "distance": 3
+    },
+    "q606": {
+      "record": "r18",
+      "start": 512,
+      "end": 531,
+      "distance": 3
+    },
+    "q607": {
+      "record": "r18",
+      "start": 513,
+      "end": 532,
+      "distance": 3
+    },
+    "q608": {
+      "record": "r1",
+      "start": 6196,
+      "end": 6215,
+      "distance": 3
+    },
+    "q609": {
+      "record": "r1",
+      "start": 275144,
+      "end": 275162,
+      "distance": 3
+    },
+    "q610": {
+      "record": "r1",
+      "start": 34726,
+      "end": 34745,
+      "distance": 3
+    },
+    "q611": {
+      "record": "r5",
+      "start": 66873,
+      "end": 66891,
+      "distance": 3
+    },
+    "q612": {
+      "record": "r39",
+      "start": 262918,
+      "end": 262938,
+      "distance": 3
+    },
+    "q613": {
+      "record": "r1",
+      "start": 85727,
+      "end": 85744,
+      "distance": 3
+    },
+    "q614": {
+      "record": "r5",
+      "start": 7126,
+      "end": 7144,
+      "distance": 3
+    },
+    "q615": {
+      "record": "r5",
+      "start": 66876,
+      "end": 66895,
+      "distance": 3
+    },
+    "q616": {
+      "record": "r5",
+      "start": 7128,
+      "end": 7145,
+      "distance": 3
+    },
+    "q617": {
+      "record": "r8",
+      "start": 26019,
+      "end": 26038,
+      "distance": 3
+    },
+    "q618": {
+      "record": "r39",
+      "start": 157291,
+      "end": 157309,
+      "distance": 3
+    },
+    "q619": {
+      "record": "r99",
+      "start": 368328,
+      "end": 368346,
+      "distance": 3
+    },
+    "q620": {
+      "record": "r47",
+      "start": 56267,
+      "end": 56287,
+      "distance": 3
+    },
+    "q621": {
+      "record": "r99",
+      "start": 113127,
+      "end": 113145,
+      "distance": 3
+    },
+    "q622": {
+      "record": "r99",
+      "start": 113128,
+      "end": 113146,
+      "distance": 3
+    },
+    "q623": {
+      "record": "r99",
+      "start": 113129,
+      "end": 113147,
+      "distance": 3
+    },
+    "q624": {
+      "record": "r7",
+      "start": 4434,
+      "end": 4452,
+      "distance": 3
+    },
+    "q625": {
+      "record": "r7",
+      "start": 4434,
+      "end": 4453,
+      "distance": 3
+    },
+    "q626": {
+      "record": "r7",
+      "start": 4436,
+      "end": 4454,
+      "distance": 3
+    },
+    "q627": {
+      "record": "r31",
+      "start": 686,
+      "end": 707,
+      "distance": 3
+    },
+    "q628": {
+      "record": "r7",
+      "start": 4437,
+      "end": 4455,
+      "distance": 3
+    },
+    "q629": {
+      "record": "r244",
+      "start": 8832,
+      "end": 8851,
+      "distance": 3
+    },
+    "q630": {
+      "record": "r5",
+      "start": 66872,
+      "end": 66890,
+      "distance": 3
+    },
+    "q631": {
+      "record": "r5",
+      "start": 66873,
+      "end": 66891,
+      "distance": 3
+    },
+    "q632": {
+      "record": "r79",
+      "start": 2005,
+      "end": 2025,
+      "distance": 3
+    },
+    "q633": {
+      "record": "r27",
+      "start": 41526,
+      "end": 41546,
+      "distance": 3
+    },
+    "q634": {
+      "record": "r1",
+      "start": 290301,
+      "end": 290322,
+      "distance": 3
+    },
+    "q635": {
+      "record": "r1",
+      "start": 290302,
+      "end": 290323,
+      "distance": 3
+    },
+    "q636": {
+      "record": "r39",
+      "start": 262924,
+      "end": 262942,
+      "distance": 3
+    },
+    "q637": {
+      "record": "r39",
+      "start": 262925,
+      "end": 262943,
+      "distance": 3
+    },
+    "q638": {
+      "record": "r39",
+      "start": 157290,
+      "end": 157309,
+      "distance": 3
+    },
+    "q639": {
+      "record": "r8",
+      "start": 33500,
+      "end": 33519,
+      "distance": 3
+    },
+    "q640": {
+      "record": "r8",
+      "start": 33500,
+      "end": 33520,
+      "distance": 3
+    },
+    "q641": {
+      "record": "r39",
+      "start": 39609,
+      "end": 39626,
+      "distance": 3
+    },
+    "q642": {
+      "record": "r39",
+      "start": 39610,
+      "end": 39627,
+      "distance": 3
+    },
+    "q643": {
+      "record": "r9",
+      "start": 6772,
+      "end": 6791,
+      "distance": 3
+    },
+    "q644": {
+      "record": "r14",
+      "start": 38844,
+      "end": 38864,
+      "distance": 3
+    },
+    "q645": {
+      "record": "r12",
+      "start": 58679,
+      "end": 58698,
+      "distance": 3
+    },
+    "q646": {
+      "record": "r3",
+      "start": 6575,
+      "end": 6594,
+      "distance": 3
+    },
+    "q647": {
+      "record": "r3",
+      "start": 6576,
+      "end": 6595,
+      "distance": 3
+    },
+    "q648": {
+      "record": "r70",
+      "start": 6417,
+      "end": 6436,
+      "distance": 3
+    },
+    "q649": {
+      "record": "r62",
+      "start": 3168,
+      "end": 3186,
+      "distance": 3
+    },
+    "q650": {
+      "record": "r48",
+      "start": 4380,
+      "end": 4399,
+      "distance": 3
+    },
+    "q651": {
+      "record": "r99",
+      "start": 55828,
+      "end": 55847,
+      "distance": 3
+    },
+    "q652": {
+      "record": "r70",
+      "start": 6422,
+      "end": 6440,
+      "distance": 3
+    },
+    "q653": {
+      "record": "r37",
+      "start": 57022,
+      "end": 57039,
+      "distance": 3
+    },
+    "q654": {
+      "record": "r70",
+      "start": 6453,
+      "end": 6471,
+      "distance": 3
+    },
+    "q655": {
+      "record": "r137",
+      "start": 10241,
+      "end": 10261,
+      "distance": 3
+    },
+    "q656": {
+      "record": "r106",
+      "start": 94667,
+      "end": 94685,
+      "distance": 3
+    },
+    "q657": {
+      "record": "r14",
+      "start": 41945,
+      "end": 41963,
+      "distance": 3
+    },
+    "q658": {
+      "record": "r31",
+      "start": 78502,
+      "end": 78519,
+      "distance": 3
+    },
+    "q659": {
+      "record": "r169",
+      "start": 115308,
+      "end": 115325,
+      "distance": 3
+    },
+    "q660": {
+      "record": "r77",
+      "start": 32586,
+      "end": 32606,
+      "distance": 3
+    },
+    "q661": {
+      "record": "r117",
+      "start": 19395,
+      "end": 19413,
+      "distance": 3
+    },
+    "q662": {
+      "record": "r77",
+      "start": 32587,
+      "end": 32607,
+      "distance": 3
+    },
+    "q663": {
+      "record": "r39",
+      "start": 41760,
+      "end": 41779,
+      "distance": 3
+    },
+    "q664": {
+      "record": "r38",
+      "start": 282,
+      "end": 302,
+      "distance": 3
+    },
+    "q665": {
+      "record": "r38",
+      "start": 283,
+      "end": 303,
+      "distance": 3
+    },
+    "q666": {
+      "record": "r3",
+      "start": 6575,
+      "end": 6594,
+      "distance": 3
+    },
+    "q667": {
+      "record": "r3",
+      "start": 6576,
+      "end": 6595,
+      "distance": 3
+    },
+    "q668": {
+      "record": "r84",
+      "start": 39679,
+      "end": 39701,
+      "distance": 3
+    },
+    "q669": {
+      "record": "r117",
+      "start": 7932,
+      "end": 7950,
+      "distance": 3
+    },
+    "q670": {
+      "record": "r99",
+      "start": 663944,
+      "end": 663964,
+      "distance": 3
+    },
+    "q671": {
+      "record": "r147",
+      "start": 37156,
+      "end": 37177,
+      "distance": 3
+    },
+    "q672": {
+      "record": "r99",
+      "start": 663946,
+      "end": 663966,
+      "distance": 3
+    },
+    "q673": {
+      "record": "r37",
+      "start": 57022,
+      "end": 57039,
+      "distance": 3
+    },
+    "q674": {
+      "record": "r99",
+      "start": 313931,
+      "end": 313950,
+      "distance": 3
+    },
+    "q675": {
+      "record": "r73",
+      "start": 31152,
+      "end": 31172,
+      "distance": 3
+    },
+    "q676": {
+      "record": "r206",
+      "start": 93379,
+      "end": 93397,
+      "distance": 3
+    },
+    "q677": {
+      "record": "r31",
+      "start": 78501,
+      "end": 78518,
+      "distance": 3
+    },
+    "q678": {
+      "record": "r31",
+      "start": 78502,
+      "end": 78519,
+      "distance": 3
+    },
+    "q679": {
+      "record": "r2017",
+      "start": 16237,
+      "end": 16255,
+      "distance": 3
+    },
+    "q680": {
+      "record": "r778",
+      "start": 457699,
+      "end": 457718,
+      "distance": 3
+    },
+    "q681": {
+      "record": "r650",
+      "start": 64970,
+      "end": 64988,
+      "distance": 3
+    },
+    "q682": {
+      "record": "r70",
+      "start": 34725,
+      "end": 34745,
+      "distance": 3
+    },
+    "q683": {
+      "record": "r83",
+      "start": 94626,
+      "end": 94645,
+      "distance": 3
+    },
+    "q684": {
+      "record": "r763",
+      "start": 8716,
+      "end": 8737,
+      "distance": 3
+    },
+    "q685": {
+      "record": "r99",
+      "start": 19550,
+      "end": 19570,
+      "distance": 3
+    },
+    "q686": {
+      "record": "r285",
+      "start": 365119,
+      "end": 365137,
+      "distance": 3
+    },
+    "q687": {
+      "record": "r198",
+      "start": 8175,
+      "end": 8194,
+      "distance": 3
+    },
+    "q688": {
+      "record": "r254",
+      "start": 357837,
+      "end": 357857,
+      "distance": 3
+    },
+    "q689": {
+      "record": "r1",
+      "start": 332416,
+      "end": 332437,
+      "distance": 3
+    },
+    "q690": {
+      "record": "r99",
+      "start": 674485,
+      "end": 674503,
+      "distance": 3
+    },
+    "q691": {
+      "record": "r99",
+      "start": 553476,
+      "end": 553495,
+      "distance": 3
+    },
+    "q692": {
+      "record": "r99",
+      "start": 674486,
+      "end": 674505,
+      "distance": 3
+    },
+    "q693": {
+      "record": "r99",
+      "start": 1110233,
+      "end": 1110250,
+      "distance": 3
+    },
+    "q694": {
+      "record": "r97",
+      "start": 50747,
+      "end": 50765,
+      "distance": 3
+    },
+    "q695": {
+      "record": "r99",
+      "start": 1110234,
+      "end": 1110252,
+      "distance": 3
+    },
+    "q696": {
+      "record": "r26",
+      "start": 29103,
+      "end": 29120,
+      "distance": 3
+    },
+    "q697": {
+      "record": "r26",
+      "start": 29104,
+      "end": 29121,
+      "distance": 3
+    },
+    "q698": {
+      "record": "r26",
+      "start": 29104,
+      "end": 29122,
+      "distance": 3
+    },
+    "q699": {
+      "record": "r2017",
+      "start": 16237,
+      "end": 16256,
+      "distance": 3
+    },
+    "q700": {
+      "record": "r2017",
+      "start": 16237,
+      "end": 16257,
+      "distance": 3
+    },
+    "q701": {
+      "record": "r238",
+      "start": 37459,
+      "end": 37479,
+      "distance": 3
+    },
+    "q702": {
+      "record": "r238",
+      "start": 37461,
+      "end": 37480,
+      "distance": 3
+    },
+    "q703": {
+      "record": "r171",
+      "start": 197021,
+      "end": 197039,
+      "distance": 3
+    },
+    "q704": {
+      "record": "r238",
+      "start": 37462,
+      "end": 37481,
+      "distance": 3
+    },
+    "q705": {
+      "record": "r238",
+      "start": 37463,
+      "end": 37482,
+      "distance": 3
+    },
+    "q706": {
+      "record": "r7",
+      "start": 92,
+      "end": 111,
+      "distance": 3
+    },
+    "q707": {
+      "record": "r352",
+      "start": 25743,
+      "end": 25761,
+      "distance": 3
+    },
+    "q708": {
+      "record": "r171",
+      "start": 197025,
+      "end": 197044,
+      "distance": 3
+    },
+    "q709": {
+      "record": "r99",
+      "start": 674484,
+      "end": 674502,
+      "distance": 3
+    },
+    "q710": {
+      "record": "r99",
+      "start": 674485,
+      "end": 674503,
+      "distance": 3
+    },
+    "q711": {
+      "record": "r99",
+      "start": 674487,
+      "end": 674504,
+      "distance": 3
+    },
+    "q712": {
+      "record": "r99",
+      "start": 674486,
+      "end": 674505,
+      "distance": 3
+    },
+    "q713": {
+      "record": "r304",
+      "start": 382134,
+      "end": 382151,
+      "distance": 3
+    },
+    "q714": {
+      "record": "r99",
+      "start": 1110233,
+      "end": 1110251,
+      "distance": 3
+    },
+    "q715": {
+      "record": "r47",
+      "start": 31059,
+      "end": 31078,
+      "distance": 3
+    },
+    "q716": {
+      "record": "r47",
+      "start": 31060,
+      "end": 31078,
+      "distance": 3
+    },
+    "q717": {
+      "record": "r1",
+      "start": 170623,
+      "end": 170640,
+      "distance": 3
+    },
+    "q718": {
+      "record": "r12",
+      "start": 47103,
+      "end": 47123,
+      "distance": 3
+    },
+    "q719": {
+      "record": "r39",
+      "start": 72108,
+      "end": 72126,
+      "distance": 3
+    },
+    "q720": {
+      "record": "r39",
+      "start": 72109,
+      "end": 72127,
+      "distance": 3
+    },
+    "q721": {
+      "record": "r39",
+      "start": 72110,
+      "end": 72128,
+      "distance": 3
+    },
+    "q722": {
+      "record": "r39",
+      "start": 72110,
+      "end": 72129,
+      "distance": 3
+    },
+    "q723": {
+      "record": "r39",
+      "start": 72111,
+      "end": 72130,
+      "distance": 3
+    },
+    "q724": {
+      "record": "r99",
+      "start": 332722,
+      "end": 332740,
+      "distance": 3
+    },
+    "q725": {
+      "record": "r99",
+      "start": 87634,
+      "end": 87654,
+      "distance": 3
+    },
+    "q726": {
+      "record": "r39",
+      "start": 114023,
+      "end": 114043,
+      "distance": 3
+    },
+    "q727": {
+      "record": "r99",
+      "start": 332724,
+      "end": 332743,
+      "distance": 3
+    },
+    "q728": {
+      "record": "r70",
+      "start": 13949,
+      "end": 13968,
+      "distance": 3
+    },
+    "q729": {
+      "record": "r145",
+      "start": 16046,
+      "end": 16064,
+      "distance": 3
+    },
+    "q730": {
+      "record": "r8",
+      "start": 149477,
+      "end": 149497,
+      "distance": 3
+    },
+    "q731": {
+      "record": "r39",
+      "start": 258522,
+      "end": 258540,
+      "distance": 3
+    },
+    "q732": {
+      "record": "r23",
+      "start": 23311,
+      "end": 23330,
+      "distance": 3
+    },
+    "q733": {
+      "record": "r39",
+      "start": 258523,
+      "end": 258542,
+      "distance": 3
+    },
+    "q734": {
+      "record": "r39",
+      "start": 258524,
+      "end": 258543,
+      "distance": 3
+    },
+    "q735": {
+      "record": "r216",
+      "start": 94532,
+      "end": 94551,
+      "distance": 3
+    },
+    "q736": {
+      "record": "r63",
+      "start": 56307,
+      "end": 56326,
+      "distance": 3
+    },
+    "q737": {
+      "record": "r63",
+      "start": 56307,
+      "end": 56328,
+      "distance": 3
+    },
+    "q738": {
+      "record": "r18",
+      "start": 22467,
+      "end": 22484,
+      "distance": 3
+    },
+    "q739": {
+      "record": "r39",
+      "start": 72108,
+      "end": 72128,
+      "distance": 3
+    },
+    "q740": {
+      "record": "r39",
+      "start": 72109,
+      "end": 72129,
+      "distance": 3
+    },
+    "q741": {
+      "record": "r39",
+      "start": 72109,
+      "end": 72130,
+      "distance": 3
+    },
+    "q742": {
+      "record": "r39",
+      "start": 147474,
+      "end": 147493,
+      "distance": 3
+    },
+    "q743": {
+      "record": "r85",
+      "start": 46636,
+      "end": 46655,
+      "distance": 3
+    },
+    "q744": {
+      "record": "r43",
+      "start": 47726,
+      "end": 47744,
+      "distance": 3
+    },
+    "q745": {
+      "record": "r8",
+      "start": 41844,
+      "end": 41863,
+      "distance": 3
+    },
+    "q746": {
+      "record": "r8",
+      "start": 41845,
+      "end": 41864,
+      "distance": 3
+    },
+    "q747": {
+      "record": "r57",
+      "start": 6358,
+      "end": 6375,
+      "distance": 3
+    },
+    "q748": {
+      "record": "r8",
+      "start": 76964,
+      "end": 76984,
+      "distance": 3
+    },
+    "q749": {
+      "record": "r8",
+      "start": 76965,
+      "end": 76985,
+      "distance": 3
+    },
+    "q750": {
+      "record": "r37",
+      "start": 48257,
+      "end": 48277,
+      "distance": 3
+    },
+    "q751": {
+      "record": "r8",
+      "start": 76968,
+      "end": 76986,
+      "distance": 3
+    },
+    "q752": {
+      "record": "r39",
+      "start": 55120,
+      "end": 55140,
+      "distance": 3
+    },
+    "q753": {
+      "record": "r106",
+      "start": 23293,
+      "end": 23312,
+      "distance": 3
+    },
+    "q754": {
+      "record": "r99",
+      "start": 161708,
+      "end": 161726,
+      "distance": 3
+    },
+    "q755": {
+      "record": "r168",
+      "start": 52174,
+      "end": 52193,
+      "distance": 3
+    },
+    "q756": {
+      "record": "r63",
+      "start": 56307,
+      "end": 56326,
+      "distance": 3
+    },
+    "q757": {
+      "record": "r82",
+      "start": 11195,
+      "end": 11214,
+      "distance": 3
+    },
+    "q758": {
+      "record": "r18",
+      "start": 22466,
+      "end": 22484,
+      "distance": 3
+    },
+    "q759": {
+      "record": "r37",
+      "start": 58439,
+      "end": 58458,
+      "distance": 3
+    },
+    "q760": {
+      "record": "r106",
+      "start": 110747,
+      "end": 110765,
+      "distance": 3
+    },
+    "q761": {
+      "record": "r219",
+      "start": 22388,
+      "end": 22407,
+      "distance": 3
+    },
+    "q762": {
+      "record": "r37",
+      "start": 22047,
+      "end": 22066,
+      "distance": 3
+    },
+    "q763": {
+      "record": "r35",
+      "start": 13025,
+      "end": 13044,
+      "distance": 3
+    },
+    "q764": {
+      "record": "r262",
+      "start": 120734,
+      "end": 120753,
+      "distance": 3
+    },
+    "q765": {
+      "record": "r135",
+      "start": 43523,
+      "end": 43540,
+      "distance": 3
+    },
+    "q766": {
+      "record": "r557",
+      "start": 15625,
+      "end": 15644,
+      "distance": 3
+    },
+    "q767": {
+      "record": "r1222",
+      "start": 9021,
+      "end": 9042,
+      "distance": 3
+    },
+    "q768": {
+      "record": "r286",
+      "start": 20464,
+      "end": 20484,
+      "distance": 3
+    },
+    "q769": {
+      "record": "r1",
+      "start": 298335,
+      "end": 298354,
+      "distance": 3
+    },
+    "q770": {
+      "record": "r194",
+      "start": 70922,
+      "end": 70941,
+      "distance": 3
+    },
+    "q771": {
+      "record": "r297",
+      "start": 94960,
+      "end": 94980,
+      "distance": 3
+    },
+    "q772": {
+      "record": "r12",
+      "start": 22706,
+      "end": 22725,
+      "distance": 3
+    },
+    "q773": {
+      "record": "r12",
+      "start": 22708,
+      "end": 22726,
+      "distance": 3
+    },
+    "q774": {
+      "record": "r1",
+      "start": 225855,
+      "end": 225875,
+      "distance": 3
+    },
+    "q775": {
+      "record": "r1",
+      "start": 225857,
+      "end": 225876,
+      "distance": 3
+    },
+    "q776": {
+      "record": "r1",
+      "start": 165491,
+      "end": 165508,
+      "distance": 3
+    },
+    "q777": {
+      "record": "r1",
+      "start": 295601,
+      "end": 295623,
+      "distance": 3
+    },
+    "q778": {
+      "record": "r13",
+      "start": 1173,
+      "end": 1191,
+      "distance": 3
+    },
+    "q779": {
+      "record": "r37",
+      "start": 58439,
+      "end": 58459,
+      "distance": 3
+    },
+    "q780": {
+      "record": "r832",
+      "start": 257271,
+      "end": 257289,
+      "distance": 3
+    },
+    "q781": {
+      "record": "r150",
+      "start": 59607,
+      "end": 59628,
+      "distance": 3
+    },
+    "q782": {
+      "record": "r150",
+      "start": 59608,
+      "end": 59629,
+      "distance": 3
+    },
+    "q783": {
+      "record": "r151",
+      "start": 47923,
+      "end": 47942,
+      "distance": 3
+    },
+    "q784": {
+      "record": "r832",
+      "start": 257274,
+      "end": 257291,
+      "distance": 3
+    },
+    "q785": {
+      "record": "r314",
+      "start": 36343,
+      "end": 36360,
+      "distance": 3
+    },
+    "q786": {
+      "record": "r99",
+      "start": 524812,
+      "end": 524829,
+      "distance": 3
+    },
+    "q787": {
+      "record": "r2886",
+      "start": 109216,
+      "end": 109235,
+      "distance": 3
+    },
+    "q788": {
+      "record": "r2806",
+      "start": 5767,
+      "end": 5786,
+      "distance": 3
+    },
+    "q789": {
+      "record": "r18",
+      "start": 24334,
+      "end": 24352,
+      "distance": 3
+    },
+    "q790": {
+      "record": "r1",
+      "start": 268696,
+      "end": 268714,
+      "distance": 3
+    },
+    "q791": {
+      "record": "r391",
+      "start": 157484,
+      "end": 157502,
+      "distance": 3
+    },
+    "q792": {
+      "record": "r1",
+      "start": 268698,
+      "end": 268717,
+      "distance": 3
+    },
+    "q793": {
+      "record": "r2553",
+      "start": 2032,
+      "end": 2049,
+      "distance": 3
+    },
+    "q794": {
+      "record": "r145",
+      "start": 33078,
+      "end": 33097,
+      "distance": 3
+    },
+    "q795": {
+      "record": "r84",
+      "start": 45512,
+      "end": 45531,
+      "distance": 3
+    },
+    "q796": {
+      "record": "r172",
+      "start": 19529,
+      "end": 19548,
+      "distance": 3
+    },
+    "q797": {
+      "record": "r27",
+      "start": 7722,
+      "end": 7742,
+      "distance": 3
+    },
+    "q798": {
+      "record": "r1",
+      "start": 164814,
+      "end": 164835,
+      "distance": 3
+    },
+    "q799": {
+      "record": "r19",
+      "start": 2930,
+      "end": 2948,
+      "distance": 3
+    },
+    "q800": {
+      "record": "r266",
+      "start": 51951,
+      "end": 51970,
+      "distance": 3
+    },
+    "q801": {
+      "record": "r234",
+      "start": 25444,
+      "end": 25461,
+      "distance": 3
+    },
+    "q802": {
+      "record": "r269",
+      "start": 5378,
+      "end": 5398,
+      "distance": 3
+    },
+    "q803": {
+      "record": "r461",
+      "start": 150477,
+      "end": 150495,
+      "distance": 3
+    },
+    "q804": {
+      "record": "r212",
+      "start": 19555,
+      "end": 19575,
+      "distance": 3
+    },
+    "q805": {
+      "record": "r75",
+      "start": 7951,
+      "end": 7970,
+      "distance": 3
+    },
+    "q806": {
+      "record": "r39",
+      "start": 236251,
+      "end": 236272,
+      "distance": 3
+    },
+    "q807": {
+      "record": "r318",
+      "start": 83169,
+      "end": 83188,
+      "distance": 3
+    },
+    "q808": {
+      "record": "r8",
+      "start": 58340,
+      "end": 58359,
+      "distance": 3
+    },
+    "q809": {
+      "record": "r8",
+      "start": 58341,
+      "end": 58360,
+      "distance": 3
+    },
+    "q810": {
+      "record": "r8",
+      "start": 58342,
+      "end": 58361,
+      "distance": 3
+    },
+    "q811": {
+      "record": "r99",
+      "start": 103961,
+      "end": 103981,
+      "distance": 3
+    },
+    "q812": {
+      "record": "r8",
+      "start": 52497,
+      "end": 52518,
+      "distance": 3
+    },
+    "q813": {
+      "record": "r5",
+      "start": 73386,
+      "end": 73404,
+      "distance": 3
+    },
+    "q814": {
+      "record": "r97",
+      "start": 58953,
+      "end": 58973,
+      "distance": 3
+    },
+    "q815": {
+      "record": "r14",
+      "start": 21401,
+      "end": 21421,
+      "distance": 3
+    },
+    "q816": {
+      "record": "r5",
+      "start": 73389,
+      "end": 73406,
+      "distance": 3
+    },
+    "q817": {
+      "record": "r14",
+      "start": 21403,
+      "end": 21422,
+      "distance": 3
+    },
+    "q818": {
+      "record": "r31",
+      "start": 52426,
+      "end": 52446,
+      "distance": 3
+    },
+    "q819": {
+      "record": "r19",
+      "start": 2930,
+      "end": 2949,
+      "distance": 3
+    },
+    "q820": {
+      "record": "r12",
+      "start": 9880,
+      "end": 9898,
+      "distance": 3
+    },
+    "q821": {
+      "record": "r63",
+      "start": 52367,
+      "end": 52386,
+      "distance": 3
+    },
+    "q822": {
+      "record": "r31",
+      "start": 58031,
+      "end": 58051,
+      "distance": 3
+    },
+    "q823": {
+      "record": "r31",
+      "start": 58032,
+      "end": 58052,
+      "distance": 3
+    },
+    "q824": {
+      "record": "r245",
+      "start": 32094,
+      "end": 32112,
+      "distance": 3
+    },
+    "q825": {
+      "record": "r11",
+      "start": 1275,
+      "end": 1294,
+      "distance": 3
+    },
+    "q826": {
+      "record": "r63",
+      "start": 52372,
+      "end": 52392,
+      "distance": 3
+    },
+    "q827": {
+      "record": "r8",
+      "start": 58340,
+      "end": 58358,
+      "distance": 3
+    },
+    "q828": {
+      "record": "r8",
+      "start": 58341,
+      "end": 58359,
+      "distance": 3
+    },
+    "q829": {
+      "record": "r1",
+      "start": 213444,
+      "end": 213462,
+      "distance": 3
+    },
+    "q830": {
+      "record": "r1",
+      "start": 213444,
+      "end": 213463,
+      "distance": 3
+    },
+    "q831": {
+      "record": "r8",
+      "start": 58343,
+      "end": 58362,
+      "distance": 3
+    },
+    "q832": {
+      "record": "r8",
+      "start": 52497,
+      "end": 52518,
+      "distance": 3
+    },
+    "q833": {
+      "record": "r1",
+      "start": 354202,
+      "end": 354220,
+      "distance": 3
+    },
+    "q834": {
+      "record": "r1",
+      "start": 354202,
+      "end": 354222,
+      "distance": 3
+    },
+    "q835": {
+      "record": "r14",
+      "start": 21402,
+      "end": 21421,
+      "distance": 3
+    },
+    "q836": {
+      "record": "r14",
+      "start": 21403,
+      "end": 21422,
+      "distance": 3
+    },
+    "q837": {
+      "record": "r1",
+      "start": 99173,
+      "end": 99192,
+      "distance": 3
+    },
+    "q838": {
+      "record": "r1",
+      "start": 99174,
+      "end": 99193,
+      "distance": 3
+    },
+    "q839": {
+      "record": "r42",
+      "start": 9555,
+      "end": 9575,
+      "distance": 3
+    },
+    "q840": {
+      "record": "r42",
+      "start": 9555,
+      "end": 9577,
+      "distance": 3
+    },
+    "q841": {
+      "record": "r27",
+      "start": 10881,
+      "end": 10900,
+      "distance": 3
+    },
+    "q842": {
+      "record": "r42",
+      "start": 9557,
+      "end": 9576,
+      "distance": 3
+    },
+    "q843": {
+      "record": "r42",
+      "start": 9558,
+      "end": 9580,
+      "distance": 3
+    },
+    "q844": {
+      "record": "r42",
+      "start": 9559,
+      "end": 9581,
+      "distance": 3
+    },
+    "q845": {
+      "record": "r90",
+      "start": 28406,
+      "end": 28425,
+      "distance": 3
+    },
+    "q846": {
+      "record": "r5",
+      "start": 72482,
+      "end": 72501,
+      "distance": 3
+    },
+    "q847": {
+      "record": "r72",
+      "start": 11878,
+      "end": 11898,
+      "distance": 3
+    },
+    "q848": {
+      "record": "r72",
+      "start": 11879,
+      "end": 11899,
+      "distance": 3
+    },
+    "q849": {
+      "record": "r47",
+      "start": 42278,
+      "end": 42296,
+      "distance": 3
+    },
+    "q850": {
+      "record": "r47",
+      "start": 42279,
+      "end": 42297,
+      "distance": 3
+    },
+    "q851": {
+      "record": "r42",
+      "start": 6484,
+      "end": 6503,
+      "distance": 3
+    },
+    "q852": {
+      "record": "r9",
+      "start": 3763,
+      "end": 3781,
+      "distance": 3
+    },
+    "q853": {
+      "record": "r5",
+      "start": 63951,
+      "end": 63970,
+      "distance": 3
+    },
+    "q854": {
+      "record": "r1",
+      "start": 276113,
+      "end": 276132,
+      "distance": 3
+    },
+    "q855": {
+      "record": "r147",
+      "start": 15186,
+      "end": 15204,
+      "distance": 3
+    },
+    "q856": {
+      "record": "r47",
+      "start": 64181,
+      "end": 64199,
+      "distance": 3
+    },
+    "q857": {
+      "record": "r5",
+      "start": 8959,
+      "end": 8979,
+      "distance": 3
+    },
+    "q858": {
+      "record": "r5",
+      "start": 8960,
+      "end": 8980,
+      "distance": 3
+    },
+    "q859": {
+      "record": "r42",
+      "start": 9555,
+      "end": 9575,
+      "distance": 3
+    },
+    "q860": {
+      "record": "r42",
+      "start": 9555,
+      "end": 9577,
+      "distance": 3
+    },
+    "q861": {
+      "record": "r42",
+      "start": 9556,
+      "end": 9576,
+      "distance": 3
+    },
+    "q862": {
+      "record": "r42",
+      "start": 9557,
+      "end": 9576,
+      "distance": 3
+    },
+    "q863": {
+      "record": "r42",
+      "start": 9558,
+      "end": 9580,
+      "distance": 3
+    },
+    "q864": {
+      "record": "r42",
+      "start": 9559,
+      "end": 9581,
+      "distance": 3
+    },
+    "q865": {
+      "record": "r47",
+      "start": 86454,
+      "end": 86473,
+      "distance": 3
+    },
+    "q866": {
+      "record": "r47",
+      "start": 86455,
+      "end": 86474,
+      "distance": 3
+    },
+    "q867": {
+      "record": "r55",
+      "start": 13411,
+      "end": 13432,
+      "distance": 3
+    },
+    "q868": {
+      "record": "r31",
+      "start": 25763,
+      "end": 25780,
+      "distance": 3
+    },
+    "q869": {
+      "record": "r31",
+      "start": 25763,
+      "end": 25781,
+      "distance": 3
+    },
+    "q870": {
+      "record": "r39",
+      "start": 77455,
+      "end": 77476,
+      "distance": 3
+    },
+    "q871": {
+      "record": "r72",
+      "start": 11881,
+      "end": 11902,
+      "distance": 3
+    },
+    "q872": {
+      "record": "r5",
+      "start": 101174,
+      "end": 101193,
+      "distance": 3
+    },
+    "q873": {
+      "record": "r5",
+      "start": 63951,
+      "end": 63970,
+      "distance": 3
+    },
+    "q874": {
+      "record": "r1",
+      "start": 276113,
+      "end": 276132,
+      "distance": 3
+    },
+    "q875": {
+      "record": "r18",
+      "start": 33850,
+      "end": 33869,
+      "distance": 3
+    },
+    "q876": {
+      "record": "r5",
+      "start": 63764,
+      "end": 63784,
+      "distance": 3
+    },
+    "q877": {
+      "record": "r10",
+      "start": 6019,
+      "end": 6039,
+      "distance": 3
+    },
+    "q878": {
+      "record": "r18",
+      "start": 33852,
+      "end": 33872,
+      "distance": 3
+    },
+    "q879": {
+      "record": "r99",
+      "start": 28015,
+      "end": 28037,
+      "distance": 3
+    },
+    "q880": {
+      "record": "r99",
+      "start": 28016,
+      "end": 28038,
+      "distance": 3
+    },
+    "q881": {
+      "record": "r642",
+      "start": 57831,
+      "end": 57849,
+      "distance": 3
+    },
+    "q882": {
+      "record": "r18",
+      "start": 531,
+      "end": 551,
+      "distance": 3
+    },
+    "q883": {
+      "record": "r83",
+      "start": 91685,
+      "end": 91705,
+      "distance": 3
+    },
+    "q884": {
+      "record": "r83",
+      "start": 91685,
+      "end": 91706,
+      "distance": 3
+    },
+    "q885": {
+      "record": "r83",
+      "start": 91686,
+      "end": 91707,
+      "distance": 3
+    },
+    "q886": {
+      "record": "r49",
+      "start": 2593,
+      "end": 2613,
+      "distance": 3
+    },
+    "q887": {
+      "record": "r307",
+      "start": 90858,
+      "end": 90880,
+      "distance": 3
+    },
+    "q888": {
+      "record": "r105",
+      "start": 64643,
+      "end": 64663,
+      "distance": 3
+    },
+    "q889": {
+      "record": "r99",
+      "start": 378410,
+      "end": 378430,
+      "distance": 3
+    },
+    "q890": {
+      "record": "r99",
+      "start": 378411,
+      "end": 378431,
+      "distance": 3
+    },
+    "q891": {
+      "record": "r94",
+      "start": 24126,
+      "end": 24146,
+      "distance": 3
+    },
+    "q892": {
+      "record": "r94",
+      "start": 24127,
+      "end": 24147,
+      "distance": 3
+    },
+    "q893": {
+      "record": "r171",
+      "start": 48213,
+      "end": 48233,
+      "distance": 3
+    },
+    "q894": {
+      "record": "r171",
+      "start": 48215,
+      "end": 48234,
+      "distance": 3
+    },
+    "q895": {
+      "record": "r171",
+      "start": 48216,
+      "end": 48235,
+      "distance": 3
+    },
+    "q896": {
+      "record": "r99",
+      "start": 378417,
+      "end": 378437,
+      "distance": 3
+    },
+    "q897": {
+      "record": "r8",
+      "start": 100979,
+      "end": 100997,
+      "distance": 3
+    },
+    "q898": {
+      "record": "r8",
+      "start": 100979,
+      "end": 100999,
+      "distance": 3
+    },
+    "q899": {
+      "record": "r83",
+      "start": 25724,
+      "end": 25743,
+      "distance": 3
+    },
+    "q900": {
+      "record": "r83",
+      "start": 91683,
+      "end": 91702,
+      "distance": 3
+    },
+    "q901": {
+      "record": "r83",
+      "start": 91684,
+      "end": 91703,
+      "distance": 3
+    },
+    "q902": {
+      "record": "r18",
+      "start": 531,
+      "end": 551,
+      "distance": 3
+    },
+    "q903": {
+      "record": "r49",
+      "start": 2590,
+      "end": 2610,
+      "distance": 3
+    },
+    "q904": {
+      "record": "r49",
+      "start": 2591,
+      "end": 2611,
+      "distance": 3
+    },
+    "q905": {
+      "record": "r49",
+      "start": 2593,
+      "end": 2612,
+      "distance": 3
+    },
+    "q906": {
+      "record": "r49",
+      "start": 2594,
+      "end": 2613,
+      "distance": 3
+    },
+    "q907": {
+      "record": "r49",
+      "start": 2594,
+      "end": 2614,
+      "distance": 3
+    },
+    "q908": {
+      "record": "r83",
+      "start": 75219,
+      "end": 75239,
+      "distance": 3
+    },
+    "q909": {
+      "record": "r83",
+      "start": 41149,
+      "end": 41169,
+      "distance": 3
+    },
+    "q910": {
+      "record": "r83",
+      "start": 41150,
+      "end": 41170,
+      "distance": 3
+    },
+    "q911": {
+      "record": "r31",
+      "start": 62104,
+      "end": 62123,
+      "distance": 3
+    },
+    "q912": {
+      "record": "r94",
+      "start": 24128,
+      "end": 24147,
+      "distance": 3
+    },
+    "q913": {
+      "record": "r94",
+      "start": 24128,
+      "end": 24148,
+      "distance": 3
+    },
+    "q914": {
+      "record": "r46",
+      "start": 1118,
+      "end": 1136,
+      "distance": 3
+    },
+    "q915": {
+      "record": "r83",
+      "start": 71270,
+      "end": 71290,
+      "distance": 3
+    },
+    "q916": {
+      "record": "r53",
+      "start": 60553,
+      "end": 60573,
+      "distance": 3
+    },
+    "q917": {
+      "record": "r8",
+      "start": 100978,
+      "end": 100997,
+      "distance": 3
+    },
+    "q918": {
+      "record": "r8",
+      "start": 100978,
+      "end": 100999,
+      "distance": 3
+    },
+    "q919": {
+      "record": "r70",
+      "start": 33181,
+      "end": 33202,
+      "distance": 3
+    },
+    "q920": {
+      "record": "r43",
+      "start": 75529,
+      "end": 75550,
+      "distance": 3
+    },
+    "q921": {
+      "record": "r43",
+      "start": 75530,
+      "end": 75551,
+      "distance": 3
+    },
+    "q922": {
+      "record": "r43",
+      "start": 75531,
+      "end": 75552,
+      "distance": 3
+    },
+    "q923": {
+      "record": "r50",
+      "start": 2878,
+      "end": 2899,
+      "distance": 3
+    },
+    "q924": {
+      "record": "r50",
+      "start": 2879,
+      "end": 2900,
+      "distance": 3
+    },
+    "q925": {
+      "record": "r37",
+      "start": 92484,
+      "end": 92502,
+      "distance": 3
+    },
+    "q926": {
+      "record": "r99",
+      "start": 301858,
+      "end": 301880,
+      "distance": 3
+    },
+    "q927": {
+      "record": "r74",
+      "start": 11746,
+      "end": 11764,
+      "distance": 3
+    },
+    "q928": {
+      "record": "r39",
+      "start": 75859,
+      "end": 75877,
+      "distance": 3
+    },
+    "q929": {
+      "record": "r14",
+      "start": 32704,
+      "end": 32724,
+      "distance": 3
+    },
+    "q930": {
+      "record": "r14",
+      "start": 27322,
+      "end": 27342,
+      "distance": 3
+    },
+    "q931": {
+      "record": "r3",
+      "start": 2866,
+      "end": 2884,
+      "distance": 3
+    },
+    "q932": {
+      "record": "r1",
+      "start": 184408,
+      "end": 184425,
+      "distance": 3
+    },
+    "q933": {
+      "record": "r8",
+      "start": 80330,
+      "end": 80350,
+      "distance": 3
+    },
+    "q934": {
+      "record": "r3",
+      "start": 2867,
+      "end": 2887,
+      "distance": 3
+    },
+    "q935": {
+      "record": "r3",
+      "start": 2868,
+      "end": 2888,
+      "distance": 3
+    },
+    "q936": {
+      "record": "r14",
+      "start": 27328,
+      "end": 27348,
+      "distance": 3
+    },
+    "q937": {
+      "record": "r8",
+      "start": 100545,
+      "end": 100566,
+      "distance": 3
+    },
+    "q938": {
+      "record": "r1",
+      "start": 300938,
+      "end": 300957,
+      "distance": 3
+    },
+    "q939": {
+      "record": "r99",
+      "start": 894035,
+      "end": 894054,
+      "distance": 3
+    },
+    "q940": {
+      "record": "r99",
+      "start": 1070787,
+      "end": 1070806,
+      "distance": 3
+    },
+    "q941": {
+      "record": "r5",
+      "start": 4479,
+      "end": 4499,
+      "distance": 3
+    },
+    "q942": {
+      "record": "r5",
+      "start": 4480,
+      "end": 4500,
+      "distance": 3
+    },
+    "q943": {
+      "record": "r99",
+      "start": 894038,
+      "end": 894057,
+      "distance": 3
+    },
+    "q944": {
+      "record": "r213",
+      "start": 137009,
+      "end": 137030,
+      "distance": 3
+    },
+    "q945": {
+      "record": "r83",
+      "start": 99836,
+      "end": 99855,
+      "distance": 3
+    },
+    "q946": {
+      "record": "r145",
+      "start": 6657,
+      "end": 6676,
+      "distance": 3
+    },
+    "q947": {
+      "record": "r145",
+      "start": 6658,
+      "end": 6677,
+      "distance": 3
+    },
+    "q948": {
+      "record": "r99",
+      "start": 301861,
+      "end": 301881,
+      "distance": 3
+    },
+    "q949": {
+      "record": "r39",
+      "start": 75859,
+      "end": 75878,
+      "distance": 3
+    },
+    "q950": {
+      "record": "r29",
+      "start": 43953,
+      "end": 43972,
+      "distance": 3
+    },
+    "q951": {
+      "record": "r39",
+      "start": 232400,
+      "end": 232419,
+      "distance": 3
+    },
+    "q952": {
+      "record": "r29",
+      "start": 43955,
+      "end": 43974,
+      "distance": 3
+    },
+    "q953": {
+      "record": "r47",
+      "start": 41857,
+      "end": 41875,
+      "distance": 3
+    },
+    "q954": {
+      "record": "r47",
+      "start": 41858,
+      "end": 41876,
+      "distance": 3
+    },
+    "q955": {
+      "record": "r8",
+      "start": 129595,
+      "end": 129612,
+      "distance": 3
+    },
+    "q956": {
+      "record": "r39",
+      "start": 20583,
+      "end": 20603,
+      "distance": 3
+    },
+    "q957": {
+      "record": "r39",
+      "start": 20584,
+      "end": 20604,
+      "distance": 3
+    },
+    "q958": {
+      "record": "r39",
+      "start": 20585,
+      "end": 20605,
+      "distance": 3
+    },
+    "q959": {
+      "record": "r1",
+      "start": 88104,
+      "end": 88121,
+      "distance": 3
+    },
+    "q960": {
+      "record": "r1",
+      "start": 88105,
+      "end": 88122,
+      "distance": 3
+    },
+    "q961": {
+      "record": "r43",
+      "start": 66437,
+      "end": 66457,
+      "distance": 3
+    },
+    "q962": {
+      "record": "r1",
+      "start": 88106,
+      "end": 88123,
+      "distance": 3
+    },
+    "q963": {
+      "record": "r8",
+      "start": 60436,
+      "end": 60455,
+      "distance": 3
+    },
+    "q964": {
+      "record": "r8",
+      "start": 60437,
+      "end": 60456,
+      "distance": 3
+    },
+    "q965": {
+      "record": "r47",
+      "start": 51944,
+      "end": 51962,
+      "distance": 3
+    },
+    "q966": {
+      "record": "r5",
+      "start": 70284,
+      "end": 70304,
+      "distance": 3
+    },
+    "q967": {
+      "record": "r39",
+      "start": 97843,
+      "end": 97860,
+      "distance": 3
+    },
+    "q968": {
+      "record": "r5",
+      "start": 70285,
+      "end": 70306,
+      "distance": 3
+    },
+    "q969": {
+      "record": "r5",
+      "start": 70286,
+      "end": 70306,
+      "distance": 3
+    },
+    "q970": {
+      "record": "r2",
+      "start": 1403,
+      "end": 1423,
+      "distance": 3
+    },
+    "q971": {
+      "record": "r18",
+      "start": 43407,
+      "end": 43428,
+      "distance": 3
+    },
+    "q972": {
+      "record": "r5",
+      "start": 63197,
+      "end": 63216,
+      "distance": 3
+    },
+    "q973": {
+      "record": "r18",
+      "start": 52440,
+      "end": 52458,
+      "distance": 3
+    },
+    "q974": {
+      "record": "r18",
+      "start": 52442,
+      "end": 52459,
+      "distance": 3
+    },
+    "q975": {
+      "record": "r18",
+      "start": 52443,
+      "end": 52460,
+      "distance": 3
+    },
+    "q976": {
+      "record": "r18",
+      "start": 52444,
+      "end": 52461,
+      "distance": 3
+    },
+    "q977": {
+      "record": "r5",
+      "start": 63201,
+      "end": 63220,
+      "distance": 3
+    },
+    "q978": {
+      "record": "r5",
+      "start": 63202,
+      "end": 63221,
+      "distance": 3
+    },
+    "q979": {
+      "record": "r8",
+      "start": 63866,
+      "end": 63886,
+      "distance": 3
+    },
+    "q980": {
+      "record": "r147",
+      "start": 43525,
+      "end": 43546,
+      "distance": 3
+    },
+    "q981": {
+      "record": "r39",
+      "start": 158157,
+      "end": 158174,
+      "distance": 3
+    },
+    "q982": {
+      "record": "r99",
+      "start": 983399,
+      "end": 983418,
+      "distance": 3
+    },
+    "q983": {
+      "record": "r99",
+      "start": 215211,
+      "end": 215230,
+      "distance": 3
+    },
+    "q984": {
+      "record": "r87",
+      "start": 11042,
+      "end": 11059,
+      "distance": 3
+    },
+    "q985": {
+      "record": "r99",
+      "start": 503773,
+      "end": 503793,
+      "distance": 3
+    },
+    "q986": {
+      "record": "r5",
+      "start": 70284,
+      "end": 70304,
+      "distance": 3
+    },
+    "q987": {
+      "record": "r39",
+      "start": 97842,
+      "end": 97860,
+      "distance": 3
+    },
+    "q988": {
+      "record": "r1",
+      "start": 348031,
+      "end": 348052,
+      "distance": 3
+    },
+    "q989": {
+      "record": "r5",
+      "start": 70286,
+      "end": 70306,
+      "distance": 3
+    },
+    "q990": {
+      "record": "r43",
+      "start": 77154,
+      "end": 77173,
+      "distance": 3
+    },
+    "q991": {
+      "record": "r18",
+      "start": 52436,
+      "end": 52456,
+      "distance": 3
+    },
+    "q992": {
+      "record": "r18",
+      "start": 52438,
+      "end": 52457,
+      "distance": 3
+    },
+    "q993": {
+      "record": "r18",
+      "start": 52439,
+      "end": 52458,
+      "distance": 3
+    },
+    "q994": {
+      "record": "r18",
+      "start": 52440,
+      "end": 52459,
+      "distance": 3
+    },
+    "q995": {
+      "record": "r18",
+      "start": 52442,
+      "end": 52460,
+      "distance": 3
+    },
+    "q996": {
+      "record": "r18",
+      "start": 52444,
+      "end": 52461,
+      "distance": 3
+    },
+    "q997": {
+      "record": "r18",
+      "start": 52445,
+      "end": 52462,
+      "distance": 3
+    },
+    "q998": {
+      "record": "r18",
+      "start": 52446,
+      "end": 52463,
+      "distance": 3
+    },
+    "q999": {
+      "record": "r5",
+      "start": 63270,
+      "end": 63288,
+      "distance": 3
+    }
+  },
+  "candidate_rows": 1000,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.2824230109999917,
+  "verification_workers": 8
+}

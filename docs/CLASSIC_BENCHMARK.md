@@ -1,6 +1,6 @@
 # Classic-aligner scaling benchmark
 
-Status: the README has one line plot of measured index build plus screening time.
+Status: the README has one line plot of median screening time, with index builds listed in its caption.
 ooff and BWA have completed all eight sizes through 100,000 ASOs. BLAST finished
 its series, with timeouts from 1,000 ASOs upward. Minimap2’s 100,000-ASO attempt exhausted 32 GiB of RAM after 421.16 seconds
 (exit 137, confirmed by the kernel OOM log). This is a terminal resource failure,
@@ -33,9 +33,9 @@ fraction of native-positive queries for which a comparator returns a verified
 witness; it is not an all-sites recall measurement. Mapper heuristics may miss
 valid witnesses; recovery values remain in the plot CSV and are disclosed in the README and result table.
 
-Comparators are BWA-aln, BLASTN-short, and minimap2. Bowtie and Bowtie 2 are
-excluded following the user's request. Sassy remains solely an external EC2
-comparator in the existing exact-site validation; it is not a native dependency.
+Comparators are BWA-aln, BLASTN-short, minimap2 and Sassy2. Bowtie and Bowtie 2
+are excluded following the user's request. Sassy remains an external EC2
+comparator, including its new eight-thread screening series; it is not a native dependency.
 
 - BWA-aln: edit threshold 3, three gap opens/extensions allowed, end-indel
   restriction removed, seed length above query length, unit scoring parameters,
@@ -67,12 +67,15 @@ thread flags and the independent multiprocessing verifier receive all eight
 CPUs. BWA samse, BWA index and makeblastdb expose no parallel-thread option.
 Providing all CPUs does not imply each program can keep them all busy.
 
-The README plots one separately measured index build plus median elapsed process
-time through independently verified screening results, including index loading,
-mapper output and scalar verification. The sum is derived from separate measurements;
-it is not a timed cold-start pipeline. Reusing an index avoids its build cost. Each completed point has three fresh-process runs. Tools run independently
-on separate workers, sequentially within each worker. OS page cache is not flushed. The chart shows medians; individual observations and ranges remain in the CSV; do not call these cold-start timings. Failed/time-limited
-runs are retained and must not be plotted as completed fast searches.
+The README plots median elapsed process time through independently verified
+screening results, including reference/index loading, mapper output and scalar
+verification. Index builds are excluded and listed in the caption. Each completed
+point has three fresh-process runs. The classic tools ran on separate workers;
+Sassy later reused the idle native worker with the same eight-vCPU/16-GiB allocation.
+Runs were sequential within each worker and never overlapped. OS page cache is
+not flushed. Individual observations remain in the CSV, including native's slower
+first 100,000-ASO run. Failed/time-limited runs are retained; timeout text labels
+and the OOM note are not completed timing points.
 
 Every preparation, build, pilot, search, conversion and verification invocation is
 recorded in [CLASSIC_ITERATIONS.md](../benchmarks/CLASSIC_ITERATIONS.md), with
@@ -88,7 +91,7 @@ rendered from these measured artifacts using matplotlib.
 
 ## Index preparation
 
-Build time is measured separately and then added to each README point. The build CSV retains peak process RSS,
+Build time is measured separately and excluded from the search curves. The build CSV retains peak process RSS,
 CPU use and actual commands. These are single measured builds, not three-run
 medians. BWA's existing build ran on the original 16-vCPU/32-GiB c7i.4xlarge;
 its builder is single-threaded, and the resulting index was hash-verified on the
@@ -204,3 +207,52 @@ is retained in the range; the median is not a universal cold-start claim.
 The minimap2 OOM sidecar and kernel evidence accompany its raw result. The series
 audit recognizes that resource failure without treating it as a fast completion.
 All four dedicated workers are stopped; all eight benchmark volumes are retained.
+
+## Matched Sassy2 screening comparison
+
+`benchmarks/classic/sassy_screen.rs` is compiled only in the separate EC2 crate
+`/home/ubuntu/comparators/sassy-classic-screen-0.2.6`. It uses pinned Sassy 0.2.6,
+IUPAC batched forward search, and eight query workers sharing the same eligible
+RNA reference. Queries are distributed round-robin. Workers retire a query after
+finding a valid full-query witness; unknown bases split reference runs, with
+65,536-base chunks and 20+k overlap. This is an ASO screening adapter around
+Sassy's library, not a timing of the upstream CLI's default output mode.
+
+Endpoint-to-interval reconstruction uses the same fixed-interval verifier as
+previous external comparator experiments. Every returned witness is then checked
+by the existing independent Python scalar verifier against the original eligible
+reference. The adapter passed separate scalar-oracle fixtures for k=0..3 with
+one/eight workers, including chunk boundaries, indels, unknowns and absent hits.
+The tested source, external Cargo manifest/lockfile and every invocation are retained.
+The library method used does not launch a nested Rayon pool; the adapter supplies
+all eight query workers. No persistent reference index is built for Sassy.
+
+On the retained c7i.2xlarge (8 vCPUs, 16 GiB), all five sizes completed three
+repetitions with 100% verified witness recovery. Median elapsed seconds:
+
+| ASOs | Sassy2 |
+| ---: | ---: |
+| 10 | 2.1344 |
+| 100 | 2.3857 |
+| 1,000 | 3.0869 |
+| 10,000 | 4.2969 |
+| 100,000 | 19.3230 |
+
+At 100,000, ooff's 3.1914-second median is 6.05× faster. This matched eight-thread
+screening comparison is distinct from the one-thread exhaustive-output 10.67×
+comparison. Sassy's initial human pilot took 18.58 seconds for 100 queries after
+worker restart and is retained separately from the subsequent measurement series;
+no cold-cache performance claim is made. All Sassy measurements use a 600-second
+total per-repetition budget across search and independent verification.
+
+Reproduce on an otherwise idle eight-vCPU EC2 worker with the shared prepared inputs:
+
+```bash
+bash benchmarks/classic/build_sassy.sh
+python3 benchmarks/classic/test_sassy.py --binary /home/ubuntu/comparators/sassy-classic-screen-0.2.6/target/release/sassy-classic-screen
+OOFF_BENCH_THREADS=8 OMP_NUM_THREADS=8 python3 benchmarks/classic/scale.py --tools sassy --counts 10 100 1000 10000 100000 --repetitions 3 --run-timeout 600 --timeout 600
+```
+
+The build script uses `sassy-Cargo.lock`; native ooff Cargo.toml/Cargo.lock do not
+include Sassy. Build time for the comparator executable is retained in the ledger
+but is not a reference-index preparation cost.

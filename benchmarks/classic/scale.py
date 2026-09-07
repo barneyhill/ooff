@@ -30,7 +30,11 @@ def benchmark(tool,n,repetition,timeout,phase,run_timeout=None):
                 audit['witness_query_ids']=[f'q{i}' for i,c in enumerate(counts) if c]
                 assert set(audit['witnesses'])==set(audit['witness_query_ids']),'Native witnesses failed independent verification'
     else:
-        if tool=='bwa':
+        if tool=='sassy':
+            executable=os.environ.get('OOFF_SASSY_BIN','/home/ubuntu/comparators/sassy-classic-screen-0.2.6/target/release/sassy-classic-screen')
+            directory,ok=execute('search',[executable,'--reference',str(ROOT/'eligible.fa'),'--queries',str(query),'--threads',str(THREADS),'-k','3'])
+            kind='blast' # Four-column query/record/start/end witness format.
+        elif tool=='bwa':
             sai,ok=execute('aln',['bwa','aln','-t',str(THREADS),'-n','3','-o','3','-e','3','-i','0','-l','1024','-M','1','-O','1','-E','1',str(ROOT/'bwa'),str(query)])
             if ok:directory,ok=execute('samse',['bwa','samse','-n','1000',str(ROOT/'bwa'),str(sai/'stdout'),str(query)])
             kind='sam'

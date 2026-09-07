@@ -275,6 +275,40 @@ The README uses powers-of-ten batches. Other sizes and the user-cancelled 26,643
 | [20260907T225101.555853-measurement-minimap2-26643-r2-verify](classic/iterations/20260907T225101.555853-measurement-minimap2-26643-r2-verify/result.json) | measurement-minimap2-26643-r2-verify | 248.631734 | -15 | False |
 | [20260907T225214.270267-measurement-bwa-100000-r3-verify](classic/iterations/20260907T225214.270267-measurement-bwa-100000-r3-verify/result.json) | measurement-bwa-100000-r3-verify | 30.634877 | 0 | False |
 | [20260907T225513.797152-measurement-minimap2-100000-r1-search](classic/iterations/20260907T225513.797152-measurement-minimap2-100000-r1-search/result.json) | measurement-minimap2-100000-r1-search | 421.161202 | 137 | False |
+| [20260907T233155.699248-build-sassy-classic-screen](classic/iterations/20260907T233155.699248-build-sassy-classic-screen/result.json) | build-sassy-classic-screen | 23.407296 | 0 | False |
+| [20260907T233300.698338-test-sassy-screen-oracle](classic/iterations/20260907T233300.698338-test-sassy-screen-oracle/result.json) | test-sassy-screen-oracle | 0.164184 | 0 | False |
+| [20260907T233447.268082-pilot-sassy-100-r1-search](classic/iterations/20260907T233447.268082-pilot-sassy-100-r1-search/result.json) | pilot-sassy-100-r1-search | 18.119341 | 0 | False |
+| [20260907T233505.777525-pilot-sassy-100-r1-verify](classic/iterations/20260907T233505.777525-pilot-sassy-100-r1-verify/result.json) | pilot-sassy-100-r1-verify | 0.465334 | 0 | False |
+| [20260907T233616.660962-measurement-sassy-10-r1-search](classic/iterations/20260907T233616.660962-measurement-sassy-10-r1-search/result.json) | measurement-sassy-10-r1-search | 1.768935 | 0 | False |
+| [20260907T233618.829128-measurement-sassy-10-r1-verify](classic/iterations/20260907T233618.829128-measurement-sassy-10-r1-verify/result.json) | measurement-sassy-10-r1-verify | 0.365276 | 0 | False |
+| [20260907T233619.943218-measurement-sassy-10-r2-search](classic/iterations/20260907T233619.943218-measurement-sassy-10-r2-search/result.json) | measurement-sassy-10-r2-search | 1.770050 | 0 | False |
+| [20260907T233622.085476-measurement-sassy-10-r2-verify](classic/iterations/20260907T233622.085476-measurement-sassy-10-r2-verify/result.json) | measurement-sassy-10-r2-verify | 0.365466 | 0 | False |
+| [20260907T233623.186570-measurement-sassy-10-r3-search](classic/iterations/20260907T233623.186570-measurement-sassy-10-r3-search/result.json) | measurement-sassy-10-r3-search | 1.769192 | 0 | False |
+| [20260907T233625.312144-measurement-sassy-10-r3-verify](classic/iterations/20260907T233625.312144-measurement-sassy-10-r3-verify/result.json) | measurement-sassy-10-r3-verify | 0.365221 | 0 | False |
+| [20260907T233626.383062-measurement-sassy-100-r1-search](classic/iterations/20260907T233626.383062-measurement-sassy-100-r1-search/result.json) | measurement-sassy-100-r1-search | 2.070623 | 0 | False |
+| [20260907T233628.805410-measurement-sassy-100-r1-verify](classic/iterations/20260907T233628.805410-measurement-sassy-100-r1-verify/result.json) | measurement-sassy-100-r1-verify | 0.364918 | 0 | False |
+| [20260907T233629.866870-measurement-sassy-100-r2-search](classic/iterations/20260907T233629.866870-measurement-sassy-100-r2-search/result.json) | measurement-sassy-100-r2-search | 2.020084 | 0 | False |
+| [20260907T233632.233982-measurement-sassy-100-r2-verify](classic/iterations/20260907T233632.233982-measurement-sassy-100-r2-verify/result.json) | measurement-sassy-100-r2-verify | 0.365339 | 0 | False |
+| [20260907T233633.289577-measurement-sassy-100-r3-search](classic/iterations/20260907T233633.289577-measurement-sassy-100-r3-search/result.json) | measurement-sassy-100-r3-search | 2.020198 | 0 | False |
+| [20260907T233635.660233-measurement-sassy-100-r3-verify](classic/iterations/20260907T233635.660233-measurement-sassy-100-r3-verify/result.json) | measurement-sassy-100-r3-verify | 0.365542 | 0 | False |
+| [20260907T233636.715440-measurement-sassy-1000-r1-search](classic/iterations/20260907T233636.715440-measurement-sassy-1000-r1-search/result.json) | measurement-sassy-1000-r1-search | 2.672151 | 0 | False |
+| [20260907T233639.735939-measurement-sassy-1000-r1-verify](classic/iterations/20260907T233639.735939-measurement-sassy-1000-r1-verify/result.json) | measurement-sassy-1000-r1-verify | 0.365424 | 0 | False |
+| [20260907T233640.801992-measurement-sassy-1000-r2-search](classic/iterations/20260907T233640.801992-measurement-sassy-1000-r2-search/result.json) | measurement-sassy-1000-r2-search | 2.721832 | 0 | False |
+| [20260907T233643.870404-measurement-sassy-1000-r2-verify](classic/iterations/20260907T233643.870404-measurement-sassy-1000-r2-verify/result.json) | measurement-sassy-1000-r2-verify | 0.365021 | 0 | False |
+| [20260907T233644.940363-measurement-sassy-1000-r3-search](classic/iterations/20260907T233644.940363-measurement-sassy-1000-r3-search/result.json) | measurement-sassy-1000-r3-search | 2.671692 | 0 | False |
+| [20260907T233647.959757-measurement-sassy-1000-r3-verify](classic/iterations/20260907T233647.959757-measurement-sassy-1000-r3-verify/result.json) | measurement-sassy-1000-r3-verify | 0.415835 | 0 | False |
+| [20260907T233649.084145-measurement-sassy-10000-r1-search](classic/iterations/20260907T233649.084145-measurement-sassy-10000-r1-search/result.json) | measurement-sassy-10000-r1-search | 3.823165 | 0 | False |
+| [20260907T233653.256457-measurement-sassy-10000-r1-verify](classic/iterations/20260907T233653.256457-measurement-sassy-10000-r1-verify/result.json) | measurement-sassy-10000-r1-verify | 0.566035 | 0 | False |
+| [20260907T233654.547930-measurement-sassy-10000-r2-search](classic/iterations/20260907T233654.547930-measurement-sassy-10000-r2-search/result.json) | measurement-sassy-10000-r2-search | 3.723346 | 0 | False |
+| [20260907T233658.631034-measurement-sassy-10000-r2-verify](classic/iterations/20260907T233658.631034-measurement-sassy-10000-r2-verify/result.json) | measurement-sassy-10000-r2-verify | 0.566505 | 0 | False |
+| [20260907T233659.947433-measurement-sassy-10000-r3-search](classic/iterations/20260907T233659.947433-measurement-sassy-10000-r3-search/result.json) | measurement-sassy-10000-r3-search | 3.726337 | 0 | False |
+| [20260907T233704.030880-measurement-sassy-10000-r3-verify](classic/iterations/20260907T233704.030880-measurement-sassy-10000-r3-verify/result.json) | measurement-sassy-10000-r3-verify | 0.570572 | 0 | False |
+| [20260907T233705.370059-measurement-sassy-100000-r1-search](classic/iterations/20260907T233705.370059-measurement-sassy-100000-r1-search/result.json) | measurement-sassy-100000-r1-search | 16.946374 | 0 | False |
+| [20260907T233722.678668-measurement-sassy-100000-r1-verify](classic/iterations/20260907T233722.678668-measurement-sassy-100000-r1-verify/result.json) | measurement-sassy-100000-r1-verify | 2.478360 | 0 | False |
+| [20260907T233726.292330-measurement-sassy-100000-r2-search](classic/iterations/20260907T233726.292330-measurement-sassy-100000-r2-search/result.json) | measurement-sassy-100000-r2-search | 16.746860 | 0 | False |
+| [20260907T233743.486688-measurement-sassy-100000-r2-verify](classic/iterations/20260907T233743.486688-measurement-sassy-100000-r2-verify/result.json) | measurement-sassy-100000-r2-verify | 2.522220 | 0 | False |
+| [20260907T233747.307286-measurement-sassy-100000-r3-search](classic/iterations/20260907T233747.307286-measurement-sassy-100000-r3-search/result.json) | measurement-sassy-100000-r3-search | 16.850495 | 0 | False |
+| [20260907T233804.658170-measurement-sassy-100000-r3-verify](classic/iterations/20260907T233804.658170-measurement-sassy-100000-r3-verify/result.json) | measurement-sassy-100000-r3-verify | 2.472500 | 0 | False |
 
 ## Composite screening runs
 
@@ -371,3 +405,19 @@ Elapsed time includes all mapper/conversion/verification stages; pilot runs are 
 | bwa | 100000 | 2 | measurement | 8 | 246.455578 | 98774 | True |
 | bwa | 100000 | 3 | measurement | 8 | 246.898375 | 98774 | True |
 | minimap2 | 100000 | 1 | measurement | 8 | 421.161202 |  | False |
+| sassy | 100 | 1 | pilot | 8 | 18.584675 | 100 | True |
+| sassy | 10 | 1 | measurement | 8 | 2.134210 | 10 | True |
+| sassy | 10 | 2 | measurement | 8 | 2.135517 | 10 | True |
+| sassy | 10 | 3 | measurement | 8 | 2.134414 | 10 | True |
+| sassy | 100 | 1 | measurement | 8 | 2.435541 | 100 | True |
+| sassy | 100 | 2 | measurement | 8 | 2.385423 | 100 | True |
+| sassy | 100 | 3 | measurement | 8 | 2.385740 | 100 | True |
+| sassy | 1000 | 1 | measurement | 8 | 3.037575 | 1000 | True |
+| sassy | 1000 | 2 | measurement | 8 | 3.086854 | 1000 | True |
+| sassy | 1000 | 3 | measurement | 8 | 3.087527 | 1000 | True |
+| sassy | 10000 | 1 | measurement | 8 | 4.389200 | 10000 | True |
+| sassy | 10000 | 2 | measurement | 8 | 4.289851 | 10000 | True |
+| sassy | 10000 | 3 | measurement | 8 | 4.296909 | 10000 | True |
+| sassy | 100000 | 1 | measurement | 8 | 19.424734 | 100000 | True |
+| sassy | 100000 | 2 | measurement | 8 | 19.269080 | 100000 | True |
+| sassy | 100000 | 3 | measurement | 8 | 19.322996 | 100000 | True |

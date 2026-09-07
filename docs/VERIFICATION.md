@@ -32,3 +32,12 @@ The current reference contains unknown sequence and uses primary assembly only.
 These are scope limitations, not evidence of absent biological off-targets.
 Record-level site counts are not unique genomic loci or gene counts. No sequence
 benchmark establishes knockdown, spared-allele discrimination or clinical safety.
+
+
+Follow-up Sassy screening audit: all 25 combinations of five tools and five ASO
+counts have three completed repetitions or a documented timeout/resource failure.
+Sassy's new adapter passed independent scalar fixtures at k=0..3 with one/eight
+workers and recovered every query in all 15 human measurements. README now uses
+search time only, index-build costs in the caption, and timeout text instead of
+triangles. The one-thread full-output 10.67× result remains explicitly distinct
+from the new eight-thread 100,000-ASO screening ratio of 6.05×.

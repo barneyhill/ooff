@@ -192,6 +192,56 @@
       "artifacts": [
         "benchmarks/classic/iterations/20260907T225513.797152-measurement-minimap2-100000-r1-search/screening.json"
       ]
+    },
+    {
+      "tool": "sassy",
+      "queries": 10,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T233616.660962-measurement-sassy-10-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233619.943218-measurement-sassy-10-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233623.186570-measurement-sassy-10-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "sassy",
+      "queries": 100,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T233626.383062-measurement-sassy-100-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233629.866870-measurement-sassy-100-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233633.289577-measurement-sassy-100-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "sassy",
+      "queries": 1000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T233636.715440-measurement-sassy-1000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233640.801992-measurement-sassy-1000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233644.940363-measurement-sassy-1000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "sassy",
+      "queries": 10000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T233649.084145-measurement-sassy-10000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233654.547930-measurement-sassy-10000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233659.947433-measurement-sassy-10000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "sassy",
+      "queries": 100000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T233705.370059-measurement-sassy-100000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233726.292330-measurement-sassy-100000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T233747.307286-measurement-sassy-100000-r3-search/screening.json"
+      ]
     }
   ],
   "scope": "Artifact coverage, elapsed-time sums, thread metadata and witness consistency; does not replace independent scalar verification or biological validation."

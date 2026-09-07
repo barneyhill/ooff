@@ -1,3 +1,53 @@
+# Follow-up completed — 2026-09-07 23:42 UTC / September 8 London
+
+Sassy eight-CPU screening series complete:15measurements, allqueriesrecovered.
+100kmedian19.323s vsnative3.191373s =6.05x; explicitlydistinguishedfromoriginal
+one-threadfull-output10.67x. Newgraphsearchtimeonly, fivecurves, no triangles,
+indexbuildsin caption. README/methods/CSV/Markdown/evidence updated;25cells audited.
+SourceworkerSTOPPEDagainverified; allfourdedicatedworkersstoppedandvolumesretained.
+FinalinventorywithSassy6976files/105620185074bytes localdata/ec2. No raw deletion.
+Newwork ready to commit/push and verify hosted CI. No pendingEC2jobs.
+PreviousGitHubCIallfourplatformsgreen; publishing waitsforversiontag, nonepushed.
+Earlier active notes below are history.
+
+---
+
+# Active follow-up — 2026-09-07 23:37 UTC / September 8 London
+
+USER approved search-only plot, no triangles, and matched eight-CPU Sassy line.
+Original benchmark goal was completed; this is newly requested follow-up work.
+GitHub CI/release setup committed/pushed; all four hosted platforms green at
+d635f46. Latest main c0882d1 changed plot to build+search; now reverting graph
+metric per user (search only, builds in caption, timeout text). Worktree edits
+not yet committed. No crates release tag created or package published.
+
+Resumed source/native i-0b5bad3102a5345c5 c7i.2xlarge8vCPU16GiB,
+new IP3.8.120.217. Other workers remain stopped; no new instances or disks.
+Auto-stop02:36UTCSept8. External comparator path
+/home/ubuntu/comparators/sassy-classic-screen-0.2.6/target/release/sassy-classic-screen.
+SHA c8458fa0131e8249a541bc56995434edf5eeb8a62f23a6279e4ac047118ba394.
+New source benchmarks/classic/sassy_screen.rs, eight outer query workers share
+same eligible reference; Sassy0.2.6 IUPAC batched forward API, no nestedthreadpool.
+Independently scalarchecked witness intervals emitted4colTSV (existingblastreader).
+No persistent index. Native dependency graph unchanged; external adapter uses
+native IntervalDistance only for endpoint-to-interval reconstruction, then Python
+scalar verifier independently checks every human witness.
+
+Build/test/pilot retained in classiciterations. Scalaroracle k0..3 at1/8workers
+ALLPASS; human100pilot18.584675s/100witnesses/zero rejected. Measurement series
+launched23:36, --counts10 100 1000 10000 100000 --repetitions3 --timeout600
+--run-timeout600. Logresults/sassy-classic-series.log; completioncodefile
+results/sassy-classic-series.exit. Active SSH tool session12634 may remainopen
+because background shell inheritedconnection; DO NOTrestart job. Inspectprocess.
+ExternalCargo.lock/TOMLcopied benchmarks/classic/sassy-Cargo.{lock,toml}.
+Buildscript nowusespinnedlock forfuturefreshreproduction; don'tcopychangedhelpers
+toactiveworker untilmeasurementends (provenance).
+Need collect measurements, final5tool×5sizeaudit, rendersearch-onlysingleplot,
+README/methodsupdate, recordalliterations, finalinventory/stopverifyworker,
+commit/pushandmonitorCI. Earlier final states below are history.
+
+---
+
 # Final state — 2026-09-07 23:08 UTC / September 8 Europe/London
 
 COMPLETE: original 10× Sassy objective and all added benchmark deliverables.

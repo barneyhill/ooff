@@ -1,0 +1,86 @@
+{
+  "tool": "sassy",
+  "queries": 10,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "stage_timeout_seconds": 600.0,
+  "run_timeout_seconds": 600.0,
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T233616.660962-measurement-sassy-10-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T233618.829128-measurement-sassy-10-r1-verify/result.json"
+  ],
+  "wall_seconds": 2.134210479999979,
+  "utc": "2026-09-07T23:36:19.575474+00:00",
+  "recovered": 10,
+  "witnesses": {
+    "q0": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260285,
+      "distance": 3
+    },
+    "q1": {
+      "record": "r1",
+      "start": 260267,
+      "end": 260286,
+      "distance": 3
+    },
+    "q2": {
+      "record": "r1",
+      "start": 74787,
+      "end": 74805,
+      "distance": 3
+    },
+    "q3": {
+      "record": "r1",
+      "start": 74788,
+      "end": 74806,
+      "distance": 3
+    },
+    "q4": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155617,
+      "distance": 3
+    },
+    "q5": {
+      "record": "r1",
+      "start": 155599,
+      "end": 155618,
+      "distance": 3
+    },
+    "q6": {
+      "record": "r1",
+      "start": 155600,
+      "end": 155618,
+      "distance": 3
+    },
+    "q7": {
+      "record": "r1",
+      "start": 80613,
+      "end": 80634,
+      "distance": 3
+    },
+    "q8": {
+      "record": "r13",
+      "start": 251,
+      "end": 272,
+      "distance": 3
+    },
+    "q9": {
+      "record": "r1",
+      "start": 75113,
+      "end": 75134,
+      "distance": 3
+    }
+  },
+  "candidate_rows": 10,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.26528595799999266,
+  "verification_workers": 8
+}

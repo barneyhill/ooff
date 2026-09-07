@@ -74,3 +74,10 @@ retained output disk `vol-0cb196a72cc0da8de` (100 GiB) is mounted at
 restarting the worker; it has no automatic mount entry. Final retry iteration
 directories under `benchmarks/classic/iterations/` are symlinks to this disk.
 Collect with `rsync -L`; raw SAM remains on the disk. Preserve both volumes.
+
+
+The source worker was subsequently resumed for the matched Sassy2 screening
+series on eight CPUs. Final inventory `data/ec2/artifact-inventory-with-sassy.json`
+records 6,976 files and 105,620,185,074 bytes at 23:39:51 UTC. The series exit code
+was zero. New external comparator sources, dependency lockfile, binary, scalar
+fixture checks and all 15 verified measurement attempts remain retained.

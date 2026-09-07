@@ -43,7 +43,7 @@ def run(label,command,timeout=3600,metadata=None):
         directory.mkdir(parents=True)
     executable=shutil.which(command[0])
     provenance={}
-    for name in [executable, *[str(p) for p in Path('benchmarks/classic').glob('*.py')]]:
+    for name in [executable, *[str(p) for p in Path('benchmarks/classic').iterdir() if p.suffix in ('.py','.rs','.sh')]]:
         if name and Path(name).is_file():
             with Path(name).open('rb') as f: provenance[name]=hashlib.file_digest(f,'sha256').hexdigest()
     record=dict(id=directory.name,label=label,command=command,metadata=metadata or {},started_utc=stamp,sha256=provenance,host=platform.uname()._asdict())
