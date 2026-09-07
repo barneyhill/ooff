@@ -1,0 +1,13 @@
+/data/
+/target/
+/results/
+*.pt
+*.bwt
+*.pac
+*.sa
+.env
+.env.*
+*.pem
+*.key
+__pycache__/
+*.pyc

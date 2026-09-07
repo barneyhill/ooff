@@ -1,0 +1,31 @@
+{
+  "binary": "/tmp/sassy-v0.2.6",
+  "mode": "Sassy2 --v2",
+  "threads": 4,
+  "queries": 32,
+  "reference": "/Users/barneyh/dphil/paper3/data/exports/sassy_benchmark/reference_10Mb_plus_SCN2A.fa",
+  "reference_bases": 10189558,
+  "seconds": 0.05373100005090237,
+  "reported_alignments": 40,
+  "external_transcribed_alignments": 4,
+  "queries_with_external_hits": 3,
+  "gapped_external_alignments": 3,
+  "queries_with_gapped_external_hits": 3,
+  "ungapped_le1_external_alignments": 0,
+  "sampled_queries_with_softmasked_overlap": 16,
+  "command": [
+    "/tmp/sassy-v0.2.6",
+    "search",
+    "--pattern-fasta",
+    "/Users/barneyh/dphil/paper3/data/exports/sassy_benchmark/SCN2A_patterns.fa",
+    "-k",
+    "2",
+    "--max-n-frac",
+    "0",
+    "--threads",
+    "4",
+    "--v2",
+    "/Users/barneyh/dphil/paper3/data/exports/sassy_benchmark/reference_10Mb_plus_SCN2A.fa"
+  ],
+  "notes": "Evenly spaced unique passing SCN2A sequences, not a random sample. Raw reported alignments are not deduplicated biological sites. Both strands searched; transcribed-region classification matches existing pipeline. No production filters changed; no clinical safety inference."
+}

@@ -1,0 +1,5 @@
+pat_id	text_id	cost	strand	start	end	match_region	cigar
+q28	2	2	+	284133	284154	ACATCATGGAGGCAGTGGAAT	6=1D13=1X
+q7	2	2	+	2079741	2079761	gcttgcagtgagctgagccg	2=1X5=1X11=
+q21	2	2	+	9293472	9293491	GTAAATAAAAGCTGATAGA	3=1I8=1X7=
+q7	2	2	+	9951907	9951926	ACCtgcagcgagcgagccg	1X12=1I6=

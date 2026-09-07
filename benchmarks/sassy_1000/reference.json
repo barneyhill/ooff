@@ -1,0 +1,9 @@
+{
+  "bases_including_chunk_overlap": 1761995780,
+  "records": 36612,
+  "softmasked_bases": 859843734,
+  "unknown_bases_excluded": 969241,
+  "preparation_seconds": 91.17029899999034,
+  "annotation": "Ensembl 110 transcribed gene-body union; same biotype policy as paper3",
+  "genome": "/Users/barneyh/dphil/paper3/data/offtarget/GRCh38.dna_sm.fa"
+}
