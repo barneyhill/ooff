@@ -1,0 +1,204 @@
+{
+  "tool": "blast",
+  "queries": 30,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T213929.742754-measurement-blast-30-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T214006.473253-measurement-blast-30-r1-verify/result.json"
+  ],
+  "wall_seconds": 37.143127500000105,
+  "utc": "2026-09-07T21:40:06.895725+00:00",
+  "recovered": 30,
+  "witnesses": {
+    "q0": {
+      "record": "r154439",
+      "start": 458,
+      "end": 478,
+      "distance": 0
+    },
+    "q1": {
+      "record": "r154439",
+      "start": 459,
+      "end": 479,
+      "distance": 0
+    },
+    "q2": {
+      "record": "r154439",
+      "start": 460,
+      "end": 480,
+      "distance": 0
+    },
+    "q3": {
+      "record": "r154439",
+      "start": 461,
+      "end": 481,
+      "distance": 0
+    },
+    "q4": {
+      "record": "r154439",
+      "start": 462,
+      "end": 482,
+      "distance": 0
+    },
+    "q5": {
+      "record": "r154439",
+      "start": 463,
+      "end": 483,
+      "distance": 0
+    },
+    "q6": {
+      "record": "r154439",
+      "start": 464,
+      "end": 484,
+      "distance": 0
+    },
+    "q7": {
+      "record": "r154439",
+      "start": 465,
+      "end": 485,
+      "distance": 0
+    },
+    "q8": {
+      "record": "r154439",
+      "start": 466,
+      "end": 486,
+      "distance": 0
+    },
+    "q9": {
+      "record": "r154439",
+      "start": 467,
+      "end": 487,
+      "distance": 0
+    },
+    "q10": {
+      "record": "r154439",
+      "start": 468,
+      "end": 488,
+      "distance": 0
+    },
+    "q11": {
+      "record": "r154439",
+      "start": 469,
+      "end": 489,
+      "distance": 0
+    },
+    "q12": {
+      "record": "r154439",
+      "start": 470,
+      "end": 490,
+      "distance": 0
+    },
+    "q13": {
+      "record": "r154439",
+      "start": 471,
+      "end": 491,
+      "distance": 0
+    },
+    "q14": {
+      "record": "r154439",
+      "start": 472,
+      "end": 492,
+      "distance": 0
+    },
+    "q15": {
+      "record": "r154439",
+      "start": 473,
+      "end": 493,
+      "distance": 0
+    },
+    "q16": {
+      "record": "r154439",
+      "start": 474,
+      "end": 494,
+      "distance": 0
+    },
+    "q17": {
+      "record": "r154439",
+      "start": 475,
+      "end": 495,
+      "distance": 0
+    },
+    "q18": {
+      "record": "r154439",
+      "start": 476,
+      "end": 496,
+      "distance": 0
+    },
+    "q19": {
+      "record": "r154439",
+      "start": 477,
+      "end": 497,
+      "distance": 0
+    },
+    "q20": {
+      "record": "r154439",
+      "start": 458,
+      "end": 477,
+      "distance": 1
+    },
+    "q21": {
+      "record": "r184016",
+      "start": 63,
+      "end": 83,
+      "distance": 1
+    },
+    "q22": {
+      "record": "r204573",
+      "start": 254117,
+      "end": 254135,
+      "distance": 2
+    },
+    "q23": {
+      "record": "r204573",
+      "start": 254117,
+      "end": 254135,
+      "distance": 2
+    },
+    "q24": {
+      "record": "r205314",
+      "start": 422895,
+      "end": 422916,
+      "distance": 1
+    },
+    "q25": {
+      "record": "r154439",
+      "start": 463,
+      "end": 483,
+      "distance": 1
+    },
+    "q26": {
+      "record": "r197733",
+      "start": 3740,
+      "end": 3760,
+      "distance": 1
+    },
+    "q27": {
+      "record": "r154439",
+      "start": 465,
+      "end": 485,
+      "distance": 1
+    },
+    "q28": {
+      "record": "r243264",
+      "start": 264533,
+      "end": 264553,
+      "distance": 1
+    },
+    "q29": {
+      "record": "r154439",
+      "start": 467,
+      "end": 487,
+      "distance": 1
+    }
+  },
+  "candidate_rows": 19050,
+  "rejected_before_witness": 31,
+  "verification_seconds": 0.29502983500003666,
+  "verification_workers": 8
+}

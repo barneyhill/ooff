@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T194149-fm-word-union-full-tuples1000/sassy.time.json",
+    "/home/ubuntu/comparators/sassy-0.2.6-fast-interval/target/release/sassy-comparator",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "1000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--site-tuples",
+    "benchmarks/iterations/20260907T194149-fm-word-union-full-tuples1000/sassy.sites.csv"
+  ],
+  "binary_sha256": "d7b90cf2090c97b240de062c7bf84069519990e76a43e7cebbcd0342cc9e3566",
+  "cache_residency_before_process": null,
+  "pid": 35836
+}

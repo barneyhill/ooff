@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T174712-fm-range-allele-shortlist32-sites/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_benchmark/SCN2A_patterns.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "32",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap",
+    "--reverse-index",
+    "data/fm-reverse-v1",
+    "--site-tuples",
+    "benchmarks/iterations/20260907T174712-fm-range-allele-shortlist32-sites/ooff.sites.csv"
+  ],
+  "binary_sha256": "13ed5f90f096fb7e3929ea60961c70228ed705d16b7283b0f451700c8dde149c",
+  "cache_residency_before_process": null,
+  "pid": 21247
+}

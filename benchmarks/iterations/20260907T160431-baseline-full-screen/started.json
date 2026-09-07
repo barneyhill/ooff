@@ -1,0 +1,17 @@
+{
+  "id": "20260907T160431-baseline-full-screen",
+  "utc": "2026-09-07T16:04:31.283690+00:00",
+  "configuration": {
+    "label": "baseline-full-screen",
+    "reference": "data/reference-v1/reference.fa",
+    "queries": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "mode": "screen",
+    "n": 1000,
+    "k": 3,
+    "repetitions": 3,
+    "timeout": 600,
+    "native": "target/release/ooff-bench",
+    "sassy": "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator"
+  },
+  "runs": {}
+}

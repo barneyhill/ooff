@@ -1,0 +1,11 @@
+   Compiling ooff v0.1.0 (/home/ubuntu/ooff)
+error[E0599]: no method named `search_unique` found for reference `&ooff::fm::Index` in the current scope
+   --> src/bin/ooff-index.rs:384:36
+    |
+384 | ...                   fm.search_unique(
+    |                       ---^^^^^^^^^^^^^ method not found in `&ooff::fm::Index`
+
+For more information about this error, try `rustc --explain E0599`.
+error: could not compile `ooff` (bin "ooff-index" test) due to 1 previous error
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `ooff` (bin "ooff-index") due to 1 previous error

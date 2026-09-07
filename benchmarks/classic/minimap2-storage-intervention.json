@@ -1,0 +1,14 @@
+{
+  "utc": "2026-09-07T22:20:06Z",
+  "instance": "i-0b880ceee50e0c3fa",
+  "volume": "vol-022afdbf62d1db6cc",
+  "original_gib": 50,
+  "target_gib": 100,
+  "iops_before": 3000,
+  "iops_after": 3000,
+  "throughput_mib_before": 125,
+  "throughput_mib_after": 125,
+  "reason": "Retain raw outputs: each completed 10000-query SAM is 5729269360 bytes, 12 GiB free before final repetitions.",
+  "affected_iteration": "20260907T221444.850377-measurement-minimap2-26643-r1-search",
+  "note": "Online volume/partition/filesystem growth during the first largest-batch search; retain this intervention with its timing."
+}

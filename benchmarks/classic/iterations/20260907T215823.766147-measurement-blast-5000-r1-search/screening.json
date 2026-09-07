@@ -1,0 +1,16 @@
+{
+  "tool": "blast",
+  "queries": 5000,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": false,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T215823.766147-measurement-blast-5000-r1-search/result.json"
+  ],
+  "wall_seconds": 600.0128108690001,
+  "utc": "2026-09-07T22:08:23.815519+00:00"
+}

@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T160055-baseline-endpoints/ooff.time.json",
+    "target/release/ooff-bench",
+    "--reference",
+    "data/reference-v1/bounded-10mb.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "endpoints",
+    "--queries-limit",
+    "32",
+    "-k",
+    "3",
+    "--repetitions",
+    "3"
+  ],
+  "binary_sha256": "b3754413cee1822351b1ff77c2075088842e6fc45bd9250a6aca459d9aba4b2d",
+  "pid": 7285
+}

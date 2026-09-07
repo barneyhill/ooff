@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T161046-fm-v1-bounded-endpoints/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-bounded-v1",
+    "--reference",
+    "data/reference-v1/bounded-10mb.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "endpoints",
+    "--queries-limit",
+    "32",
+    "-k",
+    "3",
+    "--repetitions",
+    "3"
+  ],
+  "binary_sha256": "38ebb55f2d836efa5b8ab7d51103b73a0084b20539f8752321f0843dfd971b07",
+  "pid": 8686
+}

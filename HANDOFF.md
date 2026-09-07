@@ -1,5 +1,23 @@
 # RPi / EC2 implementation handoff
 
+## Superseding user instruction — 2026-09-07
+
+**Sassy must not be a dependency or runtime engine for ooff. It is only an
+external benchmark comparator on EC2.** This supersedes the wrapper/library
+integration recommendations below; those remain as historical context.
+
+The initial native Rust CLI now uses Myers bit-vector endpoint discovery and
+fixed-interval unit-cost verification. See README.md for the implemented scope
+and docs/reference.md for the human-reference provenance gaps and selected
+archive inputs. The native FM index now supports the production CLI. Human-scale EC2 iterations
+are in BENCHMARKS.md. Warm indexed screening and site enumeration have exceeded
+10×. The final three full-output repetitions reached 10.67× median speedup,
+with all 135,340,605 literal unique tuples matching. Cold-start screening remains
+below 10×. See docs/VERIFICATION.md for the current completion audit. The optional Sassy AVX-512 build failed in
+upstream SIMD code; repeated output-inclusive timings use the supported build.
+The older local SCN2A cache yielded 26,643 variant-derived query sequences; this
+is not the later 6,338-query eligible export. See docs/reference.md for provenance.
+
 ## User objective and current instruction
 
 Build an ASO-specific off-target tool at `git@github.com:barneyhill/ooff.git`.

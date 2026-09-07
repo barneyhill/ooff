@@ -11,3 +11,13 @@
 *.key
 __pycache__/
 *.pyc
+
+# Large retained benchmark output is kept on the worker volume.
+/benchmarks/iterations/**/site-comparison-buckets/
+/benchmarks/iterations/**/*.sites.csv
+/benchmarks/classic/iterations/**/stdout
+
+# Annotated full-report dumps remain local and on retained EC2 volumes.
+/benchmarks/iterations/**/output.jsonl
+
+/dist/

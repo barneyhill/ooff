@@ -1,0 +1,24 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T160431-baseline-full-screen/sassy.time.json",
+    "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "1000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3"
+  ],
+  "binary_sha256": "0dfcc4609b204fd63f390e5b8860df645119fea7466c06b7d4a40e09cf55690b",
+  "pid": 7951
+}

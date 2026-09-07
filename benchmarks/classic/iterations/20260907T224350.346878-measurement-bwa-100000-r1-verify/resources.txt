@@ -1,0 +1,23 @@
+	Command being timed: "python3 benchmarks/classic/verify.py --input benchmarks/classic/iterations/20260907T224210.786995-measurement-bwa-100000-r1-samse/stdout --kind sam --queries data/classic-v1/targets-100000.fa --threads 8"
+	User time (seconds): 44.24
+	System time (seconds): 3.28
+	Percent of CPU this job got: 121%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:39.03
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 823564
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 21971
+	Minor (reclaiming a frame) page faults: 213685
+	Voluntary context switches: 204299
+	Involuntary context switches: 499
+	Swaps: 0
+	File system inputs: 4517968
+	File system outputs: 15048
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

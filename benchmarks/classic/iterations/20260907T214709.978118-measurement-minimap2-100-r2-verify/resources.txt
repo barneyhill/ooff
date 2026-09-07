@@ -1,0 +1,23 @@
+	Command being timed: "python3 benchmarks/classic/verify.py --input benchmarks/classic/iterations/20260907T214705.149171-measurement-minimap2-100-r2-search/stdout --kind sam --queries data/classic-v1/targets-100.fa --threads 8"
+	User time (seconds): 1.48
+	System time (seconds): 0.20
+	Percent of CPU this job got: 116%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.45
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 450080
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 90776
+	Voluntary context switches: 5405
+	Involuntary context switches: 23
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 16
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

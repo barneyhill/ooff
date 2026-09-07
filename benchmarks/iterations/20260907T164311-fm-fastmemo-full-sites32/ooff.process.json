@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T164311-fm-fastmemo-full-sites32/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-full-1300m",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "32",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap"
+  ],
+  "binary_sha256": "4d246f592e563516dc10737052cf612242fb464c47a584919c223d53b1db4a91",
+  "pid": 12184
+}

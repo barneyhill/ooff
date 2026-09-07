@@ -1,0 +1,236 @@
+{
+  "tool": "ooff",
+  "queries": 30,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T220152.441515-measurement-ooff-30-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T220152.570873-measurement-ooff-30-r1-verify/result.json"
+  ],
+  "wall_seconds": 0.4797649189999902,
+  "utc": "2026-09-07T22:01:52.945706+00:00",
+  "recovered": 30,
+  "witnesses": {
+    "q0": {
+      "record": "r148784",
+      "start": 354604,
+      "end": 354624,
+      "distance": 0
+    },
+    "q1": {
+      "record": "r148784",
+      "start": 354605,
+      "end": 354625,
+      "distance": 0
+    },
+    "q2": {
+      "record": "r148784",
+      "start": 354606,
+      "end": 354626,
+      "distance": 0
+    },
+    "q3": {
+      "record": "r148784",
+      "start": 354607,
+      "end": 354627,
+      "distance": 0
+    },
+    "q4": {
+      "record": "r148784",
+      "start": 354608,
+      "end": 354628,
+      "distance": 0
+    },
+    "q5": {
+      "record": "r148784",
+      "start": 354609,
+      "end": 354629,
+      "distance": 0
+    },
+    "q6": {
+      "record": "r148784",
+      "start": 354610,
+      "end": 354630,
+      "distance": 0
+    },
+    "q7": {
+      "record": "r148784",
+      "start": 354611,
+      "end": 354631,
+      "distance": 0
+    },
+    "q8": {
+      "record": "r148784",
+      "start": 354612,
+      "end": 354632,
+      "distance": 0
+    },
+    "q9": {
+      "record": "r148784",
+      "start": 354613,
+      "end": 354633,
+      "distance": 0
+    },
+    "q10": {
+      "record": "r148784",
+      "start": 354614,
+      "end": 354634,
+      "distance": 0
+    },
+    "q11": {
+      "record": "r148784",
+      "start": 354615,
+      "end": 354635,
+      "distance": 0
+    },
+    "q12": {
+      "record": "r148784",
+      "start": 354616,
+      "end": 354636,
+      "distance": 0
+    },
+    "q13": {
+      "record": "r148784",
+      "start": 354617,
+      "end": 354637,
+      "distance": 0
+    },
+    "q14": {
+      "record": "r148784",
+      "start": 354618,
+      "end": 354638,
+      "distance": 0
+    },
+    "q15": {
+      "record": "r148784",
+      "start": 354619,
+      "end": 354639,
+      "distance": 0
+    },
+    "q16": {
+      "record": "r148784",
+      "start": 354620,
+      "end": 354640,
+      "distance": 0
+    },
+    "q17": {
+      "record": "r148784",
+      "start": 354621,
+      "end": 354641,
+      "distance": 0
+    },
+    "q18": {
+      "record": "r148784",
+      "start": 354622,
+      "end": 354642,
+      "distance": 0
+    },
+    "q19": {
+      "record": "r148784",
+      "start": 354623,
+      "end": 354643,
+      "distance": 0
+    },
+    "q20": {
+      "record": "r110388",
+      "start": 46,
+      "end": 63,
+      "distance": 3
+    },
+    "q21": {
+      "record": "r132991",
+      "start": 37898,
+      "end": 37916,
+      "distance": 2
+    },
+    "q22": {
+      "record": "r132991",
+      "start": 37899,
+      "end": 37917,
+      "distance": 2
+    },
+    "q23": {
+      "record": "r150564",
+      "start": 129795,
+      "end": 129813,
+      "distance": 2
+    },
+    "q24": {
+      "record": "r118953",
+      "start": 483,
+      "end": 502,
+      "distance": 1
+    },
+    "q25": {
+      "record": "r26511",
+      "start": 47393,
+      "end": 47412,
+      "distance": 1
+    },
+    "q26": {
+      "record": "r54750",
+      "start": 2313,
+      "end": 2330,
+      "distance": 3
+    },
+    "q27": {
+      "record": "r110626",
+      "start": 31431,
+      "end": 31448,
+      "distance": 3
+    },
+    "q28": {
+      "record": "r36648",
+      "start": 252542,
+      "end": 252559,
+      "distance": 3
+    },
+    "q29": {
+      "record": "r150111",
+      "start": 57046,
+      "end": 57063,
+      "distance": 3
+    }
+  },
+  "candidate_rows": 30,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.2768763089999311,
+  "verification_workers": 8,
+  "witness_query_ids": [
+    "q0",
+    "q1",
+    "q2",
+    "q3",
+    "q4",
+    "q5",
+    "q6",
+    "q7",
+    "q8",
+    "q9",
+    "q10",
+    "q11",
+    "q12",
+    "q13",
+    "q14",
+    "q15",
+    "q16",
+    "q17",
+    "q18",
+    "q19",
+    "q20",
+    "q21",
+    "q22",
+    "q23",
+    "q24",
+    "q25",
+    "q26",
+    "q27",
+    "q28",
+    "q29"
+  ]
+}

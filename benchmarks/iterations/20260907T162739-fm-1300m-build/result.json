@@ -1,0 +1,32 @@
+{
+  "id": "20260907T162739-fm-1300m-build",
+  "kind": "index_build",
+  "configuration": {
+    "reference": "data/reference-v1/reference.fa",
+    "output": "data/fm-full-1300m",
+    "label": "fm-1300m-build",
+    "shard_bases": 1300000000
+  },
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "benchmarks/iterations/20260907T162739-fm-1300m-build/resources.txt",
+    "target/release/ooff-index",
+    "build",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--output",
+    "data/fm-full-1300m",
+    "--shard-bases",
+    "1300000000"
+  ],
+  "returncode": 0,
+  "wall_seconds": 128.91563475799967,
+  "output": {
+    "complete": true,
+    "index_bytes": 11586150936,
+    "seconds": 128.825596413,
+    "shards": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "utc": "2026-09-07T22:56:05.618695+00:00",
+  "reason": "User requested powers-of-ten batches and removal of the out-of-place 26K size.",
+  "plotted_counts": [
+    10,
+    100,
+    1000,
+    10000,
+    100000
+  ],
+  "retained_unplotted_counts": [
+    30,
+    5000,
+    26643
+  ],
+  "cancelled_artifact": "20260907T225101.555853-measurement-minimap2-26643-r2-verify",
+  "action": "SIGTERM to verification process group 4958; parent recorded exit -15 and stopped before repetition 3. Already queued 100000 run started at 22:55:13 UTC.",
+  "preservation": "All completed, partial and cancelled outputs retained; cancellation is not a timeout or timing point."
+}

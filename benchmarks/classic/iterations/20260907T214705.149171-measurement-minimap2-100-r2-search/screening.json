@@ -1,0 +1,624 @@
+{
+  "tool": "minimap2",
+  "queries": 100,
+  "repetition": 2,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T214705.149171-measurement-minimap2-100-r2-search/result.json",
+    "benchmarks/classic/iterations/20260907T214709.978118-measurement-minimap2-100-r2-verify/result.json"
+  ],
+  "wall_seconds": 6.292932584000027,
+  "utc": "2026-09-07T21:47:11.452975+00:00",
+  "recovered": 100,
+  "witnesses": {
+    "q0": {
+      "record": "r154439",
+      "start": 458,
+      "end": 478,
+      "distance": 0
+    },
+    "q1": {
+      "record": "r148784",
+      "start": 354605,
+      "end": 354625,
+      "distance": 0
+    },
+    "q2": {
+      "record": "r148784",
+      "start": 354606,
+      "end": 354626,
+      "distance": 0
+    },
+    "q3": {
+      "record": "r154439",
+      "start": 461,
+      "end": 481,
+      "distance": 0
+    },
+    "q4": {
+      "record": "r154439",
+      "start": 462,
+      "end": 482,
+      "distance": 0
+    },
+    "q5": {
+      "record": "r154439",
+      "start": 463,
+      "end": 483,
+      "distance": 0
+    },
+    "q6": {
+      "record": "r148784",
+      "start": 354610,
+      "end": 354630,
+      "distance": 0
+    },
+    "q7": {
+      "record": "r154439",
+      "start": 465,
+      "end": 485,
+      "distance": 0
+    },
+    "q8": {
+      "record": "r154439",
+      "start": 466,
+      "end": 486,
+      "distance": 0
+    },
+    "q9": {
+      "record": "r148784",
+      "start": 354613,
+      "end": 354633,
+      "distance": 0
+    },
+    "q10": {
+      "record": "r154439",
+      "start": 468,
+      "end": 488,
+      "distance": 0
+    },
+    "q11": {
+      "record": "r154439",
+      "start": 469,
+      "end": 489,
+      "distance": 0
+    },
+    "q12": {
+      "record": "r148784",
+      "start": 354616,
+      "end": 354636,
+      "distance": 0
+    },
+    "q13": {
+      "record": "r154439",
+      "start": 471,
+      "end": 491,
+      "distance": 0
+    },
+    "q14": {
+      "record": "r154439",
+      "start": 472,
+      "end": 492,
+      "distance": 0
+    },
+    "q15": {
+      "record": "r148784",
+      "start": 354619,
+      "end": 354639,
+      "distance": 0
+    },
+    "q16": {
+      "record": "r154439",
+      "start": 474,
+      "end": 494,
+      "distance": 0
+    },
+    "q17": {
+      "record": "r148784",
+      "start": 354621,
+      "end": 354641,
+      "distance": 0
+    },
+    "q18": {
+      "record": "r148784",
+      "start": 354622,
+      "end": 354642,
+      "distance": 0
+    },
+    "q19": {
+      "record": "r148784",
+      "start": 354623,
+      "end": 354643,
+      "distance": 0
+    },
+    "q20": {
+      "record": "r154439",
+      "start": 458,
+      "end": 477,
+      "distance": 1
+    },
+    "q21": {
+      "record": "r181847",
+      "start": 574,
+      "end": 595,
+      "distance": 1
+    },
+    "q22": {
+      "record": "r148784",
+      "start": 354606,
+      "end": 354626,
+      "distance": 1
+    },
+    "q23": {
+      "record": "r148784",
+      "start": 354607,
+      "end": 354627,
+      "distance": 1
+    },
+    "q24": {
+      "record": "r154439",
+      "start": 462,
+      "end": 482,
+      "distance": 1
+    },
+    "q25": {
+      "record": "r26511",
+      "start": 47394,
+      "end": 47412,
+      "distance": 2
+    },
+    "q26": {
+      "record": "r26511",
+      "start": 47394,
+      "end": 47412,
+      "distance": 2
+    },
+    "q27": {
+      "record": "r96554",
+      "start": 4607,
+      "end": 4627,
+      "distance": 1
+    },
+    "q28": {
+      "record": "r243264",
+      "start": 264533,
+      "end": 264553,
+      "distance": 1
+    },
+    "q29": {
+      "record": "r110626",
+      "start": 31432,
+      "end": 31449,
+      "distance": 3
+    },
+    "q30": {
+      "record": "r110626",
+      "start": 31432,
+      "end": 31449,
+      "distance": 3
+    },
+    "q31": {
+      "record": "r36648",
+      "start": 252542,
+      "end": 252559,
+      "distance": 3
+    },
+    "q32": {
+      "record": "r257193",
+      "start": 326,
+      "end": 347,
+      "distance": 3
+    },
+    "q33": {
+      "record": "r260265",
+      "start": 326,
+      "end": 347,
+      "distance": 3
+    },
+    "q34": {
+      "record": "r26921",
+      "start": 56805,
+      "end": 56825,
+      "distance": 2
+    },
+    "q35": {
+      "record": "r148784",
+      "start": 354619,
+      "end": 354639,
+      "distance": 1
+    },
+    "q36": {
+      "record": "r148784",
+      "start": 354620,
+      "end": 354640,
+      "distance": 1
+    },
+    "q37": {
+      "record": "r154439",
+      "start": 475,
+      "end": 495,
+      "distance": 1
+    },
+    "q38": {
+      "record": "r97067",
+      "start": 64517,
+      "end": 64537,
+      "distance": 1
+    },
+    "q39": {
+      "record": "r148784",
+      "start": 354624,
+      "end": 354643,
+      "distance": 1
+    },
+    "q40": {
+      "record": "r148784",
+      "start": 354824,
+      "end": 354844,
+      "distance": 0
+    },
+    "q41": {
+      "record": "r154439",
+      "start": 679,
+      "end": 699,
+      "distance": 0
+    },
+    "q42": {
+      "record": "r148784",
+      "start": 354826,
+      "end": 354846,
+      "distance": 0
+    },
+    "q43": {
+      "record": "r154439",
+      "start": 681,
+      "end": 701,
+      "distance": 0
+    },
+    "q44": {
+      "record": "r148784",
+      "start": 354828,
+      "end": 354848,
+      "distance": 0
+    },
+    "q45": {
+      "record": "r154439",
+      "start": 683,
+      "end": 703,
+      "distance": 0
+    },
+    "q46": {
+      "record": "r154439",
+      "start": 684,
+      "end": 704,
+      "distance": 0
+    },
+    "q47": {
+      "record": "r154439",
+      "start": 685,
+      "end": 705,
+      "distance": 0
+    },
+    "q48": {
+      "record": "r148784",
+      "start": 354832,
+      "end": 354852,
+      "distance": 0
+    },
+    "q49": {
+      "record": "r154439",
+      "start": 687,
+      "end": 707,
+      "distance": 0
+    },
+    "q50": {
+      "record": "r148784",
+      "start": 354834,
+      "end": 354854,
+      "distance": 0
+    },
+    "q51": {
+      "record": "r148784",
+      "start": 354835,
+      "end": 354855,
+      "distance": 0
+    },
+    "q52": {
+      "record": "r154439",
+      "start": 690,
+      "end": 710,
+      "distance": 0
+    },
+    "q53": {
+      "record": "r154439",
+      "start": 691,
+      "end": 711,
+      "distance": 0
+    },
+    "q54": {
+      "record": "r148784",
+      "start": 354838,
+      "end": 354858,
+      "distance": 0
+    },
+    "q55": {
+      "record": "r148784",
+      "start": 354839,
+      "end": 354859,
+      "distance": 0
+    },
+    "q56": {
+      "record": "r154439",
+      "start": 694,
+      "end": 714,
+      "distance": 0
+    },
+    "q57": {
+      "record": "r148784",
+      "start": 354841,
+      "end": 354861,
+      "distance": 0
+    },
+    "q58": {
+      "record": "r148784",
+      "start": 354842,
+      "end": 354862,
+      "distance": 0
+    },
+    "q59": {
+      "record": "r148784",
+      "start": 354843,
+      "end": 354863,
+      "distance": 0
+    },
+    "q60": {
+      "record": "r148784",
+      "start": 354824,
+      "end": 354843,
+      "distance": 1
+    },
+    "q61": {
+      "record": "r148784",
+      "start": 354825,
+      "end": 354843,
+      "distance": 2
+    },
+    "q62": {
+      "record": "r148784",
+      "start": 354826,
+      "end": 354846,
+      "distance": 1
+    },
+    "q63": {
+      "record": "r148784",
+      "start": 354827,
+      "end": 354847,
+      "distance": 1
+    },
+    "q64": {
+      "record": "r148784",
+      "start": 354828,
+      "end": 354848,
+      "distance": 1
+    },
+    "q65": {
+      "record": "r154439",
+      "start": 683,
+      "end": 703,
+      "distance": 1
+    },
+    "q66": {
+      "record": "r204697",
+      "start": 6503,
+      "end": 6520,
+      "distance": 3
+    },
+    "q67": {
+      "record": "r148512",
+      "start": 1932,
+      "end": 1950,
+      "distance": 2
+    },
+    "q68": {
+      "record": "r154439",
+      "start": 686,
+      "end": 706,
+      "distance": 1
+    },
+    "q69": {
+      "record": "r69353",
+      "start": 45483,
+      "end": 45503,
+      "distance": 2
+    },
+    "q70": {
+      "record": "r69353",
+      "start": 45483,
+      "end": 45503,
+      "distance": 2
+    },
+    "q71": {
+      "record": "r154439",
+      "start": 689,
+      "end": 709,
+      "distance": 1
+    },
+    "q72": {
+      "record": "r154439",
+      "start": 690,
+      "end": 710,
+      "distance": 1
+    },
+    "q73": {
+      "record": "r205396",
+      "start": 27950,
+      "end": 27968,
+      "distance": 2
+    },
+    "q74": {
+      "record": "r205396",
+      "start": 27950,
+      "end": 27969,
+      "distance": 1
+    },
+    "q75": {
+      "record": "r205396",
+      "start": 27950,
+      "end": 27970,
+      "distance": 0
+    },
+    "q76": {
+      "record": "r205396",
+      "start": 27951,
+      "end": 27970,
+      "distance": 1
+    },
+    "q77": {
+      "record": "r131540",
+      "start": 117566,
+      "end": 117586,
+      "distance": 1
+    },
+    "q78": {
+      "record": "r148784",
+      "start": 354844,
+      "end": 354862,
+      "distance": 2
+    },
+    "q79": {
+      "record": "r154439",
+      "start": 698,
+      "end": 717,
+      "distance": 1
+    },
+    "q80": {
+      "record": "r148784",
+      "start": 355658,
+      "end": 355678,
+      "distance": 0
+    },
+    "q81": {
+      "record": "r148784",
+      "start": 355659,
+      "end": 355679,
+      "distance": 0
+    },
+    "q82": {
+      "record": "r148784",
+      "start": 355660,
+      "end": 355680,
+      "distance": 0
+    },
+    "q83": {
+      "record": "r148784",
+      "start": 355661,
+      "end": 355681,
+      "distance": 0
+    },
+    "q84": {
+      "record": "r148784",
+      "start": 355662,
+      "end": 355682,
+      "distance": 0
+    },
+    "q85": {
+      "record": "r148784",
+      "start": 355663,
+      "end": 355683,
+      "distance": 0
+    },
+    "q86": {
+      "record": "r148784",
+      "start": 355664,
+      "end": 355684,
+      "distance": 0
+    },
+    "q87": {
+      "record": "r148784",
+      "start": 355665,
+      "end": 355685,
+      "distance": 0
+    },
+    "q88": {
+      "record": "r148784",
+      "start": 355666,
+      "end": 355686,
+      "distance": 0
+    },
+    "q89": {
+      "record": "r148784",
+      "start": 355667,
+      "end": 355687,
+      "distance": 0
+    },
+    "q90": {
+      "record": "r148784",
+      "start": 355668,
+      "end": 355688,
+      "distance": 0
+    },
+    "q91": {
+      "record": "r148784",
+      "start": 355669,
+      "end": 355689,
+      "distance": 0
+    },
+    "q92": {
+      "record": "r148784",
+      "start": 355670,
+      "end": 355690,
+      "distance": 0
+    },
+    "q93": {
+      "record": "r148784",
+      "start": 355671,
+      "end": 355691,
+      "distance": 0
+    },
+    "q94": {
+      "record": "r148784",
+      "start": 355672,
+      "end": 355692,
+      "distance": 0
+    },
+    "q95": {
+      "record": "r148784",
+      "start": 355673,
+      "end": 355693,
+      "distance": 0
+    },
+    "q96": {
+      "record": "r148784",
+      "start": 355674,
+      "end": 355694,
+      "distance": 0
+    },
+    "q97": {
+      "record": "r148784",
+      "start": 355675,
+      "end": 355695,
+      "distance": 0
+    },
+    "q98": {
+      "record": "r148784",
+      "start": 355676,
+      "end": 355696,
+      "distance": 0
+    },
+    "q99": {
+      "record": "r148784",
+      "start": 355677,
+      "end": 355697,
+      "distance": 0
+    }
+  },
+  "candidate_rows": 275802,
+  "rejected_before_witness": 4832,
+  "verification_seconds": 1.3795695900000737,
+  "verification_workers": 8
+}

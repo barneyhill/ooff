@@ -1,0 +1,12 @@
+   Compiling ooff v0.1.0 (/home/ubuntu/ooff)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1.63s
+     Running unittests src/lib.rs (target/debug/deps/ooff-feb9045427df52ac)
+     Running unittests src/main.rs (target/debug/deps/ooff-92b315ab9c8f020d)
+     Running unittests src/bin/ooff-bench.rs (target/debug/deps/ooff_bench-cd95f88204d89392)
+     Running unittests src/bin/ooff-index.rs (target/debug/deps/ooff_index-93819357b955af5c)
+     Running tests/cli.rs (target/debug/deps/cli-772c6e136acc6367)
+     Running tests/correctness.rs (target/debug/deps/correctness-c30a83b409458cb8)
+     Running tests/fm.rs (target/debug/deps/fm-0e4092dd3d29e2ff)
+     Running tests/indexed_cli.rs (target/debug/deps/indexed_cli-cb4dfbad35513556)
+     Running tests/interval_distance.rs (target/debug/deps/interval_distance-95ac3382bd72ce2a)
+     Running tests/parallel_index.rs (target/debug/deps/parallel_index-4cd945067ee3cd99)

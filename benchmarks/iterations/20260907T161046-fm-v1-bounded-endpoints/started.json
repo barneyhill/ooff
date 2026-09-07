@@ -1,0 +1,18 @@
+{
+  "id": "20260907T161046-fm-v1-bounded-endpoints",
+  "utc": "2026-09-07T16:10:46.597240+00:00",
+  "configuration": {
+    "label": "fm-v1-bounded-endpoints",
+    "reference": "data/reference-v1/bounded-10mb.fa",
+    "queries": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "mode": "endpoints",
+    "n": 32,
+    "k": 3,
+    "repetitions": 3,
+    "timeout": 300,
+    "native": "target/release/ooff-index",
+    "sassy": "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator",
+    "index": "data/fm-bounded-v1"
+  },
+  "runs": {}
+}

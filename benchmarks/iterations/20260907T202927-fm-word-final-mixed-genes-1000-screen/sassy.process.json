@@ -1,0 +1,25 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T202927-fm-word-final-mixed-genes-1000-screen/sassy.time.json",
+    "/home/ubuntu/comparators/sassy-0.2.6-fast-interval/target/release/sassy-comparator",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "data/query-sets-v1/mixed-genes-1000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "10000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3"
+  ],
+  "binary_sha256": "d7b90cf2090c97b240de062c7bf84069519990e76a43e7cebbcd0342cc9e3566",
+  "cache_residency_before_process": null,
+  "pid": 39961
+}

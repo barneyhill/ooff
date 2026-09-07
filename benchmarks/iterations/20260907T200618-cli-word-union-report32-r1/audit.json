@@ -1,0 +1,10 @@
+{
+  "complete": true,
+  "sites": 78733,
+  "unique_sites": true,
+  "matching_per_query_counts_and_signatures": true,
+  "genomic_block_lengths_valid": true,
+  "comparison": "benchmarks/iterations/20260907T194802-fm-word-union-sites32-k3/result.json",
+  "limitation": "full tuple equality verifies this dataset and edit budget; fixture oracles cover additional edge cases",
+  "exact_site_tuples_equal_to_sassy": true
+}

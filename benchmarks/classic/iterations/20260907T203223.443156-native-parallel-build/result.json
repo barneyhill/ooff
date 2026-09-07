@@ -1,0 +1,17 @@
+{
+  "id": "20260907T203223.443156-native-parallel-build",
+  "label": "native-parallel-build",
+  "command": [
+    "cargo",
+    "build",
+    "--locked",
+    "--release",
+    "--bin",
+    "ooff-index"
+  ],
+  "metadata": {},
+  "started_utc": "20260907T203223.443156",
+  "returncode": 0,
+  "timeout": false,
+  "wall_seconds": 5.325039635001303
+}

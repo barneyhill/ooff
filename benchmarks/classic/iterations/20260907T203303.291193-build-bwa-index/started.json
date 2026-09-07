@@ -1,0 +1,13 @@
+{
+  "id": "20260907T203303.291193-build-bwa-index",
+  "label": "build-bwa-index",
+  "command": [
+    "bwa",
+    "index",
+    "-p",
+    "data/classic-v1/bwa",
+    "data/classic-v1/eligible.fa"
+  ],
+  "metadata": {},
+  "started_utc": "20260907T203303.291193"
+}

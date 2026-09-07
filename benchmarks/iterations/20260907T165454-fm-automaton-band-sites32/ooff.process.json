@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T165454-fm-automaton-band-sites32/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "32",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap",
+    "--automaton"
+  ],
+  "binary_sha256": "0c60133d9a70be7a38f86781cc740a518c304f782f89bc770008dc01661ae58f",
+  "pid": 14029
+}

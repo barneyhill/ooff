@@ -1,0 +1,72 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T203114-fm-word-final-cold-original1000-screen/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "1000",
+    "-k",
+    "3",
+    "--repetitions",
+    "1",
+    "--mmap"
+  ],
+  "binary_sha256": "b7077907f92b8e75f54352634a3a532a6a813b7fe68ad4620799174510725788",
+  "cache_residency_before_process": [
+    {
+      "path": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+      "bytes": 26890,
+      "pages": 7,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/fm-production-v1/annotation-cache.json",
+      "bytes": 5814116,
+      "pages": 1420,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/fm-production-v1/manifest.json",
+      "bytes": 29682449,
+      "pages": 7247,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/fm-production-v1/reference-info.json",
+      "bytes": 34895125,
+      "pages": 8520,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/fm-production-v1/shard-0000.fm",
+      "bytes": 6174800096,
+      "pages": 1507520,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/fm-production-v1/shard-0001.fm",
+      "bytes": 5411350888,
+      "pages": 1321131,
+      "resident_pages_after_eviction": 0
+    },
+    {
+      "path": "data/reference-v1/reference.fa",
+      "bytes": 2450873839,
+      "pages": 598358,
+      "resident_pages_after_eviction": 0
+    }
+  ],
+  "pid": 40375
+}

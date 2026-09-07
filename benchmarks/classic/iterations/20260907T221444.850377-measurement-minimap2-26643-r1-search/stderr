@@ -1,0 +1,6 @@
+[WARNING][1;31m Indexing parameters (-k, -w or -H) overridden by parameters used in the prebuilt index.[0m
+[M::main::16.776*0.23] loaded/built the index for 288398 target sequence(s)
+[M::mm_mapopt_update::16.777*0.23] mid_occ = 1000000
+[M::mm_idx_stat] kmer size: 7; skip: 5; is_hpc: 0; #seq: 288398
+[M::mm_idx_stat::16.778*0.23] distinct minimizers: 6738 (0.00% are singletons); average occurrences: 123609.325; average spacing: 2.928; total length: 2438579557
+[ERROR] failed to write the results: No space left on device

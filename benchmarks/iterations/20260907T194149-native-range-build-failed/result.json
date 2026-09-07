@@ -1,0 +1,10 @@
+{
+  "id": "20260907T194149-native-range-build-failed",
+  "kind": "native_build",
+  "configuration": {
+    "label": "native-range-build-stale-artifact",
+    "threads": 2
+  },
+  "returncode": 101,
+  "note": "Source contains search_unique but cargo reused a library built after the preserved staged source mtime. Refresh source timestamps before rebuilding; raw source and compiler errors retained."
+}

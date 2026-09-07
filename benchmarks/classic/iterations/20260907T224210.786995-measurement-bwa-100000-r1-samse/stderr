@@ -1,0 +1,7 @@
+[bwa_aln_core] convert to sequence coordinate... 68.36 sec
+[bwa_aln_core] refine gapped alignments... 11.69 sec
+[bwa_aln_core] print alignments... 6.13 sec
+[bwa_aln_core] 100000 sequences have been processed.
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa samse -n 1000 data/classic-v1/bwa benchmarks/classic/iterations/20260907T223946.316019-measurement-bwa-100000-r1-aln/stdout data/classic-v1/targets-100000.fa
+[main] Real time: 99.428 sec; CPU: 86.563 sec

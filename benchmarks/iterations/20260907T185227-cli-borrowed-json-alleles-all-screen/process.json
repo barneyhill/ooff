@@ -1,0 +1,42 @@
+{
+  "id": "20260907T185227-cli-borrowed-json-alleles-all-screen",
+  "kind": "production_cli",
+  "configuration": {
+    "label": "cli-borrowed-json-alleles-all-screen",
+    "queries": "data/cached-allele-queries-v1/scn2a-cached-alleles-all.jsonl",
+    "n": 30000,
+    "mode": "screen",
+    "k": 3,
+    "reverse_index": null,
+    "annotation_cache": "data/fm-production-v1/annotation-cache.json",
+    "queries_jsonl": true
+  },
+  "command": [
+    "target/release/ooff",
+    "screen",
+    "--queries",
+    "benchmarks/iterations/20260907T185227-cli-borrowed-json-alleles-all-screen/queries.jsonl",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--index",
+    "data/fm-production-v1",
+    "--annotations",
+    "data/reference-v1/records.jsonl",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "Ensembl-110-GRCh38-primary-assembly",
+    "--scope",
+    "gene bodies and mature transcripts; see reference-v1 manifest",
+    "--biotype-policy",
+    "all except non-transcribed/non-translated pseudogenes",
+    "-k",
+    "3",
+    "--annotation-cache",
+    "data/fm-production-v1/annotation-cache.json"
+  ],
+  "binary_sha256": "f7e0bb7a0ebdcef1f8c3a3dc6076482531471997ccd250af5e3ec8d04faa304d",
+  "cache_policy": "fresh process; OS cache not flushed",
+  "queries": 26643,
+  "pid": 29935
+}

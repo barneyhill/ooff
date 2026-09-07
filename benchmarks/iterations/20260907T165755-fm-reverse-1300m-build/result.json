@@ -1,0 +1,34 @@
+{
+  "id": "20260907T165755-fm-reverse-1300m-build",
+  "kind": "index_build",
+  "configuration": {
+    "reference": "data/reference-v1/reference.fa",
+    "output": "data/fm-reverse-v1",
+    "label": "fm-reverse-1300m-build",
+    "shard_bases": 1300000000,
+    "reverse_records": true
+  },
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "benchmarks/iterations/20260907T165755-fm-reverse-1300m-build/resources.txt",
+    "target/release/ooff-index",
+    "build",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--output",
+    "data/fm-reverse-v1",
+    "--shard-bases",
+    "1300000000",
+    "--reverse-records"
+  ],
+  "returncode": 0,
+  "wall_seconds": 136.9464893839995,
+  "output": {
+    "complete": true,
+    "index_bytes": 11586150936,
+    "seconds": 136.862329625,
+    "shards": 2
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "20260907T203219.438974-native-parallel-tests",
+  "label": "native-parallel-tests",
+  "command": [
+    "env",
+    "OMP_NUM_THREADS=2",
+    "cargo",
+    "test",
+    "--locked",
+    "--all-targets"
+  ],
+  "metadata": {},
+  "started_utc": "20260907T203219.438974"
+}

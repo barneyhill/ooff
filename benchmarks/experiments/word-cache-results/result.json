@@ -1,0 +1,93 @@
+{
+  "complete": true,
+  "checks": [
+    {
+      "k": 0,
+      "equal": true,
+      "unique": true,
+      "left_rows": 2,
+      "right_rows": 2,
+      "buckets": 0
+    },
+    {
+      "k": 1,
+      "equal": true,
+      "unique": true,
+      "left_rows": 24,
+      "right_rows": 24,
+      "buckets": 0
+    },
+    {
+      "k": 2,
+      "equal": true,
+      "unique": true,
+      "left_rows": 1078,
+      "right_rows": 1078,
+      "buckets": 0
+    },
+    {
+      "k": 3,
+      "equal": true,
+      "unique": true,
+      "left_rows": 41760,
+      "right_rows": 41760,
+      "buckets": 0
+    }
+  ],
+  "rows": [
+    {
+      "variant": "baseline",
+      "repetition": 1,
+      "search_seconds": 85.72912991,
+      "wall_seconds": 86.16200859599996,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T215802.888374-word-cache-1000-baseline-r1"
+    },
+    {
+      "variant": "cached",
+      "repetition": 1,
+      "search_seconds": 30.277533498,
+      "wall_seconds": 30.720869649000065,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T215929.073236-word-cache-1000-cached-r1"
+    },
+    {
+      "variant": "cached",
+      "repetition": 2,
+      "search_seconds": 27.324102618,
+      "wall_seconds": 27.762051695999958,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T215959.810094-word-cache-1000-cached-r2"
+    },
+    {
+      "variant": "baseline",
+      "repetition": 2,
+      "search_seconds": 27.076667246,
+      "wall_seconds": 27.55805736900004,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T220027.586677-word-cache-1000-baseline-r2"
+    },
+    {
+      "variant": "baseline",
+      "repetition": 3,
+      "search_seconds": 27.161636858,
+      "wall_seconds": 27.61000669500004,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T220055.159302-word-cache-1000-baseline-r3"
+    },
+    {
+      "variant": "cached",
+      "repetition": 3,
+      "search_seconds": 26.921471245,
+      "wall_seconds": 27.36026291799999,
+      "sites": 45113535,
+      "artifact": "benchmarks/classic/iterations/20260907T220122.783989-word-cache-1000-cached-r3"
+    }
+  ],
+  "medians": {
+    "baseline": 27.161636858,
+    "cached": 27.324102618
+  },
+  "speedup": 0.9940541227548687,
+  "scope": "Native ablation, one search thread on 8-vCPU/16-GiB host; 32-query exact tuples, 1000-query count/signature checks; fresh processes, OS cache retained"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "20260907T162123-fm-mmap-mixed-genes-1000-screen",
+  "utc": "2026-09-07T16:21:23.712262+00:00",
+  "configuration": {
+    "label": "fm-mmap-mixed-genes-1000-screen",
+    "reference": "data/reference-v1/reference.fa",
+    "queries": "data/query-sets-v1/mixed-genes-1000.fa",
+    "mode": "screen",
+    "n": 10000,
+    "k": 3,
+    "repetitions": 3,
+    "timeout": 600,
+    "native": "target/release/ooff-index",
+    "sassy": "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator",
+    "index": "data/fm-full-v1",
+    "distance_strata": false,
+    "mmap": true
+  },
+  "runs": {}
+}

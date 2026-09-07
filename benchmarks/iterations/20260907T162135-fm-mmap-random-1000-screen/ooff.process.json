@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T162135-fm-mmap-random-1000-screen/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-full-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "data/query-sets-v1/random-1000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "10000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap"
+  ],
+  "binary_sha256": "1fce3ed83b799d6c829ad18062d2bfab0829503be8a5254dab400928702353d0",
+  "pid": 10837
+}

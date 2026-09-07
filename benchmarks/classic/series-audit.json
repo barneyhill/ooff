@@ -1,0 +1,198 @@
+{
+  "complete": true,
+  "checks": [
+    {
+      "tool": "ooff",
+      "queries": 10,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T220150.924202-measurement-ooff-10-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220151.428873-measurement-ooff-10-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220151.934356-measurement-ooff-10-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "ooff",
+      "queries": 100,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T220153.961745-measurement-ooff-100-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220154.469350-measurement-ooff-100-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220155.027892-measurement-ooff-100-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "ooff",
+      "queries": 1000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T220155.536127-measurement-ooff-1000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220156.199443-measurement-ooff-1000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220156.816223-measurement-ooff-1000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "ooff",
+      "queries": 10000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T220200.743740-measurement-ooff-10000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220202.341608-measurement-ooff-10000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220203.313969-measurement-ooff-10000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "ooff",
+      "queries": 100000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T223942.201313-measurement-ooff-100000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T224034.779087-measurement-ooff-100000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T224039.031624-measurement-ooff-100000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "bwa",
+      "queries": 10,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214646.690920-measurement-bwa-10-r1-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T214650.463789-measurement-bwa-10-r2-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T214654.220072-measurement-bwa-10-r3-aln/screening.json"
+      ]
+    },
+    {
+      "tool": "bwa",
+      "queries": 100,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T213451.582230-measurement-bwa-100-r1-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213455.146685-measurement-bwa-100-r2-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213458.459763-measurement-bwa-100-r3-aln/screening.json"
+      ]
+    },
+    {
+      "tool": "bwa",
+      "queries": 1000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T213501.774057-measurement-bwa-1000-r1-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213506.096168-measurement-bwa-1000-r2-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213510.271220-measurement-bwa-1000-r3-aln/screening.json"
+      ]
+    },
+    {
+      "tool": "bwa",
+      "queries": 10000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T213601.870356-measurement-bwa-10000-r1-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213629.138889-measurement-bwa-10000-r2-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T213656.230046-measurement-bwa-10000-r3-aln/screening.json"
+      ]
+    },
+    {
+      "tool": "bwa",
+      "queries": 100000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T223946.316019-measurement-bwa-100000-r1-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T224430.005962-measurement-bwa-100000-r2-aln/screening.json",
+        "benchmarks/classic/iterations/20260907T224837.513194-measurement-bwa-100000-r3-aln/screening.json"
+      ]
+    },
+    {
+      "tool": "blast",
+      "queries": 10,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T213847.888138-measurement-blast-10-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T213901.875281-measurement-blast-10-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T213915.806714-measurement-blast-10-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "blast",
+      "queries": 100,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214121.137263-measurement-blast-100-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214341.913794-measurement-blast-100-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214602.625137-measurement-blast-100-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "blast",
+      "queries": 1000,
+      "state": "recorded timeout; remaining repetitions skipped",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214823.718993-measurement-blast-1000-r1-search/screening.json"
+      ]
+    },
+    {
+      "tool": "blast",
+      "queries": 10000,
+      "state": "recorded timeout; remaining repetitions skipped",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T220823.817452-measurement-blast-10000-r1-search/screening.json"
+      ]
+    },
+    {
+      "tool": "blast",
+      "queries": 100000,
+      "state": "recorded timeout; remaining repetitions skipped",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T223950.659732-measurement-blast-100000-r1-search/screening.json"
+      ]
+    },
+    {
+      "tool": "minimap2",
+      "queries": 10,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214628.835626-measurement-minimap2-10-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214633.687635-measurement-minimap2-10-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214638.638054-measurement-minimap2-10-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "minimap2",
+      "queries": 100,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214658.843529-measurement-minimap2-100-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214705.149171-measurement-minimap2-100-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214711.454877-measurement-minimap2-100-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "minimap2",
+      "queries": 1000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T214717.761149-measurement-minimap2-1000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214742.666500-measurement-minimap2-1000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T214807.522283-measurement-minimap2-1000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "minimap2",
+      "queries": 10000,
+      "state": "three completed repetitions",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T215651.106705-measurement-minimap2-10000-r1-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220302.528030-measurement-minimap2-10000-r2-search/screening.json",
+        "benchmarks/classic/iterations/20260907T220852.419940-measurement-minimap2-10000-r3-search/screening.json"
+      ]
+    },
+    {
+      "tool": "minimap2",
+      "queries": 100000,
+      "state": "kernel-confirmed out-of-memory failure; remaining repetitions not run",
+      "artifacts": [
+        "benchmarks/classic/iterations/20260907T225513.797152-measurement-minimap2-100000-r1-search/screening.json"
+      ]
+    }
+  ],
+  "scope": "Artifact coverage, elapsed-time sums, thread metadata and witness consistency; does not replace independent scalar verification or biological validation."
+}

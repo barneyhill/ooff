@@ -1,0 +1,19 @@
+{
+  "tool": "bwa",
+  "queries": 1,
+  "repetition": 1,
+  "phase": "timeout_test",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "stage_timeout_seconds": 10,
+  "run_timeout_seconds": 0.9,
+  "complete": false,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T223914.765954-timeout_test-bwa-1-r1-aln/result.json",
+    "benchmarks/classic/iterations/20260907T223915.625457-timeout_test-bwa-1-r1-samse/result.json"
+  ],
+  "wall_seconds": 0.5584479380000005,
+  "utc": "2026-09-07T22:39:15.762885+00:00"
+}

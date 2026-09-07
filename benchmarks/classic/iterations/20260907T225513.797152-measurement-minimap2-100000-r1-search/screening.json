@@ -1,0 +1,18 @@
+{
+  "tool": "minimap2",
+  "queries": 100000,
+  "repetition": 1,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "stage_timeout_seconds": 600.0,
+  "run_timeout_seconds": 600.0,
+  "complete": false,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T225513.797152-measurement-minimap2-100000-r1-search/result.json"
+  ],
+  "wall_seconds": 421.1612017389998,
+  "utc": "2026-09-07T23:02:15.128014+00:00"
+}

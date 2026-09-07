@@ -1,0 +1,12 @@
+{
+  "id": "20260907T185138-sassy-avx512-build-failed",
+  "kind": "comparator_build",
+  "configuration": {
+    "label": "sassy-0.2.6-avx512-build",
+    "threads": 4,
+    "command": "bash benchmarks/build_comparator_ec2.sh /home/ubuntu/comparators/sassy-0.2.6-avx512 /home/ubuntu/ooff/benchmarks/sassy_engine.rs avx512"
+  },
+  "returncode": 101,
+  "wall_seconds": null,
+  "note": "Failure observed in upstream Sassy 0.2.6: incompatible u64x8/u64x4 SIMD types. No executable or throughput result; upstream source unchanged. Build duration was not separately measured."
+}

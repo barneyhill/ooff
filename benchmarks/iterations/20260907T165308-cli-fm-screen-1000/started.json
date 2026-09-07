@@ -1,0 +1,36 @@
+{
+  "id": "20260907T165308-cli-fm-screen-1000",
+  "kind": "production_cli",
+  "configuration": {
+    "label": "cli-fm-screen-1000",
+    "queries": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "n": 1000,
+    "mode": "screen",
+    "k": 3
+  },
+  "command": [
+    "target/release/ooff",
+    "screen",
+    "--queries",
+    "benchmarks/iterations/20260907T165308-cli-fm-screen-1000/queries.jsonl",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--index",
+    "data/fm-production-v1",
+    "--annotations",
+    "data/reference-v1/records.jsonl",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "Ensembl-110-GRCh38-primary-assembly",
+    "--scope",
+    "gene bodies and mature transcripts; see reference-v1 manifest",
+    "--biotype-policy",
+    "all except non-transcribed/non-translated pseudogenes",
+    "-k",
+    "3"
+  ],
+  "binary_sha256": "de05930bf7b6d78ba39b88da71f98b2fc61bc8e49b0ce79d6823cfbdbec61573",
+  "cache_policy": "fresh process; OS cache not flushed",
+  "queries": 1000
+}

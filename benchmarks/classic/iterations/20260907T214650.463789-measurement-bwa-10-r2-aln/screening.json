@@ -1,0 +1,85 @@
+{
+  "tool": "bwa",
+  "queries": 10,
+  "repetition": 2,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T214650.463789-measurement-bwa-10-r2-aln/result.json",
+    "benchmarks/classic/iterations/20260907T214651.568970-measurement-bwa-10-r2-samse/result.json",
+    "benchmarks/classic/iterations/20260907T214653.625566-measurement-bwa-10-r2-verify/result.json"
+  ],
+  "wall_seconds": 3.3992044109998005,
+  "utc": "2026-09-07T21:46:54.134978+00:00",
+  "recovered": 10,
+  "witnesses": {
+    "q0": {
+      "record": "r148784",
+      "start": 354604,
+      "end": 354624,
+      "distance": 0
+    },
+    "q1": {
+      "record": "r154439",
+      "start": 459,
+      "end": 479,
+      "distance": 0
+    },
+    "q2": {
+      "record": "r148784",
+      "start": 354606,
+      "end": 354626,
+      "distance": 0
+    },
+    "q3": {
+      "record": "r148784",
+      "start": 354607,
+      "end": 354627,
+      "distance": 0
+    },
+    "q4": {
+      "record": "r148784",
+      "start": 354608,
+      "end": 354628,
+      "distance": 0
+    },
+    "q5": {
+      "record": "r154439",
+      "start": 463,
+      "end": 483,
+      "distance": 0
+    },
+    "q6": {
+      "record": "r148784",
+      "start": 354610,
+      "end": 354630,
+      "distance": 0
+    },
+    "q7": {
+      "record": "r154439",
+      "start": 465,
+      "end": 485,
+      "distance": 0
+    },
+    "q8": {
+      "record": "r148784",
+      "start": 354612,
+      "end": 354632,
+      "distance": 0
+    },
+    "q9": {
+      "record": "r154439",
+      "start": 467,
+      "end": 487,
+      "distance": 0
+    }
+  },
+  "candidate_rows": 74,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.2905212759999358,
+  "verification_workers": 8
+}

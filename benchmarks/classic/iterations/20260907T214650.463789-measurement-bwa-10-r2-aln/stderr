@@ -1,0 +1,6 @@
+[bwa_aln_core] calculate SA coordinate... 0.00 sec
+[bwa_aln_core] write to the disk... 0.00 sec
+[bwa_aln_core] 10 sequences have been processed.
+[main] Version: 0.7.17-r1188
+[main] CMD: bwa aln -t 8 -n 3 -o 3 -e 3 -i 0 -l 1024 -M 1 -O 1 -E 1 data/classic-v1/bwa data/classic-v1/targets-10.fa
+[main] Real time: 1.013 sec; CPU: 1.012 sec

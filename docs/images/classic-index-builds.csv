@@ -1,0 +1,6 @@
+tool,seconds,peak_rss_gib,configured_threads,host_ram_gib,returncode,cpu_percent,artifact
+BWA,2753.43898988,3.4262733459472656,1,32,0,98%,benchmarks/classic/iterations/20260907T203303.291193-build-bwa-index/result.json
+minimap2,30.786224536000006,14.873207092285156,8,16,137,154%,benchmarks/classic/iterations/20260907T212902.416037-build-minimap2-index/result.json
+BLAST,16.003739922999998,0.08660125732421875,1,16,0,98%,benchmarks/classic/iterations/20260907T212902.815719-build-blast-index/result.json
+minimap2,73.64292037400003,15.375980377197266,8,32,0,143%,benchmarks/classic/iterations/20260907T213857.983421-build-minimap2-index/result.json
+ooff,206.12529996,8.225997924804688,8,16,0,234%,benchmarks/classic/iterations/20260907T214807.700132-build-ooff-index-8/result.json

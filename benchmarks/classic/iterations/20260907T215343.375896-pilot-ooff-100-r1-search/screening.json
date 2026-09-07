@@ -1,0 +1,17 @@
+{
+  "tool": "ooff",
+  "queries": 100,
+  "repetition": 1,
+  "phase": "pilot",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": false,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T215343.375896-pilot-ooff-100-r1-search/result.json",
+    "benchmarks/classic/iterations/20260907T215343.555509-pilot-ooff-100-r1-verify/result.json"
+  ],
+  "wall_seconds": 0.6297189989999765,
+  "utc": "2026-09-07T21:53:44.038045+00:00"
+}

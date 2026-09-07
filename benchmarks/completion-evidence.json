@@ -1,0 +1,146 @@
+{
+  "utc": "2026-09-07T23:07:53.081834+00:00",
+  "sassy_proof": "benchmarks/iterations/20260907T200643-fm-word-union-full-tuples1000/result.json",
+  "search_seconds": {
+    "sassy": [
+      324.492754791,
+      325.581098398,
+      325.311812515
+    ],
+    "ooff": [
+      31.396544639,
+      30.433051194,
+      30.476569099
+    ]
+  },
+  "median_speedup": 10.674161237055852,
+  "process_speedup": 10.573410777670217,
+  "exact_comparison": {
+    "equal": true,
+    "unique": true,
+    "left_rows": 135340605,
+    "right_rows": 135340605,
+    "buckets": 128
+  },
+  "sassy_native_dependency": false,
+  "plotted_counts": [
+    10,
+    100,
+    1000,
+    10000,
+    100000
+  ],
+  "native_and_bwa_repetitions_complete": true,
+  "remaining": [],
+  "complete": true,
+  "classic_series_audit": "benchmarks/classic/series-audit.json",
+  "classic_cells": 20,
+  "worker_states": [
+    {
+      "instance": "i-0b5bad3102a5345c5",
+      "state": "stopped",
+      "type": "c7i.2xlarge",
+      "volumes": [
+        "vol-0138903fbd36c52bf"
+      ]
+    },
+    {
+      "instance": "i-0eed25aed0ad7dd2c",
+      "state": "stopped",
+      "type": "c7i.2xlarge",
+      "volumes": [
+        "vol-0fb6f267d2dbd55d9"
+      ]
+    },
+    {
+      "instance": "i-043c11d9e3597df11",
+      "state": "stopped",
+      "type": "c7i.2xlarge",
+      "volumes": [
+        "vol-08fb4d24762e1d2c4"
+      ]
+    },
+    {
+      "instance": "i-0b880ceee50e0c3fa",
+      "state": "stopped",
+      "type": "m7i.2xlarge",
+      "volumes": [
+        "vol-022afdbf62d1db6cc",
+        "vol-0cb196a72cc0da8de"
+      ]
+    }
+  ],
+  "retained_volumes": [
+    {
+      "volume": "vol-01d47c2593b105cb1",
+      "state": "available",
+      "size_gib": 50,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-04240a40cb1554904",
+      "state": "available",
+      "size_gib": 50,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-0cb196a72cc0da8de",
+      "state": "in-use",
+      "size_gib": 100,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-0fb6f267d2dbd55d9",
+      "state": "in-use",
+      "size_gib": 50,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-0070954e222f18344",
+      "state": "available",
+      "size_gib": 50,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-08fb4d24762e1d2c4",
+      "state": "in-use",
+      "size_gib": 50,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-0138903fbd36c52bf",
+      "state": "in-use",
+      "size_gib": 200,
+      "encrypted": true
+    },
+    {
+      "volume": "vol-022afdbf62d1db6cc",
+      "state": "in-use",
+      "size_gib": 100,
+      "encrypted": true
+    }
+  ],
+  "median_100000_seconds": {
+    "ooff": 3.1913732880000225,
+    "bwa": 246.8983752449999
+  },
+  "bwa_to_ooff_100000_ratio": 77.36430463129143,
+  "artifact_sha256": {
+    "README.md": "3434d38673358b02bd048668b90f15929f48ed10170909081754b2e3bad4e65d",
+    "docs/CLASSIC_BENCHMARK.md": "5b45ad397f988c53815075a5988f9c5b26330f198fdc8958aacabdd0d49139b1",
+    "docs/VERIFICATION.md": "7d014ec94db3d0a85673315fce35439c8240b90e0960eb25400d90a4bb561b68",
+    "docs/ARTIFACTS.md": "71fc47d6f080f249be90d79ba3fae8871d87abe9cd3beb93984c8b5cfdda092a",
+    "benchmarks/classic/series-audit.json": "920b88218aabbc45743813b535322af6c7226ab2306993a8e23801959cbe550d",
+    "benchmarks/CLASSIC_ITERATIONS.md": "f6da4c13c28f4f26ab792d0601e8e46e494de21eadf9722e66045d2af001999e",
+    "benchmarks/classic/summary.csv": "17b0333ef5eefef5512bd176721c39c2e406b6ca0dd39bb9d1ad2adc3b82722f",
+    "docs/images/classic-scaling.svg": "4ae1df3183bd306e4df4356ccc18c59c8520c3ffb3e1bcc8dadbe128cc25b5f6",
+    "docs/images/classic-scaling.png": "c9e755c68f5b3db36361d7bb6f938d2eb17ed00a7ebbdd6089ae798de6eb3ade",
+    "docs/images/classic-scaling.csv": "b83603a1f7f937e126840dd69cbb4a3cd30db9e68b7fcc7de054e359869eb7af",
+    "docs/images/classic-index-builds.svg": "427cc121a80360d2121759c8dfbfb78f6f58ae3210c05ac0c4f39ee0df7e76cb",
+    "docs/images/classic-index-builds.png": "ed3e6610645ebadf71eb7df823a56832dff50d45f3846dd8aa2580f22173557a",
+    "docs/images/classic-index-builds.csv": "bf8b037cc92c0a762838c3ddc98ac73673f48488d9264cb2154e59221eebd2e2",
+    "benchmarks/WORD_CACHE_EXPERIMENT.md": "81f715e88f8c1188e1169bab07c47fdafbbe3f301f89cfb91729b5a541c3d442",
+    "benchmarks/EXTENSION_EXPERIMENT.md": "84806809a310beb3332b01a488364e9540ab35bfeb64fa4c162dc8b502ba445b",
+    "docs/OPTIMIZATION_RESEARCH.md": "2fb9c2e3cb4d7edb888a430c3946f1b410ed791b4f91bafe92f58bbaba4bcde4"
+  }
+}

@@ -1,0 +1,173 @@
+    Updating crates.io index
+     Locking 71 packages to latest Rust 1.94.0 compatible versions
+      Adding generic-array v0.14.7 (available: v0.14.9)
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.24
+   Compiling find-msvc-tools v0.1.12
+   Compiling shlex v2.0.1
+   Compiling version_check v0.9.5
+   Compiling cc v1.4.5
+   Compiling crossbeam-utils v0.8.23
+   Compiling serde_core v1.0.229
+   Compiling generic-array v0.14.7
+   Compiling typenum v1.20.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling either v1.18.0
+   Compiling syn v3.0.5
+   Compiling openmp-sys v1.3.0
+   Compiling bytemuck v1.25.2
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-deque v0.8.8
+   Compiling serde v1.0.229
+   Compiling utf8parse v0.2.2
+   Compiling anstyle-parse v1.0.0
+   Compiling num-traits v0.2.19
+   Compiling libsais-sys v0.2.0
+   Compiling syn v2.0.119
+   Compiling libc v0.2.189
+   Compiling colorchoice v1.0.5
+   Compiling anstyle-query v1.1.5
+   Compiling rayon-core v1.13.0
+   Compiling zmij v1.0.23
+   Compiling anstyle v1.0.14
+   Compiling is_terminal_polyfill v1.70.2
+   Compiling syn v1.0.109
+   Compiling anstream v1.0.0
+   Compiling block-buffer v0.10.4
+   Compiling crypto-common v0.1.7
+   Compiling memchr v2.8.3
+   Compiling serde_derive v1.0.229
+   Compiling heck v0.5.0
+   Compiling derive_more-impl v2.1.1
+   Compiling strsim v0.11.1
+   Compiling serde_json v1.0.151
+   Compiling clap_lex v1.1.0
+   Compiling clap_builder v4.6.6
+   Compiling derive_more v2.1.1
+   Compiling clap_derive v4.6.4
+   Compiling digest v0.10.7
+   Compiling safe_arch v1.2.0
+   Compiling itertools v0.14.0
+   Compiling cfg-if v1.0.4
+   Compiling cpufeatures v0.2.17
+   Compiling itoa v1.0.18
+   Compiling pa-types v1.5.0
+   Compiling sha2 v0.10.9
+   Compiling derivative v2.2.0
+   Compiling wide v1.7.0
+   Compiling memmap2 v0.9.11
+   Compiling rayon v1.12.0
+   Compiling clap v4.6.6
+   Compiling arrayvec v0.7.8
+   Compiling rustc-hash v2.1.3
+   Compiling log v0.4.34
+   Compiling ensure_simd v0.1.0
+   Compiling sassy v0.2.6
+error[E0308]: mismatched types
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/search.rs:1108:44
+     |
+1108 |                 let hp: &mut wide::u64x4 = &mut self.hp[j];
+     |                         ----------------   ^^^^^^^^^^^^^^^ expected `&mut u64x4`, found `&mut u64x8`
+     |                         |
+     |                         expected due to this
+     |
+     = note: expected mutable reference `&mut u64x4`
+                found mutable reference `&mut u64x8`
+
+error[E0277]: cannot add-assign `u64x4` to `u64x8`
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/search.rs:1111:31
+     |
+1111 |                 dist_to_start += *hp;
+     |                               ^^ no implementation for `u64x8 += u64x4`
+     |
+     = help: the trait `AddAssign<u64x4>` is not implemented for `u64x8`
+help: the following other types implement trait `AddAssign<Rhs>`
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wide-1.7.0/src/simd.rs:825:5
+     |
+ 825 |       impl $OpAssign for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign`
+...
+ 833 |       impl $OpAssign<$T> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<u64>`
+...
+ 871 |       impl $OpAssign<&Self> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<&u64x8>`
+...
+ 879 |       impl $OpAssign<&$T> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<&u64>`
+     |
+    ::: /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wide-1.7.0/src/u64x8_.rs:27:1
+     |
+  27 | / impl_simd_uint! {
+  28 | |   unsafe {
+  29 | |     T = u64,
+  30 | |     N = 8,
+...    |
+ 763 | |   optional_fn_deserialize {}
+ 764 | | }
+     | |_- in this macro invocation
+     = note: this error originates in the macro `impl_binary_operator` which comes from the expansion of the macro `impl_simd_uint` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/search.rs:1115:36
+     |
+1115 |                 compute_block_simd(hp, hm, &mut vp, &mut vm, eq);
+     |                 ------------------ ^^ expected `&mut u64x8`, found `&mut u64x4`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+     = note: expected mutable reference `&mut u64x8`
+                found mutable reference `&mut u64x4`
+note: function defined here
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/bitpacking.rs:63:8
+     |
+  63 | pub fn compute_block_simd(hp0: &mut S, hm0: &mut S, vp: &mut S, vm: &mut S, eq: S) {
+     |        ^^^^^^^^^^^^^^^^^^ -----------
+
+error[E0277]: cannot add-assign `u64x4` to `u64x8`
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/search.rs:1120:33
+     |
+1120 |                     dist_to_end += *hp;
+     |                                 ^^ no implementation for `u64x8 += u64x4`
+     |
+     = help: the trait `AddAssign<u64x4>` is not implemented for `u64x8`
+help: the following other types implement trait `AddAssign<Rhs>`
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wide-1.7.0/src/simd.rs:825:5
+     |
+ 825 |       impl $OpAssign for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign`
+...
+ 833 |       impl $OpAssign<$T> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<u64>`
+...
+ 871 |       impl $OpAssign<&Self> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<&u64x8>`
+...
+ 879 |       impl $OpAssign<&$T> for $Simd {
+     |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `u64x8` implements `AddAssign<&u64>`
+     |
+    ::: /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wide-1.7.0/src/u64x8_.rs:27:1
+     |
+  27 | / impl_simd_uint! {
+  28 | |   unsafe {
+  29 | |     T = u64,
+  30 | |     N = 8,
+...    |
+ 763 | |   optional_fn_deserialize {}
+ 764 | | }
+     | |_- in this macro invocation
+     = note: this error originates in the macro `impl_binary_operator` which comes from the expansion of the macro `impl_simd_uint` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0308]: mismatched types
+    --> /home/ubuntu/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/sassy-0.2.6/src/search.rs:1125:31
+     |
+1125 |                     if cmp != wide::u64x4::splat(0) {
+     |                        ---    ^^^^^^^^^^^^^^^^^^^^^ expected `u64x8`, found `u64x4`
+     |                        |
+     |                        expected because this is `u64x8`
+
+Some errors have detailed explanations: E0277, E0308.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `sassy` (lib) due to 5 previous errors
+warning: build failed, waiting for other jobs to finish...

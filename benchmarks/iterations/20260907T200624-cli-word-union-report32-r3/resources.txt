@@ -1,0 +1,23 @@
+	Command being timed: "target/release/ooff report --queries benchmarks/iterations/20260907T200624-cli-word-union-report32-r3/queries.jsonl --reference data/reference-v1/reference.fa --index data/fm-production-v1 --annotations data/reference-v1/records.jsonl --policy other-gene --reference-release Ensembl-110-GRCh38-primary-assembly --scope gene bodies and mature transcripts; see reference-v1 manifest --biotype-policy all except non-transcribed/non-translated pseudogenes -k 3 --reverse-index data/fm-reverse-v1 --annotation-cache data/fm-production-v1/annotation-cache.json"
+	User time (seconds): 1.30
+	System time (seconds): 0.40
+	Percent of CPU this job got: 99%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:01.70
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 6735672
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 112973
+	Voluntary context switches: 1
+	Involuntary context switches: 10
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 126768
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

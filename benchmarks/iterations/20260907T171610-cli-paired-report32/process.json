@@ -1,0 +1,40 @@
+{
+  "id": "20260907T171610-cli-paired-report32",
+  "kind": "production_cli",
+  "configuration": {
+    "label": "cli-paired-report32",
+    "queries": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "n": 32,
+    "mode": "report",
+    "k": 3,
+    "reverse_index": "data/fm-reverse-v1"
+  },
+  "command": [
+    "target/release/ooff",
+    "report",
+    "--queries",
+    "benchmarks/iterations/20260907T171610-cli-paired-report32/queries.jsonl",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--index",
+    "data/fm-production-v1",
+    "--annotations",
+    "data/reference-v1/records.jsonl",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "Ensembl-110-GRCh38-primary-assembly",
+    "--scope",
+    "gene bodies and mature transcripts; see reference-v1 manifest",
+    "--biotype-policy",
+    "all except non-transcribed/non-translated pseudogenes",
+    "-k",
+    "3",
+    "--reverse-index",
+    "data/fm-reverse-v1"
+  ],
+  "binary_sha256": "fefd7834029a1b8901211f7b09b475f766c8cd345f5f5e1599d7eb94fe751ace",
+  "cache_policy": "fresh process; OS cache not flushed",
+  "queries": 32,
+  "pid": 16396
+}

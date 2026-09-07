@@ -1,0 +1,34 @@
+[
+  {
+    "k": 0,
+    "equal": true,
+    "unique": true,
+    "left_rows": 2,
+    "right_rows": 2,
+    "buckets": 0
+  },
+  {
+    "k": 1,
+    "equal": true,
+    "unique": true,
+    "left_rows": 24,
+    "right_rows": 24,
+    "buckets": 0
+  },
+  {
+    "k": 2,
+    "equal": true,
+    "unique": true,
+    "left_rows": 1078,
+    "right_rows": 1078,
+    "buckets": 0
+  },
+  {
+    "k": 3,
+    "equal": true,
+    "unique": true,
+    "left_rows": 41760,
+    "right_rows": 41760,
+    "buckets": 0
+  }
+]

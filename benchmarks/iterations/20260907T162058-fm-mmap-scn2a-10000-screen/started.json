@@ -1,0 +1,20 @@
+{
+  "id": "20260907T162058-fm-mmap-scn2a-10000-screen",
+  "utc": "2026-09-07T16:20:58.199806+00:00",
+  "configuration": {
+    "label": "fm-mmap-scn2a-10000-screen",
+    "reference": "data/reference-v1/reference.fa",
+    "queries": "data/query-sets-v1/scn2a-10000.fa",
+    "mode": "screen",
+    "n": 10000,
+    "k": 3,
+    "repetitions": 3,
+    "timeout": 600,
+    "native": "target/release/ooff-index",
+    "sassy": "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator",
+    "index": "data/fm-full-v1",
+    "distance_strata": false,
+    "mmap": true
+  },
+  "runs": {}
+}

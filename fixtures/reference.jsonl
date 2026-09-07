@@ -1,0 +1,2 @@
+{"id":"on_target","sequence":"ACGTGATCTAGCTACGATGC","genes":["intended"],"transcripts":["tx1"],"contig":"fixture","strand":"+","blocks":[{"start":100,"end":120}]}
+{"id":"shared_junction","sequence":"acgtgatctagctacgatgc","genes":["intended","other"],"transcripts":["tx2","tx3"],"contig":"fixture","strand":"-","blocks":[{"start":300,"end":310},{"start":200,"end":210}]}

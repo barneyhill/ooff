@@ -1,0 +1,41 @@
+{
+  "id": "20260907T174558-cli-cached-screen10000",
+  "kind": "production_cli",
+  "configuration": {
+    "label": "cli-cached-screen10000",
+    "queries": "data/query-sets-v1/scn2a-10000.fa",
+    "n": 10000,
+    "mode": "screen",
+    "k": 3,
+    "reverse_index": null,
+    "annotation_cache": "data/fm-production-v1/annotation-cache.json"
+  },
+  "command": [
+    "target/release/ooff",
+    "screen",
+    "--queries",
+    "benchmarks/iterations/20260907T174558-cli-cached-screen10000/queries.jsonl",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--index",
+    "data/fm-production-v1",
+    "--annotations",
+    "data/reference-v1/records.jsonl",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "Ensembl-110-GRCh38-primary-assembly",
+    "--scope",
+    "gene bodies and mature transcripts; see reference-v1 manifest",
+    "--biotype-policy",
+    "all except non-transcribed/non-translated pseudogenes",
+    "-k",
+    "3",
+    "--annotation-cache",
+    "data/fm-production-v1/annotation-cache.json"
+  ],
+  "binary_sha256": "9542022c3a06ab718a49a2428eece804099992290dac950852fca9a1abdad11c",
+  "cache_policy": "fresh process; OS cache not flushed",
+  "queries": 10000,
+  "pid": 21102
+}

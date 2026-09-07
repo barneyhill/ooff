@@ -1,0 +1,19 @@
+{
+  "id": "20260907T161457-fm-v1-strata-full-screen",
+  "utc": "2026-09-07T16:14:57.994186+00:00",
+  "configuration": {
+    "label": "fm-v1-strata-full-screen",
+    "reference": "data/reference-v1/reference.fa",
+    "queries": "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "mode": "screen",
+    "n": 1000,
+    "k": 3,
+    "repetitions": 3,
+    "timeout": 600,
+    "native": "target/release/ooff-index",
+    "sassy": "/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator",
+    "index": "data/fm-full-v1",
+    "distance_strata": true
+  },
+  "runs": {}
+}

@@ -1,0 +1,38 @@
+{
+  "id": "20260907T212902.815719-build-blast-index",
+  "label": "build-blast-index",
+  "command": [
+    "makeblastdb",
+    "-in",
+    "data/classic-v1/eligible.fa",
+    "-dbtype",
+    "nucl",
+    "-parse_seqids",
+    "-out",
+    "data/classic-v1/blast"
+  ],
+  "metadata": {},
+  "started_utc": "20260907T212902.815719",
+  "sha256": {
+    "/usr/bin/makeblastdb": "28d07fe241f131c44401b91dd76321be7f73e2bfb11bbb66b9592fa29c24e68e",
+    "benchmarks/classic/scale.py": "3625649d372acff73058ab0902202ab33c7081a47d6e0fdf88a1ae6d01be10c5",
+    "benchmarks/classic/plot.py": "02a172faf6a24bde045e62bc70389e563f7ed9e6d3074f9819a85d81c6c6969e",
+    "benchmarks/classic/prepare.py": "a4da3ce77ead171435b37107999c9cbcf1ca9bb9c6ac51f1665f40be39f07ffb",
+    "benchmarks/classic/launch_ec2.py": "d8a064f400404ea763e142b0147b4375407cbddf80beeb490908be85934c663a",
+    "benchmarks/classic/fetch_inputs.py": "d32c06e0967db7c0261e7447b211c3c430c5d941108ee2cace45734eaf345ceb",
+    "benchmarks/classic/parallel_gate.py": "99170706f4666e46df7846419065377fecbeb0d389f6170a4d840721cc36e08c",
+    "benchmarks/classic/verify.py": "842d6d72880db570638f55f536b745c409dac3f874c4468b9586458551e09266",
+    "benchmarks/classic/command.py": "c202baacc04b1a2467deb9d74e76cd8cf3d6208e10db6856d459a6e00599b22e",
+    "benchmarks/classic/prepare_witnesses.py": "e6387e3e46829f5fdbc40f81afdbbd15dfa3ac70a0e498cd24a730d68cba434b",
+    "benchmarks/classic/publish_inputs.py": "ca4d512b98b50d8eae1f13c56ae1a062ac8d97d60a77142bb2f004bea2de9271",
+    "benchmarks/classic/test_verify.py": "0d107626c2fdb56d89f853e01434cce98a44f1d4a4b0374a10b79ac2ee55f811"
+  },
+  "host": {
+    "system": "Linux",
+    "node": "ip-172-31-28-65",
+    "release": "7.0.0-1012-aws",
+    "version": "#12~24.04.1-Ubuntu SMP PREEMPT Wed Aug 12 14:00:57 UTC 2026",
+    "machine": "x86_64",
+    "processor": "x86_64"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T170202-fm-two-directions-screen10k/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "data/query-sets-v1/scn2a-10000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "10000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap",
+    "--reverse-index",
+    "data/fm-reverse-v1"
+  ],
+  "binary_sha256": "ba72547edc6bd3a5e5976c69b9fd4cf3efb00b7a2c8cf2220f516149eafe8216",
+  "pid": 15131
+}

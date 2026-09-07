@@ -1,0 +1,13 @@
+variant,phase,repetition,threads,search_seconds,wall_seconds,sites,artifact
+retained,warmup,0,8,5.439846075,5.8817426479999995,45113535,benchmarks/classic/iterations/20260907T220437.978401-extension-warmup-retained-r0
+disabled,warmup,0,8,5.471216752,5.93199090600001,45113535,benchmarks/classic/iterations/20260907T220443.964914-extension-warmup-disabled-r0
+reuse,warmup,0,8,5.5088784969999995,5.98130379700001,45113535,benchmarks/classic/iterations/20260907T220450.002703-extension-warmup-reuse-r0
+reuse,optimization,1,8,5.516411535,5.983646609000061,45113535,benchmarks/classic/iterations/20260907T220456.093183-extension-optimization-reuse-r1
+retained,optimization,1,8,5.423792256,5.8307191559999865,45113535,benchmarks/classic/iterations/20260907T220502.184646-extension-optimization-retained-r1
+disabled,optimization,1,8,5.469791599,5.932048445999953,45113535,benchmarks/classic/iterations/20260907T220508.123724-extension-optimization-disabled-r1
+disabled,optimization,2,8,5.434596567,5.882458617000111,45113535,benchmarks/classic/iterations/20260907T220514.165565-extension-optimization-disabled-r2
+reuse,optimization,2,8,5.513667695,5.983299085999988,45113535,benchmarks/classic/iterations/20260907T220520.155498-extension-optimization-reuse-r2
+retained,optimization,2,8,5.3488914340000004,5.781117824000148,45113535,benchmarks/classic/iterations/20260907T220526.247074-extension-optimization-retained-r2
+retained,optimization,3,8,5.460896125,5.881443567999895,45113535,benchmarks/classic/iterations/20260907T220532.136435-extension-optimization-retained-r3
+disabled,optimization,3,8,5.486528601,5.931481689000066,45113535,benchmarks/classic/iterations/20260907T220538.123359-extension-optimization-disabled-r3
+reuse,optimization,3,8,5.467825814,5.932665635999911,45113535,benchmarks/classic/iterations/20260907T220544.162618-extension-optimization-reuse-r3

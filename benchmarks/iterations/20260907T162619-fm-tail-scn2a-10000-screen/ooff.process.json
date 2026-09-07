@@ -1,0 +1,28 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T162619-fm-tail-scn2a-10000-screen/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-full-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "data/query-sets-v1/scn2a-10000.fa",
+    "--mode",
+    "screen",
+    "--queries-limit",
+    "10000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap"
+  ],
+  "binary_sha256": "a6af798a19b07777c90e80e4e84b7e5c2c0cff611db5de702bbb07aa71ce303f",
+  "pid": 11449
+}

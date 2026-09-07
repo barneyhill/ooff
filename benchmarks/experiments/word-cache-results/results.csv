@@ -1,0 +1,7 @@
+variant,repetition,search_seconds,wall_seconds,sites,artifact
+baseline,1,85.72912991,86.16200859599996,45113535,benchmarks/classic/iterations/20260907T215802.888374-word-cache-1000-baseline-r1
+cached,1,30.277533498,30.720869649000065,45113535,benchmarks/classic/iterations/20260907T215929.073236-word-cache-1000-cached-r1
+cached,2,27.324102618,27.762051695999958,45113535,benchmarks/classic/iterations/20260907T215959.810094-word-cache-1000-cached-r2
+baseline,2,27.076667246,27.55805736900004,45113535,benchmarks/classic/iterations/20260907T220027.586677-word-cache-1000-baseline-r2
+baseline,3,27.161636858,27.61000669500004,45113535,benchmarks/classic/iterations/20260907T220055.159302-word-cache-1000-baseline-r3
+cached,3,26.921471245,27.36026291799999,45113535,benchmarks/classic/iterations/20260907T220122.783989-word-cache-1000-cached-r3

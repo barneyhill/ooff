@@ -1,0 +1,37 @@
+{
+  "id": "20260907T174543-annotation-cache-build",
+  "kind": "index_build",
+  "configuration": {
+    "reference": "data/reference-v1/reference.fa",
+    "output": "data/fm-production-v1/annotation-cache.json",
+    "label": "annotation-cache-build",
+    "shard_bases": 200000000,
+    "reverse_records": false,
+    "annotations": "data/reference-v1/records.jsonl",
+    "index": "data/fm-production-v1",
+    "threads": 1
+  },
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "benchmarks/iterations/20260907T174543-annotation-cache-build/resources.txt",
+    "target/release/ooff-index",
+    "cache-annotations",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--output",
+    "data/fm-production-v1/annotation-cache.json",
+    "--annotations",
+    "data/reference-v1/records.jsonl",
+    "--index",
+    "data/fm-production-v1"
+  ],
+  "returncode": 0,
+  "wall_seconds": 1.1255394039999373,
+  "output": {
+    "cache_bytes": 5814116,
+    "complete": true,
+    "seconds": 1.121928515
+  }
+}

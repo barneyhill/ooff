@@ -1,0 +1,20 @@
+{
+  "id": "20260907T203213.914606-install-classic-tools",
+  "label": "install-classic-tools",
+  "command": [
+    "sudo",
+    "env",
+    "DEBIAN_FRONTEND=noninteractive",
+    "apt-get",
+    "install",
+    "-y",
+    "bwa",
+    "ncbi-blast+",
+    "minimap2"
+  ],
+  "metadata": {},
+  "started_utc": "20260907T203213.914606",
+  "returncode": 0,
+  "timeout": false,
+  "wall_seconds": 5.476475673000095
+}

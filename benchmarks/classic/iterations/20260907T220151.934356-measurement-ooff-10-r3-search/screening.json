@@ -1,0 +1,96 @@
+{
+  "tool": "ooff",
+  "queries": 10,
+  "repetition": 3,
+  "phase": "measurement",
+  "threads": 8,
+  "workload": "one verified other-gene witness per ASO",
+  "scope": "Ensembl110 human RNA records",
+  "cache": "fresh process; OS cache not flushed; no index-build time",
+  "complete": true,
+  "stages": [
+    "benchmarks/classic/iterations/20260907T220151.934356-measurement-ooff-10-r3-search/result.json",
+    "benchmarks/classic/iterations/20260907T220152.063517-measurement-ooff-10-r3-verify/result.json"
+  ],
+  "wall_seconds": 0.4798485600000504,
+  "utc": "2026-09-07T22:01:52.438017+00:00",
+  "recovered": 10,
+  "witnesses": {
+    "q0": {
+      "record": "r148784",
+      "start": 354604,
+      "end": 354624,
+      "distance": 0
+    },
+    "q1": {
+      "record": "r148784",
+      "start": 354605,
+      "end": 354625,
+      "distance": 0
+    },
+    "q2": {
+      "record": "r148784",
+      "start": 354606,
+      "end": 354626,
+      "distance": 0
+    },
+    "q3": {
+      "record": "r148784",
+      "start": 354607,
+      "end": 354627,
+      "distance": 0
+    },
+    "q4": {
+      "record": "r148784",
+      "start": 354608,
+      "end": 354628,
+      "distance": 0
+    },
+    "q5": {
+      "record": "r148784",
+      "start": 354609,
+      "end": 354629,
+      "distance": 0
+    },
+    "q6": {
+      "record": "r148784",
+      "start": 354610,
+      "end": 354630,
+      "distance": 0
+    },
+    "q7": {
+      "record": "r148784",
+      "start": 354611,
+      "end": 354631,
+      "distance": 0
+    },
+    "q8": {
+      "record": "r148784",
+      "start": 354612,
+      "end": 354632,
+      "distance": 0
+    },
+    "q9": {
+      "record": "r148784",
+      "start": 354613,
+      "end": 354633,
+      "distance": 0
+    }
+  },
+  "candidate_rows": 10,
+  "rejected_before_witness": 0,
+  "verification_seconds": 0.27321976100006395,
+  "verification_workers": 8,
+  "witness_query_ids": [
+    "q0",
+    "q1",
+    "q2",
+    "q3",
+    "q4",
+    "q5",
+    "q6",
+    "q7",
+    "q8",
+    "q9"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "20260907T164404-fm-production-provenance-build",
+  "kind": "index_build",
+  "configuration": {
+    "reference": "data/reference-v1/reference.fa",
+    "output": "data/fm-production-v1",
+    "label": "fm-production-provenance-build",
+    "shard_bases": 1300000000
+  },
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "benchmarks/iterations/20260907T164404-fm-production-provenance-build/resources.txt",
+    "target/release/ooff-index",
+    "build",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--output",
+    "data/fm-production-v1",
+    "--shard-bases",
+    "1300000000"
+  ],
+  "returncode": 0,
+  "wall_seconds": 148.82777511999984,
+  "output": {
+    "complete": true,
+    "index_bytes": 11586150936,
+    "seconds": 148.739452448,
+    "shards": 2
+  }
+}

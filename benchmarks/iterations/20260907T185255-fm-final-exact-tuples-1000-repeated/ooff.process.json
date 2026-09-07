@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T185255-fm-final-exact-tuples-1000-repeated/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "1000",
+    "-k",
+    "3",
+    "--repetitions",
+    "3",
+    "--mmap",
+    "--reverse-index",
+    "data/fm-reverse-v1",
+    "--site-tuples",
+    "benchmarks/iterations/20260907T185255-fm-final-exact-tuples-1000-repeated/ooff.sites.csv"
+  ],
+  "binary_sha256": "909a36ead53c1dd61defc1784ed0a699dbe5b5393142f3db0460b94f72b4e7a5",
+  "cache_residency_before_process": null,
+  "pid": 31126
+}

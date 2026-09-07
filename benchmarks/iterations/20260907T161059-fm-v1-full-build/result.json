@@ -1,0 +1,29 @@
+{
+  "id": "20260907T161059-fm-v1-full-build",
+  "kind": "index_build",
+  "configuration": {
+    "reference": "data/reference-v1/reference.fa",
+    "output": "data/fm-full-v1",
+    "label": "fm-v1-full-build"
+  },
+  "command": [
+    "/usr/bin/time",
+    "-v",
+    "-o",
+    "benchmarks/iterations/20260907T161059-fm-v1-full-build/resources.txt",
+    "target/release/ooff-index",
+    "build",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--output",
+    "data/fm-full-v1"
+  ],
+  "returncode": 0,
+  "wall_seconds": 88.90547561900007,
+  "output": {
+    "complete": true,
+    "index_bytes": 11586151348,
+    "seconds": 88.854250791,
+    "shards": 13
+  }
+}

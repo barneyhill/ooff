@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "sites": 78733,
+  "unique_sites": true,
+  "matching_per_query_counts_and_signatures": true,
+  "genomic_block_lengths_valid": true,
+  "comparison": "benchmarks/iterations/20260907T164311-fm-fastmemo-full-sites32/result.json",
+  "limitation": "additive signatures supplement fixture oracles; they are not full site-set proofs"
+}

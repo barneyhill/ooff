@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/usr/bin/time",
+    "-f",
+    "{\"max_rss_kib\":%M,\"wall_seconds\":%e,\"user_seconds\":%U,\"system_seconds\":%S}",
+    "-o",
+    "benchmarks/iterations/20260907T173543-fm-range-dedup-fresh-sites1000/ooff.time.json",
+    "target/release/ooff-index",
+    "search",
+    "--index",
+    "data/fm-production-v1",
+    "--reference",
+    "data/reference-v1/reference.fa",
+    "--queries",
+    "benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+    "--mode",
+    "sites",
+    "--queries-limit",
+    "1000",
+    "-k",
+    "3",
+    "--repetitions",
+    "1",
+    "--mmap",
+    "--reverse-index",
+    "data/fm-reverse-v1"
+  ],
+  "binary_sha256": "26184f820409a66c416542112577bcf0cfc627075988f269da6e52cda638bc88",
+  "cache_residency_before_process": null,
+  "pid": 20896
+}

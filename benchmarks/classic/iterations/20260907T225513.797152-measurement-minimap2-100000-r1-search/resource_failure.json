@@ -1,0 +1,14 @@
+{
+  "kind": "out_of_memory",
+  "memory_gib": 32,
+  "tool": "minimap2",
+  "queries": 100000,
+  "pid": 5247,
+  "exit_code": 137,
+  "evidence": [
+    "[Mon Sep  7 23:02:13 2026] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/user.slice/user-1000.slice/session-50.scope,task=minimap2,pid=5247,uid=1000",
+    "[Mon Sep  7 23:02:13 2026] Out of memory: Killed process 5247 (minimap2) total-vm:32216560kB, anon-rss:31682624kB, file-rss:2732kB, shmem-rss:0kB, UID:1000 pgtables:62448kB oom_score_adj:0"
+  ],
+  "recorded_utc": "2026-09-07T23:04:41.151329+00:00",
+  "interpretation": "Kernel-confirmed resource failure; elapsed time is time to failure, not completion or timeout lower bound. Remaining repetitions not run."
+}
