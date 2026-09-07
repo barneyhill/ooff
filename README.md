@@ -1,7 +1,8 @@
 # ooff
 
 Build a fast, reproducible ASO off-target search tool in Rust, initially for
-20mer gapmers and small Levenshtein-distance budgets. Use Sassy2 as the measured
+20mer gapmers with a default threshold of **three total edits** (substitutions
+plus inserted/deleted bases; configurable). Use Sassy2 as the measured
 baseline and a candidate search engine before developing a replacement.
 
 Scientific basis: [Andersson et al. (2025), updated industry recommendations](https://doi.org/10.1089/nat.2024.0072). The handoff maps this framework to the computational scope and distinguishes project-specific choices.

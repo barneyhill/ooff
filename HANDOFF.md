@@ -43,16 +43,14 @@ to three mismatches, usually omitting four or more without experimental
 expression evidence. This is not a specified total-edit or bulge budget.
 No ddG eligibility cutoff is a user/project requirement.
 
-Expose separate maximum substitutions, inserted bases and deleted bases, plus
-an optional total-edit cap. State all budgets in every run manifest. A k=3
-baseline is a benchmark profile, not a complete translation of that convention:
-three substitutions plus one inserted base requires k=4. Implement configurable
-bulge budgets and compare sensitivity/runtime before choosing a production
-profile. A proposed exploratory profile (our choice, not the paper's) is up to
-three substitutions plus one inserted OR deleted base in total; retrieve at
-k=4 then verify the constrained alignment. Do not filter solely on the single
-minimum-distance CIGAR: an alternative alignment may satisfy the separate
-budgets. Validate constrained existence/enumeration with the independent oracle.
+**User-selected default: at most three total edits (k=3).** Count each
+substituted, inserted or deleted nucleotide as one edit; a two-base bulge costs
+two edits. Any combination whose sum is <=3 qualifies as a candidate site.
+This replaces the exploratory separate mismatch/bulge-budget proposal. Keep k
+configurable and record it in every run manifest. Three substitutions plus one
+inserted base is outside this default scope. This is the project's screening
+threshold, informed by the paper, not a guarantee of biological inactivity
+beyond the threshold. No additional position-based or ddG exclusion applies.
 
 The deliverable implements computational candidate-site discovery. Keep stable
 gene/site IDs and optional evidence columns for subsequent expression, RNAseq
@@ -66,7 +64,7 @@ safety from a sequence hit count or claim to implement the entire assessment.
   normalise U/T explicitly. Chemistry is 5-10-5 MOE, full PS for the motivating
   project, but chemistry is metadata rather than an unvalidated search filter.
 - Search: full-query approximate matching against annotated RNA sequence under
-  **unit-cost Levenshtein distance**, initially k=0,1,2,3. Substitutions,
+  **unit-cost Levenshtein distance**, default k=3 (test k=0,1,2,3). Substitutions,
   insertions and deletions count; Hamming distance is insufficient.
 - No thermodynamic delta-delta-G eligibility filter. Keep ddG as annotation if
   supplied. No GPU/model inference is needed for sequence searching.
