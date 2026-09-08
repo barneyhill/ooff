@@ -7,6 +7,10 @@ mkdir -p "dist/$archive"
 cp target/release/oofft target/release/oofft-index target/release/oofft-ddg LICENSE LICENSES.md README.md "dist/$archive/"
 cp docs/DDG.md "dist/$archive/DDG.md"
 cp docs/SUMMARY.md "dist/$archive/SUMMARY.md"
+mkdir -p "dist/$archive/docs" "dist/$archive/fixtures" "dist/$archive/scripts"
+cp docs/USAGE.md docs/reference.md docs/DDG.md docs/SUMMARY.md "dist/$archive/docs/"
+cp fixtures/queries.jsonl fixtures/reference.jsonl "dist/$archive/fixtures/"
+cp scripts/relocate-index.py "dist/$archive/scripts/relocate-index.py"
 cp src/energy/VIENNA_NOTICE "dist/$archive/VIENNA_NOTICE"
 cp scripts/relocate-index.py "dist/$archive/relocate-index.py"
 if [[ "$RELEASE_TARGET" == *apple-darwin ]]; then
@@ -30,4 +34,15 @@ fi
 "dist/$archive/oofft" --help > /dev/null
 "dist/$archive/oofft-index" --help > /dev/null
 "dist/$archive/oofft-ddg" --help > /dev/null
+"dist/$archive/oofft" reference list --cache-dir "dist/$archive/reference-cache" > /dev/null
+smoke_output=$(mktemp)
+"dist/$archive/oofft" --queries "dist/$archive/fixtures/queries.jsonl" \
+    --reference "dist/$archive/fixtures/reference.jsonl" > "$smoke_output"
+python3 - "$smoke_output" <<'PYTHON'
+import json, sys
+with open(sys.argv[1]) as handle:
+    rows = [json.loads(line) for line in handle]
+assert rows[-1]['type'] == 'run_complete'
+assert rows[1]['edit_distance_counts'] == {'0': 1, '1': 2, '2': 3, '3': 4}
+PYTHON
 tar -czf "dist/$archive.tar.gz" -C dist "$archive"
