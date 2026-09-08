@@ -1,14 +1,13 @@
 use clap::{Parser, ValueEnum};
 use oofft::{Query, Record, chunks, normalize, reverse_complement, search_chunk};
 use serde::Serialize;
-use serde::de::DeserializeOwned;
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
 use std::{
-    collections::HashSet,
+    collections::{BTreeMap, BTreeSet, HashSet},
     error::Error,
     fs::File,
-    io::{BufRead, BufReader, BufWriter, Read, Write},
+    io::{BufRead, BufWriter, Read, Write},
     path::{Path, PathBuf},
     time::Instant,
 };
@@ -23,70 +22,81 @@ enum Mode {
 #[derive(Parser)]
 #[command(
     version,
-    about = "Native Rust ASO candidate-site discovery; supplied oriented RNA records only"
+    about = "ASO off-target search against human and preclinical RNA references",
+    after_help = "References:\n  oofft reference list\n  oofft reference prepare hg38\n\nExample:\n  oofft --queries asos.fa --exclude SCN2A"
 )]
 struct Args {
     #[arg(value_enum, default_value = "summary")]
     mode: Mode,
     /// Emit every annotated site (equivalent to explicit report mode).
-    #[arg(long)]
+    #[arg(long, display_order = 70)]
     sites: bool,
     /// Include the sorted other-gene IDs in each count summary.
-    #[arg(long)]
+    #[arg(long, display_order = 60)]
     genes: bool,
     /// Summary identity; overlapping intervals remain separate sites.
-    #[arg(long, value_enum, default_value = "genomic-site")]
-    count_unit: oofft::summary::CountUnit,
+    #[arg(long, value_enum, help_heading = "Advanced options")]
+    count_unit: Option<oofft::summary::CountUnit>,
     /// Indexed summary workers; default uses available logical CPUs.
-    #[arg(long)]
+    #[arg(short = 't', long, display_order = 50)]
     threads: Option<usize>,
-    /// JSONL: id, sequence (ASO, 5' to 3'), intended_genes, optional allele.
-    #[arg(long)]
+    /// ASOs written 5' to 3': FASTA (.fa/.fasta, optionally gzip) or JSONL.
+    #[arg(short = 'q', long, display_order = 10)]
     queries: PathBuf,
-    /// JSONL: id, sequence (RNA-sense), genes, transcripts, contig, strand, blocks.
-    #[arg(long)]
+    /// Prepared reference name, or manual RNA FASTA/JSONL file.
+    #[arg(short = 'r', long, default_value = "hg38", display_order = 20)]
     reference: PathBuf,
-    #[arg(short = 'k', long, default_value_t = 3, value_parser = clap::value_parser!(u8).range(0..=3))]
+    #[arg(short = 'k', long, display_order = 40, default_value_t = 3, value_parser = clap::value_parser!(u8).range(0..=3))]
     max_edits: u8,
-    /// Explicit project policy: any candidate associated with another gene.
-    #[arg(long, value_parser = ["other-gene"])]
+    /// Compatibility option; gene exclusions are specified with --exclude.
+    #[arg(long, value_parser = ["other-gene"], default_value = "other-gene", hide = true)]
     policy: String,
-    #[arg(long)]
-    reference_release: String,
+    /// Manual references only; prepared presets supply provenance automatically.
+    #[arg(long, help_heading = "Manual references")]
+    reference_release: Option<String>,
     /// Describe included RNA classes and missing coverage.
-    #[arg(long)]
-    scope: String,
-    #[arg(long)]
-    biotype_policy: String,
+    #[arg(long, help_heading = "Manual references")]
+    scope: Option<String>,
+    /// Optional biotype description for a manually supplied reference.
+    #[arg(long, help_heading = "Manual references")]
+    biotype_policy: Option<String>,
     /// Per-query report cap; capped queries are incomplete and counts lower bounds.
-    #[arg(long)]
+    #[arg(long, help_heading = "Advanced options")]
     max_sites: Option<usize>,
-    #[arg(long, default_value_t = 65536)]
+    #[arg(long, default_value_t = 65536, hide = true)]
     chunk_bases: usize,
     /// Reuse a prebuilt FM index; --reference then names its source FASTA.
-    #[arg(long, requires = "annotations")]
+    #[arg(long, requires = "annotations", help_heading = "Manual references")]
     index: Option<PathBuf>,
     /// JSONL record annotations in the same order as the indexed FASTA.
-    #[arg(long, requires = "index")]
+    #[arg(long, requires = "index", help_heading = "Manual references")]
     annotations: Option<PathBuf>,
     /// Optional reversed-record index: accelerates paired-direction search.
-    #[arg(long, requires = "index")]
+    #[arg(long, requires = "index", help_heading = "Manual references")]
     reverse_index: Option<PathBuf>,
     /// Prevalidated annotation offsets, created by oofft-index cache-annotations.
-    #[arg(long, requires = "index")]
+    #[arg(long, requires = "index", help_heading = "Manual references")]
     annotation_cache: Option<PathBuf>,
+    /// Exclude genes by symbol or ID; repeat or separate with commas.
+    #[arg(long, value_delimiter = ',', display_order = 30)]
+    exclude: Vec<String>,
+    /// Reference cache directory (or OOFFT_CACHE_DIR).
+    #[arg(long, display_order = 80)]
+    cache_dir: Option<PathBuf>,
+    #[arg(skip)]
+    record_coordinates: bool,
+    #[arg(skip)]
+    preset_name: Option<String>,
 }
 
-fn records<T: DeserializeOwned>(
-    path: &Path,
-) -> Result<impl Iterator<Item = Result<T, Box<dyn Error>>>, Box<dyn Error>> {
-    Ok(BufReader::new(File::open(path)?)
-        .lines()
-        .enumerate()
-        .map(|(n, line)| {
-            let line = line?;
-            serde_json::from_str(&line).map_err(|e| format!("JSONL line {}: {e}", n + 1).into())
-        }))
+impl Args {
+    fn count_unit(&self) -> oofft::summary::CountUnit {
+        self.count_unit.unwrap_or(if self.record_coordinates {
+            oofft::summary::CountUnit::RecordInterval
+        } else {
+            oofft::summary::CountUnit::GenomicSite
+        })
+    }
 }
 
 fn hash(path: &Path) -> Result<String, Box<dyn Error>> {
@@ -168,8 +178,130 @@ fn emit_site(
     Ok(())
 }
 
+fn configure_reference(
+    args: &mut Args,
+) -> Result<Option<BTreeMap<String, String>>, Box<dyn Error>> {
+    if args.reference.is_file() {
+        if args.index.is_none() && oofft::inputs::is_fasta(&args.reference)? {
+            args.record_coordinates = true;
+            if args.count_unit == Some(oofft::summary::CountUnit::GenomicSite) {
+                return Err("genomic-site counts require genomic annotations; use a prepared reference or --count-unit record-interval for bare RNA FASTA".into());
+            }
+        }
+        args.reference_release
+            .get_or_insert_with(|| "custom".into());
+        args.scope.get_or_insert_with(|| {
+            if args.record_coordinates {
+                "Supplied RNA FASTA; record-relative coordinates".into()
+            } else {
+                "Supplied annotated RNA records".into()
+            }
+        });
+        args.biotype_policy
+            .get_or_insert_with(|| "as supplied".into());
+        return Ok(None);
+    }
+    if args.index.is_some()
+        || args.annotations.is_some()
+        || args.reverse_index.is_some()
+        || args.annotation_cache.is_some()
+    {
+        return Err("manual index options require an existing --reference FASTA file".into());
+    }
+    if args.reference_release.is_some() || args.scope.is_some() || args.biotype_policy.is_some() {
+        return Err("prepared references supply provenance automatically; manual labels require a --reference file".into());
+    }
+    let name = args.reference.to_str().ok_or("invalid reference name")?;
+    let cache = oofft::reference::cache_dir(args.cache_dir.as_deref())?;
+    let (directory, bundle) = oofft::reference::resolve(name, &cache)?;
+    let genes_path = directory.join("genes.json");
+    if hash(&genes_path)? != bundle.genes_sha256 {
+        return Err("reference gene map changed; rebuild the reference".into());
+    }
+    let info: oofft::indexed::ReferenceInfo =
+        serde_json::from_reader(File::open(directory.join("index/reference-info.json"))?)?;
+    if info.sha256 != bundle.reference_sha256 {
+        return Err("reference bundle/index sequence identity mismatch".into());
+    }
+    let genes = serde_json::from_reader(File::open(genes_path)?)?;
+    args.reference = directory.join("reference.fa");
+    args.index = Some(directory.join("index"));
+    args.annotations = Some(directory.join("records.jsonl"));
+    args.annotation_cache = Some(directory.join("annotation-cache.json"));
+    args.reference_release = Some(bundle.reference_release);
+    args.scope = Some(bundle.scope);
+    args.biotype_policy = Some(bundle.biotype_policy);
+    args.preset_name = Some(bundle.name);
+    Ok(Some(genes))
+}
+
+fn apply_exclusions(
+    args: &mut Args,
+    queries: &mut [Query],
+    symbols: Option<BTreeMap<String, String>>,
+) -> Result<(), Box<dyn Error>> {
+    // Existing per-query JSONL IDs remain compatible. Presets also resolve their
+    // symbols against the selected species, never via cross-species guessing.
+    let resolve_per_query = symbols.is_some();
+    let mut genes = symbols.unwrap_or_default();
+    if !args.exclude.is_empty() && genes.is_empty() {
+        if let Some(annotations) = &args.annotations {
+            for line in oofft::inputs::reader(annotations)?.lines() {
+                let line = line?;
+                if line.trim().is_empty() {
+                    continue;
+                }
+                let record: Value = serde_json::from_str(&line)?;
+                let ids = record["genes"]
+                    .as_array()
+                    .ok_or("annotation missing genes")?;
+                for id in ids {
+                    genes.insert(
+                        id.as_str().ok_or("gene ID must be a string")?.into(),
+                        String::new(),
+                    );
+                }
+            }
+        } else {
+            for record in oofft::inputs::ReferenceRecords::open(&args.reference)? {
+                for id in record?.genes {
+                    genes.insert(id, String::new());
+                }
+            }
+        }
+    }
+    let resolved = oofft::reference::resolve_exclusions(&args.exclude, &genes)?;
+    let mut query_ids = BTreeMap::new();
+    if resolve_per_query {
+        let unique: BTreeSet<_> = queries
+            .iter()
+            .flat_map(|q| q.intended_genes.iter())
+            .collect();
+        for name in unique {
+            query_ids.insert(
+                name.clone(),
+                oofft::reference::resolve_exclusions(std::slice::from_ref(name), &genes)?,
+            );
+        }
+    }
+    for query in queries {
+        let mut exclusions: BTreeSet<_> = resolved.iter().cloned().collect();
+        for gene in &query.intended_genes {
+            if resolve_per_query {
+                exclusions.extend(query_ids[gene].iter().cloned());
+            } else {
+                exclusions.insert(gene.clone());
+            }
+        }
+        query.intended_genes = exclusions.into_iter().collect();
+    }
+    args.exclude = resolved;
+    Ok(())
+}
+
 fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
     let started = Instant::now();
+    let gene_symbols = configure_reference(&mut args)?;
     if args.sites {
         if matches!(args.mode, Mode::Screen) {
             return Err("--sites cannot be combined with screen".into());
@@ -191,19 +323,18 @@ fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
     if matches!(args.mode, Mode::Screen) && args.max_sites.is_some() {
         return Err("--max-sites applies only to report".into());
     }
-    let queries = records::<Query>(&args.queries)?.collect::<Result<Vec<_>, _>>()?;
+    let mut queries = oofft::inputs::queries(&args.queries)?;
+    apply_exclusions(&mut args, &mut queries, gene_symbols)?;
     if queries.is_empty() {
         return Err("query file is empty".into());
     }
     let mut ids = HashSet::new();
     let mut patterns = Vec::new();
     for q in &queries {
-        if q.id.is_empty()
-            || !ids.insert(&q.id)
-            || q.intended_genes.is_empty()
-            || q.intended_genes.iter().any(String::is_empty)
-        {
-            return Err("queries require unique nonempty IDs and intended gene IDs".into());
+        if q.id.is_empty() || !ids.insert(&q.id) || q.intended_genes.iter().any(String::is_empty) {
+            return Err(
+                "queries require unique nonempty IDs; excluded gene IDs must be nonempty".into(),
+            );
         }
         let seq = normalize(&q.sequence, true)?;
         if matches!(args.mode, Mode::Summary) && !(4..=63).contains(&seq.len()) {
@@ -221,7 +352,7 @@ fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
     // record is held at a time; IDs remain resident to reject collisions.
     let mut record_ids = HashSet::new();
     let (mut unknown_bases, mut reference_bases) = (0usize, 0usize);
-    for r in records::<Record>(&args.reference)? {
+    for r in oofft::inputs::ReferenceRecords::open(&args.reference)? {
         let r = r?;
         r.validate()?;
         if !record_ids.insert(r.id.clone()) {
@@ -242,14 +373,14 @@ fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
         &json!({
             "type": "manifest", "schema_version": 1, "ooff_version": env!("CARGO_PKG_VERSION"),
             "engine": "native-rust-myers-with-fixed-interval-verification", "mode": format!("{:?}", args.mode).to_lowercase(),
-            "count_unit": if matches!(args.mode, Mode::Summary) { Some(args.count_unit.name()) } else { None },
-            "max_edits": args.max_edits, "policy": args.policy, "reference_release": args.reference_release,
+            "count_unit": if matches!(args.mode, Mode::Summary) { Some(args.count_unit().name()) } else { None },
+            "max_edits": args.max_edits, "policy": args.policy, "exclude": args.exclude, "reference_preset": args.preset_name, "coordinate_scope": if args.record_coordinates { "reference-record" } else { "genomic" }, "reference_release": args.reference_release,
             "scope": args.scope, "biotype_policy": args.biotype_policy,
             "queries_sha256": hash(&args.queries)?, "reference_sha256": hash(&args.reference)?,
             "reference_records": record_ids.len(), "reference_bases": reference_bases,
             "unknown_bases_excluded": unknown_bases, "normalization": "uppercase; U to T; retain soft-masked sequence",
             "orientation": "reverse-complement ASO against RNA-sense record", "coordinates": "zero-based half-open",
-            "site_identity": if matches!(args.mode, Mode::Summary) && args.count_unit == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
+            "site_identity": if matches!(args.mode, Mode::Summary) && args.count_unit() == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
             "tie_policy": "traceback prefers diagonal, I, D", "cigar_direction": "RNA-sense (reverse ASO order)",
             "chemistry_annotations": if matches!(args.mode, Mode::Summary) {"chemistry not inferred; no positional or thermodynamic exclusion"} else {"5-10-5 MOE wings/DNA gap; no positional or thermodynamic exclusion"},
             "allele_policy": "metadata only; intended-gene exclusion does not assess spared alleles",
@@ -266,7 +397,7 @@ fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
     let mut retired = vec![false; queries.len()];
     let mut capped = vec![false; queries.len()];
     let k = args.max_edits as usize;
-    for r in records::<Record>(&args.reference)? {
+    for r in oofft::inputs::ReferenceRecords::open(&args.reference)? {
         let r = r?;
         let text = normalize(&r.sequence, false)?;
         for (a, b, owned_end) in chunks(&text, args.chunk_bases, 20 + k) {
@@ -348,7 +479,18 @@ fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
 }
 
 fn main() {
-    if let Err(e) = run(Args::parse()) {
+    let result = if std::env::args_os()
+        .nth(1)
+        .is_some_and(|arg| arg == "reference")
+    {
+        let argv = std::env::args_os()
+            .take(1)
+            .chain(std::env::args_os().skip(2));
+        oofft::reference::run(oofft::reference::Cli::parse_from(argv))
+    } else {
+        run(Args::parse())
+    };
+    if let Err(e) = result {
         eprintln!("oofft: {e}");
         std::process::exit(1);
     }
@@ -390,13 +532,13 @@ fn run_indexed(
         &mut out,
         &json!({"type":"manifest","schema_version":1,"ooff_version":env!("CARGO_PKG_VERSION"),
         "engine":if matches!(args.mode, Mode::Summary) {"native-rust-fm-minimum-distance-counts"} else {"native-rust-fm-with-independent-interval-verification"},"mode":format!("{:?}",args.mode).to_lowercase(),
-        "count_unit":if matches!(args.mode, Mode::Summary) {Some(args.count_unit.name())} else {None},
-        "max_edits":args.max_edits,"policy":args.policy,"reference_release":args.reference_release,"scope":args.scope,
+        "count_unit":if matches!(args.mode, Mode::Summary) {Some(args.count_unit().name())} else {None},
+        "max_edits":args.max_edits,"policy":args.policy,"exclude":args.exclude,"reference_preset":args.preset_name,"coordinate_scope":"genomic","reference_release":args.reference_release,"scope":args.scope,
         "biotype_policy":args.biotype_policy,"queries_sha256":hash(&args.queries)?,"reference_sha256":index.info.sha256,
         "annotations_sha256":if let Some(hash) = index.cached_annotation_sha256() { hash.to_owned() } else { hash(annotations)? },"index_manifest_sha256":hash(&directory.join("manifest.json"))?,
         "reference_records":index.record_count(),"reference_bases":index.reference_bases(),"unknown_bases_excluded":index.info.unknown_bases,
         "normalization":"uppercase; U to T; retain soft-masked sequence","orientation":"reverse-complement ASO against RNA-sense record",
-        "coordinates":"zero-based half-open","site_identity":if matches!(args.mode, Mode::Summary) && args.count_unit == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
+        "coordinates":"zero-based half-open","site_identity":if matches!(args.mode, Mode::Summary) && args.count_unit() == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
         "tie_policy":"traceback prefers diagonal, I, D","cigar_direction":"RNA-sense (reverse ASO order)",
         "chemistry_annotations":if matches!(args.mode, Mode::Summary) {"chemistry not inferred; no positional or thermodynamic exclusion"} else {"5-10-5 MOE wings/DNA gap; no positional or thermodynamic exclusion"},
         "allele_policy":"metadata only; intended-gene exclusion does not assess spared alleles",
@@ -464,7 +606,7 @@ fn count_summary(
         .collect();
     let mut row = json!({"type":"query_summary", "query_id":query.id,
         "status":if unknown > 0 {"incomplete"} else if counts.total() > 0 {"offtarget_found"} else {"none_found_within_scope"},
-        "count_unit":args.count_unit.name(), "edit_distance_counts":bins,
+        "count_unit":args.count_unit().name(), "edit_distance_counts":bins,
         "total_sites":counts.total(), "candidate_found":counts.total()>0,
         "counts_complete":unknown==0, "unknown_bases_excluded":unknown});
     if args.genes {
@@ -484,8 +626,8 @@ fn run_summary_plain(
     let mut total = 0u64;
     // One query's deduplication state at a time, even without an index.
     for (query, pattern) in queries.iter().zip(patterns) {
-        let mut counts = oofft::summary::Counts::new(args.count_unit, args.genes);
-        for r in records::<Record>(&args.reference)? {
+        let mut counts = oofft::summary::Counts::new(args.count_unit(), args.genes);
+        for r in oofft::inputs::ReferenceRecords::open(&args.reference)? {
             let r = r?;
             if r.genes.iter().all(|g| query.intended_genes.contains(g)) {
                 continue;
@@ -550,7 +692,7 @@ fn run_summary_indexed(
                         break;
                     };
                     let result = (|| {
-                        let mut counts = oofft::summary::Counts::new(args.count_unit, args.genes);
+                        let mut counts = oofft::summary::Counts::new(args.count_unit(), args.genes);
                         index
                             .count(
                                 &patterns[q],

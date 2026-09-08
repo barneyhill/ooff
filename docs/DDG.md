@@ -63,7 +63,7 @@ cargo build --release --locked --bin oofft-ddg
 ```
 
 `--sites` consumes an `oofft report` JSONL file, including its manifest and final
-`run_complete` marker. Supply the **same** queries and JSONL/FASTA reference as
+`run_complete` marker. Supply the **same** FASTA/JSONL queries and JSONL/FASTA reference as
 discovery; SHA256 checks prevent annotating coordinates against another reference.
 Capped reports retain their incomplete/count-lower-bound status. Every supplied
 site is annotated; none is filtered, merged or moved. Processing uses bounded

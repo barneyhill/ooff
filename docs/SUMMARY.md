@@ -8,18 +8,18 @@ Summary supports mixed ASO lengths from 4 to 63 nt. Screen and report currently
 require 20mers; the human-reference measurements here use 20mers.
 
 ```sh
-oofft --queries queries.jsonl --reference reference.fa \
-  --index index --reverse-index reverse-index \
-  --annotations records.jsonl --annotation-cache annotation-cache.json \
-  --policy other-gene --reference-release Ensembl110-GRCh38 \
-  --scope 'Human gene-body and transcript records' \
-  --biotype-policy 'retained reference manifest' --threads 8 > counts.jsonl
+oofft reference prepare hg38
+oofft --queries asos.fa --exclude SCN2A > counts.jsonl
 ```
 
-All flags describing the reference retain their existing meaning. The reverse
-index and annotation cache are optional. Indexed summaries default to the
-available logical CPUs, capped by the number of queries; `--threads` overrides
-this. The reference and indexes are opened once and shared by the workers.
+`hg38` is the default prepared reference. `--reference mm39`, `rn7`, `cyno` or
+`rhesus` selects another prepared species. FASTA and JSONL queries are accepted;
+reference release, scope and annotation metadata come from the bundle. See
+[reference presets](reference.md) and [manual inputs](USAGE.md#manual-references).
+
+Indexed summaries default to available logical CPUs, capped by query count;
+`--threads` overrides this. Workers share the reference and indexes. Manual
+reverse indexes and annotation caches remain optional.
 
 ## What is counted
 
@@ -31,8 +31,9 @@ the site belongs to its minimum-distance bin. Overlapping intervals with
 different boundaries still count separately: these counts are neither numbers
 of genes nor a clustering of nearby hits.
 
-Only records associated with at least one gene outside the ASO's intended-gene
-list contribute. Gene annotations are still required internally for exclusion
+Only records associated with at least one gene outside the excluded set
+contribute. The set combines `--exclude` with JSONL `intended_genes`; without
+exclusions all genes contribute. Gene annotations are still required internally for exclusion
 and genomic mapping, even when gene IDs are not included in output.
 
 `--count-unit record-interval` counts distinct record/start/end intervals without
@@ -64,7 +65,7 @@ its memory grows with that query's distinct sites. A fixed pool processes querie
 through bounded work/output queues and writes summaries in input order. The
 number of pending results is limited to twice the worker count.
 
-The non-indexed JSONL fallback processes one ASO at a time and rereads the
+The non-indexed FASTA/JSONL fallback processes one ASO at a time and rereads the
 reference for each ASO to bound deduplication memory. Use a prebuilt index for
 human-reference workloads. Summary output reduces I/O substantially but does
 not remove the work of locating and deduplicating matching sites, or the index

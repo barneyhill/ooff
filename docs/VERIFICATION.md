@@ -11,6 +11,8 @@ known reference sequence and selected edit budget.
 | Genomic-site counts | Bins compared with exhaustive reports; duplicate records, junctions, strands and minimum-distance assignment |
 | Parallel counting | Equivalent ordered results across worker counts |
 | RNA duplex energy | Pinned complete-duplex and loop-energy fixtures, plus live ViennaRNA 2.7.0 comparisons |
+| Reference preparation | FASTA/GTF extraction, minus-strand splice junctions, biotype filtering, compact indexes, cache reuse and failed-rebuild isolation |
+| FASTA and exclusions | FASTA/JSONL equivalence, gzip validation, gene symbols/IDs, ambiguity errors and preserved JSONL compatibility |
 | CLI contracts | Provenance, partial results, unknown bases, subprocess failures and timeouts |
 
 Run the standard suite from a checkout:
@@ -37,3 +39,14 @@ is a first-witness metric. Historical exhaustive comparisons check complete
 interval sets. [Benchmark methods](CLASSIC_BENCHMARK.md) describe each workload
 and its evidence; [the archived audit](archive/VERIFICATION-2026-09-08.md) retains
 previous implementation checkpoints.
+
+Reference preparation tests use small synthetic assemblies and GTFs, so CI
+requires no mammalian download. The optional network smoke test verifies the
+Rust HTTPS and checksum path against small files from each preset's Ensembl
+directory, including cache reuse and corrupted-cache rejection:
+
+```sh
+cargo test --lib live_ensembl_https_and_checksums_for_all_presets -- --ignored
+```
+
+This checks downloader behavior, not a full build of every species assembly.

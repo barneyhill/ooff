@@ -1,59 +1,100 @@
-# Human reference
+# Reference presets
 
-The benchmark reference contains RNA-sense **gene bodies, including introns,
-and exon-concatenated mature transcripts**, derived from GRCh38 primary assembly
-and Ensembl release 110. It covers annotated transcriptional sequence rather
-than whole chromosomes: intergenic DNA and alternative assembly loci are excluded.
+```sh
+oofft reference list
+oofft reference prepare hg38
+```
 
-## Source data
+Presets combine an assembly and **Ensembl release 110** annotation. Versions are
+pinned rather than following a changing “latest” download. **hg38 is the default**
+for search; other species must be selected with `--reference`.
 
-| Input | Ensembl 110 archive |
-| --- | --- |
-| Soft-masked primary assembly | [Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz](https://ftp.ensembl.org/pub/release-110/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz) |
-| Gene, transcript and exon annotation | [Homo_sapiens.GRCh38.110.gtf.gz](https://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/Homo_sapiens.GRCh38.110.gtf.gz) |
+| Preset | Species | Assembly | Assembly sequence scope |
+| --- | --- | --- | --- |
+| `hg38` | Human | GRCh38 | Primary assembly |
+| `mm39` | Mouse | GRCm39 | Primary assembly |
+| `rn7` | Rat | mRatBN7.2 | Toplevel |
+| `cyno` | Cynomolgus macaque (*Macaca fascicularis*) | Macaca_fascicularis_6.0 | Toplevel |
+| `rhesus` | Rhesus macaque (*Macaca mulatta*) | Mmul_10 | Toplevel |
 
-The derived reference has **49,145 gene-body records and 239,274 mature-transcript
-records**, totaling **2,438,901,225 bases**, including **970,360 unknown bases**.
-The FASTA SHA-256 is:
+Aliases include `human`/`GRCh38`, `mouse`/`GRCm39`, `rat`/`mRatBN7.2`,
+`cynomolgus`, and `Mmul_10`. Monkey species are explicit; no generic `monkey`
+alias or automatic cross-species gene substitution is used.
+
+## Downloads and integrity
+
+The native preparer retrieves soft-masked DNA FASTA and the matching GTF over
+HTTPS from the official Ensembl archive:
+
+| Species | FASTA directory | GTF directory |
+| --- | --- | --- |
+| Human | [DNA](https://ftp.ensembl.org/pub/release-110/fasta/homo_sapiens/dna/) | [GTF](https://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/) |
+| Mouse | [DNA](https://ftp.ensembl.org/pub/release-110/fasta/mus_musculus/dna/) | [GTF](https://ftp.ensembl.org/pub/release-110/gtf/mus_musculus/) |
+| Rat | [DNA](https://ftp.ensembl.org/pub/release-110/fasta/rattus_norvegicus/dna/) | [GTF](https://ftp.ensembl.org/pub/release-110/gtf/rattus_norvegicus/) |
+| Cynomolgus | [DNA](https://ftp.ensembl.org/pub/release-110/fasta/macaca_fascicularis/dna/) | [GTF](https://ftp.ensembl.org/pub/release-110/gtf/macaca_fascicularis/) |
+| Rhesus | [DNA](https://ftp.ensembl.org/pub/release-110/fasta/macaca_mulatta/dna/) | [GTF](https://ftp.ensembl.org/pub/release-110/gtf/macaca_mulatta/) |
+
+File names, release and assembly scope are encoded in the preset catalogue.
+Provider `CHECKSUMS` entries verify the downloaded compressed bytes using the
+Ensembl BSD checksum and 1-KiB block count. SHA-256 hashes are also recorded for
+source files and derived sequences/annotations. Cached downloads are checked
+before reuse. Gzip decoding validates compressed data, including concatenated
+members. Ensembl's BSD checksum is an integrity check, not a cryptographic signature.
+
+Each build occupies an immutable generation directory. Only a fully prepared
+bundle is activated. Concurrent preparations of the same reference are blocked
+by a filesystem lock; interrupted downloads/builds are retained but never used
+as completed references. `--rebuild` activates a new generation after completion,
+preserving the previous one.
+
+## RNA records and coverage
+
+Search covers **RNA-sense gene bodies, including introns, and exon-concatenated
+mature transcripts**. It does not scan intergenic DNA. Primary-assembly presets
+exclude alternative loci; toplevel presets retain the sequence regions present
+in their Ensembl source and annotate only eligible genes/transcripts there.
+
+The builder retains gene biotypes except pseudogenes without a `transcribed_`
+or `translated_` prefix. Transcript records require an eligible parent gene.
+The GTF must contain gene records, gene biotypes, transcript IDs on exons and
+valid coordinates. Missing FASTA contigs, conflicting gene/transcript annotations,
+empty transcripts and invalid block layouts fail preparation.
+
+Minus-strand genes and exons are reverse-complemented into RNA-sense order.
+Spliced records include all annotated exon junctions. Lowercase repeat sequence
+is retained. Unknown bases remain in the reference, are excluded from matching,
+and mark search coverage incomplete. Gene symbols are resolved within the
+selected reference; ambiguous or unknown exclusions fail explicitly.
+
+Prepared bundles include `reference.fa`, `records.jsonl`, `genes.json`, a compact
+index, an annotation cache and `bundle.json`. The manifest records source URLs,
+hashes, assembly/release, selection policy and record/base counts.
+
+## Build resources
+
+Preparation holds one assembly FASTA record at a time plus parsed GTF metadata.
+It then constructs the index in shards, writing sampled suffix positions directly
+to compact files. It does not require a full suffix-array index on disk first.
+`--threads N` controls build workers; the default is available logical CPUs.
+`--shard-bases N` controls the approximate build shard size (default 200 million
+bases). Individual RNA records are not split, so this is not a hard memory limit.
+
+Mammalian preparation needs several gigabytes of RAM and disk space for compressed
+sources, RNA records and indexes. Actual usage depends on species and annotation.
+The published performance measurements use their recorded index configuration;
+they are not timings of every preset or this preparation pipeline.
+
+## Human benchmark reference
+
+The published human comparison uses the same assembly/release and biotype scope:
+**49,145 gene-body records and 239,274 mature transcripts**, totaling
+**2,438,901,225 bases**, including **970,360 unknown bases**. Its FASTA SHA-256 is:
 
 ```text
 59d8b76ea1a968b8b9688ca8804c79fdbcca9157163a580b35eed103d4d6ba85
 ```
 
-## Selection and orientation
-
-The [builder](../benchmarks/build_reference.py) retains gene biotypes except
-pseudogenes without a `transcribed_` or `translated_` prefix. Transcript records
-are retained when their parent gene is retained. The manifest records the
-observed biotypes, record/base counts, missing contigs and sequence hash.
-
-Gene-body sequences follow the annotated strand. Transcript sequences join all
-annotated exon blocks in transcript order, preserving junctions across any
-number of exons. Lowercase repeat sequence remains present; case is normalized
-at search time. Unknown sequence is retained in the reference and excluded from
-candidate matching, with incomplete coverage recorded in results.
-
-Records keep their gene associations and genomic blocks. Default summaries
-deduplicate identical genomic sites across records; detailed reports retain
-record identities. An intended-only gene is excluded by `--policy other-gene`.
-
-## Preparation
-
-Download the two archives above into `data/raw/`, preserving their filenames.
-Run from the repository root:
-
-```sh
-python3 benchmarks/build_reference.py --raw data/raw --out data/reference-v1
-```
-
-The output includes `reference.fa`, `records.jsonl` and `manifest.json`. The
-builder refuses to overwrite sequence outputs and reports missing contigs as
-an error. [Build an index](USAGE.md#build-and-reuse-an-index) from this FASTA;
-use the corresponding records file for annotation.
-
-The recorded preparation took 196.410 seconds. Input checksums and reference
-manifests are retained with the [benchmark artifacts](ARTIFACTS.md). Large
-references and indexes are not bundled with the package.
-
-Historical reference comparisons and deployment details are preserved in
-[the development archive](archive/reference-2026-09-08.md).
+The benchmark builder is retained in [benchmarks/build_reference.py](../benchmarks/build_reference.py).
+A newly prepared bundle records its own content hash; record ordering and index
+configuration can differ. [Benchmark methods](CLASSIC_BENCHMARK.md) describe the
+measured inputs and configuration.

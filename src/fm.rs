@@ -149,6 +149,10 @@ fn encode(base: u8) -> u8 {
 
 impl Index {
     pub fn build(text: &[u8]) -> Self {
+        Self::build_with_threads(text, ThreadCount::openmp_default())
+    }
+
+    pub fn build_with_threads(text: &[u8], threads: ThreadCount) -> Self {
         assert!(
             text.len() < i32::MAX as usize - 1,
             "shard exceeds i32 suffix-array limit"
@@ -157,7 +161,7 @@ impl Index {
         encoded.push(0); // unique terminal sentinel
         let sa: Vec<i32> = SuffixArrayConstruction::for_text(&encoded)
             .in_owned_buffer()
-            .multi_threaded(ThreadCount::openmp_default())
+            .multi_threaded(threads)
             .run()
             .expect("suffix array construction failed")
             .into_vec();

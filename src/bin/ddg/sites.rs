@@ -835,12 +835,28 @@ pub(super) fn annotate(args: &Args) -> Result<()> {
             let query_hash = hash(&args.queries)?;
             let reference_hash = hash(reference_path)?;
             let mut designs = HashMap::new();
-            for line in BufReader::new(File::open(&args.queries)?).lines() {
-                let line = line?;
-                if line.trim().is_empty() {
-                    continue;
-                }
-                let q: Query = serde_json::from_str(&line)?;
+            let queries: Vec<Query> =
+                if oofft::inputs::is_fasta(&args.queries).map_err(|e| e.to_string())? {
+                    oofft::inputs::queries(&args.queries)
+                        .map_err(|e| e.to_string())?
+                        .into_iter()
+                        .map(|q| Query {
+                            id: q.id,
+                            sequence: q.sequence,
+                            target: q.target,
+                        })
+                        .collect()
+                } else {
+                    let mut queries = Vec::new();
+                    for line in oofft::inputs::reader(&args.queries)?.lines() {
+                        let line = line?;
+                        if !line.trim().is_empty() {
+                            queries.push(serde_json::from_str(&line)?);
+                        }
+                    }
+                    queries
+                };
+            for q in queries {
                 let aso = super::normalize_owned(q.sequence)?;
                 let basis = if q.target.is_some() {
                     "supplied_target"

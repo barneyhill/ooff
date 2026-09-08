@@ -28,24 +28,38 @@ cargo install oofft --locked
 ```
 
 [Prebuilt binaries](https://github.com/barneyhill/oofft/releases) are available
-for Linux and macOS, on Intel/AMD and ARM. From a checkout, run the small fixture:
+for Linux and macOS, on Intel/AMD and ARM.
 
 ```sh
-oofft --queries fixtures/queries.jsonl --reference fixtures/reference.jsonl \
-  --policy other-gene --reference-release fixture-v1 \
-  --scope synthetic --biotype-policy all-fixture-records > counts.jsonl
+# Download and index the human reference once.
+oofft reference prepare hg38
+
+# Search ASOs in FASTA format; exclude the intended gene.
+oofft --queries asos.fa --exclude SCN2A > counts.jsonl
 ```
 
-The fixture returns **1, 2, 3 and 4 sites** for `aso1` in the four edit bins.
-The default output has one summary per ASO, with distinct genomic-site counts
-at edit distances **0, 1, 2 and 3**. Sites shared by transcript and gene-body
-records count once; overlapping intervals with different boundaries remain
-separate. `--genes` adds gene IDs; `--sites` emits coordinates and alignments.
-Summary mode accepts 4–63 nt ASOs; screening and site reports require 20 nt.
+ASOs are written **5′→3′** in standard FASTA (`.fa`, `.fasta`, or gzip-compressed):
 
-For human-scale inputs, [prepare and reuse an index](docs/USAGE.md).
-[Input and output formats](docs/USAGE.md#inputs-and-output) ·
-[Count semantics](docs/SUMMARY.md) · [Optional ΔΔG](docs/DDG.md)
+```fasta
+>aso1
+GCATCGTAGCTAGATCACGT
+```
+
+**hg38 is the default reference.** Presets include human (`hg38`), mouse (`mm39`),
+rat (`rn7`), cynomolgus macaque (`cyno`) and rhesus macaque (`rhesus`), with pinned
+Ensembl 110 annotations. For example, prepare `mm39`, then search with
+`--reference mm39 --exclude Scn2a`. `oofft reference list` shows assemblies and
+which references are ready. [Preset details](docs/reference.md).
+
+`--exclude` accepts gene symbols or Ensembl IDs, repeated or comma-separated.
+Omit it to count sites in all genes. The default output contains one summary per
+ASO, with distinct genomic-site counts at edit distances **0, 1, 2 and 3**.
+Sites shared by gene-body and transcript records count once. `--genes` adds gene
+IDs; `--sites` emits coordinates and alignments. Summary mode accepts 4–63 nt
+ASOs; screening and site reports require 20 nt.
+
+[Manual references and JSONL](docs/USAGE.md) · [Count semantics](docs/SUMMARY.md) ·
+[Optional ΔΔG](docs/DDG.md)
 
 ## Performance
 
@@ -70,8 +84,8 @@ separately. At 100,000 ASOs, witness recovery was 100% for oofft/Sassy2 and
 
 Search uses supplied RNA-sense sequences and gene annotations. The human benchmark
 includes introns and splice junctions, but excludes intergenic DNA and alternative
-assembly loci. Unknown bases mark counts incomplete; the `other-gene` policy
-excludes intended-only genes and does not assess allele selectivity.
+assembly loci. Unknown bases mark counts incomplete. Gene exclusion does not assess
+discrimination between alleles of the same gene.
 
 Search tests use independent scalar oracles; energy tests compare against
 ViennaRNA. GitHub Actions tests Linux and macOS on x86-64 and ARM64.

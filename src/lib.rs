@@ -2,6 +2,8 @@
 pub mod energy;
 pub mod fm;
 pub mod indexed;
+pub mod inputs;
+pub mod reference;
 pub mod summary;
 use serde::{Deserialize, Serialize};
 
@@ -10,6 +12,7 @@ use serde::{Deserialize, Serialize};
 pub struct Query {
     pub id: String,
     pub sequence: String,
+    #[serde(default)]
     pub intended_genes: Vec<String>,
     #[serde(default)]
     pub allele: Option<String>,
