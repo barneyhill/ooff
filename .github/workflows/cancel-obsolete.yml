@@ -1,0 +1,38 @@
+name: Cancel superseded validation runs
+on:
+  push:
+    branches: ['ci-cancel-obsolete/*']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  cancel:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Cancel only the superseded preset validation runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, urllib.request
+          approved = {'34266128295': '70592146befb56228c58cd551392ed2f31f58f66', '34266544053': '09b79aaba60483e6c2dcc8ee8b44419fb2bc8089', '34266820787': '6009ce9b334a46e54c3caab79502f03daec7cbed', '34267139650': '012f0e438c0507ee552e029081bc6be62b2dd27b'}
+          base = 'https://api.github.com/repos/' + os.environ['GH_REPO']
+          def api(path, method='GET'):
+              req = urllib.request.Request(base + path, method=method,
+                  data=b'{}' if method == 'POST' else None,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'], 'Accept': 'application/vnd.github+json'})
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  data = response.read()
+                  return json.loads(data) if data else None
+          for run_id, sha in approved.items():
+              run = api('/actions/runs/' + run_id)
+              if run['path'] != '.github/workflows/ci.yml' or run['head_branch'] != 'main' or run['head_sha'] != sha:
+                  raise SystemExit('Run identity mismatch; refusing cancellation')
+              if run['status'] in ('queued', 'in_progress'):
+                  api('/actions/runs/' + run_id + '/cancel', 'POST')
+                  print('Cancelled superseded CI run ' + run_id)
+              else:
+                  print('Run already completed: ' + run_id)
+          PYTHON
