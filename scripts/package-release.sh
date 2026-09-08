@@ -12,10 +12,13 @@ cp scripts/relocate-index.py "dist/$archive/relocate-index.py"
 if [[ "$RELEASE_TARGET" == *apple-darwin ]]; then
     cp "$(brew --prefix libomp)/lib/libomp.dylib" "dist/$archive/"
     install_name_tool -id '@loader_path/libomp.dylib' "dist/$archive/libomp.dylib"
-    for binary in oofft oofft-index; do
+    for binary in oofft oofft-index oofft-ddg; do
         dependency=$(otool -L "dist/$archive/$binary" | awk '/libomp\.dylib/ {print $1}')
-        test -n "$dependency"
-        install_name_tool -change "$dependency" '@loader_path/libomp.dylib' "dist/$archive/$binary"
+        if [[ -n "$dependency" ]]; then
+            install_name_tool -change "$dependency" '@loader_path/libomp.dylib' "dist/$archive/$binary"
+            dependency=$(otool -L "dist/$archive/$binary" | awk '/libomp\.dylib/ {print $1}')
+            test "$dependency" = '@loader_path/libomp.dylib'
+        fi
         codesign --force --sign - "dist/$archive/$binary"
     done
     codesign --force --sign - "dist/$archive/libomp.dylib"

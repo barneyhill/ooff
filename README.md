@@ -107,6 +107,17 @@ NEON on 64-bit ARM (including Raspberry Pi), or scalar Rust.
 The package and commands are now named **oofft** (`oofft`, `oofft-index`,
 `oofft-ddg`). Existing benchmark artifacts retain the historical `ooff` identifier.
 
+## Install
+
+```sh
+cargo install oofft --locked
+```
+
+Or download a binary archive for Linux or macOS from
+[GitHub Releases](https://github.com/barneyhill/ooff/releases). Linux binaries
+require `libgomp1`; macOS archives bundle the OpenMP runtime. Native search and
+site-energy scoring do not require Sassy or a ViennaRNA executable.
+
 ## Run the fixture
 
 Install Rust with rustup, then:
