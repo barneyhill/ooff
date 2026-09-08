@@ -55,7 +55,8 @@ jobs:
           if ! cargo clippy --locked --all-targets -- -D warnings 2>&1 | tee /tmp/oofft-clippy.log; then
             python3 - <<'PYTHON'
           from pathlib import Path
-          message = Path('/tmp/oofft-clippy.log').read_text()[-6000:]
+          import re
+          message = re.sub(r'\x1b\[[0-9;]*m', '', Path('/tmp/oofft-clippy.log').read_text())[-3500:]
           message = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
           print('::error title=Rust build or lint failed::' + message)
           PYTHON
