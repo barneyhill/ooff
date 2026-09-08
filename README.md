@@ -56,7 +56,8 @@ Summary mode supports ASOs of 4–63 nt; screening and detailed reports currentl
 require 20mers. Human-reference benchmarks below use 20mers.
 Add **`--genes`** for other-gene IDs or **`--sites`** for detailed hits.
 A compact index reduced the measured Pi 5 sample to **3.00 GiB peak RAM**;
-1,000 SCN2A ASOs took **75.2 s** on four threads. Full-gene time on the Pi has
+1,000 SCN2A ASOs took **75.2 s initially, 61.2 s on a repeat**, on four threads.
+Full-gene time on the Pi has
 not been measured. See [summary semantics, limits and commands](docs/SUMMARY.md).
 
 Use **`oofft report`** for all annotated hits, including gene/transcript IDs,

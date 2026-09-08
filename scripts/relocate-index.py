@@ -15,14 +15,17 @@ info_path = a.index / 'reference-info.json'
 info = json.loads(info_path.read_text())
 reference = a.reference.resolve(strict=True)
 before = reference.stat()
-assert before.st_size == info['file_bytes'], 'Reference size differs'
+if before.st_size != info['file_bytes']:
+    raise SystemExit('Reference size differs')
 with reference.open('rb') as f:
     digest = hashlib.sha256()
     for block in iter(lambda: f.read(1024 * 1024), b''):
         digest.update(block)
-assert digest.hexdigest() == info['sha256'], 'Reference SHA-256 differs'
+if digest.hexdigest() != info['sha256']:
+    raise SystemExit('Reference SHA-256 differs')
 after = reference.stat()
-assert (before.st_size, before.st_mtime_ns, before.st_ino) == (after.st_size, after.st_mtime_ns, after.st_ino), 'Reference changed during verification'
+if (before.st_size, before.st_mtime_ns, before.st_ino) != (after.st_size, after.st_mtime_ns, after.st_ino):
+    raise SystemExit('Reference changed during verification')
 info.update(path=str(reference), modified_nanos=after.st_mtime_ns)
 with tempfile.NamedTemporaryFile(mode='w', dir=a.index, delete=False) as f:
     temporary = Path(f.name)

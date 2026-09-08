@@ -11,7 +11,7 @@ repository = "https://github.com/barneyhill/ooff"
 readme = "README.md"
 keywords = ["bioinformatics", "aso", "alignment", "off-target"]
 categories = ["science", "command-line-utilities"]
-include = ["src/**", "tests/**", "fixtures/**", "benchmarks/engine_driver.rs", "benchmarks/ddg/kernel_bench.rs", "benchmarks/ddg/full_reference_reuse.rs", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE", "LICENSES.md"]
+include = ["src/**", "tests/**", "fixtures/**", "benchmarks/engine_driver.rs", "benchmarks/ddg/kernel_bench.rs", "benchmarks/ddg/full_reference_reuse.rs", "Cargo.toml", "Cargo.lock", "README.md", "docs/SUMMARY.md", "docs/DDG.md", "scripts/relocate-index.py", "LICENSE", "LICENSES.md"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }

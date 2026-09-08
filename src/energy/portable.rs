@@ -649,10 +649,10 @@ fn arch(limit: usize) -> pulp::Arch {
         if limit >= 16 {
             return pulp::Arch::new();
         }
-        if limit >= 8 {
-            if let Some(simd) = pulp::x86::V3::try_new() {
-                return pulp::Arch::V3(simd);
-            }
+        if limit >= 8
+            && let Some(simd) = pulp::x86::V3::try_new()
+        {
+            return pulp::Arch::V3(simd);
         }
         pulp::Arch::Scalar
     }

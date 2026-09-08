@@ -124,7 +124,10 @@ On an **8 GiB Raspberry Pi 5**, four threads processed **1,000 evenly spaced
 SCN2A 20mers in 75.214 s**, with peak RSS **3,147,152 KiB (3.00 GiB)**. All 1,000
 summaries exactly matched the full-index EC2 run. OligoAI remained running.
 This was the first search after transferring the reference; the OS cache was
-not explicitly cleared. It is a sample measurement, not a full-gene memory or
+not explicitly cleared. A repeat with the same query set took **61.157 s**,
+with **3,141,776 KiB** peak RSS and identical results. These sample timings
+project roughly 2–2.4 hours for 114,889 ASOs, but that is not a measured full run.
+It is a sample measurement, not a full-gene memory or
 latency guarantee. Per-query genomic deduplication can use more RAM on unusually
 repetitive ASOs, and multiple simultaneous CLI processes add memory pressure.
 

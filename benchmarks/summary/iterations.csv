@@ -4,3 +4,4 @@ iteration,complete,platform,threads,queries,count_unit,seconds,total_sites,outpu
 20260908T161125-scn2a-genomic-default,True,"EC2 m7i.2xlarge, 8 threads, 32 GiB, generic x86 build",8,114889,genomic-site,438.95332172000053,359039833,28812047,13789412,,
 20260908T164639-compact16-forward-spread1000,True,EC2 m7i.2xlarge 8 threads compact16 forward,8,1000,genomic-site,16.86264392100003,3353931,252603,3184268,,Diagnostic timing: concurrent index/reference rsync download; not a clean performance comparison.
 20260908T165555-pi5-compact16-forward-spread1000,True,Raspberry Pi 5; 4 Cortex-A76 CPUs; 8 GiB; compact SA16 forward index; OligoAI idle service retained,4,1000,genomic-site,75.21434724301798,3353931,252591,3147152,,
+20260908T170618-pi5-compact16-forward-spread1000-warm,True,Raspberry Pi 5; 4 Cortex-A76 CPUs; 8 GiB; compact SA16 forward; repeat after first sample; OligoAI retained,4,1000,genomic-site,61.15740673604887,3353931,252591,3141776,,
