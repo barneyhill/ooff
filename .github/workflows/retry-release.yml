@@ -1,0 +1,55 @@
+name: Retry release publication
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Failed Release workflow run ID
+        required: true
+        type: string
+  push:
+    branches: ['release-retry/*']
+permissions:
+  contents: read
+  actions: write
+jobs:
+  retry:
+    if: github.event.deleted != true
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Retry only a failed publisher for an unchanged release tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_INPUT: ${{ inputs.run_id }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, urllib.parse, urllib.request
+          raw = os.environ.get('RUN_INPUT') or os.environ['REF_NAME'].removeprefix('release-retry/')
+          match = re.fullmatch(r'(\d+)(?:-\d+)?', raw)
+          if not match:
+              raise SystemExit('Expected a release run ID, optionally followed by an attempt number')
+          run_id = match[1]
+          base = 'https://api.github.com/repos/' + os.environ['GH_REPO']
+          def api(path, method='GET'):
+              request = urllib.request.Request(base + path, method=method,
+                  data=b'{}' if method == 'POST' else None,
+                  headers={'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                           'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json'})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  body = response.read()
+                  return json.loads(body) if body else None
+          run = api('/actions/runs/' + run_id)
+          if run['path'] != '.github/workflows/release.yml' or run['status'] != 'completed' or run['conclusion'] != 'failure':
+              raise SystemExit('Only a completed, failed Release workflow can be retried')
+          jobs = api('/actions/runs/' + run_id + '/jobs?per_page=100')['jobs']
+          failed = [job for job in jobs if job['conclusion'] == 'failure']
+          if not failed or any(job['name'] != 'publish' for job in failed):
+              raise SystemExit('A build or version check failed; fix it before retrying publication')
+          ref = urllib.parse.quote(run['head_branch'], safe='')
+          if api('/commits/' + ref)['sha'] != run['head_sha']:
+              raise SystemExit('Release tag changed; refusing to retry stale artifacts')
+          api('/actions/runs/' + run_id + '/rerun-failed-jobs', method='POST')
+          print('Retried publication for ' + run['head_branch'] + ' (run ' + run_id + ')')
+          PY
