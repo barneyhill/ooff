@@ -20,7 +20,7 @@ is not the later 6,338-query eligible export. See docs/reference.md for provenan
 
 ## User objective and current instruction
 
-Build an ASO-specific off-target tool at `git@github.com:barneyhill/ooff.git`.
+Build an ASO-specific off-target tool at `git@github.com:barneyhill/oofft.git`.
 Prefer Rust. The next agent runs on a Raspberry Pi and should use AWS EC2 for
 heavy computation; the Pi will have the AWS key. This handoff does not launch
 EC2 or start another local scan.

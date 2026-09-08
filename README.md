@@ -114,7 +114,7 @@ cargo install oofft --locked
 ```
 
 Or download a binary archive for Linux or macOS from
-[GitHub Releases](https://github.com/barneyhill/ooff/releases). Linux binaries
+[GitHub Releases](https://github.com/barneyhill/oofft/releases). Linux binaries
 require `libgomp1`; macOS archives bundle the OpenMP runtime. Native search and
 site-energy scoring do not require Sassy or a ViennaRNA executable.
 
