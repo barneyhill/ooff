@@ -1,6 +1,6 @@
-# ooff
+# oofft
 
-Native Rust ASO candidate-site discovery for 20mer gapmers, with a default
+Native Rust ASO candidate-site discovery, with a default
 threshold of **three total edits** (substitutions plus inserted/deleted bases).
 Sassy is **only an external benchmark comparator on EC2**, never a dependency.
 
@@ -38,7 +38,7 @@ excluded and listed in the caption. OS cache is retained; these are not
 cold-start measurements.
 
 Sassy2 now uses the same eight-CPU screening workload. At 100,000 ASOs, both
-ooff and Sassy2 recover all 100,000 witnesses: **3.19 s versus 19.32 s** median
+oofft and Sassy2 recover all 100,000 witnesses: **3.19 s versus 19.32 s** median
 (**6.05×**). The earlier 10.67× result above is the separate one-thread full-output
 comparison.
 
@@ -49,7 +49,17 @@ minimap2 exhausted 32 GiB at 100,000. Heuristic comparators can miss valid hits:
 at 100,000, BWA recovered 98.774% of native-positive queries. The largest batch
 combines allele-derived and reference-derived SCN2A 20mers.
 
-Use **`ooff report`** for all annotated hits, including gene/transcript IDs,
+By default, **`oofft` returns one summary per ASO**, counting distinct genomic
+sites at edit distances **0, 1, 2 and 3**, with no ddG calculation or per-hit output.
+Indexed summaries share one reference across all available CPU workers.
+Summary mode supports ASOs of 4–63 nt; screening and detailed reports currently
+require 20mers. Human-reference benchmarks below use 20mers.
+Add **`--genes`** for other-gene IDs or **`--sites`** for detailed hits.
+A compact index reduced the measured Pi 5 sample to **3.00 GiB peak RAM**;
+1,000 SCN2A ASOs took **75.2 s** on four threads. Full-gene time on the Pi has
+not been measured. See [summary semantics, limits and commands](docs/SUMMARY.md).
+
+Use **`oofft report`** for all annotated hits, including gene/transcript IDs,
 chromosome, strand, genomic blocks and edit alignments. The graph measures
 screening for one other-gene witness per ASO.
 
@@ -57,6 +67,44 @@ screening for one other-gene witness per ASO.
 [Plot data](docs/images/classic-scaling.csv) ·
 [Separate build time and memory data](docs/images/classic-index-builds.csv) ·
 [Every iteration](benchmarks/CLASSIC_ITERATIONS.md)
+
+## Relative hybridization energies
+
+`oofft-ddg` annotates every reported off-target interval with a site-specific
+ΔΔG using the independent Rust kernel (`--energy-engine rust`) or ViennaRNA
+RNAduplex. It retains every hit, coordinate and discovery status. Use
+`--whole-transcript --energy-engine vienna` for OligoAI's best-interaction scan
+across the full RNA record.
+
+```sh
+oofft-ddg --sites hits.jsonl --queries queries.jsonl \
+  --reference reference.jsonl --energy-engine rust --threads 4 > annotated-hits.jsonl
+```
+
+Use the same query and reference files as discovery; indexed-reference FASTA
+is also accepted. Query `target` supplies the intended RNA sequence (5′→3′);
+when absent, the perfect complement of the ASO is used and labelled explicitly.
+
+Native site annotation measured **10.67× faster than ViennaRNA** with four
+workers on EC2: 1.107 s versus 11.810 s for 273,825 sites from 100,000 distinct
+SCN2A ASOs against SCN1A pre-mRNA. All output fields matched across three runs.
+Eight workers reduced native time to 1.001 s (9.75× faster than matched Vienna).
+These are complete annotation times, excluding discovery.
+
+The earlier **whole-transcript** benchmark on the Raspberry Pi scored 128
+distinct SCN2A ASOs against SCN1A pre-mRNA in **5.09 s versus 19.87 s** in
+OligoAI v2 (3.90× faster; three repetitions). Every output field was checked
+against the actual OligoAI function. This preserves its RNA:RNA model and sign;
+it does not model modified gapmer chemistry explicitly.
+
+See [usage, scientific assumptions and verification](docs/DDG.md) and
+[all measured iterations](benchmarks/ddg/ITERATIONS.md). ViennaRNA is needed
+for the Vienna backend and whole-transcript mode. Native site scoring does not
+call or link ViennaRNA; its pulp backend automatically selects AVX-512/AVX2 on supported x86 CPUs,
+NEON on 64-bit ARM (including Raspberry Pi), or scalar Rust.
+
+The package and commands are now named **oofft** (`oofft`, `oofft-index`,
+`oofft-ddg`). Existing benchmark artifacts retain the historical `ooff` identifier.
 
 ## Run the fixture
 
@@ -82,12 +130,12 @@ configuration uses `target-cpu=native`. Keep substantial searches on EC2.
 Build an index from RNA-sense FASTA whose headers are `record-id|gene-id[,gene-id]`:
 
 ```sh
-OMP_NUM_THREADS=8 cargo run --release --locked --bin ooff-index -- build \
+OMP_NUM_THREADS=8 cargo run --release --locked --bin oofft-index -- build \
   --reference data/reference-v1/reference.fa --output data/fm-production-v1 \
   --shard-bases 1300000000
 ```
 
-For `ooff screen` or `ooff report`, add `--index data/fm-production-v1`
+For `oofft screen` or `oofft report`, add `--index data/fm-production-v1`
 and `--annotations data/reference-v1/records.jsonl`; `--reference` then names
 that same FASTA. Queries remain JSONL. Annotation records follow FASTA order
 and carry the same IDs, gene associations, strand and genomic blocks. All
@@ -102,7 +150,7 @@ and warm search timings are reported separately.
 
 For the optional paired-direction search, build a second index with the same
 FASTA and shard size plus `--reverse-records`, then pass its directory to
-`ooff report --reverse-index DIR`. This reverses each record and the search
+`oofft report --reverse-index DIR`. This reverses each record and the search
 pattern together; it does not search a different biological strand. It doubles
 index storage. The two directions constrain the first searched query half to
 at most floor(k/2) edits, then union the results to retain full k-edit coverage.
@@ -112,7 +160,7 @@ expanding occurrences; see [algorithm and exactness argument](docs/ALGORITHM.md)
 To avoid parsing all annotations on each invocation, validate them once:
 
 ```sh
-target/release/ooff-index cache-annotations \
+target/release/oofft-index cache-annotations \
   --index data/fm-production-v1 --reference data/reference-v1/reference.fa \
   --annotations data/reference-v1/records.jsonl \
   --output data/fm-production-v1/annotation-cache.json
@@ -194,3 +242,5 @@ also verify complete literal site tuples against the external comparator.
 GitHub Actions tests Linux and macOS on Intel and ARM, verifies the source package,
 and builds portable binaries. Version tags publish to crates.io and GitHub Releases
 after all checks pass. See [release instructions](docs/RELEASING.md).
+
+Site and whole-transcript ΔΔG use the Watt et al. convention: **off-target ΔG − intended-target ΔG** (kcal/mol); positive values indicate weaker off-target binding. Global site-energy caching is enabled by default; see [DDG documentation](docs/DDG.md).

@@ -1,0 +1,33 @@
+{
+  "annotated_sites": 1414882,
+  "batch_size": 1024,
+  "complete": true,
+  "energy_cache": {
+    "capacity_pairs": 4000000,
+    "entries": 774907,
+    "generation_resets": 0,
+    "hits": 261028,
+    "misses": 1154110
+  },
+  "energy_implementation": "rust",
+  "profile": {
+    "annotation_batches_seconds": 270.80520954000065,
+    "duplex_stages_seconds": 5.079529008,
+    "input_seconds": 27.583356163000037,
+    "native_pairs": 1415138,
+    "native_unique_pairs": 774907,
+    "report_parse_seconds": 3.283380552999998,
+    "serialization_seconds": 2.9195184440000013,
+    "setup_seconds": 69.805253414,
+    "spool_seconds": 0.8940676719999999,
+    "stage_times": "cumulative worker seconds; stages overlap across workers",
+    "waves_wall_seconds": 278.26182856499986
+  },
+  "queries_sha256": "2aeb66f4c833af592cf8610a204bbf6a9a69067a0e96c5bcd6bacccd1e828584",
+  "reference_sha256": "59d8b76ea1a968b8b9688ca8804c79fdbcca9157163a580b35eed103d4d6ba85",
+  "report_sha256": "fa253399aa6387abdb4f15bd5dc84be16de45cefbb79ae3ca2aab8d9f209a0f6",
+  "scope": "site",
+  "seconds": 348.081791635,
+  "threads": 1,
+  "work_dir": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0006/ddg-work"
+}

@@ -1,0 +1,39 @@
+{
+  "objective": "aim for 10x speedup in ddg vs vienna.",
+  "date": "2026-09-08",
+  "scope": "Complete site annotation of 273825 discovered SCN1A pre-mRNA intervals from 100000 distinct SCN2A ASOs; discovery excluded",
+  "selected_binary_sha256": "6bcd3a75298c5e13ea07c662c142a078c454d5972df7afdfbc5092fca73979a3",
+  "selected_measurements": [
+    "iterations/20260908T122341.403813-real-site-annotation/result.json",
+    "iterations/20260908T122228.749370-real-site-annotation/result.json"
+  ],
+  "source_sha256": {
+    "src/energy/batch.rs": "196c699aa870c47016d6aec96d2cb9a6655249ce96344abc275e9ab3315b95c7",
+    "src/bin/ddg/sites.rs": "ec324955825d65f985a4239d16c6c720f813c39d164f5dbd37c519b19dec0895",
+    "src/bin/ooff-ddg.rs": "12d9ac22150997c45e4a8f03bdb14c4739e858cfba615985f098f8e47cb13187",
+    "tests/ddg_cli.rs": "34875fd18dcf96a6cae6494f6a3231a08f7d54f364baec3c4ee2e60d66ec7950",
+    "tests/energy.rs": "37ea382ddd816ea721b885ce450f0c53ca9adefb1585f230c0ca1d6acc0b08d2",
+    "tests/energy_vienna.rs": "46c33b71b498dfcb6d7c8c0455bf77b35a78c7a372d15f4a71fbcb1759b5e3a5"
+  },
+  "checks": {
+    "portable_x86_release_cli": 12,
+    "portable_x86_release_energy": 3,
+    "portable_x86_pinned_minplus": 1,
+    "portable_x86_live_vienna_2_7_0": 1,
+    "arm_cli": 12,
+    "arm_energy": 3,
+    "arm_pinned_minplus": 1,
+    "all_targets_all_features_clippy": [
+      "x86_64",
+      "aarch64"
+    ],
+    "restored_release_binary_matches_measured_sha256": true
+  },
+  "limitations": [
+    "Eight workers measured 9.75x and lower absolute native runtime; four workers measured 10.67x.",
+    "Not a full-human-reference annotation runtime.",
+    "Whole-transcript mode remains ViennaRNA RNAplex.",
+    "No universal 10x speedup claim; these are measured workloads.",
+    "Shared-prefix SIMD and min-plus experiments remain disabled due to regressions."
+  ]
+}

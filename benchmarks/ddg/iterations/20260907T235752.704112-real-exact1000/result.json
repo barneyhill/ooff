@@ -1,0 +1,131 @@
+{
+  "label": "real-exact1000",
+  "host": {
+    "system": "Linux",
+    "node": "raspberrypi",
+    "release": "6.12.25+rpt-rpi-2712",
+    "version": "#1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30)",
+    "machine": "aarch64",
+    "processor": ""
+  },
+  "threads": 4,
+  "queries": "data/ddg-inputs/exact1000.jsonl",
+  "off_target": "data/ddg-inputs/SCN1A.fa",
+  "sha256": {
+    "/home/barneyh/oligoai-v2/src/specificity.ts": "04d3bb6dc5fe3231d98cdebfb8d450a76136293a2aa6f31e3ff556259b364dc8",
+    "target/release/ooff-ddg": "a6c57a503eaf40b4bdaac6716334330b206c8b1ab17576237264fb5513f696fd",
+    "data/ddg-inputs/exact1000.jsonl": "4478beea23c0de1224fd58f28aa103425e0183f1ff3eec4493f847b2d3713a0e",
+    "data/ddg-inputs/SCN1A.fa": "70b4a4ecddce8e0755c052f492559f6689492f45b79821d273f000b7e8c9e81b",
+    "/home/barneyh/.local/bin/RNAplex": "921a2ab9291b4c35cfa47f30946a7ed602ec361a66d75ad931839fbcd9bf850a",
+    "/home/barneyh/.local/bin/RNAduplex": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c"
+  },
+  "attempts": [
+    {
+      "engine": "oligoai",
+      "repetition": 0,
+      "command": [
+        "/home/barneyh/.bun/bin/bun",
+        "benchmarks/ddg/oligoai_oracle.ts",
+        "/home/barneyh/oligoai-v2/src/specificity.ts",
+        "/home/barneyh/ooff/data/ddg-inputs/exact1000.jsonl",
+        "/home/barneyh/ooff/data/ddg-inputs/SCN1A.fa",
+        "20"
+      ],
+      "seconds": 0.10112980697886087,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "command": [
+        "target/release/ooff-ddg",
+        "--queries",
+        "data/ddg-inputs/exact1000.jsonl",
+        "--off-target",
+        "data/ddg-inputs/SCN1A.fa",
+        "--rnaplex",
+        "/home/barneyh/.local/bin/RNAplex",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "seconds": 0.010412757023004815,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "command": [
+        "target/release/ooff-ddg",
+        "--queries",
+        "data/ddg-inputs/exact1000.jsonl",
+        "--off-target",
+        "data/ddg-inputs/SCN1A.fa",
+        "--rnaplex",
+        "/home/barneyh/.local/bin/RNAplex",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "seconds": 0.011293964023934677,
+      "returncode": 0
+    },
+    {
+      "engine": "oligoai",
+      "repetition": 1,
+      "command": [
+        "/home/barneyh/.bun/bin/bun",
+        "benchmarks/ddg/oligoai_oracle.ts",
+        "/home/barneyh/oligoai-v2/src/specificity.ts",
+        "/home/barneyh/ooff/data/ddg-inputs/exact1000.jsonl",
+        "/home/barneyh/ooff/data/ddg-inputs/SCN1A.fa",
+        "20"
+      ],
+      "seconds": 0.09836737098521553,
+      "returncode": 0
+    },
+    {
+      "engine": "oligoai",
+      "repetition": 2,
+      "command": [
+        "/home/barneyh/.bun/bin/bun",
+        "benchmarks/ddg/oligoai_oracle.ts",
+        "/home/barneyh/oligoai-v2/src/specificity.ts",
+        "/home/barneyh/ooff/data/ddg-inputs/exact1000.jsonl",
+        "/home/barneyh/ooff/data/ddg-inputs/SCN1A.fa",
+        "20"
+      ],
+      "seconds": 0.09873455800698139,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "command": [
+        "target/release/ooff-ddg",
+        "--queries",
+        "data/ddg-inputs/exact1000.jsonl",
+        "--off-target",
+        "data/ddg-inputs/SCN1A.fa",
+        "--rnaplex",
+        "/home/barneyh/.local/bin/RNAplex",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "seconds": 0.01076938901678659,
+      "returncode": 0
+    }
+  ],
+  "complete": true,
+  "all_fields_match": true
+}

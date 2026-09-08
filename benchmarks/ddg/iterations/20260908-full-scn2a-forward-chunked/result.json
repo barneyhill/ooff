@@ -1,0 +1,481 @@
+{
+  "label": "20260908-full-scn2a-forward-chunked",
+  "platform": "EC2 c7i.2xlarge, 8 hardware threads, 16 GiB",
+  "threads": 8,
+  "complete": false,
+  "workload": "All repeat-filtered SCN2A gene-body 20mers; all other-gene intervals k<=3 across full human RNA reference, native ddG; complete gzip JSONL outputs",
+  "query_mask_policy": "Exclude windows overlapping lowercase or non-ACGT bases; retain repeats in searched reference",
+  "reference_scope": "Ensembl110 GRCh38 human gene-body and transcript records; not intergenic chromosome sequence",
+  "index_policy": "Prebuilt forward index only to fit16GiB; no reverse index; builds excluded",
+  "execution": "Eight worker slots; each runs discovery, native ddG, gzip sequentially; each ASO occurs in only one chunk",
+  "ddg_sign": "dg_other - dg_target",
+  "energy_cache_pairs_per_process": 4000000,
+  "chunk_queries": 256,
+  "attempts": [
+    {
+      "engine": "ooff",
+      "repetition": 3,
+      "measurement_kind": "discovery_worker",
+      "seconds": 81.38985437099996,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 3,
+      "measurement_kind": "ddg_worker",
+      "seconds": 171.57758720099991,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 3,
+      "measurement_kind": "archive_worker",
+      "seconds": 26.749498056999983,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 5,
+      "measurement_kind": "discovery_worker",
+      "seconds": 76.97482074899995,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 5,
+      "measurement_kind": "ddg_worker",
+      "seconds": 179.13289652699996,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 5,
+      "measurement_kind": "archive_worker",
+      "seconds": 28.698976451999897,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "measurement_kind": "discovery_worker",
+      "seconds": 83.350211683,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "measurement_kind": "ddg_worker",
+      "seconds": 216.676160557,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "measurement_kind": "archive_worker",
+      "seconds": 38.60012976500002,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "measurement_kind": "discovery_worker",
+      "seconds": 82.05344605699997,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "measurement_kind": "ddg_worker",
+      "seconds": 231.22877366400007,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "measurement_kind": "archive_worker",
+      "seconds": 43.6978598820001,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 4,
+      "measurement_kind": "discovery_worker",
+      "seconds": 108.71907456400004,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 4,
+      "measurement_kind": "ddg_worker",
+      "seconds": 264.74044981099996,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 4,
+      "measurement_kind": "archive_worker",
+      "seconds": 47.70473049400016,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "measurement_kind": "discovery_worker",
+      "seconds": 125.86375176399997,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "measurement_kind": "ddg_worker",
+      "seconds": 251.69897690100015,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "measurement_kind": "archive_worker",
+      "seconds": 51.27413268400005,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 7,
+      "measurement_kind": "discovery_worker",
+      "seconds": 82.04677769500017,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 7,
+      "measurement_kind": "ddg_worker",
+      "seconds": 290.5984415759999,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 7,
+      "measurement_kind": "archive_worker",
+      "seconds": 57.08668606299989,
+      "returncode": 0
+    }
+  ],
+  "chunks": [
+    {
+      "chunk": 3,
+      "queries": 256,
+      "sites": 527956,
+      "discovery_seconds": 81.38985437099996,
+      "ddg_seconds": 171.57758720099991,
+      "archive_seconds": 26.749498056999983,
+      "wall_seconds": 279.727746067,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 367878,
+        "generation_resets": 0,
+        "hits": 37370,
+        "misses": 490842
+      },
+      "profile": {
+        "annotation_batches_seconds": 129.44149693000006,
+        "duplex_stages_seconds": 2.860482764,
+        "input_seconds": 4.710994181999998,
+        "native_pairs": 528212,
+        "native_unique_pairs": 367878,
+        "report_parse_seconds": 1.576545703999999,
+        "serialization_seconds": 1.2491773079999993,
+        "setup_seconds": 21.287175183,
+        "spool_seconds": 0.32647046699999976,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 132.807173321
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0003/report.jsonl.gz",
+          "uncompressed_bytes": 441838163,
+          "compressed_bytes": 43171205,
+          "uncompressed_sha256": "83094992ce26cda75ac4eb23653bc3fa3f18259bf2819693b07f311957508c3c"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0003/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 682502748,
+          "compressed_bytes": 55201941,
+          "uncompressed_sha256": "e4fd3f987079d21c1777a4ab3b5e985c10d2732406d4bbd493af21c6d4353336"
+        }
+      ]
+    },
+    {
+      "chunk": 5,
+      "queries": 256,
+      "sites": 553422,
+      "discovery_seconds": 76.97482074899995,
+      "ddg_seconds": 179.13289652699996,
+      "archive_seconds": 28.698976451999897,
+      "wall_seconds": 284.820897975,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 372481,
+        "generation_resets": 0,
+        "hits": 48587,
+        "misses": 505091
+      },
+      "profile": {
+        "annotation_batches_seconds": 148.67873713200007,
+        "duplex_stages_seconds": 2.810457211,
+        "input_seconds": 5.828578909000009,
+        "native_pairs": 553678,
+        "native_unique_pairs": 372481,
+        "report_parse_seconds": 1.6467309189999997,
+        "serialization_seconds": 1.3036174050000005,
+        "setup_seconds": 8.060613376,
+        "spool_seconds": 0.3572941570000004,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 152.17329897599998
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0005/report.jsonl.gz",
+          "uncompressed_bytes": 464205394,
+          "compressed_bytes": 45108235,
+          "uncompressed_sha256": "7902efeb226fded752fa08330d985c3001c053140f874d522a186fcccf4bb4de"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0005/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 716377394,
+          "compressed_bytes": 57566429,
+          "uncompressed_sha256": "c3f2283adc98dc3aebaf8ee365a6a6065f3b16d5d0b046895a9733129098d7d3"
+        }
+      ]
+    },
+    {
+      "chunk": 2,
+      "queries": 256,
+      "sites": 690472,
+      "discovery_seconds": 83.350211683,
+      "ddg_seconds": 216.676160557,
+      "archive_seconds": 38.60012976500002,
+      "wall_seconds": 338.630935037,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 468036,
+        "generation_resets": 0,
+        "hits": 67007,
+        "misses": 623721
+      },
+      "profile": {
+        "annotation_batches_seconds": 158.4810367799999,
+        "duplex_stages_seconds": 3.591489611,
+        "input_seconds": 7.48651028999999,
+        "native_pairs": 690728,
+        "native_unique_pairs": 468036,
+        "report_parse_seconds": 2.0283713650000026,
+        "serialization_seconds": 1.6433482189999993,
+        "setup_seconds": 24.261796814,
+        "spool_seconds": 0.3977139669999999,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 162.8140342619998
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0002/report.jsonl.gz",
+          "uncompressed_bytes": 577963815,
+          "compressed_bytes": 56470486,
+          "uncompressed_sha256": "3489230b5a4968c903d8471ed6a4517218c02a68fc3c1c568640e39452f2a351"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0002/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 892695958,
+          "compressed_bytes": 71942511,
+          "uncompressed_sha256": "9171227ba2aa6aa855379fbc06142f7bae89cac6e635999ff80655d7b8632177"
+        }
+      ]
+    },
+    {
+      "chunk": 0,
+      "queries": 256,
+      "sites": 800668,
+      "discovery_seconds": 82.05344605699997,
+      "ddg_seconds": 231.22877366400007,
+      "archive_seconds": 43.6978598820001,
+      "wall_seconds": 356.98675754600004,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 455384,
+        "generation_resets": 0,
+        "hits": 110157,
+        "misses": 690767
+      },
+      "profile": {
+        "annotation_batches_seconds": 168.87165533500004,
+        "duplex_stages_seconds": 3.60859085,
+        "input_seconds": 11.046658807000016,
+        "native_pairs": 800924,
+        "native_unique_pairs": 455384,
+        "report_parse_seconds": 2.296151697999997,
+        "serialization_seconds": 1.9116722199999991,
+        "setup_seconds": 30.107339514,
+        "spool_seconds": 0.46093424399999994,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 173.86304467699992
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0000/report.jsonl.gz",
+          "uncompressed_bytes": 668718394,
+          "compressed_bytes": 62836521,
+          "uncompressed_sha256": "083a68491707c886d7c6169537dcab852867b721f3571b595be783dfdbbd0b0e"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0000/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 1033253272,
+          "compressed_bytes": 80329315,
+          "uncompressed_sha256": "c06203b8b6998d35f877ba5481666a9d714cad209337900ef504c2a22688390b"
+        }
+      ]
+    },
+    {
+      "chunk": 4,
+      "queries": 256,
+      "sites": 915893,
+      "discovery_seconds": 108.71907456400004,
+      "ddg_seconds": 264.74044981099996,
+      "archive_seconds": 47.70473049400016,
+      "wall_seconds": 421.18409819,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 538848,
+        "generation_resets": 0,
+        "hits": 143220,
+        "misses": 772929
+      },
+      "profile": {
+        "annotation_batches_seconds": 186.43742520099974,
+        "duplex_stages_seconds": 3.790409627,
+        "input_seconds": 14.228952734999996,
+        "native_pairs": 916149,
+        "native_unique_pairs": 538848,
+        "report_parse_seconds": 2.383153806,
+        "serialization_seconds": 1.99855351,
+        "setup_seconds": 39.764106789,
+        "spool_seconds": 0.4979434919999997,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 191.58647480400018
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/report.jsonl.gz",
+          "uncompressed_bytes": 768691330,
+          "compressed_bytes": 73200539,
+          "uncompressed_sha256": "560ef19933257c99d7f5606a373cf3ed650f8194b5def55d36ae18968db64aa4"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 1186061064,
+          "compressed_bytes": 92959035,
+          "uncompressed_sha256": "ef35bbc473b7582b4484b9bcad1f7268541c7110c5ea02c697b879bf8702fee8"
+        }
+      ]
+    },
+    {
+      "chunk": 1,
+      "queries": 256,
+      "sites": 949043,
+      "discovery_seconds": 125.86375176399997,
+      "ddg_seconds": 251.69897690100015,
+      "archive_seconds": 51.27413268400005,
+      "wall_seconds": 428.84943078499987,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 610942,
+        "generation_resets": 0,
+        "hits": 93489,
+        "misses": 855810
+      },
+      "profile": {
+        "annotation_batches_seconds": 182.98912501699994,
+        "duplex_stages_seconds": 4.388299949,
+        "input_seconds": 14.218833395999988,
+        "native_pairs": 949299,
+        "native_unique_pairs": 610942,
+        "report_parse_seconds": 2.6141504650000007,
+        "serialization_seconds": 2.1973295350000006,
+        "setup_seconds": 25.930058818,
+        "spool_seconds": 0.586579602999999,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 188.75250651100015
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0001/report.jsonl.gz",
+          "uncompressed_bytes": 793623886,
+          "compressed_bytes": 77099670,
+          "uncompressed_sha256": "35a9f84a818d493f93611747b4be35fb9bb17cb98d3cb84ae91d600a2bf853e2"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0001/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 1225947825,
+          "compressed_bytes": 98401062,
+          "uncompressed_sha256": "b3d94b811ff8de06f2093bc500aead682aed30ea8a83841c1af981be03a2b073"
+        }
+      ]
+    },
+    {
+      "chunk": 7,
+      "queries": 256,
+      "sites": 931191,
+      "discovery_seconds": 82.04677769500017,
+      "ddg_seconds": 290.5984415759999,
+      "archive_seconds": 57.08668606299989,
+      "wall_seconds": 429.745028647,
+      "cache": {
+        "capacity_pairs": 4000000,
+        "entries": 615835,
+        "generation_resets": 0,
+        "hits": 104283,
+        "misses": 827164
+      },
+      "profile": {
+        "annotation_batches_seconds": 209.7237474640001,
+        "duplex_stages_seconds": 4.469978196,
+        "input_seconds": 12.246466366,
+        "native_pairs": 931447,
+        "native_unique_pairs": 615835,
+        "report_parse_seconds": 2.4865033759999986,
+        "serialization_seconds": 2.148698125000001,
+        "setup_seconds": 25.835668545,
+        "spool_seconds": 0.5424373320000002,
+        "stage_times": "cumulative worker seconds; stages overlap across workers",
+        "waves_wall_seconds": 215.15020604000003
+      },
+      "archives": [
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0007/report.jsonl.gz",
+          "uncompressed_bytes": 781187752,
+          "compressed_bytes": 76733823,
+          "uncompressed_sha256": "cbf098f0916447366150412977ccad0a078093a6fcb91c56ec0b440de95541fb"
+        },
+        {
+          "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0007/ddg-work/annotated.jsonl.gz",
+          "uncompressed_bytes": 1205475141,
+          "compressed_bytes": 97475157,
+          "uncompressed_sha256": "5d813814c7592be28a21f2fb9c474b29f9d7afe38a29afb28b02af1ad6a10176"
+        }
+      ]
+    }
+  ],
+  "queries": 114889,
+  "walk_positions": 114926,
+  "gene_bases": 197318,
+  "sha256": {
+    "SCN2A-reference-v1.fa": "a79b46c86cb9e292d5a3f6ca2e34b8f2e8e2d8579c5efa1dfedaccdf97ed8e9f",
+    "target/release/oofft": "f31f14107d86f4b6a1012e535cd4284484b5d91af70887af20803e048fdd4bae",
+    "target/release/oofft-ddg": "4459ed778b95e3c255d9cb7809e8d6ede5d85c548ade96858ffb039d06deddec",
+    "/home/ubuntu/ooff/data/fm-classic-8-v1/manifest.json": "0552cc83a2e2bf2f817c10d601aa1f62c5e116ab973aebd9dc54007783f8f349",
+    "/home/ubuntu/ooff/data/fm-production-v1/annotation-cache.json": "56648f14d5af51913d18dd3eac9d6dcb34b4ea04e4a2e67ada2867cd16539d89",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/queries.jsonl": "1ab516c89e13bfaede56db078c4617f306422fbee4bcabddb136546b72f7daf7"
+  },
+  "setup_seconds": 0.8464744789998804,
+  "interrupted": true,
+  "error": "Retained baseline: whole-record extraction dominates ddG. Stop dispatch to validate direct interval reads, then rerun full walk.",
+  "stopped_utc": "2026-09-08T14:40:27.686613+00:00"
+}

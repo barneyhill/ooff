@@ -1,0 +1,5 @@
+{"id":"on_target","sequence":"ACGTGATCTAGCTACGATGC","genes":["intended"],"transcripts":["tx1"],"contig":"fixture","strand":"+","blocks":[{"start":100,"end":120}]}
+{"id":"shared_junction","sequence":"acgtgatctagctacgatgc","genes":["intended","other"],"transcripts":["tx2","tx3"],"contig":"fixture","strand":"-","blocks":[{"start":300,"end":310},{"start":200,"end":210}]}
+{"id": "insertion1", "sequence": "ACGTGATCATAGCTACGATGC", "genes": ["other"], "transcripts": ["inserted-transcript1"], "contig": "fixture", "strand": "+", "blocks": [{"start": 0, "end": 21}]}
+{"id": "insertion2", "sequence": "ACGTGATCAATAGCTACGATGC", "genes": ["other"], "transcripts": ["inserted-transcript2"], "contig": "fixture", "strand": "+", "blocks": [{"start": 0, "end": 22}]}
+{"id": "insertion3", "sequence": "ACGTGATCAAATAGCTACGATGC", "genes": ["other"], "transcripts": ["inserted-transcript3"], "contig": "fixture", "strand": "+", "blocks": [{"start": 0, "end": 23}]}

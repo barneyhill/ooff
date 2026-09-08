@@ -1,0 +1,15 @@
+{
+  "source_directory": "/home/barneyh/oligoai-v2/references",
+  "on_target": "SCN2A ENST00000375437",
+  "off_target": "SCN1A ENST00000674923",
+  "on_target_bases": 152891,
+  "off_target_bases": 142208,
+  "selection": "Distinct non-exact SCN2A 20mers sorted by SHA256; repeated workload cycles first 16 eight times; exact workload is first 1000 sorted distinct SCN1A 20mers.",
+  "sha256": {
+    "unique128.jsonl": "ef22639bd2b2b17675f73da6562ed32e98311646538681f5e63656c65b46a5c7",
+    "exact1000.jsonl": "4478beea23c0de1224fd58f28aa103425e0183f1ff3eec4493f847b2d3713a0e",
+    "repeated128.jsonl": "a83c87d8695bb734e105dc13c7c07ae1da9465f05a2820573c6eb77e9952cbf9",
+    "SCN1A.fa": "70b4a4ecddce8e0755c052f492559f6689492f45b79821d273f000b7e8c9e81b",
+    "SCN2A.fa": "41488fa7d4122584865f7bd1764402ad6f174ba5be259b54961ea10ccd982e49"
+  }
+}

@@ -20,7 +20,7 @@ def benchmark(tool,n,repetition,timeout,phase,run_timeout=None):
         remaining=min(timeout,max(0,deadline-time.monotonic())) if deadline is not None else timeout
         directory,result=run(prefix+'-'+label,cmd,remaining,meta);stages.append((directory,result));return directory,result['returncode']==0 and not result['timeout']
     if tool=='ooff':
-        directory,ok=execute('search',['target/release/ooff-index','search','--index',INDEX,'--reference','data/reference-v1/reference.fa','--queries',str(ROOT/f'queries-{n}.fa'),'--queries-limit',str(n),'--threads',str(THREADS),'--repetitions','1','--mode','screen','--mmap','-k','3'])
+        directory,ok=execute('search',['target/release/oofft-index','search','--index',INDEX,'--reference','data/reference-v1/reference.fa','--queries',str(ROOT/f'queries-{n}.fa'),'--queries-limit',str(n),'--threads',str(THREADS),'--repetitions','1','--mode','screen','--mmap','-k','3'])
         if ok:
             output=json.loads((directory/'stdout').read_text());counts=output['runs'][0]['counts']
             assert len(counts)==n and output['complete']

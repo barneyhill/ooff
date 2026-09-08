@@ -1,4 +1,4 @@
-use ooff::{Block, Record, align, chunks, endpoints, normalize, reverse_complement, search_chunk};
+use oofft::{Block, Record, align, chunks, endpoints, normalize, reverse_complement, search_chunk};
 use std::collections::BTreeSet;
 
 // Independent scalar distance: rolling rows, no production traceback or Myers.

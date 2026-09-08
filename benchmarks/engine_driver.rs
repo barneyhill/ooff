@@ -22,7 +22,7 @@ fn read_fasta(path: &std::path::Path) -> Vec<(String,Vec<u8>)> {
     for line in BufReader::new(File::open(path).unwrap()).lines() {
         let line=line.unwrap();
         if let Some(id)=line.strip_prefix('>') { records.push((id.to_owned(),Vec::new())); }
-        else { records.last_mut().expect("FASTA header").1.extend(ooff::normalize(line.trim(),false).unwrap()); }
+        else { records.last_mut().expect("FASTA header").1.extend(oofft::normalize(line.trim(),false).unwrap()); }
     }
     records
 }
@@ -36,10 +36,10 @@ fn main() {
     let intended:Vec<Vec<String>>=query_ids.iter().map(|id|id.split_once('|').map(|(_,g)|g).unwrap_or(&args.intended_gene).split(',').map(str::to_owned).collect()).collect();
     let patterns:Vec<_>=input.iter().take(args.queries_limit).map(|x| {
         assert!(x.1.len()==20 && !x.1.contains(&b'N'));
-        ooff::reverse_complement(&x.1)
+        oofft::reverse_complement(&x.1)
     }).collect();
     assert!(!patterns.is_empty());
-    let verifiers: Vec<_> = patterns.iter().map(|p| ooff::IntervalDistance::new(p)).collect();
+    let verifiers: Vec<_> = patterns.iter().map(|p| oofft::IntervalDistance::new(p)).collect();
     let reference=read_fasta(&args.reference);
     assert!(!reference.is_empty());
     let reference_bases:usize=reference.iter().map(|r|r.1.len()).sum();

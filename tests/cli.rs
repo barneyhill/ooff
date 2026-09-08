@@ -5,7 +5,7 @@ use std::{
 };
 
 fn invoke(mode: &str, reference: &Path, extra: &[&str]) -> Output {
-    Command::new(env!("CARGO_BIN_EXE_ooff"))
+    Command::new(env!("CARGO_BIN_EXE_oofft"))
         .args([mode, "--queries", "fixtures/queries.jsonl", "--reference"])
         .arg(reference)
         .args([
@@ -63,7 +63,7 @@ fn screen_keeps_shared_gene_associations_and_witness_distance() {
 #[test]
 fn supplied_energy_is_preserved_without_filtering_sites() {
     let queries =
-        std::env::temp_dir().join(format!("ooff-ddg-queries-{}.jsonl", std::process::id()));
+        std::env::temp_dir().join(format!("oofft-ddg-queries-{}.jsonl", std::process::id()));
     let mut input: Vec<Value> = std::fs::read_to_string("fixtures/queries.jsonl")
         .unwrap()
         .lines()
@@ -78,7 +78,7 @@ fn supplied_energy_is_preserved_without_filtering_sites() {
             .collect::<String>(),
     )
     .unwrap();
-    let output = Command::new(env!("CARGO_BIN_EXE_ooff"))
+    let output = Command::new(env!("CARGO_BIN_EXE_oofft"))
         .args(["report", "--queries"])
         .arg(&queries)
         .args([
@@ -167,6 +167,23 @@ fn unknown_reference_and_invalid_input_do_not_produce_clean_results() {
             .all(|r| r["status"] == "incomplete")
     );
     assert_eq!(output[0]["unknown_bases_excluded"], 20);
+    let summary = lines(&invoke("summary", &path, &[]));
+    assert!(
+        summary
+            .iter()
+            .filter(|r| r["type"] == "query_summary")
+            .all(|r| r["counts_complete"] == false && r["status"] == "incomplete")
+    );
+    assert!(
+        !invoke(
+            "summary",
+            Path::new("fixtures/reference.jsonl"),
+            &["--max-sites", "1"]
+        )
+        .status
+        .success()
+    );
+
     assert!(
         !invoke(
             "screen",

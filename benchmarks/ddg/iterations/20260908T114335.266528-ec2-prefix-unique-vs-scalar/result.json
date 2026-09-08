@@ -1,0 +1,102 @@
+{
+  "label": "ec2-prefix-unique-vs-scalar",
+  "platform": "ec2-c7i.2xlarge-x86_64",
+  "batch_requested": false,
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 0.709849419,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1",
+        "prefix"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 1.309714166,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/initial/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 1.31078548,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/initial/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 0.711113569,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1",
+        "prefix"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 0.71100073,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1",
+        "prefix"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 1.318989798,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/initial/energy-bench",
+        "fixtures/real-site-unique.json",
+        "3",
+        "1"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/real-site-unique.json": "f6ccdd99fa6972db6012989f099b12d5b2edcf274e8363a7926ef0f3be989c1c",
+    "target/release/examples/energy-bench": "1577d0b1660671536ffc07a9e0bbc2d04c2fc2ba9b23aeed8495517690ba59a0",
+    "baselines/initial/energy-bench": "a2c53b28e9796455fc33c6992cef82a6cf0f19ffaf8ee32699e5daf1afdab866"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 0.71100073,
+    "native-baseline": 1.31078548
+  },
+  "speedup_vs_native_baseline": 1.8435782478029243
+}

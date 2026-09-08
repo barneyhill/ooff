@@ -1,5 +1,5 @@
 use clap::{Parser, Subcommand};
-use ooff::fm::Index;
+use oofft::fm::Index;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 use std::{
@@ -18,6 +18,15 @@ struct Args {
 }
 #[derive(Subcommand)]
 enum Action {
+    /// Reduce a full index's memory footprint using sampled suffix positions.
+    Compact {
+        #[arg(long)]
+        index: PathBuf,
+        #[arg(long)]
+        output: PathBuf,
+        #[arg(long, default_value_t = 16)]
+        sample_rate: usize,
+    },
     /// Validate annotations once and save offsets for lazy, checked loading.
     CacheAnnotations {
         #[arg(long)]
@@ -127,7 +136,7 @@ fn fasta(path: &Path, mut consume: impl FnMut(String, Vec<u8>)) {
             current = Some(header.to_string());
         } else {
             assert!(current.is_some());
-            sequence.extend(ooff::normalize(line.trim(), false).unwrap());
+            sequence.extend(oofft::normalize(line.trim(), false).unwrap());
         }
     }
     if let Some(header) = current {
@@ -164,6 +173,57 @@ fn save_shard(output: &Path, text: &[u8], records: Vec<Record>, number: usize) -
 
 fn main() {
     match Args::parse().command {
+        Action::Compact {
+            index,
+            output,
+            sample_rate,
+        } => {
+            assert!(
+                (1..=256).contains(&sample_rate),
+                "sample-rate must be 1..256"
+            );
+            let started = Instant::now();
+            let mut manifest: Manifest = serde_json::from_reader(BufReader::new(
+                File::open(index.join("manifest.json")).unwrap(),
+            ))
+            .unwrap();
+            fs::create_dir(&output).expect("output directory must not exist");
+            for shard in &mut manifest.shards {
+                let file = File::open(index.join(&shard.file)).unwrap();
+                // SAFETY: converter requires immutable source indexes and never modifies them.
+                let source = unsafe { Index::map_immutable(&file) }.unwrap();
+                let mut writer = BufWriter::new(
+                    OpenOptions::new()
+                        .write(true)
+                        .create_new(true)
+                        .open(output.join(&shard.file))
+                        .unwrap(),
+                );
+                source.write_compact(&mut writer, sample_rate).unwrap();
+                writer.flush().unwrap();
+                shard.index_bytes = fs::metadata(output.join(&shard.file)).unwrap().len() as usize;
+                eprintln!("{}", json!({"file":shard.file,"bytes":shard.index_bytes}));
+            }
+            fs::copy(
+                index.join("reference-info.json"),
+                output.join("reference-info.json"),
+            )
+            .unwrap();
+            manifest.format = "ooff-fm-compact-v1".into();
+            let mut writer = BufWriter::new(
+                OpenOptions::new()
+                    .write(true)
+                    .create_new(true)
+                    .open(output.join("manifest.json"))
+                    .unwrap(),
+            );
+            serde_json::to_writer(&mut writer, &manifest).unwrap();
+            writer.flush().unwrap();
+            println!(
+                "{}",
+                json!({"complete":true,"sample_rate":sample_rate,"bytes":manifest.shards.iter().map(|s|s.index_bytes).sum::<usize>(),"seconds":started.elapsed().as_secs_f64()})
+            );
+        }
         Action::CacheAnnotations {
             index,
             reference,
@@ -171,7 +231,7 @@ fn main() {
             output,
         } => {
             let start = Instant::now();
-            ooff::indexed::AnnotationCache::create(&index, &reference, &annotations, &output)
+            oofft::indexed::AnnotationCache::create(&index, &reference, &annotations, &output)
                 .unwrap();
             println!(
                 "{}",
@@ -187,7 +247,7 @@ fn main() {
             assert!(shard_bases > 0 && shard_bases < i32::MAX as usize - 1);
             fs::create_dir(&output).expect("index directory must not already exist");
             let start = Instant::now();
-            let source_info = ooff::indexed::ReferenceInfo::create(
+            let source_info = oofft::indexed::ReferenceInfo::create(
                 &reference,
                 &output.join("reference-info.json"),
             )
@@ -295,7 +355,7 @@ fn main() {
                 if patterns.len() < queries_limit {
                     assert!(sequence.len() == 20 && !sequence.contains(&b'N'));
                     query_ids.push(id);
-                    patterns.push(ooff::reverse_complement(&sequence));
+                    patterns.push(oofft::reverse_complement(&sequence));
                 }
             });
             assert!(!patterns.is_empty());
@@ -329,7 +389,7 @@ fn main() {
                 .iter()
                 .zip(&indexes)
                 .map(|(shard, index)| {
-                    ooff::fm::RecordLookup::new(
+                    oofft::fm::RecordLookup::new(
                         shard.records.iter().map(|r| r.start).collect(),
                         index.len(),
                     )
@@ -464,7 +524,7 @@ fn main() {
                                             }
                                             continue;
                                         }
-                                        let mut sites = ooff::fm::SiteSet::default();
+                                        let mut sites = oofft::fm::SiteSet::default();
                                         let mut emit =
                                             |a: usize, b: usize, d: usize, reverse: bool| {
                                                 let Some(record_no) =

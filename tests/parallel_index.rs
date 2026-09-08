@@ -64,7 +64,7 @@ fn parallel_queries_preserve_sites_and_screen_witnesses() {
     }
     fs::write(&queries, fasta).unwrap();
     for reverse in [false, true] {
-        let mut command = Command::new(env!("CARGO_BIN_EXE_ooff-index"));
+        let mut command = Command::new(env!("CARGO_BIN_EXE_oofft-index"));
         command
             .args(["build", "--reference"])
             .arg(&reference)
@@ -86,7 +86,7 @@ fn parallel_queries_preserve_sites_and_screen_witnesses() {
             let mut baseline = None;
             for threads in [1, 2, 16] {
                 let tuples = root.join(format!("{mode}-{k}-{threads}.csv"));
-                let output = Command::new(env!("CARGO_BIN_EXE_ooff-index"))
+                let output = Command::new(env!("CARGO_BIN_EXE_oofft-index"))
                     .args(["search", "--index"])
                     .arg(root.join("forward"))
                     .arg("--reverse-index")

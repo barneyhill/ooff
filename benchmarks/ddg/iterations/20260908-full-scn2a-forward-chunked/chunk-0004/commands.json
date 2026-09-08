@@ -1,0 +1,43 @@
+{
+  "discovery": [
+    "/home/ubuntu/ddg-simd-20260908/target/release/oofft",
+    "report",
+    "--queries",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/queries.jsonl",
+    "--reference",
+    "/home/ubuntu/ooff/data/reference-v1/reference.fa",
+    "--index",
+    "/home/ubuntu/ooff/data/fm-classic-8-v1",
+    "--annotations",
+    "/home/ubuntu/ooff/data/reference-v1/records.jsonl",
+    "--annotation-cache",
+    "/home/ubuntu/ooff/data/fm-production-v1/annotation-cache.json",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "Ensembl110-GRCh38",
+    "--scope",
+    "Ensembl110 GRCh38 human gene-body and transcript records; not intergenic chromosome sequence",
+    "--biotype-policy",
+    "retained reference-v1 manifest",
+    "-k",
+    "3"
+  ],
+  "ddg": [
+    "/home/ubuntu/ddg-simd-20260908/target/release/oofft-ddg",
+    "--queries",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/queries.jsonl",
+    "--reference",
+    "/home/ubuntu/ooff/data/reference-v1/reference.fa",
+    "--sites",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/report.jsonl",
+    "--energy-engine",
+    "rust",
+    "--threads",
+    "1",
+    "--timeout",
+    "7090.410193898999",
+    "--work-dir",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0004/ddg-work"
+  ]
+}

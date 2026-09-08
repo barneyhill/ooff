@@ -1,0 +1,55 @@
+{
+  "label": "ec2-initial-workers-4",
+  "threads": 4,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.850640997,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "100",
+        "4"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.831031479,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "100",
+        "4"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.825697467,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "100",
+        "4"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/energy_golden.json": "de03dfbbd6a6791f8c45e5637d9acc0d6bfacd864883a7b8c6e11b89009ed3a9",
+    "target/release/examples/energy-bench": "a2c53b28e9796455fc33c6992cef82a6cf0f19ffaf8ee32699e5daf1afdab866"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.831031479
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "label": "pulp-neon-real-unique",
+  "platform": "Raspberry Pi 5, Cortex-A76, aarch64, pulp 0.22.3 NEON",
+  "cases": 20543,
+  "batch_requested": true,
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only 20,543 unique real-site pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.244699429,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 2.649977569,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 2.643027262,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.244986184,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.243978915,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 2.6431623650000002,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+        "3",
+        "1",
+        "batch",
+        "8"
+      ]
+    }
+  ],
+  "sha256": {
+    "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json": "f6ccdd99fa6972db6012989f099b12d5b2edcf274e8363a7926ef0f3be989c1c",
+    "target/release/examples/energy-bench": "42df31c48d5a5062f54aba6707ea6a5bc5429d41b7e66ff048ff4b7554d7796c",
+    "/tmp/oofft-pre-pulp/energy-bench": "ac855f05bad42dfcba6e78f09a08a61962aa80e3b10a6df80cdc999d043db65f"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.244699429,
+    "native-baseline": 2.6431623650000002
+  },
+  "speedup_vs_native_baseline": 2.1235346489421425,
+  "retained_binaries": {
+    "native-baseline": "data/ddg-pulp/20260908/pre-pulp-energy-bench",
+    "rust-kernel": "data/ddg-pulp/20260908/pulp-energy-bench"
+  }
+}

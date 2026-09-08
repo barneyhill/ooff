@@ -477,6 +477,65 @@ impl ReferenceIndex {
         Ok(())
     }
 
+    /// Count exact edit-distance bins without traceback, reference rereads or site output.
+    /// Genomic deduplication holds only this query's distinct genomic sites.
+    pub fn count(
+        &self,
+        pattern: &[u8],
+        intended: &[String],
+        k: usize,
+        counts: &mut crate::summary::Counts,
+        cap: Option<u64>,
+    ) -> Result<bool> {
+        if k > 3 {
+            return Err("count supports at most three edits".into());
+        }
+        for (shard_no, (shard, index)) in self.manifest.shards.iter().zip(&self.indexes).enumerate()
+        {
+            let mut error = None;
+            let stopped = index.search_unique(
+                pattern,
+                k,
+                self.reverse_indexes.as_ref().map(|r| &r[shard_no]),
+                |a, b, d| {
+                    let Some(record_no) = self.record_lookups[shard_no].preceding(a) else {
+                        return false;
+                    };
+                    let r = &shard.records[record_no];
+                    assert!(b <= r.start + r.length, "index crossed a record boundary");
+                    if r.header
+                        .split_once('|')
+                        .unwrap()
+                        .1
+                        .split(',')
+                        .all(|g| intended.iter().any(|i| i == g))
+                    {
+                        return false;
+                    }
+                    if counts.needs_annotation() {
+                        match self.record(r.global_id) {
+                            Ok(record) => counts.add(record, intended, a - r.start, b - r.start, d),
+                            Err(e) => {
+                                error = Some(e);
+                                return true;
+                            }
+                        }
+                    } else {
+                        counts.add_interval(d);
+                    }
+                    cap.is_some_and(|limit| counts.total() >= limit)
+                },
+            );
+            if let Some(error) = error {
+                return Err(error);
+            }
+            if stopped {
+                return Ok(true);
+            }
+        }
+        Ok(false)
+    }
+
     pub fn search(
         &self,
         pattern: &[u8],

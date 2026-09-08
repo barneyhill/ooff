@@ -8,6 +8,14 @@ use std::{
 };
 
 const MAGIC: &[u8; 8] = b"OOFFFM01";
+const COMPACT_MAGIC: &[u8; 8] = b"OOFFFC01";
+
+#[derive(Clone, Copy)]
+struct Compact {
+    sample_rate: usize,
+    primary: usize,
+    samples: usize,
+}
 
 /// Compact distinct intervals within one u32-addressed FM shard.
 /// Stores absolute start/span and record number/minimum cost in two words.
@@ -125,6 +133,8 @@ pub struct Index {
     cumulative: [u32; 4],
     mapping: Option<memmap2::Mmap>,
     mapped_len: usize,
+    serialized: Option<Vec<u8>>,
+    compact: Option<Compact>,
 }
 
 fn encode(base: u8) -> u8 {
@@ -193,6 +203,8 @@ impl Index {
             cumulative,
             mapping: None,
             mapped_len: 0,
+            serialized: None,
+            compact: None,
         }
     }
 
@@ -203,12 +215,15 @@ impl Index {
         self.len() == 0
     }
     pub fn bytes(&self) -> usize {
-        self.sa_len() * 4 + (self.sa_len() / 64 + 1) * 48 + 16
+        self.storage().map_or_else(
+            || self.sa_len() * 4 + (self.sa_len() / 64 + 1) * 48 + 40,
+            |b| b.len(),
+        )
     }
 
     #[inline]
     fn sa_len(&self) -> usize {
-        if self.mapping.is_some() {
+        if self.storage().is_some() {
             self.mapped_len
         } else {
             self.sa.len()
@@ -216,8 +231,65 @@ impl Index {
     }
 
     #[inline]
-    fn locate(&self, row: usize) -> u32 {
-        if let Some(bytes) = &self.mapping {
+    fn storage(&self) -> Option<&[u8]> {
+        self.mapping.as_deref().or(self.serialized.as_deref())
+    }
+
+    #[inline]
+    fn locate(&self, mut row: usize) -> u32 {
+        if let Some(bytes) = self.storage() {
+            if let Some(compact) = self.compact {
+                let blocks = self.mapped_len / 64 + 1;
+                let marks = 64 + 48 * blocks;
+                let values = marks + 12 * blocks;
+                for steps in 0..compact.sample_rate {
+                    let bit = row % 64;
+                    let block = marks + 12 * (row / 64);
+                    let mask = u64::from_le_bytes(bytes[block..block + 8].try_into().unwrap());
+                    if mask & (1u64 << bit) != 0 {
+                        let prefix =
+                            u32::from_le_bytes(bytes[block + 8..block + 12].try_into().unwrap())
+                                as usize;
+                        let sample =
+                            prefix + (mask & ((1u64 << bit).wrapping_sub(1))).count_ones() as usize;
+                        assert!(sample < compact.samples, "invalid sampled suffix row");
+                        let start = values + 4 * sample;
+                        let position =
+                            u32::from_le_bytes(bytes[start..start + 4].try_into().unwrap())
+                                as usize
+                                + steps;
+                        assert!(
+                            position < self.mapped_len,
+                            "invalid sampled suffix position"
+                        );
+                        return position as u32;
+                    }
+                    let rank_block = 64 + 48 * (row / 64);
+                    let mut character = None;
+                    for c in 0..4 {
+                        let start = rank_block + 8 * c;
+                        let mask = u64::from_le_bytes(bytes[start..start + 8].try_into().unwrap());
+                        if mask & (1u64 << bit) != 0 {
+                            character = Some(c);
+                            break;
+                        }
+                    }
+                    row = if let Some(c) = character {
+                        (self.cumulative[c] + self.rank(c, row as u32)) as usize
+                    } else {
+                        // Unknown/separator symbols sort after DNA; the unique terminal
+                        // symbol is the primary row, whose SA=0 is always sampled.
+                        assert_ne!(row, compact.primary, "missing primary suffix sample");
+                        let dna: usize = (0..4).map(|c| self.rank(c, row as u32) as usize).sum();
+                        let total_dna: usize = (0..4)
+                            .map(|c| self.rank(c, self.mapped_len as u32) as usize)
+                            .sum();
+                        1 + total_dna + row - dna - usize::from(compact.primary < row)
+                    };
+                    assert!(row < self.mapped_len, "invalid compact LF step");
+                }
+                panic!("compact suffix sampling invariant failed");
+            }
             let start = 40 + 4 * row;
             u32::from_le_bytes(bytes[start..start + 4].try_into().unwrap())
         } else {
@@ -229,8 +301,12 @@ impl Index {
     fn rank(&self, c: usize, end: u32) -> u32 {
         let bit = end % 64;
         let mask = (1u64 << bit).wrapping_sub(1);
-        if let Some(bytes) = &self.mapping {
-            let block = 40 + 4 * self.mapped_len + 48 * (end as usize / 64);
+        if let Some(bytes) = self.storage() {
+            let block = if self.compact.is_some() {
+                64
+            } else {
+                40 + 4 * self.mapped_len
+            } + 48 * (end as usize / 64);
             let bits =
                 u64::from_le_bytes(bytes[block + 8 * c..block + 8 * c + 8].try_into().unwrap());
             let count = u32::from_le_bytes(
@@ -637,8 +713,69 @@ impl Index {
         false
     }
 
+    /// Convert an existing full-SA index without rebuilding its suffix array.
+    /// Sampling by text position guarantees at most sample_rate-1 LF steps.
+    pub fn write_compact(&self, mut out: impl Write, sample_rate: usize) -> io::Result<()> {
+        if !(1..=256).contains(&sample_rate) || self.compact.is_some() {
+            return Err(io::Error::new(
+                io::ErrorKind::InvalidInput,
+                "require full index and sample rate 1..256",
+            ));
+        }
+        let n = self.sa_len();
+        let blocks = n / 64 + 1;
+        let mut masks = vec![(0u64, 0u32); blocks];
+        let mut samples = Vec::with_capacity(n.div_ceil(sample_rate));
+        let mut primary = None;
+        for (block, (mask, prefix)) in masks.iter_mut().enumerate() {
+            *prefix = samples.len() as u32;
+            for row in block * 64..((block + 1) * 64).min(n) {
+                let pos = self.locate(row);
+                if pos == 0 {
+                    primary = Some(row);
+                }
+                if (pos as usize).is_multiple_of(sample_rate) {
+                    *mask |= 1u64 << (row % 64);
+                    samples.push(pos);
+                }
+            }
+        }
+        let primary = primary
+            .ok_or_else(|| io::Error::new(io::ErrorKind::InvalidData, "missing primary suffix"))?;
+        out.write_all(COMPACT_MAGIC)?;
+        for value in [n, blocks] {
+            out.write_all(&(value as u64).to_le_bytes())?;
+        }
+        for value in self.cumulative {
+            out.write_all(&value.to_le_bytes())?;
+        }
+        for value in [sample_rate, primary, samples.len()] {
+            out.write_all(&(value as u64).to_le_bytes())?;
+        }
+        if let Some(bytes) = self.storage() {
+            out.write_all(&bytes[40 + 4 * n..])?;
+        } else {
+            for block in &self.ranks {
+                for value in block.masks {
+                    out.write_all(&value.to_le_bytes())?;
+                }
+                for value in block.counts {
+                    out.write_all(&value.to_le_bytes())?;
+                }
+            }
+        }
+        for (mask, prefix) in masks {
+            out.write_all(&mask.to_le_bytes())?;
+            out.write_all(&prefix.to_le_bytes())?;
+        }
+        for value in samples {
+            out.write_all(&value.to_le_bytes())?;
+        }
+        Ok(())
+    }
+
     pub fn write(&self, mut out: impl Write) -> io::Result<()> {
-        if let Some(bytes) = &self.mapping {
+        if let Some(bytes) = self.storage() {
             return out.write_all(bytes);
         }
         out.write_all(MAGIC)?;
@@ -674,6 +811,20 @@ impl Index {
         }
         let mut magic = [0; 8];
         input.read_exact(&mut magic)?;
+        if &magic == COMPACT_MAGIC {
+            let mut bytes = magic.to_vec();
+            input.read_to_end(&mut bytes)?;
+            let (n, cumulative, compact) = Self::validate_storage(&bytes)?;
+            return Ok(Self {
+                sa: Vec::new(),
+                ranks: Vec::new(),
+                cumulative,
+                mapping: None,
+                mapped_len: n,
+                serialized: Some(bytes),
+                compact,
+            });
+        }
         if &magic != MAGIC {
             return Err(io::Error::new(
                 io::ErrorKind::InvalidData,
@@ -723,6 +874,8 @@ impl Index {
             cumulative,
             mapping: None,
             mapped_len: 0,
+            serialized: None,
+            compact: None,
         })
     }
 
@@ -734,17 +887,26 @@ impl Index {
     pub unsafe fn map_immutable(file: &File) -> io::Result<Self> {
         // SAFETY: the caller guarantees the backing file remains immutable.
         let map = unsafe { memmap2::MmapOptions::new().map(file)? };
+        let (n, cumulative, compact) = Self::validate_storage(&map)?;
+        Ok(Self {
+            sa: Vec::new(),
+            ranks: Vec::new(),
+            cumulative,
+            mapping: Some(map),
+            mapped_len: n,
+            serialized: None,
+            compact,
+        })
+    }
+
+    fn validate_storage(map: &[u8]) -> io::Result<(usize, [u32; 4], Option<Compact>)> {
         let invalid = || io::Error::new(io::ErrorKind::InvalidData, "invalid mapped index");
-        if map.len() < 40 || &map[..8] != MAGIC {
+        if map.len() < 40 || (&map[..8] != MAGIC && &map[..8] != COMPACT_MAGIC) {
             return Err(invalid());
         }
         let n = u64::from_le_bytes(map[8..16].try_into().unwrap()) as usize;
         let blocks = u64::from_le_bytes(map[16..24].try_into().unwrap()) as usize;
-        if n == 0
-            || n >= i32::MAX as usize
-            || blocks != n / 64 + 1
-            || map.len() != 40 + 4 * n + 48 * blocks
-        {
+        if n == 0 || n >= i32::MAX as usize || blocks != n / 64 + 1 {
             return Err(invalid());
         }
         let cumulative = std::array::from_fn(|c| {
@@ -756,12 +918,67 @@ impl Index {
         {
             return Err(invalid());
         }
-        Ok(Self {
-            sa: Vec::new(),
-            ranks: Vec::new(),
-            cumulative,
-            mapping: Some(map),
-            mapped_len: n,
-        })
+        let compact = if &map[..8] == COMPACT_MAGIC {
+            if map.len() < 64 {
+                return Err(invalid());
+            }
+            let sample_rate = u64::from_le_bytes(map[40..48].try_into().unwrap()) as usize;
+            let primary = u64::from_le_bytes(map[48..56].try_into().unwrap()) as usize;
+            let samples = u64::from_le_bytes(map[56..64].try_into().unwrap()) as usize;
+            if !(1..=256).contains(&sample_rate)
+                || primary >= n
+                || samples != n.div_ceil(sample_rate)
+                || map.len() != 64 + 60 * blocks + 4 * samples
+            {
+                return Err(invalid());
+            }
+            Some(Compact {
+                sample_rate,
+                primary,
+                samples,
+            })
+        } else {
+            if map.len() != 40 + 4 * n + 48 * blocks {
+                return Err(invalid());
+            }
+            None
+        };
+        Ok((n, cumulative, compact))
+    }
+}
+
+#[cfg(test)]
+mod compact_tests {
+    use super::*;
+    #[test]
+    fn sampled_suffix_positions_match_every_full_suffix_including_separators() {
+        let mut random = 7u64;
+        for n in [0, 1, 15, 16, 17, 63, 64, 65, 127, 128, 129, 1024] {
+            let text: Vec<_> = (0..n)
+                .map(|_| {
+                    random = random.wrapping_mul(6364136223846793005).wrapping_add(1);
+                    b"ACGTNN"[(random >> 32) as usize % 6]
+                })
+                .collect();
+            let full = Index::build(&text);
+            for rate in [1, 2, 8, 16, 32, 256] {
+                let mut bytes = Vec::new();
+                full.write_compact(&mut bytes, rate).unwrap();
+                let compact = Index::read(&bytes[..]).unwrap();
+                for row in 0..full.sa_len() {
+                    assert_eq!(
+                        compact.locate(row),
+                        full.locate(row),
+                        "n={n} rate={rate} row={row}"
+                    );
+                }
+                for end in 0..=full.sa_len() {
+                    for c in 0..4 {
+                        assert_eq!(compact.rank(c, end as u32), full.rank(c, end as u32));
+                    }
+                }
+                assert!(Index::read(&bytes[..bytes.len() - 1]).is_err());
+            }
+        }
     }
 }

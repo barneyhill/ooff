@@ -1,0 +1,76 @@
+{
+  "label": "site-annotation-oracle",
+  "threads": 4,
+  "attempts": [
+    {
+      "engine": "discovery",
+      "repetition": 0,
+      "command": [
+        "target/release/oofft",
+        "report",
+        "--queries",
+        "fixtures/queries.jsonl",
+        "--reference",
+        "fixtures/reference.jsonl",
+        "--policy",
+        "other-gene",
+        "--reference-release",
+        "fixture-v1",
+        "--scope",
+        "synthetic",
+        "--biotype-policy",
+        "all-fixture-records",
+        "-k",
+        "3"
+      ],
+      "seconds": 0.00155854198965244,
+      "returncode": 0
+    },
+    {
+      "engine": "viennarna",
+      "repetition": 0,
+      "command": [
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--noconv"
+      ],
+      "seconds": 0.00579542201012373,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "benchmarks/ddg/iterations/20260908T090630.514885-site-annotation-oracle/discovery.stdout",
+        "--queries",
+        "fixtures/queries.jsonl",
+        "--reference",
+        "fixtures/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--batch-size",
+        "7"
+      ],
+      "seconds": 0.01716926699737087,
+      "returncode": 0
+    }
+  ],
+  "complete": true,
+  "sha256": {
+    "fixtures/queries.jsonl": "477def30ea1665e5495cbda5f0e1bc736ba0ba2dfbf3b489fe6ff12853642bad",
+    "fixtures/reference.jsonl": "fee51bc9959b38da6b0bb58a5b0cbfa004986bf00e53cdebc2fcf401f047f617",
+    "target/release/oofft-ddg": "329aebe235b3cee2996cef1eae55af580243acac6af93e1dea0e881fc00b4463",
+    "/home/barneyh/.local/bin/RNAduplex": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c"
+  },
+  "all_fields_match": true,
+  "annotated_sites": 10,
+  "target_lengths": [
+    17,
+    18,
+    19,
+    20
+  ]
+}

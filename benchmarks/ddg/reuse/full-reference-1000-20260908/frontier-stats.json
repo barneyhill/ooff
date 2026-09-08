@@ -1,0 +1,1 @@
+{"frontier_columns_with_16_lane_padding":17214096,"ideal_state_reduction":3.3738709801411986,"ideal_state_reduction_with_padding":3.3398578699688906,"independent_columns":57492634,"pairs":2931542,"scope":"Work-count model only; assumes separate lookahead handling and shared ancestor DP. No energy kernel implemented or runtime speedup claimed.","trie_nodes":17040555}

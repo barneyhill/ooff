@@ -1,25 +1,58 @@
 [package]
-name = "ooff"
-default-run = "ooff"
+name = "oofft"
+default-run = "oofft"
+autobins = false
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.94"
 description = "ASO candidate-site discovery with explicit search scope"
-license = "MIT"
+license-file = "LICENSES.md"
 repository = "https://github.com/barneyhill/ooff"
 readme = "README.md"
 keywords = ["bioinformatics", "aso", "alignment", "off-target"]
 categories = ["science", "command-line-utilities"]
-include = ["src/**", "tests/**", "fixtures/**", "benchmarks/engine_driver.rs", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE"]
+include = ["src/**", "tests/**", "fixtures/**", "benchmarks/engine_driver.rs", "benchmarks/ddg/kernel_bench.rs", "benchmarks/ddg/full_reference_reuse.rs", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE", "LICENSES.md"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-sha2 = "0.10"
+sha2 = { version = "0.10", features = ["asm"] }
 libsais = "=0.2.0"
 memmap2 = "=0.9.11"
 rustc-hash = "=2.1.3"
+pulp = { version = "=0.22.3", features = ["x86-v4"], optional = true }
+
+[features]
+default = ["energy-batch"]
+# Retained experiment; scalar reduction currently wins on the diverse Pi workload.
+energy-neon = []
+energy-prune = []
+energy-batch = ["dep:pulp"]
 
 [profile.release]
 debug = 1
+
+[[bin]]
+name = "oofft"
+path = "src/main.rs"
+
+[[bin]]
+name = "oofft-index"
+path = "src/bin/ooff-index.rs"
+
+[[bin]]
+name = "oofft-ddg"
+path = "src/bin/ooff-ddg.rs"
+
+[[bin]]
+name = "oofft-bench"
+path = "src/bin/ooff-bench.rs"
+
+[[example]]
+name = "energy-bench"
+path = "benchmarks/ddg/kernel_bench.rs"
+
+[[example]]
+name = "energy-reuse-census"
+path = "benchmarks/ddg/full_reference_reuse.rs"

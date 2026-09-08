@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/home/barneyh/.local/bin/RNAduplex",
+    "--noconv"
+  ],
+  "vienna_version": "2.7.0",
+  "cases": 1825,
+  "binary_sha256": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c",
+  "fixture_sha256": "de03dfbbd6a6791f8c45e5637d9acc0d6bfacd864883a7b8c6e11b89009ed3a9"
+}

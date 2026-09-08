@@ -21,3 +21,10 @@ __pycache__/
 /benchmarks/iterations/**/output.jsonl
 
 /dist/
+
+# Full summary outputs are retained locally; metadata and timings are versioned.
+/benchmarks/summary/iterations/**/stdout.jsonl
+
+# Retain ddG raw outputs locally; publish iteration metadata, ledgers and hashes.
+/benchmarks/ddg/iterations/**/*.stdout
+/benchmarks/ddg/iterations/**/report.jsonl

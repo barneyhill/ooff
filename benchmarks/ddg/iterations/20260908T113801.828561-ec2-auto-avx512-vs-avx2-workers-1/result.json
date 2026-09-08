@@ -1,0 +1,111 @@
+{
+  "label": "ec2-auto-avx512-vs-avx2-workers-1",
+  "platform": "ec2-c7i.2xlarge-x86_64",
+  "batch_requested": true,
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.015974054,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 1.43764154,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/avx2-gather/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 1.435788934,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/avx2-gather/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.014456307,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.016869644,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 1.427669667,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "baselines/avx2-gather/energy-bench",
+        "fixtures/real-site-energy.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/real-site-energy.json": "404cc7ac8c3e2e93d9cec0c2ba383a23ab97639f616819d25f1343bd73f11ee0",
+    "target/release/examples/energy-bench": "e257b38b8dd686c4a6c22b7fbf6e87c947467135fc98bfa82729c28deb982b7a",
+    "baselines/avx2-gather/energy-bench": "b4b8d2a354821efc4595d932999b941821d282cdd90be39e31fddf501b40edb9"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.015974054,
+    "native-baseline": 1.435788934
+  },
+  "speedup_vs_native_baseline": 1.4132141744635538
+}

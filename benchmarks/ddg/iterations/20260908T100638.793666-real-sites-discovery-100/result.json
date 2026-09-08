@@ -1,0 +1,573 @@
+{
+  "label": "20260908T100638.793666-real-sites-discovery-100",
+  "threads": 1,
+  "complete": true,
+  "workload": "Actual distinct SCN2A ASOs against real SCN1A pre-mRNA, exhaustive k3 interval discovery; no energy timing",
+  "queries": 100,
+  "input_directory": "data/ddg-real-sites/20260908T100638.793666-scn2a100-scn1a",
+  "attempts": [
+    {
+      "engine": "discovery",
+      "repetition": 0,
+      "seconds": 0.07243805899634026,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft",
+        "report",
+        "--queries",
+        "data/ddg-real-sites/20260908T100638.793666-scn2a100-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T100638.793666-scn2a100-scn1a/reference.jsonl",
+        "--policy",
+        "other-gene",
+        "--reference-release",
+        "local-oligoai-canonical-premrna",
+        "--scope",
+        "single SCN1A RNA; RNA-coordinate benchmark metadata",
+        "--biotype-policy",
+        "SCN1A only",
+        "-k",
+        "3"
+      ],
+      "measurement_kind": "site_discovery"
+    }
+  ],
+  "selection": [
+    {
+      "query_id": "q0",
+      "on_target_start": 0,
+      "target": "AACAGACATTGGGTACCATC"
+    },
+    {
+      "query_id": "q1",
+      "on_target_start": 1548,
+      "target": "AGCAATTGTAATTGAGAGAT"
+    },
+    {
+      "query_id": "q2",
+      "on_target_start": 3086,
+      "target": "GGTCATAAATTAATTTTAAG"
+    },
+    {
+      "query_id": "q3",
+      "on_target_start": 4620,
+      "target": "GAGTTCTAGACAAGCCTGGC"
+    },
+    {
+      "query_id": "q4",
+      "on_target_start": 6154,
+      "target": "GCAATTGTCAGGCAGCTAGG"
+    },
+    {
+      "query_id": "q5",
+      "on_target_start": 7688,
+      "target": "CTAAAATCATTCCTGCATCT"
+    },
+    {
+      "query_id": "q6",
+      "on_target_start": 9221,
+      "target": "TCTTTCCTTTCTTTTATTTC"
+    },
+    {
+      "query_id": "q7",
+      "on_target_start": 10755,
+      "target": "AGCTACCCAGTATCTACATA"
+    },
+    {
+      "query_id": "q8",
+      "on_target_start": 12300,
+      "target": "CTTAACCCTAATATACCTTT"
+    },
+    {
+      "query_id": "q9",
+      "on_target_start": 13834,
+      "target": "ACTTCTATCTCCTTTCTAGA"
+    },
+    {
+      "query_id": "q10",
+      "on_target_start": 15368,
+      "target": "TCTTCTACAATTAACAGCTT"
+    },
+    {
+      "query_id": "q11",
+      "on_target_start": 16955,
+      "target": "GATTTCATTTGTTCTTGAGA"
+    },
+    {
+      "query_id": "q12",
+      "on_target_start": 18488,
+      "target": "GTCCCATGTATGTCTTCTTG"
+    },
+    {
+      "query_id": "q13",
+      "on_target_start": 20027,
+      "target": "TTCAAATTGGAGTCAATCTT"
+    },
+    {
+      "query_id": "q14",
+      "on_target_start": 21575,
+      "target": "AGGTATGTGTGGTATTTGAA"
+    },
+    {
+      "query_id": "q15",
+      "on_target_start": 23109,
+      "target": "TCAAAATTGCTGAGAAAGCC"
+    },
+    {
+      "query_id": "q16",
+      "on_target_start": 24648,
+      "target": "CAGGTATACAATTATGTCCT"
+    },
+    {
+      "query_id": "q17",
+      "on_target_start": 26208,
+      "target": "TCAACCTCCATAGTAAAACT"
+    },
+    {
+      "query_id": "q18",
+      "on_target_start": 27742,
+      "target": "TCATATGGAATCACAAGTTA"
+    },
+    {
+      "query_id": "q19",
+      "on_target_start": 29296,
+      "target": "GGAATCAACCTAAGTCTTAT"
+    },
+    {
+      "query_id": "q20",
+      "on_target_start": 30830,
+      "target": "TCTCTCATACTGAAAATGTG"
+    },
+    {
+      "query_id": "q21",
+      "on_target_start": 32364,
+      "target": "ACCAGTTCAAAAACTTCACA"
+    },
+    {
+      "query_id": "q22",
+      "on_target_start": 33922,
+      "target": "TGATTTTAGTTTAATCCTTA"
+    },
+    {
+      "query_id": "q23",
+      "on_target_start": 35455,
+      "target": "ATCATCCTCCTTCTGTTCTC"
+    },
+    {
+      "query_id": "q24",
+      "on_target_start": 36997,
+      "target": "TGTCTGGACACATATTTTGA"
+    },
+    {
+      "query_id": "q25",
+      "on_target_start": 38535,
+      "target": "ATCTTACTTGAAGGCAATTA"
+    },
+    {
+      "query_id": "q26",
+      "on_target_start": 40069,
+      "target": "AACTTTTACTTGGACTTAAA"
+    },
+    {
+      "query_id": "q27",
+      "on_target_start": 41604,
+      "target": "TCAAGACCAGCCTGGCCAAC"
+    },
+    {
+      "query_id": "q28",
+      "on_target_start": 43137,
+      "target": "AATGGCCCCTTTTTCCTGCT"
+    },
+    {
+      "query_id": "q29",
+      "on_target_start": 44671,
+      "target": "CTCTCTCTCTCATACACACA"
+    },
+    {
+      "query_id": "q30",
+      "on_target_start": 46221,
+      "target": "TCAAGAAACTGAAGTGGCTC"
+    },
+    {
+      "query_id": "q31",
+      "on_target_start": 47755,
+      "target": "GAGAGGTCCAAGTGCCCTGT"
+    },
+    {
+      "query_id": "q32",
+      "on_target_start": 49289,
+      "target": "TCAGGTTAAAAAGAGAAGGA"
+    },
+    {
+      "query_id": "q33",
+      "on_target_start": 50827,
+      "target": "ACCTATTTGAAGTTCTATAA"
+    },
+    {
+      "query_id": "q34",
+      "on_target_start": 52520,
+      "target": "TGAGATGCAATGAGTTTTTC"
+    },
+    {
+      "query_id": "q35",
+      "on_target_start": 54054,
+      "target": "ATACTGGATGTTACTGTACT"
+    },
+    {
+      "query_id": "q36",
+      "on_target_start": 55597,
+      "target": "TAATTTAAGAAGCAATTACA"
+    },
+    {
+      "query_id": "q37",
+      "on_target_start": 57131,
+      "target": "ATTCCTTTATACCATACTTT"
+    },
+    {
+      "query_id": "q38",
+      "on_target_start": 58665,
+      "target": "AGGAGGAGTGATATGCTTCA"
+    },
+    {
+      "query_id": "q39",
+      "on_target_start": 60198,
+      "target": "CAATTGATCAAATAGCCCAG"
+    },
+    {
+      "query_id": "q40",
+      "on_target_start": 61732,
+      "target": "GGGGCAACTTGAGCAAACCA"
+    },
+    {
+      "query_id": "q41",
+      "on_target_start": 63266,
+      "target": "AAATTGCTGAAGCCCACATG"
+    },
+    {
+      "query_id": "q42",
+      "on_target_start": 64886,
+      "target": "ACCCGGGCTGGTCTCAAACT"
+    },
+    {
+      "query_id": "q43",
+      "on_target_start": 66420,
+      "target": "GATAAGGCTGTAGTAGTTAA"
+    },
+    {
+      "query_id": "q44",
+      "on_target_start": 67984,
+      "target": "AAAGGACCTTATTATAAGAC"
+    },
+    {
+      "query_id": "q45",
+      "on_target_start": 69517,
+      "target": "CCAGTTTGGAGAAATTAGGA"
+    },
+    {
+      "query_id": "q46",
+      "on_target_start": 71051,
+      "target": "ATGGCCTCCAGATAATTCTT"
+    },
+    {
+      "query_id": "q47",
+      "on_target_start": 72587,
+      "target": "TTCTATTCCTTTCTCTTTAA"
+    },
+    {
+      "query_id": "q48",
+      "on_target_start": 74121,
+      "target": "AGACATTGGCATATATTAAA"
+    },
+    {
+      "query_id": "q49",
+      "on_target_start": 75655,
+      "target": "TTTCTTTATTGTGTGAAAAT"
+    },
+    {
+      "query_id": "q50",
+      "on_target_start": 77188,
+      "target": "CACTGTGTTGTTATTTGCAA"
+    },
+    {
+      "query_id": "q51",
+      "on_target_start": 78722,
+      "target": "TGTGATGACATGATTGTGTT"
+    },
+    {
+      "query_id": "q52",
+      "on_target_start": 80276,
+      "target": "CAAGCAAAAGAAGTTTCTCC"
+    },
+    {
+      "query_id": "q53",
+      "on_target_start": 81810,
+      "target": "AGTTCCTCATCTCCATGAGA"
+    },
+    {
+      "query_id": "q54",
+      "on_target_start": 83376,
+      "target": "GTTAACTGAAATTAACTTCT"
+    },
+    {
+      "query_id": "q55",
+      "on_target_start": 84910,
+      "target": "CTTATGATTTTTTTTTCACA"
+    },
+    {
+      "query_id": "q56",
+      "on_target_start": 86443,
+      "target": "GTATGCATTAAAATAATTCA"
+    },
+    {
+      "query_id": "q57",
+      "on_target_start": 87977,
+      "target": "AATTAGGGTTTGATATTAAC"
+    },
+    {
+      "query_id": "q58",
+      "on_target_start": 89511,
+      "target": "TGTCAAGGTTGGTTGTTAGC"
+    },
+    {
+      "query_id": "q59",
+      "on_target_start": 91053,
+      "target": "GTCTTCTCTCCCAATGTTTG"
+    },
+    {
+      "query_id": "q60",
+      "on_target_start": 92587,
+      "target": "ATTATTATTTTTTGTTTTTG"
+    },
+    {
+      "query_id": "q61",
+      "on_target_start": 94120,
+      "target": "CTTGCTCTTAAATAACCAAT"
+    },
+    {
+      "query_id": "q62",
+      "on_target_start": 95656,
+      "target": "CACTCAAAGCTATAAAATAT"
+    },
+    {
+      "query_id": "q63",
+      "on_target_start": 97190,
+      "target": "ACTAATGGGTATGCAGCTTC"
+    },
+    {
+      "query_id": "q64",
+      "on_target_start": 98724,
+      "target": "TATAAGTGAGAACATGCAGT"
+    },
+    {
+      "query_id": "q65",
+      "on_target_start": 100323,
+      "target": "AAATGTATCTATCAATTCAA"
+    },
+    {
+      "query_id": "q66",
+      "on_target_start": 101967,
+      "target": "CCGCGCCCGGCCCACAGTGG"
+    },
+    {
+      "query_id": "q67",
+      "on_target_start": 103500,
+      "target": "TGTACAAAGGAGAAGGATAA"
+    },
+    {
+      "query_id": "q68",
+      "on_target_start": 105034,
+      "target": "ATAATAAAATAAAATAAAAA"
+    },
+    {
+      "query_id": "q69",
+      "on_target_start": 106568,
+      "target": "GGATATGAAATTCTGGGTTG"
+    },
+    {
+      "query_id": "q70",
+      "on_target_start": 108103,
+      "target": "ACCACCATGGCAAGTGTATA"
+    },
+    {
+      "query_id": "q71",
+      "on_target_start": 109637,
+      "target": "CAGAAAAGTATAAGATCACA"
+    },
+    {
+      "query_id": "q72",
+      "on_target_start": 111258,
+      "target": "CCGTTTTAGCCGGGATGGTC"
+    },
+    {
+      "query_id": "q73",
+      "on_target_start": 112835,
+      "target": "AATTCCAGAGGCAAAGGAGC"
+    },
+    {
+      "query_id": "q74",
+      "on_target_start": 114371,
+      "target": "AAACACCTACCACCAGGCCC"
+    },
+    {
+      "query_id": "q75",
+      "on_target_start": 115905,
+      "target": "AATGTAAAATTCTGAATTTA"
+    },
+    {
+      "query_id": "q76",
+      "on_target_start": 117468,
+      "target": "TTAAGTTAGCTCTGAGTTAA"
+    },
+    {
+      "query_id": "q77",
+      "on_target_start": 119002,
+      "target": "GCAGCATGGGTATAATATTT"
+    },
+    {
+      "query_id": "q78",
+      "on_target_start": 120535,
+      "target": "GACTTTCTGGATAATATAGT"
+    },
+    {
+      "query_id": "q79",
+      "on_target_start": 122069,
+      "target": "GATCTGGAATCCAACCACTG"
+    },
+    {
+      "query_id": "q80",
+      "on_target_start": 123604,
+      "target": "TTGGCAGCAGGAGTGATAAT"
+    },
+    {
+      "query_id": "q81",
+      "on_target_start": 125138,
+      "target": "AATGCAAAATATCAGCTCTT"
+    },
+    {
+      "query_id": "q82",
+      "on_target_start": 126675,
+      "target": "CTTATATATCCTTCAAGATC"
+    },
+    {
+      "query_id": "q83",
+      "on_target_start": 128237,
+      "target": "AGACTGGTTATGTAGACATG"
+    },
+    {
+      "query_id": "q84",
+      "on_target_start": 129789,
+      "target": "ACGGGCGTGAACCACCGCAC"
+    },
+    {
+      "query_id": "q85",
+      "on_target_start": 131323,
+      "target": "GCAAGAGACACCACTTGATT"
+    },
+    {
+      "query_id": "q86",
+      "on_target_start": 132857,
+      "target": "TTCACTTTCAAATTGCATGT"
+    },
+    {
+      "query_id": "q87",
+      "on_target_start": 134391,
+      "target": "TGGAAATCTAACGCTCATTT"
+    },
+    {
+      "query_id": "q88",
+      "on_target_start": 135925,
+      "target": "GTCCATCAACAGATATGTGG"
+    },
+    {
+      "query_id": "q89",
+      "on_target_start": 137473,
+      "target": "CCTGGACACAATCCACTTAC"
+    },
+    {
+      "query_id": "q90",
+      "on_target_start": 139007,
+      "target": "ATTCCAGTTATGAGATTTTT"
+    },
+    {
+      "query_id": "q91",
+      "on_target_start": 140541,
+      "target": "TCCCTACTGAATAGGATAAA"
+    },
+    {
+      "query_id": "q92",
+      "on_target_start": 142075,
+      "target": "TAATAACATCAAAAATAAAA"
+    },
+    {
+      "query_id": "q93",
+      "on_target_start": 143643,
+      "target": "ACTAGTAAAATCCATTTATT"
+    },
+    {
+      "query_id": "q94",
+      "on_target_start": 145176,
+      "target": "ATACTCTAGGAGCCATATCT"
+    },
+    {
+      "query_id": "q95",
+      "on_target_start": 146710,
+      "target": "TTCCATTGCATTTGACCCTC"
+    },
+    {
+      "query_id": "q96",
+      "on_target_start": 148251,
+      "target": "TGTTTATGTATAAGATATTA"
+    },
+    {
+      "query_id": "q97",
+      "on_target_start": 149803,
+      "target": "AGTTTGATCCCGATGCGACC"
+    },
+    {
+      "query_id": "q98",
+      "on_target_start": 151337,
+      "target": "ATAAAAATATCCTATCAGTC"
+    },
+    {
+      "query_id": "q99",
+      "on_target_start": 152871,
+      "target": "TAATAAAAAATTGACTAACA"
+    }
+  ],
+  "sha256": {
+    "data/ddg-inputs/SCN2A.fa": "41488fa7d4122584865f7bd1764402ad6f174ba5be259b54961ea10ccd982e49",
+    "data/ddg-inputs/SCN1A.fa": "70b4a4ecddce8e0755c052f492559f6689492f45b79821d273f000b7e8c9e81b",
+    "data/ddg-real-sites/20260908T100638.793666-scn2a100-scn1a/queries.jsonl": "ab4acb33309d3cef047b20bf1e1d52c261ff7c022c61478cb4e7b185023d9c39",
+    "data/ddg-real-sites/20260908T100638.793666-scn2a100-scn1a/reference.jsonl": "fcd09d7a714af0b48653e9acaaac9c8c8627438101f05552c2673536831942a7",
+    "target/release/oofft": "a2fe84d893d156dab3fa570a54d1593ec583473b2d0bb7d4fd14b545b3341c62"
+  },
+  "all_fields_match": false,
+  "reported_sites": 175,
+  "distinct_energy_pairs": 143,
+  "sites_per_query": {
+    "q3": 14,
+    "q11": 7,
+    "q13": 5,
+    "q27": 68,
+    "q36": 1,
+    "q50": 1,
+    "q51": 1,
+    "q55": 4,
+    "q64": 1,
+    "q70": 6,
+    "q72": 6,
+    "q75": 1,
+    "q81": 1,
+    "q84": 2,
+    "q92": 1,
+    "q29": 35,
+    "q42": 3,
+    "q54": 1,
+    "q83": 1,
+    "q94": 1,
+    "q60": 1,
+    "q68": 2,
+    "q97": 12
+  },
+  "note": "Discovery completed; this iteration does not establish energy equality"
+}

@@ -1,0 +1,105 @@
+{
+  "label": "ec2-avx512-vienna-full-reference-all-unique",
+  "platform": "EC2 c7i.2xlarge Xeon 8488C 4 cores 8 threads",
+  "batch_requested": true,
+  "threads": 8,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.9207005700000002,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 0,
+      "seconds": 64.018351497,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.tsv",
+        "1",
+        "8"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 1,
+      "seconds": 63.975902893,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.tsv",
+        "1",
+        "8"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.927657736,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.92387883,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 2,
+      "seconds": 63.946095882,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.tsv",
+        "1",
+        "8"
+      ]
+    }
+  ],
+  "sha256": {
+    "data/reuse/full-reference-1000-20260908/oracle-all/cases.json": "73025f67c51b2212b5e8b70d10cce9ac696ae88a9f832e8703871790c05503a2",
+    "target/release/examples/energy-bench": "6b6da09ea53e5d5d544756470976dbeff850bc6ee8fb2dfa9561f3f0dd4053fd",
+    "benchmarks/ddg/vienna-kernel": "72f3b7df46848756c13dbe25772829dca762870b1353dabe5effc25e362d9001"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.92387883,
+    "vienna-library": 63.975902893
+  },
+  "speedup_vs_native_baseline": 33.25360303122624
+}

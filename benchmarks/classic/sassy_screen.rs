@@ -82,7 +82,7 @@ fn screen(
                         continue;
                     }
                     let q = active[hit.pattern_idx];
-                    let verifier = ooff::IntervalDistance::new(&queries[q].1);
+                    let verifier = oofft::IntervalDistance::new(&queries[q].1);
                     for span in 20 - k..=20 + k {
                         if span > finish - a {
                             continue;

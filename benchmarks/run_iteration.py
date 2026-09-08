@@ -30,7 +30,7 @@ def main():
     ap.add_argument("-k",type=int,default=3)
     ap.add_argument("--repetitions",type=int,default=3)
     ap.add_argument("--timeout",type=int,default=300)
-    ap.add_argument("--native",default="target/release/ooff-bench")
+    ap.add_argument("--native",default="target/release/oofft-bench")
     ap.add_argument("--sassy",default="/home/ubuntu/comparators/sassy-0.2.6/target/release/sassy-comparator")
     ap.add_argument("--index",default=None)
     ap.add_argument("--distance-strata",action="store_true")

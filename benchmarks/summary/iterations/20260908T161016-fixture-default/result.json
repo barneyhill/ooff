@@ -1,0 +1,28 @@
+{
+  "command": [
+    "target/release/oofft",
+    "--queries",
+    "fixtures/queries.jsonl",
+    "--reference",
+    "fixtures/reference.jsonl",
+    "--policy",
+    "other-gene",
+    "--reference-release",
+    "fixture-v1",
+    "--scope",
+    "synthetic",
+    "--biotype-policy",
+    "all-fixture-records"
+  ],
+  "platform": "Linux-6.12.25+rpt-rpi-2712-aarch64-with-glibc2.36",
+  "timeout": 1800,
+  "complete": false,
+  "measurement": "Whole non-indexed CLI fixture process; correctness smoke test, not human-reference performance",
+  "sha256": {
+    "target/release/oofft": "6bf8a90d2cb42f1abedab0e3425318e658dcc63df206482b7621daa2c55d66fc",
+    "/home/barneyh/ooff/benchmarks/summary/run.py": "a00114a7bb5da92223ff7590e724700af325e839bf9eb8f92e0fa5a700c5849c",
+    "fixtures/queries.jsonl": "477def30ea1665e5495cbda5f0e1bc736ba0ba2dfbf3b489fe6ff12853642bad"
+  },
+  "error": "[Errno 2] No such file or directory: '/usr/bin/time'",
+  "seconds": 0.0005171490192878991
+}

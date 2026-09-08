@@ -1,0 +1,70 @@
+{
+  "label": "20260908-direct-interval-full-chunk-validation",
+  "threads": 1,
+  "platform": "EC2 c7i.2xlarge",
+  "complete": true,
+  "all_fields_match": true,
+  "sites": 527956,
+  "workload": "Exact full-output regression check for direct FASTA interval reads; isolated validation, not matched speedup",
+  "attempts": [
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "seconds": 28.294506066000167,
+      "returncode": 0,
+      "measurement_kind": "interval_read_validation"
+    }
+  ],
+  "command": [
+    "/home/ubuntu/ddg-simd-20260908/target/release/oofft-ddg",
+    "--queries",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0003/queries.jsonl",
+    "--reference",
+    "/home/ubuntu/ooff/data/reference-v1/reference.fa",
+    "--sites",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-direct-interval-full-chunk-validation/report.jsonl",
+    "--energy-engine",
+    "rust",
+    "--threads",
+    "1",
+    "--timeout",
+    "600",
+    "--work-dir",
+    "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-direct-interval-full-chunk-validation/work"
+  ],
+  "output_sha256": "e4fd3f987079d21c1777a4ab3b5e985c10d2732406d4bbd493af21c6d4353336",
+  "binary_sha256": "6613d226dd798ab820f886f2ec132a2bf92c588d1366c2da1387117580969d0b",
+  "manifest": {
+    "annotated_sites": 527956,
+    "batch_size": 1024,
+    "complete": true,
+    "energy_cache": {
+      "capacity_pairs": 4000000,
+      "entries": 367878,
+      "generation_resets": 0,
+      "hits": 37370,
+      "misses": 490842
+    },
+    "energy_implementation": "rust",
+    "profile": {
+      "annotation_batches_seconds": 2.8615213630000036,
+      "duplex_stages_seconds": 1.721793824,
+      "input_seconds": 0.14348039899999993,
+      "native_pairs": 528212,
+      "native_unique_pairs": 367878,
+      "report_parse_seconds": 0.8337261720000002,
+      "serialization_seconds": 0.5260859920000002,
+      "setup_seconds": 23.570943581999998,
+      "spool_seconds": 0.36621123299999997,
+      "stage_times": "cumulative worker seconds; stages overlap across workers",
+      "waves_wall_seconds": 4.643373505999998
+    },
+    "queries_sha256": "2bcbddeb711392a93f03682c7652f4a80c15c143299b7b866459f062a4629049",
+    "reference_sha256": "59d8b76ea1a968b8b9688ca8804c79fdbcca9157163a580b35eed103d4d6ba85",
+    "report_sha256": "83094992ce26cda75ac4eb23653bc3fa3f18259bf2819693b07f311957508c3c",
+    "scope": "site",
+    "seconds": 28.215609649,
+    "threads": 1,
+    "work_dir": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-direct-interval-full-chunk-validation/work"
+  }
+}

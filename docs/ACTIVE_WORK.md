@@ -1,3 +1,781 @@
+## 2026-09-08 17:00 UTC — compact index and OligoAI shipping work
+
+Latest user steering: fix Pi memory or move OligoAI to EC2. Compact sampled-SA16
+format implemented and exact-position/rank equivalence tested, including unknown
+bases, separators, boundaries and mapped CLI summary/screen/report output.
+`oofft-index compact` converts immutable full indexes without rebuilding their SA.
+Forward human index is 2,896,537,944 bytes; EC2 conversion 97.061 seconds.
+Pi 5 four-thread 1,000 evenly spaced SCN2A ASOs: 75.214347 s, 3,147,152 KiB
+peak RSS, all 1,000 query-summary rows identical to EC2 full/compact results.
+No full-gene Pi latency/RSS guarantee. Reference is Ensembl110 gene bodies plus
+transcripts, NOT intergenic whole-chromosome sequence. Every attempt in summary
+ledger; EC2 compact sample concurrent with download is labelled diagnostic.
+
+EC2 instance i-0b5bad3102a5345c5 is currently RUNNING at 13.40.47.242 (old IPs
+stale), auto shutdown 19:43 UTC. Retained scratch mounted /mnt/oofft-walk by UUID.
+New checkout /home/ubuntu/oofft-compact-20260908, binaries
+/home/ubuntu/oofft-compact-target/release, index /home/ubuntu/ooff/data/fm-compact16-v1.
+Local reference/index/cache: data/reference-compact-v1. Download SHA checked.
+`scripts/relocate-index.py` verifies SHA before rebinding a copied reference path.
+
+OligoAI changes STAGED ONLY at /tmp/oligoai-oofft-integration, actual repo
+/home/barneyh/oligoai-v2. Preserve its pre-existing dirty server.ts, results-db.ts,
+public/oligoai/design.js and design.html. Adapter invokes native CLI once, RCs and
+deduplicates targets, excludes intended ENSG IDs, retains bins and completeness,
+rejects failed/truncated output. Database/UI/CSV updated in staging. Bun bundle,
+adapter failure/orientation tests and DB roundtrip tests pass. Live oligoai.service
+is system service, user barneyh, PID759, 110MB RSS; restart must avoid active jobs.
+Async deployment choice pending: keep web app Pi and EC2 counts (recommended),
+all-local compact, or all EC2. No live edits/restart yet. No cloud migration yet.
+
+Publication explicitly authorized. Main workspace .git read-only; commit/push
+via isolated /tmp clone. No gh installed; git SSH works, public GitHub API works.
+Repo barneyhill/ooff main c0c61a97bbb8df642ac2e103f112127690173ee1; no release tags;
+crates.io oofft name unclaimed on check. Release workflow on v* runs CI, publishes
+using existing CRATES_IO_API secret, creates GitHub release/binaries/checksums.
+Do NOT use or expose old pasted token. Cargo package offline succeeded. Cargo
+license-file now LICENSES.md with MIT and full ViennaRNA parameter terms; binary
+archives retain notices too. Full tests/clippy currently finishing; not committed,
+pushed, published or integrated yet. Earlier historical notes below can be stale.
+
+# Native SCN2A summary complete — 2026-09-08 ~16:19 UTC
+
+New defaultsummaryfull114889ASOwalk completed438.953321720s (7m19s),8threads,
+m7i.2xlarge32GiB. Output28,812,047bytes; peakRSS13,789,412KiB includingmmap.
+359,039,833totalASO/genomicsitepairs; bins0..3=[16189,341556,12851473,345830615].
+Indexload.361302350s,search/output437.894896132s. RetainedOS cache,notcoldrun.
+NoDDG,noindividualsiteoutput. All43localtests and x86summary/indexedtests passed.
+Newpipeline is default; --genes optin IDs; --sites/explicitreport optin detailed.
+
+Results retrieved to benchmarks/summary/iterations/20260908T161125-scn2a-genomic-default,
+includingfullstdout(localgitignored),resources,commands,hashes. CSV/MDrefreshed.
+Remote source/binary/results retained in summarycheckout/target as below.
+Oldexternalbenchmark CANCELLED peruser; its215completedpartsretained only as
+historicalartifacts. Do not restart it. EC2 stop requested after retrieval;
+check finalstate if needed. Volumes retained, including /mnt/oofft-walk scratch.
+Currentdocs docs/SUMMARY.md; no sourcecommit/push performed.
+
+# Native summary mode — 2026-09-08 16:11 UTC
+
+User explicitly cancelled the obsolete external full-report/ddG benchmark.
+Stopped dispatcher1333 and descendants on18.175.151.21, preserving215completed
+results. Do NOT resume that wrapper or its deferred verification. User no longer
+wants ddG for the OligoAI default. Distinct genomic sites explicitly confirmed.
+
+New CLI defaults to summary; --genes adds IDs, --sites/explicitreport preserves
+site reports, --count-unit record-interval provides non-deduplicated counts.
+Counts use edit-distance bins0..3, higher-than-k binsnull; unknownbasesincomplete.
+Default genomic key contig/strand/orderedblocks (adjacentcoalesced), minimumcost
+acrossrecords. Native fixedworkerpool sharedindex, bounded2*threadsqueues with
+ordered output; one query dedup state perworker, no perhitserialization/traceback.
+No newddgflag.43localtests inclliveViennapassed; strictclippy passed.
+
+EC2 summarysource /home/ubuntu/oofft-summary-20260908; separate target
+/home/ubuntu/oofft-summary-target. Sourcearchive /tmp/oofft-summary-source.tar.gz
+(local), /home/ubuntu/oofft-summary-source.tar.gz(remote), SHA256
+8fc266c29939c8d5cd4539b4c40765c2f915c77a95fecf2da25699739a56ee80.
+Automaticreview initially rejected sourcetransfer; AWS ownership/tag/IPcheck
+confirmed existing Project=ooff worker; review accepted scoped retry. No blocker.
+
+Current exec session6375 runs remote summary/indexedCLItests, then full114889ASO
+single native defaultsummary with8threads, noDDG/nohitdump. Driver
+benchmarks/summary/run.py records rawoutput/resources/result/Markdown; timeout1800.
+Native benchmark results at remotecheckout/benchmarks/summary/iterations/.
+Need fetchresults and finalSCN2Atime/outputsize, update docs, stopworker when done.
+Existing auto-stop17:47UTC remains. Avoid compiling concurrently with timedsearch.
+Local runner gained fallback when/usr/bin/timeabsent; firstfixtureattemptfailed
+and retained, correctedfixturepassed. Remoteoriginalrunner/usr/bin/timeavailable.
+
+# Pulp migration — 2026-09-08 15:50 UTC
+
+User requested pulp. Default energy-batch now enables pinned pulp 0.22.3,
+stable Rust 1.94, x86-v4 feature. One generic recurrence in src/energy/portable.rs
+replaces the AVX-only macro/intrinsic wrappers. NEON4/V3-8/V4-16 automatic dispatch,
+scalar tails/fallback. Experimental shared-prefix/min-plus retained off by default.
+Global cache and Watt sign unchanged. This does NOT yet implement an integrated
+streaming discovery+ddG CLI; that preceding architectural request remains separate.
+
+Pi: 3 alternating matched runs: real unique 20,543 pairs (3 passes) median
+1.244699429s vs previous scalar batch 2.643162365s =2.123x. Diverse 1,825 pairs
+(10 passes) 1.004052257s vs1.151240257s =1.147x. All energies checked.
+See benchmarks/ddg/PULP.md and ledger; timed binaries retained
+in data/ddg-pulp/20260908/. No x86 speedup claim: portable gather is currently
+per-lane reads (pulp lacks generic gather). Prior intrinsic x86 timings are historical.
+
+Validation: generic ARM release all42tests inclliveVienna2.7 passed; no-default
+energytests passed; strictall-targetclippypass; energy module genericx86cross-check
+passed via /tmp/oofft-pulp-x86-check (no x86 execution). CI adds scalarfallback
+coverage onexistingarchitecturematrix. No remote binary/source overwritten.
+Last read-only EC2 check15:42UTC: originalfullwalkPID1333stillrunning,153/225chunks,
+~54minuteselapsed. Its binaries unchanged and auto-stop17:47UTC remains scheduled.
+Do not attribute wrapper fullwalk timing to the new pulp backend.
+
+# Live monitor checkpoint — full walk continues unchanged
+
+Current fullrun PythonPID1333, worker18.175.151.21 /i-0b5bad3102a5345c5,
+m7i.2xlarge32GiB8hardwarethreads. Started~14:48UTC,225chunks*512queries
+(lastchunk201),114889total. Latest~79chunks/40448ASOs/146937674intervals.
+DO NOTrestart/modifycurrentbenchmark. AllcompletedchunkJSONLarchivesretained.
+Output /mnt/oofft-walk/20260908-full-scn2a-paired-direct onnew200GiBvolume
+vol-089b5f5f1f8de6a96. Rootremainsvol-0138903fbd36c52bf. Auto-stop17:47UTC.
+Timedrun7200sbudget, firstOS-cachewarmupincluded, indexbuildandEC2bootexcluded.
+
+Local read-only monitor RUNNING exec_command session50905:
+python3 benchmarks/ddg/watch_full_walk.py; poll withwrite_stdin. Every40sSSH
+mirrors result.json anditerations.md to localbenchmarks/ddg/iterations/
+20260908-full-scn2a-paired-direct thenrefreshesITERATIONS.md/iterations.csv.
+WatcherendsafterfullruncompleteANDViennasampleverificationcomplete.
+Postverificationremote oofft-walk-verify-queue.sh waitsPID1333,thenruns
+verify_walk_samples.py overfirst16distinctpairs/first4096linesofeverychunk.
+ExplicitlySAMPLEverification,noteveryhit. Logfullwalk-verify.log. Helperitself
+passed48sites49oraclepairs on3chunkfixture. Needatendfetchoraclemetadata/raw
+smallinputs+outputs, retainbinaries/source/hardwareprovenance, updateFULL_WALK.md
+withactualtotal+stageaggregate+outputsize, thenstopEC2worker(retainvolumes).
+
+Currentbenchcodefixed: directsingle-lineFASTAintervalreads;15testsallpassARM/x86
+inclliveVienna;527956real-siteannotationbytesexactlyequaltooldbackend.
+Do notconfusethe28.2945sisolatedvalidationwithmatchedspeedup;23.57swasreference
+setup,4.64sprocessing. Globalcachedefault4millionperinvocation,WattddGsign.
+No furtherproductioneditsduringtimedrun. Sourcebaselineandinterruptedoldruns
+retained. Partialforwardchunkedbaseline7completedchunks;notfullresult.
+
+# Full-walk rerun — 2026-09-08 14:48 UTC
+
+Worker i-0b5bad3102a5345c5 NOW m7i.2xlarge,32GiB/8logical4physicalXeon8488C;
+IP18.175.151.21. Rootvolume unchanged. NEW outputvolume
+vol-089b5f5f1f8de6a96,200GiB gp3/6000IOPS/500MiB/s mounted/mnt/oofft-walk;
+UUIDca62a152-894f-40c7-b532-1542e1c18c7b (notfstab; remountafterreboot).
+Mainrun output /mnt/oofft-walk/20260908-full-scn2a-paired-direct;
+log /home/ubuntu/ddg-simd-20260908/fullwalk-paired-direct.log.
+512querychunks,225chunks,8worker slots,pairedforward/reverseindexes,7200sbudget.
+Auto-shutdown17:47UTC. Keepallrawarchivesevidence; stopworkerafterwork.
+
+NEW production improvement: single-line FASTA intervaldirectreads instead of
+whole RNA-record loading/normalization for eachbatch. WrappedFASTA/JSONL and
+wholetranscript fallback unchanged. All15CLItests inclliveVienna passARMandEC2;
+clippypass; full527,956sitechunk outputSHAbyte-identicaltopriorimplementation.
+Validation run28.294506sisolated, NOTmatchedspeedup. Artifactremote/localmetadata
+benchmarks/ddg/iterations/20260908-direct-interval-full-chunk-validation.
+Source sites.rs/testddg_cli.rsupdatedlocal+remote. Baselinebinary retainedremote
+baselines/pre-direct-interval/oofft-ddg. Priorchunkedfullrunstoppedafter7complete
+chunks; lastoriginalnativechunk6allowedfinish; newdiscoveryjobsstopped, dispatcher
+killedafterfreeze toavoidraces. Rootresult.jsonincompletewithreason. Archiveevery
+completedchunk preserved. Do not claimfullwalkcompleteduntilcurrentrunfinishes.
+
+# Full-walk live update — 2026-09-08 ~14:32 UTC
+
+Main benchmark NOW walk_chunked.py, PID4037 on18.133.158.117,
+/home/ubuntu/ddg-simd-20260908. Output benchmarks/ddg/iterations/
+20260908-full-scn2a-forward-chunked; log fullwalk-chunked.log.
+114,889 repeat-filtered ASOs,449chunks of256,8worker slots. Eachworker runs
+production report(singlethread), nativeDDG(singlethread/default4mcache/Watt),
+then archives every report+annotatedJSONL to gzip. Raw-byte SHA256 retained;
+only freshly-created disposable uncompressed spools removed AFTERarchive.
+Fullquery cache reuse preserved because distinctASOs eachoccur inonechunk.
+Reference includes repeats. Forward indexonly11GiB tofit16GiBworker.
+
+Priorunmaskedmonolithic run STOPPED/retained:8reportprocs withforward+reverse
+22GiBindexes on16GiBworker,79–83%IOwait, produced~9GBpartialrawreports.
+Reason/status diagnostic.json; result.jsonfailed. Neverlabelasfullruntime.
+Priorinclude-masked196kstress also stopped after~6m38s (nofullresult).
+All14CLItests passedEC2liveVienna currentdefaultcache/Watt. Local198sitefixture
+checks monolithic vschunked fulloutput rows equal plusgzrawhashes.
+Auto-shutdown17:15UTC. Monitorstorage(current~57GBfree); oldoutputs preserved.
+Newrun7200s total budget. No final fullwalkmeasurement yet.
+
+# Active full SCN2A benchmark — 2026-09-08 14:22 UTC
+
+User requested actual full-gene timing; clarified soft-masked design regions.
+Recommended/main pool excludes lowercase-overlapping design windows, reference
+retains repeats. 114,926 eligible positions /114,889 distinct20mers. Including
+all lowercase regions gives197,299positions/196,063distinct20mers, NOT114,889.
+Existing full-sequence stress test live on i-0b5bad3102a5345c5,18.133.158.117,
+PID1280, 8threads, allsites counts/signatures noCSV/noDDG, started~14:16UTC.
+Files remote data/scn2a-full-walk-20260908/discovery.* under ddg-simd-20260908.
+Queue fullwalk-queue.sh waits for1280, builds current source, runs live Vienna
+CLI tests, then full_walk.py to retain full annotated reports for unmasked
+114,889ASOs. Eight report subprocesses (CLI itself singlethread), then merge,
+then one native DDG process with8threads/defaultglobalcache/Watt sign.
+Runner: benchmarks/ddg/full_walk.py local, remote full_walk.py.
+Output remote benchmarks/ddg/iterations/20260908-full-scn2a-unmasked-report-ddg.
+Queue log remote fullwalk-queue.log. Auto-shutdown17:15UTC; extend if needed.
+68GB disk free before run; watch report/spool storage. No old files deleted.
+No end-to-end timing available yet; do not report setup/stress test as full run.
+
+# Runtime estimate correction — 2026-09-08
+
+The earlier “few hours on eight threads” SCN2A estimate is withdrawn as
+insufficiently supported. Inspection of the actual retained result confirms
+`runs.ooff.output.threads = 1` for the 30.476569099-second 1,000-query full-site
+benchmark. It was NOT a measurement using all cores of the larger instance.
+Its command also writes every tuple to CSV. Linear scaling to 114,889 queries
+would give ~58 minutes at that single-worker throughput, not an eight-thread
+runtime; dividing by eight is also unjustified because output locking/I/O and
+repetitive-query skew limit scaling.
+
+Separately, the ~3.19-second 100,000-query README result used eight threads in
+screen mode (one other-gene witness per ASO), not exhaustive site enumeration.
+The ~1.92-second measurement is unique-pair energy computation only for the
+1,000-query pilot. None measures the full SCN2A gene walk with all-site ΔΔG.
+Full end-to-end latency remains unmeasured; do not repeat a confident hours
+estimate or promise seconds based on these different workloads.
+
+# Sign convention update — 2026-09-08
+
+User requested Watt et al. ΔΔG sign. All oofft-ddg paths now calculate
+other - intended; output metadata says dg_other - dg_target. Site and standalone/
+whole-transcript tests updated (positive, negative, zero, unknown), live Vienna
+cache comparisons included. OligoAI verification scripts explicitly negate the
+legacy oracle ΔΔG; raw component energies are unchanged. Old benchmark artifacts
+retain historical sign. run_real_sites.py now defaults both engines to current
+binary so sign/cache changes do not silently mix historical wrappers.
+
+# Latest update — global cache default, 2026-09-08
+
+Global site-energy cache now enabled by default for both engines; configurable
+--energy-cache-pairs (4,000,000 default, 0 disabled). Shared across workers and
+batches within one invocation, exact full normalized pair keys, caches energies
+only. Bounded generations clear on capacity; concurrent misses may duplicate
+work. Whole-transcript path unchanged. See benchmarks/ddg/GLOBAL_CACHE.md.
+14 CLI tests including live Vienna passed; both energy_vienna tests passed;
+targeted clippy passed. No new EC2 timings; worker remains stopped.
+User asks OligoAI SCN2A walk latency: provisional few hours on eight threads for
+full gene-body walk, prebuilt index, not measured; mature transcript is smaller.
+Do not equate 1.92s unique-energy kernel timing with complete user latency.
+
+# Reuse investigation complete — 2026-09-08 13:41 UTC
+
+Userrequestedfurtherinvestigationafter100xdiscussion; no newgoalwascreated.
+Previous10xgoalremainscomplete. See benchmarks/ddg/REUSE_INVESTIGATION.md for
+self-containedfindings,measurements,reproduction,andnextkernelarchitecture.
+
+Full-reference1000ASOpilot:45,113,535intervals ->2,931,542exact ASO/targetpairs
+(15.389xcallreductionpotential),noambiguousintervals. Medianper-ASOreuse1.457x;
+15.4xaggregateheavilyrepeat-driven. FullactualVienna2.7.0oraclecoversall2.93m.
+Matched8worker directlibrarymedians: native1.92387883s, Vienna63.975902893s,
+33.2536xcompute-only; everyenergycheckedineverytimedrun. Nofullreport100xclaim.
+NativeglobalproductioncacheNOTimplemented; currentboundedbatchdedupunchanged.
+
+Newenable_shared_paths scheduler regressed~36% fullcorpus(2.6135s vs1.9253s),
+~19%sample100k; disabledbydefault. Originalsharedprefixfullcorpusroughlytied.
+Exactfrontierworkmodel57,492,634independentcolumns ->17,040,555trienodes,
+17,214,096slotswith16lanepadding(3.3399xstatecountreduction). Notanimplemented
+energykernelorlatencyclaim. Needslookaheadseparationandboundedancestorgathers.
+
+Changes:thisturnCargoexampleenergy-reuse-census (packedexactkeys,census/expand/
+frontier-stats),check_reuse_census.py,actualoracle_pairs.py,experimentalscheduler
+src/energy/batch.rs,bench--paths and--baseline-shared,CSVcasecountfield,
+liveViennapath-modechecks. Defaultproductionkernelretained. ARMandportablex86
+liveoraclepassed; ARM/x86alltargetallfeatureClippypass; censusfixturepasses.
+Noactivebenchmark/buildsessions. Noagents/deletions/commit/push/publication.
+
+Rawfullkey/oracledata retainedworkerdata/reuse/full-reference-1000-20260908;
+smallcensus/provenance/hasheslocalbenchmarks/ddg/reuse/full-reference-1000-20260908.
+Allnewtimedrawstdout/stderr/resultJSONlocalandITERATIONS.md/CSVrefreshed.
+Sourcesnapshotsretained data/ddg-baselines/shared-adjacent.
+Worker i-0b5bad3102a5345c5 (lastIP18.170.32.22) confirmed STOPPED after completion. Oldcheckpointsbelowhistorical.
+
+# New investigation toward larger DDG gains — 2026-09-08 13:23 UTC
+
+User asked whether100xpossible, then explicitly"continue investigating".
+Prior10xgoal remainsCOMPLETE; do notcreateanewgoalwithoutrequest. Noagents.
+Workerresumed i-0b5bad3102a5345c5 NEW IP18.170.32.22, autostop14:56:25UTC.
+Sameisolatedcheckout /home/ubuntu/ddg-simd-20260908,oldfullrefin/home/ubuntu/ooff.
+
+Exactcensus completedfirstrepetitionof45,113,535 fullreference1000ASOtuples:
+2,931,542 unique fullASO/targetpairs,15.389x duplicatefactor,1000distinctASOs,
+noNintervals. Ref288419records/2438901225bases. Per-ASOmedianfactor1.4567;
+10highest-hitASOs54.26%intervals; globalfactorstronglyrepeat-driven.
+Scalarprefixcolumnreuse37,524,536 of57,492,634 (65.27%); 2.879xstate-countfactor,
+notruntimegain. Census32.57s includesFASTAloading/CSVscan/sorting/export.
+Utilitybenchmarks/ddg/full_reference_reuse.rs exampleenergy-reuse-census.
+Exactpackedkeysareu128 little-endian: topbitscanonicalASOid,lower69bits23reversed
+basesat3bits/base (A1,C2,G3,U4,N5,zeroendpadding). UnitfixturechecksduplicateASOs,
+N,variablelengths,prefixreuseandrepetitionboundary. No hash-collisionapproximation.
+Localcensusdata/ddg-reuse/full-reference-1000-20260908; ledgeranalysisrecord
+benchmarks/ddg/iterations/20260908T1300-full-reference-sequence-reuse.
+Remoteallkeys,queries,samples/oracles:data/reuse/full-reference-1000-20260908.
+
+Newlane-preservingprefixscheduler implementedexperimental enable_shared_paths;
+useslongesttargetpaths perASOinSIMDlanes, splitslongpathswithoutpadding.
+Existingenable_shared_prefix remainsoriginaladjacentpackexperiment. Bothdisabled
+bydefault. Nativecoredefaultunchanged. Newpaths is~19%slower on100kunique sample,
+~36%slower onALL2.93m unique pairs (2.6135s vs1.9253s at8threads). Only8.074m
+columns reused(~14%). Originalshared onfullcorpus is tied:1.9263 vs1.9257s.
+Allenergies independentlycheckedagainstactualViennaRNA2.7.0 onall2.93m pairs.
+Oracle-generationwall68.6649s isnotmatchedcompute-onlyspeedcomparison.
+
+Remote session29376 running3matchednative versusdirectViennalibrary measurements
+onall2.93munique pairs,8workers,repetitions1. EachViennarunfullwarmup+timedpass,
+maytake~2minperinvocation; don'trestartonobservationtimeout. NootherremoteCPUjobs.
+Newbenchmarkharnessskipsredundantscalarprechecksforbatchmodes; selectedmodewarmup
+and everytimedenergy stillchecked. Oldexperimentsretainedunderdata/ddg-baselines/
+shared-adjacent andremote baselines/shared-adjacent.
+
+Localnewfrontier-stats subcommand estimatestrueprefix-trie nodes and SIMDpadding;
+notyettransferred/runfull. SeparatinglookaheadfromDP couldreusewholeprefix rather
+thanP-1; frontierSIMDcomputeseachprefixnodeonce, butancestor gathers/memorycost
+areunproven. Currentmodeisaschedulingworkmodel,notanimplementedenergykernel.
+Localbuildsession fromlatesttool needscompletion andcheck_reuse_census.py.
+Beforefinish: getdirectViennaresults,runfrontierstatsafterCPUbenchfinishes,
+syncallnewrecord/provenance/rawkernels,refreshMD/CSV,writefindings. Finalx86/ARM
+ClippyandliveViennatestsneededafterallcurrentedits. Stopworkerwhenfinished.
+
+# Goal completion checkpoint — 2026-09-08
+
+Selected source is validated and measured. Full site annotation target reached:
+100000distinctSCN2AASOs/273825SCN1ApremRNAsites,4workers1.106856s versus
+Vienna11.809776s =10.67x. At8workers1.001300s versus9.758840s =9.75x,
+lowerabsolute native latency. Bothsamecurrentwrapper,3alternatingruns,
+allreportfields equal. Kernel28.14x separate; do notconflateitscope.
+
+Final restored nativebinary hash6bcd3a75298c5e13ea07c662c142a078c454d5972df7afdfbc5092fca73979a3
+matches selectedbenchmarkartifactexactly. Portablex86CLI12+energy3+minpluspinned1
+andactualViennaoracle1passed. ARMCLI12/energy3/minpluspinned1passed.
+x86/ARMall-targetall-featureClippypass. Noactivebuild/benchmarksession.
+Descriptor-copyexperimentdidnotimproveandwasreverted; rawsourceretained.
+Allrecords/profiles syncedlocally; largeannotatedoutputs remainEC2volume.
+README/DDGdocs updated, benchmarkITERATIONS.md/CSV refreshed; explanationsin
+benchmarks/ddg/OPTIMIZATION_NOTES.md; completionevidenceFINAL_VALIDATION.json.
+
+Worker i-0b5bad3102a5345c5 confirmed STOPPED after completion (lastIP3.9.14.79).
+Noagents,deletions,commit,push,publication. Completion audit passed; goal ready to mark complete. Furtherresearchopportunities—fullhumandistinctpaircounting and
+cross-SIMDprefixscheduling—are not claimedcompleted. WholetranscriptstillVienna.
+Oldnotesbelowarehistorical,includingobsoleteIPs/sessionhandlesandgoals.
+
+# End-to-end target reached at four workers — 2026-09-08 12:27 UTC
+
+Native final-before-copy-experiment at4workers:1.106856s vsVienna11.809776s,
+10.66966x,3alternatingruns,100000ASOs/273825sites,allfields equal. Artifact
+remote20260908T122341.403813-real-site-annotation. At8workers:1.001300s vs
+9.758840s,9.74617x (20260908T122228.749370-real-site-annotation).
+The8worker native run is faster in absolute time; do not imply4workers fastest.
+Kernel28.14x stillvalid, wholetranscript remainsVienna. No fullhumanDDGtimeclaim.
+
+Code now parallelises complete bounded annotation waves and overlaps nextinput/
+previousspoolwrites with scoring. Mainprovenancehash overlapsqueryload when
+threads>1. IntendedcachesharedArcMutex withorderedlocking, retainingonceperquery
+semantics; lazyworkercaches, immutableArc referenceindex withindependentfilefds.
+Normalize consumesownedquerystrings andtransformsbasesinplace. All12CLItests
+includingcrossbatchcontrolrows passedx86/ARM. Localenergy/pinnedtests passed.
+
+Finalexperimentusesstd::io::copy withownedduplicateofstdoutfd onUnix toenable
+kernel-assistedcopy; sourceinworktree, local12tests pass. Remote session5446
+running3matched8worker then4worker runs. First8native~1.02s, noimprovement over
+portablebufferedcopy; likelyrevertif4workersdoesnotimprove. Preexperiment sites.rs
+retained data/ddg-baselines/parallel-owned-normalize/sites.rs; ooff-ddg.rs unchanged.
+Needfinalx86genericCLI/Clippycheckafterdecision, syncnewresultjson/stderr andrefresh
+ledger, updateDDGREADMEwithfinalnumbers/reproduction, thenstopworker.
+Activeworker3.9.14.79 i-0b5bad3102a5345c5 autostop14:04:27UTC.
+Rawlargeannotatedoutputs retainedremoteisolatedcheckout; records/profiles synced
+locally via rsync include dirs/result.json/*.stderr. Do notdeleteexperimentdata.
+Goalcompletionauditstillrequired; no goalstatusupdateyet.
+
+# Active end-to-end optimisation — 2026-09-08 12:12 UTC
+
+Previous turn was progress: automaticSIMD28x kernel, regressions retained. Goal
+still active because end-to-end100kASO annotation measured only5.36x: native
+2.251184s versusVienna12.075393s,273825sites,8workers,3runs,allfields match.
+Artifact remote20260908T120440.575550-real-site-annotation.
+
+Resumed same verified project worker i-0b5bad3102a5345c5; NEW IP3.9.14.79.
+Auto-stop now14:04:27UTCSept8. Same isolated checkout and retainedvolumes.
+No agents/deletions/commit/push/publication. Current fullpipelineinputs transferred
+at data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a onworker.
+
+Implemented bounded whole-batch parallelism for site mode, including JSONparse,
+DP andserialization. Each outerworker uses oneinnerCPUthread, totalrequested
+coresunchanged. Wholetranscript retains originalinnerparallelism (oneouterworker).
+Atmostthreads*batch_size rows buffered; updatedCLIhelp. Workerreferencehandles
+openedindependently (File::try_clone wouldshareseekoffset); rangesArcshared.
+Workerdesignmaps lazyclones onlyusedqueries. IntendedenergyArcMutex sharedacross
+workers; locksacquired sortedqueryID order toavoiddeadlock; vectorbatchcompute
+onlyuncachedenergies. Initialversionduplicateintendedcalculation caughtbyexisting
+test; correctedandlocal11tests pass. New12thtest invalidcontrolrows acrossbatch
+boundaries awaitingremotecheck. Nooutstdoutuntilcompletereportvalidated.
+Stageprofiletimings nowcumulativeworkerseconds, explicitlylabelled.
+
+Remote session65543 validates12CLItests, builds, then3matchedsame-current-wrapper
+Vienna/nativeiterations. LocalClippy session69026. Readresultsbeforefurtherwork.
+Retainedpreparallel sources data/ddg-baselines/pre-pipeline-parallel andremote
+binary baselines/pre-pipeline-parallel/oofft-ddg. run_real_sites.py nowaccepts
+--threads,--rnaduplex,--platform-label forportableEC2jobs.
+
+# Validation complete — 2026-09-08 12:03 UTC
+
+Generic x86-64 release:11 ddg_cli tests,3 energy tests, min-plus pinned test,
+and live ViennaRNA test all passed. Both AVX2/AVX512 tested in portable build.
+x86 Clippy initially rejected two redundant -> () store signatures; fixed,
+all-target/all-feature Clippy now passed. ARM Clippy passed as well.
+No active tool sessions. Current benchmark results are in local ledger.
+Stopping worker after this checkpoint to avoid idle compute; retained volume,
+source, comparator installs and raw runs remain available for continuation.
+Next substantial optimisation is prefix/trie scheduling across SIMD batches;
+current shared whole-vector prefix matching misses most scalar reuse. Full
+pipeline EC2 timing and full-human distinct sequence-pair counting still pending.
+Do not call28x a whole-pipeline or whole-genome result.
+
+# Latest results — 2026-09-08 12:00 UTC
+
+Min-plus x86 pinned/live Vienna tests passed. Unique-pair benchmark regressed:
+1.245629 s versus ordinary AVX-512 0.817811 s (1 worker,20543pairs x10,3runs).
+Keep disabled; retained iteration20260908T115815.908861-ec2-minplus-avx512-unique.
+Direct automaticAVX512 versus Vienna library (8workers,28222pairs x3,3runs):
+0.071810 s versus2.020381 s =28.14x kernel only. Iteration
+20260908T115853.730209-ec2-auto-avx512-vienna-library-workers-8.
+All remote iteration artifacts synced locally and MD/CSV refreshed at11:59.
+ARM all-target/all-feature Clippy passed. Generic x86-64 release tests for energy,
+energy_vienna,ddg_cli plus liveVienna and x86 all-featureClippy now session31935.
+Check completion; this validates runtime dispatch independently of target-cpu=native.
+Shared scalar counters667320reused/1214505total columns (~55%); SIMD only5030
+reused over10repetitions, so whole-vector prefix constraint blocks most reuse.
+Docs/DDG.md now documents exact derivation and successes/regressions.
+
+# DDG automatic SIMD and shared-work checkpoint — 2026-09-08 11:58 UTC
+
+Latest user asks for more ambitious shared partial calculations, automatic AVX-512,
+and matrix-style optimisation. No agents or publication authorized. Earlier notes
+below are historical. Retain every benchmark attempt, including regressions.
+
+Current EC2 worker remains i-0b5bad3102a5345c5, eu-west-2, 13.135.250.50,
+c7i.2xlarge (4 physical cores / 8 threads), auto-stop 13:59:15 UTC Sept8.
+Checkout /home/ubuntu/ddg-simd-20260908. ViennaRNA 2.7.0 now installed at
+checkout/vienna/bin/RNAduplex, library at vienna/lib/libRNA.a.
+AWS read-only describe confirmed project ownership after source-transfer review
+initially rejected; retry approved with this evidence. No approval pending.
+
+Implemented default energy-batch feature, runtime AVX-512F+DQ / AVX2 / scalar
+selection, one recurrence macro with small width-specific intrinsic wrappers.
+Native CLI uses this automatically when --energy-engine rust is selected;
+whole-transcript mode still requires Vienna RNAplex. No default backend switch.
+Vectorized parameter gathers were essential: initial scalar-gather SIMD regressed,
+then AVX2 improved real-site compute about 4.1x over native scalar. Matched direct
+Vienna duplexfold comparison at 1/2/4/8 workers showed about 19–21x kernel speedup.
+AVX-512 then improved over AVX2 about 1.4x at both 1 and 8 workers.
+These are kernel results, not whole-report or full-human timing claims.
+
+Experimental exact shared-prefix scalar DP improved 1.84x over scalar on 20,543
+unique real pairs. Combined shared-prefix SIMD was about 4% slower than ordinary
+AVX-512, so shared mode is disabled by default. Uses P-1 shared columns because
+lookahead dangling/mismatch terms require recomputing the boundary column.
+
+New experiment in src/energy/batch.rs: anti-diagonal min-plus generic loop
+recurrence with three sparse range-min tables per retained diagonal. The capped
+asymmetry term becomes three exact range minima, removing the inner u/v scan.
+Exposed via enable_minplus for benchmark only, disabled by default. Current
+remote test/build launched via SSH session91801; inspect result before timing.
+Local ARM pinned test passed (scalar fallback); does not validate x86 intrinsics.
+Benchmark mode --minplus added. Live Vienna test covers both SIMD widths and
+shared reuse; min-plus pinned test forces each rare length through full lanes.
+
+Next: finish x86 correctness, benchmark min-plus versus ordinary AVX-512 on unique
+real pairs, sync all remote iterations, refresh ITERATIONS.md/CSV. Validate generic
+x86 build runtime dispatch and current CLI tests/Clippy. Full pipeline SIMD
+measurement remains outstanding; earlier strongest matched Pi pipeline was4.45x.
+Full-reference unique ASO/target pair count remains unmeasured (45m intervals are
+not 45m independent energy computations). Do not invent a deduplicated estimate.
+
+---
+
+# EC2 DDG SIMD/core-scaling focus — 2026-09-08 11:02 UTC
+
+User revised active goal to 10× DDG versus Vienna, then explicitly steered toward
+better vectorisation/core parallelisation and testing on EC2. Prior turn PROGRESS.
+Do not continue treating1000× as the active objective. Focus now kernel batching,
+SIMD and core scaling rather than further JSON-only tuning.
+
+Resumed retained EC2 i-0b5bad3102a5345c5, eu-west-2, IP13.135.250.50.
+Instance c7i.2xlarge: Xeon Platinum8488C,4physicalcores/8hardwarethreads,
+AVX2 and AVX512 available. CPU0..3 separatecores,4..7 siblingthreads.
+SSH key data/ec2/controller.key, known_hosts data/ec2/known_hosts.
+Auto-stop scheduled13:59:15UTCSept8 (3hours); stop earlier if finished.
+Isolated checkout /home/ubuntu/ddg-simd-20260908, old human data untouched.
+Current source tar /tmp/oofft-ddg-ec2-source.tgz transferred/extracted there.
+Remote cargo ~/.cargo/bin/cargo; release oofft-ddg+energy-bench build PASSED,
+build.log/build.exit0. RNAduplex not installed in standard/localbin paths yet.
+Must install pinned Vienna2.7.0 and measure matched resources before claiming10×.
+
+Extended kernel_bench.rs with optional threads argument (arg3, default1), one
+workspace per worker and unchanged checksum/oracle checks. run_kernel.py accepts
+--threads. Remote firstsweep1/2/4/8workers,100reps×1825cases,3measurements each,
+completed via session55825. Median seconds:1worker6.693740,2workers3.558603,
+4workers1.831031,8workers1.471562; every checksum/golden check passed.
+4workers3.66× versus1worker;8threads4.55× versus1worker (1.24× over4). Results remote benchmarks/ddg/iterations/*ec2-initial-workers-*.
+Results copied locally and ledger refreshed, including EC2 platform metadata.
+Worker remains running under the existing automatic stop for next SIMD/Vienna work. Session72453 was the SSH
+launch wrapper for the now-finished build; authoritative remote build.exit=0.
+
+Immediately preceding local work enabled sha2 asm feature (runtime dispatch with
+software fallback); new Cargo.lock dependencysha2-asm0.6.4. All273825 report rows
+matched previous native3reps:6.352475s vs7.203925s (1.134×). Artifact
+20260908T105315.328753-real-site-annotation. Baseline data/ddg-baselines/software-sha.
+Also measured same CURRENT executable Rust vsVienna, removing historical wrapper
+advantage: Rust6.322299s/Vienna28.108133s =4.44587×, allrows equal3reps.
+Artifact20260908T105426.272867-real-site-annotation. This is the strongest matched
+pipeline comparator so far, not10×. Latest SHA change still needs full local
+checks; new kernel parallel harness needs scaling/output audit after remote runs.
+No agents, deletions, commit, push or publication. Earlier notes historical.
+
+---
+
+# Lazy intended scoring and JSON fast path — 2026-09-08 10:47 UTC
+
+Previous turn PROGRESS; goal ACTIVE,1000× unproven. Implemented intended energies
+on first reported site, cached per query across batches; all query validation
+remains eager. 100K-ASO/273825-site matched-native3reps: lazy median11.930965s
+vs eager12.454225s, 1.04386×. Artifact20260908T104143.986110-real-site-annotation.
+Saved baseline data/ddg-baselines/eager-intended/oofft-ddg.
+
+Then added minimal ReportFields parsing and original-site JSON passthrough:
+parse only type/queryID/recordID/start/end; keep original line for output;
+append computed metadata with reusable serialization buffer. Root ddg or
+energy_annotation present (even null) triggers complete Value parsing; existing
+supplied_ddg and rejection semantics preserved. Envelope deserialization errors
+fall back to original full parser. Other rows still use full parsing.
+11DDG CLI tests passed, including unused malformed query, cross-batch intended
+cache, arbitrary nested fields, escaping/braces/Unicode/whitespace/null DDG.
+
+Matched-native100K3reps: JSONfast median7.128468s vs priorlazy11.999032s,
+1.68326×; all273825 rows equal. Artifact20260908T104527.038836-real-site-annotation.
+Baseline saved data/ddg-baselines/lazy-intended/oofft-ddg.
+Direct originalVienna comparison3reps completed, all273825 rows equal:
+Rust median7.180837s vsVienna38.842693s =5.40922×. Artifact
+20260908T104655.104800-real-site-annotation. Session10712 terminal.
+Native pairs296647/unique238481: lazy scoring avoids77178intended calculations
+(corrects the earlier arithmetic typo77778). Profile duplex~3.10s, parse~1.00s,
+serialize~0.78s, annotation batches~3.64s (overlaps duplex). New primary bottleneck
+is again kernel work, plus remaining IO/validation rather than JSON object trees.
+Full cargo test --locked --all-targets and all-target/all-feature Clippy passed.
+Log /tmp/oofft-ddg-tests-20260908-json-fast.log. 11DDG CLI tests plus1825duplex
+and11.16Mloop oracle checks passed. Final10K-ASO3reps: all28222sites equal,
+Rust0.728725s vsVienna4.181658s =5.738×; artifact
+20260908T105047.125660-real-site-annotation. Synthetic10Ksites/1000records0.202s,
+all direct oracle energies equal, artifact20260908T105105.109056-estimate-sites-10000-records1000-rust.
+All tool sessions terminal. Ledger/docs refreshed; no 1000× claim. Release executable built with both experiments disabled.
+No agents, deletions, EC2 starts, commits or publication. Earlier notes historical.
+
+---
+
+# Batch reuse and 100K-ASO calibration — 2026-09-08 10:36 UTC
+
+Previous goal turn PROGRESS; target1000× remains ACTIVE/unproven.
+Native duplex stages now deduplicate full borrowed ASO/target-sequence keys within
+each bounded batch, map energies back to every original row, and report native_pairs
+and native_unique_pairs in profile. No cross-batch/unbounded cache. Nine DDG CLI tests
+pass, including different coordinates/lengths/ASOs. Seven alternating matched-native
+real1922-site runs improved median ~2% (0.09775 vs0.09977s), all fields equal.
+Baseline saved data/ddg-baselines/pre-batch-reuse/oofft-ddg.
+
+Expanded actual SCN2A distinct-ASO→SCN1A pre-mRNA workload:
+10000ASOs:28222sites,20543unique energy pairs; discovery6.77s.
+100000ASOs:273825sites,201640unique energy pairs; discovery67.40s.
+Input directories data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a
+and data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a.
+These are transcript-coordinate workloads, NOT human-genome timing claims.
+10K annotation3reps: Rust median1.290205s vsVienna4.200932s =3.256×,
+all28222 annotated rows equal. Artifact20260908T103534.925438-real-site-annotation.
+100K annotation comparison completed: all273825 rows equal across3reps,
+Rust median12.744874s vsVienna38.922903s =3.054×. Artifact:
+20260908T103554.623075-real-site-annotation. All tool sessions terminal.
+Native profile:373825pairs,315659unique (58166 reused), duplex~3.90s,
+report parse~3.48s, serialization~2.59s; output360306267bytes. Annotation batch
+~3.60s overlaps off-target duplex work; do not sum overlapping scopes.
+Only22822of100000ASOs have reported sites. NEXT: defer intended energy calculation
+until a query first has a site, retaining all input validation and every output.
+Current pipeline eagerly calculates intended energies for all100000 queries.
+Could avoid77178unneeded calculations without changing annotation semantics.
+Then address JSON parsing/serialization, now comparable to kernel cost.
+Nine DDG CLI tests, all-target/all-feature Clippy, Python syntax checks passed.
+Default release rebuilt and used for these measurements; experiments disabled.
+
+run_real_sites.py now streams stdout to files and compares parsed rows in bounded
+memory after timing; stdout_sink metadata records the measurement change. Supports
+--baseline-engine rust for matched native comparisons. New attempts retain profiles;
+CSV includes ASO/site counts and native total/unique pair counts when available.
+No agents, deletions, EC2 starts, commit or publication. Earlier notes historical.
+
+---
+
+# Rust DDG optimisation checkpoint — 2026-09-08 10:30 UTC
+
+Previous goal turn made PROGRESS. Goal ACTIVE, 1000× remains unproven.
+This turn explicitly unrolled nine small-loop cases; diverse golden kernel median
+1.16565s vs portable reused-workspace1.18012s (~1% gain). Real1922-site run
+0.09929s vs retainedVienna0.26504s (2.67×), every field equal.
+
+Implemented an exact relaxed-matching pruning bound as disabled feature
+energy-prune. Prefix/suffix maximum pairing counts times global minimum loop cost
+bound all paths through a cell; exact uninterrupted helices provide upper bounds.
+All1825 oracle energies and all1922 real report rows match, but median kernel
+1.38431s vs unrolled1.14570s: ~21% regression. Real native0.10315s; synthetic
+10000sites0.237s. Do not enable by default. Proof sketch in src/energy/README.md.
+Binaries retained data/ddg-baselines/{unrolled-small-loops,relaxed-matching-prune}.
+The pre-unrolled-small-loops binary copied before rebuild was the old NEON build;
+README there records that provenance. It was NOT used as the portable comparator.
+
+Ledger iterations: 20260908T102704.663301-unrolled-small-loops-golden,
+20260908T102914.989662-relaxed-matching-prune-golden and adjacent end-to-end runs.
+No agents, deletions, EC2 starts, commits or publication. All-feature library, energy and DDG CLI tests passed, including both experimental
+features together; all-target/all-feature Clippy passed. Default release binaries
+were rebuilt with both experimental features disabled. Formatting/diff checks pass.
+No live tool sessions remain. Earlier checkpoints are historical.
+
+---
+
+# Rust DDG checkpoint — 2026-09-08 10:25 UTC
+
+Native site-energy implementation is complete locally; the broader 1000× speed
+goal remains ACTIVE and unproven. All benchmark attempts and resources retained.
+No commit, push, publication or EC2 start. Retained worker i-0b5bad3102a5345c5
+confirmed STOPPED this turn; data/ec2/current.json is stale.
+
+Added reusable DuplexWorkspace per worker, exact forward/reverse reuse oracle
+checks, optional energy-neon reduction, and wall-time profiling. Workspace-only
+compute gain ~0.4%; NEON ~3.6% regression, so NEON stays disabled by default.
+Factored Rust recurrence remains independent of Vienna calls/linking; empirical
+parameter data retain original attribution and distribution review remains open.
+
+Real SCN2A1000 ASOs → SCN1A transcript discovery (uncapped k3) found 1922 sites,
+1604 distinct query/target-sequence pairs. Local input directory:
+data/ddg-real-sites/20260908T101024.131957-scn2a1000-scn1a.
+Only ~17% potential identical-pair reuse; do not assume extreme deduplication.
+Three initial real annotation runs: 2.57× old Vienna pipeline, every row equal.
+Profiling put duplex stages around37–39% of runtime on measured workloads.
+
+Latest change serializes typed energy metadata alongside original report Values,
+removes per-record work directories in site mode, preserves previous supplied_ddg
+and all output fields. Latest alternating three-run real benchmark:
+benchmarks/ddg/iterations/20260908T102429.623503-real-site-annotation/result.json
+Native median0.098448661s vs retainedVienna0.268975852s, 2.732×, all1922 rows equal.
+Latest synthetic10000sites/1000records native0.203s, all energies match:
+benchmarks/ddg/iterations/20260908T102431.200096-estimate-sites-10000-records1000-rust.
+These are Pi four-worker site-annotation results, not genome-wide estimates.
+
+Full cargo test --locked --all-targets passed after these changes, including
+1825 duplexes and 11,160,000 loop cases. Log /tmp/oofft-ddg-all-tests-20260908.log.
+Ledger now distinguishes baseline names and compute-vs-whole-process scopes.
+New reproducible helpers: prepare_real_sites.py, run_real_sites.py, run_kernel.py.
+Potential next work: stronger exact bounds, SIMD across pairs, avoiding full JSON
+Value parsing, bounded exact pair reuse on measured real workloads. Keep default
+Vienna until rollout decision; Rust remains --energy-engine rust for --sites.
+Whole-transcript mode still uses actual RNAplex semantics and rejects Rust.
+
+Earlier checkpoints below are historical.
+
+---
+
+# ACTIVE GOAL: independent Rust ΔΔG, target 1000× — 2026-09-08
+
+User explicitly requests implementation from scratch in Rust, with exactly
+matching outputs. Goal is ACTIVE and 1000× has NOT been demonstrated. Do not
+mark complete or fall back to an orchestration-only deliverable. No agents.
+No deletions. All benchmark attempts retained. Previous goal turn: PROGRESS.
+
+Implemented independent native site-energy DP in src/energy/mod.rs, plus a
+factored recurrence in fast.rs. No ViennaRNA calls/linking in Rust energy
+computation. Empirical default 37 C parameters exported from pinned installed
+ViennaRNA into src/energy/turner2004_37c.json; provenance and upstream data notice
+retained. Data-distribution terms need review before any package publication.
+Current --energy-engine rust enables it for --sites; default remains Vienna
+while validation/optimization proceeds. Whole-transcript mode remains the
+separate existing RNAplex path; Rust+whole-transcript explicitly rejected.
+
+1825 complete duplexes match pinned RNAduplex energies exactly, including
+random/unrelated pairs of lengths1–45, near-complementary pairs, N, homopolymers
+and no-pair sentinel100000 kcal/mol. Additional C oracle enumerates all 496
+loop shapes (total<=30), six canonical/GU pair types on both sides, and all
+5^4 adjacent-base combinations: 11,160,000 loop energies, hashed by shape for
+Rust-only CI. All-target test session84321 passed, including the full 11.16M energy oracle.
+Session97305 also passed current Clippy, the exhaustive lower-bound assertion,
+and release rebuild. No running tool sessions remain from this goal turn.
+
+Native scalar recurrence retained as duplex_energy_scalar. Fast recurrence
+factors generic mismatch terms into predecessor DP values, separates small
+loops and bulges, and uses exact integer costs. Admissible loop/row lower
+bounds derived from parameter minima. No energy approximation or edit cutoff.
+Cross-record batching also removes one process launch group per RNA record.
+
+Measurements on Pi, four workers, 1000 synthetic ASOs and 10000 near-match sites:
+old Vienna pipeline scattered1000records5.554s; first scalarRust0.589s;
+prunedRust0.342s; factoredRust0.348s (noise-level difference). Groupedone-record
+prunedRust0.271s versusold0.830s. All component energies and report rows matched.
+This is ~16× on scattered records, NOT1000× and not a measured genome-wide run.
+Compute-only golden1825pairs×10, one CPU: prunedscalar1.415999s versus
+factored1.191490s. Separate kernel/whole-process scopes retained in CSV.
+Baseline binaries retained data/ddg-baselines/pre-cross-record and pruned-scalar.
+
+Next: poll/finish current tests, recheck Clippy; add/run strict bound assertions.
+Profile actual kernel overhead, improve/vectorize independent pair batches,
+consider reuse of overlapping intervals and identical ASO/target sequences on
+real references without assuming duplication. Compare equally resourced,
+identical workloads with full output equality; don't count changing transcript
+scan to local scoring as a speedup. Keep broader golden/random/adversarial
+coverage as optimization changes. Benchmark scripts: estimate_sites.py
+--energy-engine rust, kernel_bench.rs example, generate_energy_golden.py,
+generate_loop_golden.py. Rebuild release before timing; don't overlap timings
+with compilation. Refresh benchmarks/ddg/ITERATIONS.md and iterations.csv.
+
+Project rename/site annotation work remains local/uncommitted. No GitHub auth
+available, repo URL remains barneyhill/ooff. No EC2 workers started in this goal.
+Rust env: CARGO_HOME=/tmp/ooff-cargo RUSTUP_HOME=/tmp/ooff-rustup,
+/tmp/ooff-cargo/bin/cargo. Native build target/release/oofft-ddg.
+Earlier notes below are historical.
+
+---
+
+# oofft rename and site ΔΔG annotations — 2026-09-08
+
+User confirmed spelling **oofft**. Cargo package, public binaries, Rust imports,
+CI/release archive names, README commands, current benchmark entry points and
+plot legend updated. Source filenames and historical format/measurement IDs
+remain compatible. Workspace and GitHub URL remain /home/barneyh/ooff and
+barneyhill/ooff; no GitHub API credentials/CLI available here. No push or publish.
+
+`oofft-ddg --sites REPORT --queries ORIGINAL --reference ORIGINAL` annotates all
+reported intervals with RNAduplex intended minus RNAduplex interval energy.
+Intended energy computed once per query; optional query target field, otherwise
+explicitly labelled perfect complement. No fixed-CIGAR thermodynamic constraint,
+no flanks, no hit filtering, no exact shortcut for site mode. RNA:RNA defaults.
+Preserves original coordinates, site identities, summaries and capped status.
+Old supplied ddg preserved separately. Bounded row batches and reference byte
+ranges, retained spool, SHA256 input checks and no stdout on scoring/input error.
+`--whole-transcript` retains the actual OligoAI RNAplex whole-record calculation,
+including the exact-match shortcut and separate best-position annotation.
+
+All Rust tests and Clippy pass, workflow syntax checked, source package verified
+offline, ARM64 release archive smoke-tested. Real engines verified 20 discovered
+intervals of lengths17–23 against direct RNAduplex, and whole-record annotations
+against actual OligoAI for every site. Older 3.90x/29.75x performance measurements
+remain explicitly whole-transcript benchmarks, not site-scoring speed claims.
+Every iteration is retained in benchmarks/ddg/ITERATIONS.md and iterations.csv.
+Details and commands: docs/DDG.md. Changes remain uncommitted and unpushed.
+Earlier notes below are historical.
+
+---
+
+# ΔΔG implementation validated — 2026-09-08 UTC
+
+New optional `ooff-ddg` command preserves OligoAI v2's RNAduplex/RNAplex
+calculation, sign and exact-match shortcut. No new thermodynamic recurrence.
+Native query indexing, deduplication and parallel processes measured on this Pi:
+3.90× for 128 distinct designs, 29.75× for 16 designs repeated eight times,
+9.17× for 1,000 exact matches (shortcut only). Three repetitions of each real
+workload matched every field against the actual OligoAI TypeScript function.
+Final binary also passed 16/18/20mer insertion/deletion fixtures at 1/4 workers.
+All attempts, including the initial parser failure, retained under benchmarks/ddg;
+ITERATIONS.md and iterations.csv provide plot-ready timings and source hashes.
+
+Full Rust tests and Clippy passed. CI includes the tests and release packaging
+includes ooff-ddg; ViennaRNA remains an external optional runtime prerequisite.
+No OligoAI source edits, no EC2 launches and no release publication in this work.
+Scientific assumptions and reproduction: docs/DDG.md. Offline cargo package
+verification and ARM64 release archive smoke tests passed. Online packaging was
+stopped after DNS failures; all cached dependencies verified offline.
+Implementation and evidence are local, not yet committed or pushed.
+Earlier notes below are historical.
+
+---
+
 # Follow-up completed — 2026-09-07 23:42 UTC / September 8 London
 
 Sassy eight-CPU screening series complete:15measurements, allqueriesrecovered.

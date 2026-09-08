@@ -1,0 +1,211 @@
+{
+  "label": "20260908T105315.328753-real-site-annotation",
+  "threads": 4,
+  "complete": true,
+  "workload": "Complete real SCN2A/SCN1A site annotation; same files and all report rows",
+  "queries": 100000,
+  "input_directory": "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a",
+  "stdout_sink": "regular file; comparison streamed after timing",
+  "attempts": [
+    {
+      "engine": "rust-baseline",
+      "repetition": 0,
+      "seconds": 7.203924848989118,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/software-sha/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.665473865,
+        "duplex_stages_seconds": 3.102444861,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 0.9987569479999164,
+        "serialization_seconds": 0.7599156610000001
+      }
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "seconds": 6.382072944979882,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.617072447999999,
+        "duplex_stages_seconds": 3.09480343,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 1.0028351329999599,
+        "serialization_seconds": 0.8747255250000006
+      }
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "seconds": 6.285841121978592,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.6158675199999992,
+        "duplex_stages_seconds": 3.090895558,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 1.007005265000041,
+        "serialization_seconds": 0.79121384
+      }
+    },
+    {
+      "engine": "rust-baseline",
+      "repetition": 1,
+      "seconds": 7.235659128986299,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/software-sha/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.6485808290000015,
+        "duplex_stages_seconds": 3.096771022,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 1.028407996999811,
+        "serialization_seconds": 0.7892347070000004
+      }
+    },
+    {
+      "engine": "rust-baseline",
+      "repetition": 2,
+      "seconds": 7.158381084998837,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/software-sha/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.650033773999998,
+        "duplex_stages_seconds": 3.12371959,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 1.0032318079999847,
+        "serialization_seconds": 0.7647997190000008
+      }
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "seconds": 6.352474875020562,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 3.6889636510000012,
+        "duplex_stages_seconds": 3.121052954,
+        "native_pairs": 296647,
+        "native_unique_pairs": 238481,
+        "report_parse_seconds": 1.0079642179999742,
+        "serialization_seconds": 0.7832416419999999
+      }
+    }
+  ],
+  "sha256": {
+    "data/ddg-baselines/software-sha/oofft-ddg": "5fe1e24887eeb0cff9ad2d05d95370402fa3d66fa93e5238e274a6efcc09ff3a",
+    "target/release/oofft-ddg": "a02c9c0b53e1d3624f93014c0f46615e153ba29dd5291e923f8b16962e5191e9",
+    "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/queries.jsonl": "bdb6e580c8010a6ca76a0e7580e4ccfe0eb826cfe9a64ca21935cab90767d09e",
+    "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/reference.jsonl": "fcd09d7a714af0b48653e9acaaac9c8c8627438101f05552c2673536831942a7",
+    "data/ddg-real-sites/20260908T103353.260461-scn2a100000-scn1a/report.jsonl": "084cd0210c6827953c7dd0282a3c37e2c9c3daa0bfed14baf2c9c8ac25388415"
+  },
+  "all_fields_match": true,
+  "sites": 273825,
+  "medians": {
+    "rust-baseline": 7.203924848989118,
+    "ooff": 6.352474875020562
+  },
+  "speedup": 1.1340343709688108
+}

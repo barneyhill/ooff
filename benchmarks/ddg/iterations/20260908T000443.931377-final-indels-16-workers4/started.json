@@ -1,0 +1,23 @@
+{
+  "label": "final-indels-16-workers4",
+  "host": {
+    "system": "Linux",
+    "node": "raspberrypi",
+    "release": "6.12.25+rpt-rpi-2712",
+    "version": "#1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30)",
+    "machine": "aarch64",
+    "processor": ""
+  },
+  "threads": 4,
+  "queries": "benchmarks/ddg/iterations/20260908T000443.931377-final-indels-16-workers4/queries.jsonl",
+  "off_target": "benchmarks/ddg/iterations/20260908T000443.931377-final-indels-16-workers4/off.fa",
+  "sha256": {
+    "/home/barneyh/oligoai-v2/src/specificity.ts": "04d3bb6dc5fe3231d98cdebfb8d450a76136293a2aa6f31e3ff556259b364dc8",
+    "target/release/ooff-ddg": "d1c9b7f08961d96f2d6676e478673db10f44f938d063551df6ae0a500cc3edb5",
+    "benchmarks/ddg/iterations/20260908T000443.931377-final-indels-16-workers4/queries.jsonl": "bfd5220e641fc1d65b7e975b3ed6aaaeee6d65f3f6ed649b3cc25ccd06458e72",
+    "benchmarks/ddg/iterations/20260908T000443.931377-final-indels-16-workers4/off.fa": "42ab8bd6d18697b1a06ec2ab28dd7a34c960e87af62f8009c3774a661f3efed6",
+    "/home/barneyh/.local/bin/RNAplex": "921a2ab9291b4c35cfa47f30946a7ed602ec361a66d75ad931839fbcd9bf850a",
+    "/home/barneyh/.local/bin/RNAduplex": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c"
+  },
+  "attempts": []
+}

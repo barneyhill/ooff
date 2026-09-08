@@ -1,0 +1,28 @@
+{
+  "label": "Full-reference first-repetition exact ASO/target sequence census",
+  "threads": 1,
+  "platform": "EC2 c7i.2xlarge Xeon 8488C",
+  "complete": true,
+  "all_fields_match": false,
+  "queries": 1000,
+  "sites": 45113535,
+  "workload": "Read-only exact sequence-reuse analysis; no energy speed comparison",
+  "attempts": [
+    {
+      "engine": "reuse-census",
+      "repetition": 0,
+      "seconds": 32.570064285,
+      "returncode": 0,
+      "measurement_kind": "sequence_reuse_census",
+      "command": [
+        "target/release/examples/energy-reuse-census",
+        "/home/ubuntu/ooff/data/reference-v1/reference.fa",
+        "/home/ubuntu/ooff/benchmarks/sassy_1000/SCN2A_unfiltered_1000.fa",
+        "/home/ubuntu/ooff/benchmarks/iterations/20260907T200643-fm-word-union-full-tuples1000/sassy.sites.csv",
+        "data/reuse/full-reference-1000-20260908",
+        "100000"
+      ]
+    }
+  ],
+  "note": "Expected first-repetition count 45113535 matched. Small independent fixture verifies duplicate-ASO interning, variable target length, N, prefix counts and repetition boundary. No energy equality assertion applies to this census."
+}

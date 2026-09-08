@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-08T15:49:39.106249+00:00",
+  "pulp": "0.22.3",
+  "rust": "1.94.0",
+  "generic_arm_tests": 42,
+  "live_vienna_version": "2.7.0",
+  "clippy_all_targets": "passed",
+  "scalar_fallback_tests": "passed",
+  "x86_cross_check": "passed; energy module only",
+  "x86_runtime_validation": "pending",
+  "source_sha256": {
+    "Cargo.toml": "440562754c4d87feed84cd9b7b72fad36c1f74cf205a0a217907fc067bf0e95c",
+    "Cargo.lock": "ebd37ac6464648f15bfa66dab7df58209ab4b9300dd1e0b01cbd3cfcae4bb177",
+    "src/energy/batch.rs": "194bb930a5361edc783c5d7a65336dc685149e98266650d3dae57ddb951cf413",
+    "src/energy/portable.rs": "a3e1b3120a2f57e9c46658fa2acb4ef6d6acf0ac7081918e95b257d3fea9bc2b",
+    "tests/energy.rs": "593edb85209999ac58773496219dbf41f7550d50a558ce13860425f3a47cb509",
+    "tests/energy_vienna.rs": "4613ed994c0d3a03395215f4ed755952c051170026c329aa7f0cd4dcc2222579",
+    "benchmarks/ddg/kernel_bench.rs": "a1fad77144fd78ce955b436ae3a251cdf76f88a35d69707daccf973bc983ada2"
+  }
+}

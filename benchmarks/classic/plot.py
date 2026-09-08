@@ -61,7 +61,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,'axes.spines.right':False,'svg.fonttype':'none'})
 fig,ax=plt.subplots(figsize=(9,4.8))
-labels={'ooff':'ooff','bwa':'BWA-aln','blast':'BLASTN-short','minimap2':'minimap2','sassy':'Sassy2'}
+labels={'ooff':'oofft','bwa':'BWA-aln','blast':'BLASTN-short','minimap2':'minimap2','sassy':'Sassy2'}
 colors={'ooff':'#007C91','bwa':'#C85132','blast':'#7965AC','minimap2':'#88703A','sassy':'#4677B4'}
 for tool in tools:
     ns=sorted(n for (t,n),rs in groups.items() if t==tool and len(rs)>=3)
@@ -83,7 +83,7 @@ ax.legend(ncol=len(tools),loc='upper left',frameon=False,fontsize=9)
 ax.set_ylim(.3,2500)
 fig.suptitle('ASO screening against the human RNA reference',x=.10,ha='left',fontsize=15,fontweight='bold')
 fig.text(.10,.885,'Median screening time · 8 search threads · log10 axes',fontsize=10,color='#444444')
-fig.text(.10,.035,'Index build: ooff 206 s · BWA 2,753 s · BLAST 16 s · minimap2 74 s · Sassy2: no persistent index.\nSearch includes loading, output and verification. Build costs excluded. Heuristic tools may miss hits; see methods.',fontsize=8,color='#444444')
+fig.text(.10,.035,'Index build: oofft 206 s · BWA 2,753 s · BLAST 16 s · minimap2 74 s · Sassy2: no persistent index.\nSearch includes loading, output and verification. Build costs excluded. Heuristic tools may miss hits; see methods.',fontsize=8,color='#444444')
 fig.subplots_adjust(left=.10,right=.98,top=.83,bottom=.23)
 for suffix in ['.svg','.png']:
     fig.savefig(a.output.with_suffix(suffix),dpi=180,facecolor='white')

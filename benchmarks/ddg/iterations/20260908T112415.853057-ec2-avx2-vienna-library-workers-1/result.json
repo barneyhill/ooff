@@ -1,0 +1,102 @@
+{
+  "label": "ec2-avx2-vienna-library-workers-1",
+  "platform": "ec2-c7i.2xlarge-x86_64",
+  "batch_requested": true,
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 0.445855042,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "3",
+        "1",
+        "batch"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 0,
+      "seconds": 8.433567294,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "fixtures/real-site-energy.tsv",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 1,
+      "seconds": 8.499077324,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "fixtures/real-site-energy.tsv",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 0.433230232,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "3",
+        "1",
+        "batch"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 0.445879794,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/real-site-energy.json",
+        "3",
+        "1",
+        "batch"
+      ]
+    },
+    {
+      "engine": "vienna-library",
+      "repetition": 2,
+      "seconds": 8.432871995,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "benchmarks/ddg/vienna-kernel",
+        "fixtures/real-site-energy.tsv",
+        "3",
+        "1"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/real-site-energy.json": "404cc7ac8c3e2e93d9cec0c2ba383a23ab97639f616819d25f1343bd73f11ee0",
+    "target/release/examples/energy-bench": "b4b8d2a354821efc4595d932999b941821d282cdd90be39e31fddf501b40edb9",
+    "benchmarks/ddg/vienna-kernel": "72f3b7df46848756c13dbe25772829dca762870b1353dabe5effc25e362d9001"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 0.445855042,
+    "vienna-library": 8.433567294
+  },
+  "speedup_vs_native_baseline": 18.915491582575847
+}

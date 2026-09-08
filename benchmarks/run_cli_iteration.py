@@ -41,7 +41,7 @@ query_path.write_text(''.join(json.dumps(q) + '\n' for q in queries))
 with tarfile.open(folder / 'source.tar.gz', 'w:gz') as archive:
     for p in ['src', 'Cargo.toml', 'Cargo.lock', 'benchmarks/run_cli_iteration.py']:
         archive.add(p)
-command = ['target/release/ooff', args.mode, '--queries', str(query_path),
+command = ['target/release/oofft', args.mode, '--queries', str(query_path),
            '--reference', 'data/reference-v1/reference.fa', '--index', 'data/fm-production-v1',
            '--annotations', 'data/reference-v1/records.jsonl', '--policy', 'other-gene',
            '--reference-release', 'Ensembl-110-GRCh38-primary-assembly',

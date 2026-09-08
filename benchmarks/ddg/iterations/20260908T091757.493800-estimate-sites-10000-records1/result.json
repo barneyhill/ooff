@@ -1,0 +1,50 @@
+{
+  "label": "20260908T091757.493800-estimate-sites-10000-records1",
+  "threads": 4,
+  "queries": 1000,
+  "annotated_sites": 10000,
+  "records": 1,
+  "workload": "Synthetic near-match intervals of length 17\u201323; no genome discovery or large-reference IO measured",
+  "attempts": [
+    {
+      "engine": "viennarna",
+      "repetition": 0,
+      "command": [
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--noconv"
+      ],
+      "seconds": 2.1914230679976754,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/report.jsonl",
+        "--queries",
+        "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/queries.jsonl",
+        "--reference",
+        "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "300"
+      ],
+      "seconds": 0.8303831670200452,
+      "returncode": 0
+    }
+  ],
+  "complete": true,
+  "sha256": {
+    "target/release/oofft-ddg": "3ffe445afb6ff3f5ac6300b72122e804d7d2716c739cf2a0ecedcff96fc4ab74",
+    "/home/barneyh/.local/bin/RNAduplex": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c",
+    "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/queries.jsonl": "b206f49285a1a72df8381b345bc3afff2587ebd294111c53f3c56d0dce5d24bc",
+    "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/reference.jsonl": "c1a90d2f69d724ad4038da1d934ddc38c1c640cda95a478c63f4a53aa0f21747",
+    "benchmarks/ddg/iterations/20260908T091757.493800-estimate-sites-10000-records1/report.jsonl": "9eb7235060a343cfb49307477620901af7ab000f74d90e541e163097db7c023c"
+  },
+  "all_fields_match": true
+}

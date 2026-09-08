@@ -1,0 +1,24 @@
+{
+  "label": "20260908T094809.605757-factored-kernel-golden-cpu1",
+  "threads": 1,
+  "complete": true,
+  "all_fields_match": true,
+  "workload": "Compute-only 1825 diverse golden pairs, ten repetitions; excludes JSON output and startup",
+  "sha256": {
+    "target/release/examples/energy-bench": "d2a5e70eb41e7c13ff0fc12daf495212ca3ed357d663c8ffbc8004eebd8d0bbf"
+  },
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.191489758,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    }
+  ]
+}

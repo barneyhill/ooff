@@ -1,0 +1,10 @@
+{
+  "stdout_sha256": "73278f5acacca3ae4c0de0ce86e553ac78da9073d9fc6845978f9b50bee4dd80",
+  "edit_distance_totals": [
+    16189,
+    341556,
+    12851473,
+    345830615
+  ],
+  "validation": "Structural full-output checks; independent count equivalence tested on exhaustive fixtures, not every SCN2A hit"
+}

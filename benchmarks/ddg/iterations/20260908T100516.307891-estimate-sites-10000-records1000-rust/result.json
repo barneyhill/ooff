@@ -1,0 +1,52 @@
+{
+  "label": "20260908T100516.307891-estimate-sites-10000-records1000-rust",
+  "threads": 4,
+  "queries": 1000,
+  "annotated_sites": 10000,
+  "records": 1000,
+  "workload": "Synthetic near-match intervals of length 17\u201323; no genome discovery or large-reference IO measured",
+  "attempts": [
+    {
+      "engine": "viennarna",
+      "repetition": 0,
+      "command": [
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--noconv"
+      ],
+      "seconds": 2.2851306950033177,
+      "returncode": 0
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/report.jsonl",
+        "--queries",
+        "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/queries.jsonl",
+        "--reference",
+        "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "300",
+        "--energy-engine",
+        "rust"
+      ],
+      "seconds": 0.33163068498834036,
+      "returncode": 0
+    }
+  ],
+  "complete": true,
+  "sha256": {
+    "target/release/oofft-ddg": "2c8ff1672c7da642a9101486513f223d8a482e7530fa485836e811ff350457cd",
+    "/home/barneyh/.local/bin/RNAduplex": "f28c4e391c631c4175ba5cd95fb4bd26692f0f5765616e2b1128c3011ced551c",
+    "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/queries.jsonl": "b206f49285a1a72df8381b345bc3afff2587ebd294111c53f3c56d0dce5d24bc",
+    "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/reference.jsonl": "8aa9357d890c40a65dbec23b9f43b1e30c058b60af3e3331ec561e61c7b2695f",
+    "benchmarks/ddg/iterations/20260908T100516.307891-estimate-sites-10000-records1000-rust/report.jsonl": "a56cd5878b1bdf1ecef6a082c3259c3730f0c713be71e89dc0e184d4370df2e2"
+  },
+  "all_fields_match": true
+}

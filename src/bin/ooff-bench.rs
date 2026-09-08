@@ -9,7 +9,11 @@ mod engine {
             self.0
                 .iter()
                 .enumerate()
-                .flat_map(|(q, p)| ooff::endpoints(p, text, k).into_iter().map(move |e| (q, e)))
+                .flat_map(|(q, p)| {
+                    oofft::endpoints(p, text, k)
+                        .into_iter()
+                        .map(move |e| (q, e))
+                })
                 .collect()
         }
     }

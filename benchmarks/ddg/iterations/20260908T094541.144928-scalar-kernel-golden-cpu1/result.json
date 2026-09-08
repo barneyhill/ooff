@@ -1,0 +1,24 @@
+{
+  "label": "scalar-kernel-golden-cpu1",
+  "threads": 1,
+  "complete": true,
+  "all_fields_match": true,
+  "workload": "Compute-only 1825 diverse golden pairs, ten repetitions; excludes JSON output and startup",
+  "sha256": {
+    "data/ddg-baselines/pruned-scalar/energy-bench": "6563bbbf8b1f4edfb1ff1a1bbf680e20291ae2e5fab13406d7efc00441ca75b8"
+  },
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.415999045,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "data/ddg-baselines/pruned-scalar/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    }
+  ]
+}

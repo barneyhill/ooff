@@ -1,0 +1,6 @@
+{
+  "utc": "2026-09-08T14:29:36.150951+00:00",
+  "complete": false,
+  "reason": "Both indexes total22GiB exceed16GiB worker; vmstat79-83percentIOwait. Stop and rerun forward-only with bounded archived report chunks.",
+  "pressure": "some avg10=83.94 avg60=82.99 avg300=52.76 total=280934852\nfull avg10=82.23 avg60=81.22 avg300=51.73 total=276266459\n"
+}

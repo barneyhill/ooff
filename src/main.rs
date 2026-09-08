@@ -1,5 +1,5 @@
 use clap::{Parser, ValueEnum};
-use ooff::{Query, Record, chunks, normalize, reverse_complement, search_chunk};
+use oofft::{Query, Record, chunks, normalize, reverse_complement, search_chunk};
 use serde::Serialize;
 use serde::de::DeserializeOwned;
 use serde_json::{Value, json};
@@ -15,6 +15,7 @@ use std::{
 
 #[derive(Clone, Copy, Debug, ValueEnum)]
 enum Mode {
+    Summary,
     Screen,
     Report,
 }
@@ -25,9 +26,21 @@ enum Mode {
     about = "Native Rust ASO candidate-site discovery; supplied oriented RNA records only"
 )]
 struct Args {
-    #[arg(value_enum)]
+    #[arg(value_enum, default_value = "summary")]
     mode: Mode,
-    /// JSONL: id, sequence (20 nt ASO, 5' to 3'), intended_genes, optional allele.
+    /// Emit every annotated site (equivalent to explicit report mode).
+    #[arg(long)]
+    sites: bool,
+    /// Include the sorted other-gene IDs in each count summary.
+    #[arg(long)]
+    genes: bool,
+    /// Summary identity; overlapping intervals remain separate sites.
+    #[arg(long, value_enum, default_value = "genomic-site")]
+    count_unit: oofft::summary::CountUnit,
+    /// Indexed summary workers; default uses available logical CPUs.
+    #[arg(long)]
+    threads: Option<usize>,
+    /// JSONL: id, sequence (ASO, 5' to 3'), intended_genes, optional allele.
     #[arg(long)]
     queries: PathBuf,
     /// JSONL: id, sequence (RNA-sense), genes, transcripts, contig, strand, blocks.
@@ -59,7 +72,7 @@ struct Args {
     /// Optional reversed-record index: accelerates paired-direction search.
     #[arg(long, requires = "index")]
     reverse_index: Option<PathBuf>,
-    /// Prevalidated annotation offsets, created by ooff-index cache-annotations.
+    /// Prevalidated annotation offsets, created by oofft-index cache-annotations.
     #[arg(long, requires = "index")]
     annotation_cache: Option<PathBuf>,
 }
@@ -111,8 +124,8 @@ struct SiteOutput<'a> {
     transcripts: &'a [String],
     contig: &'a str,
     strand: &'a str,
-    genomic_blocks: Vec<ooff::Block>,
-    alignment: &'a ooff::Site,
+    genomic_blocks: Vec<oofft::Block>,
+    alignment: &'a oofft::Site,
     expression_evidence: Option<()>,
     experimental_evidence: Option<()>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +136,7 @@ fn emit_site(
     out: &mut impl Write,
     query: &Query,
     record: &Record,
-    site: &ooff::Site,
+    site: &oofft::Site,
     screen: bool,
 ) -> Result<(), Box<dyn Error>> {
     let start = site.start.to_string();
@@ -155,8 +168,23 @@ fn emit_site(
     Ok(())
 }
 
-fn run(args: Args) -> Result<(), Box<dyn Error>> {
+fn run(mut args: Args) -> Result<(), Box<dyn Error>> {
     let started = Instant::now();
+    if args.sites {
+        if matches!(args.mode, Mode::Screen) {
+            return Err("--sites cannot be combined with screen".into());
+        }
+        args.mode = Mode::Report;
+    }
+    if args.threads == Some(0) {
+        return Err("--threads must be positive".into());
+    }
+    if args.threads.is_some() && (!matches!(args.mode, Mode::Summary) || args.index.is_none()) {
+        return Err("--threads currently applies to indexed summary searches".into());
+    }
+    if matches!(args.mode, Mode::Summary) && args.max_sites.is_some() {
+        return Err("--max-sites applies to report; summary counts must be exhaustive".into());
+    }
     if args.chunk_bases == 0 || args.max_sites == Some(0) {
         return Err("limits must be positive".into());
     }
@@ -178,7 +206,10 @@ fn run(args: Args) -> Result<(), Box<dyn Error>> {
             return Err("queries require unique nonempty IDs and intended gene IDs".into());
         }
         let seq = normalize(&q.sequence, true)?;
-        if seq.len() != 20 {
+        if matches!(args.mode, Mode::Summary) && !(4..=63).contains(&seq.len()) {
+            return Err(format!("query {} must be 4..63 nt for summary", q.id).into());
+        }
+        if !matches!(args.mode, Mode::Summary) && seq.len() != 20 {
             return Err(format!("query {} must be exactly 20 nt", q.id).into());
         }
         patterns.push(reverse_complement(&seq));
@@ -211,13 +242,14 @@ fn run(args: Args) -> Result<(), Box<dyn Error>> {
         &json!({
             "type": "manifest", "schema_version": 1, "ooff_version": env!("CARGO_PKG_VERSION"),
             "engine": "native-rust-myers-with-fixed-interval-verification", "mode": format!("{:?}", args.mode).to_lowercase(),
+            "count_unit": if matches!(args.mode, Mode::Summary) { Some(args.count_unit.name()) } else { None },
             "max_edits": args.max_edits, "policy": args.policy, "reference_release": args.reference_release,
             "scope": args.scope, "biotype_policy": args.biotype_policy,
             "queries_sha256": hash(&args.queries)?, "reference_sha256": hash(&args.reference)?,
             "reference_records": record_ids.len(), "reference_bases": reference_bases,
             "unknown_bases_excluded": unknown_bases, "normalization": "uppercase; U to T; retain soft-masked sequence",
             "orientation": "reverse-complement ASO against RNA-sense record", "coordinates": "zero-based half-open",
-            "site_identity": "query ID, record ID, start, end; one minimum-cost alignment per interval",
+            "site_identity": if matches!(args.mode, Mode::Summary) && args.count_unit == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
             "tie_policy": "traceback prefers diagonal, I, D", "cigar_direction": "RNA-sense (reverse ASO order)",
             "chemistry_annotations": "5-10-5 MOE wings/DNA gap; no positional or thermodynamic exclusion",
             "allele_policy": "metadata only; intended-gene exclusion does not assess spared alleles",
@@ -227,6 +259,9 @@ fn run(args: Args) -> Result<(), Box<dyn Error>> {
             "completion_contract": "output is incomplete unless run_complete is present"
         }),
     )?;
+    if matches!(args.mode, Mode::Summary) {
+        return run_summary_plain(&args, &queries, &patterns, unknown_bases, &mut out, started);
+    }
     let mut counts = vec![0usize; queries.len()];
     let mut retired = vec![false; queries.len()];
     let mut capped = vec![false; queries.len()];
@@ -314,7 +349,7 @@ fn run(args: Args) -> Result<(), Box<dyn Error>> {
 
 fn main() {
     if let Err(e) = run(Args::parse()) {
-        eprintln!("ooff: {e}");
+        eprintln!("oofft: {e}");
         std::process::exit(1);
     }
 }
@@ -331,7 +366,7 @@ fn run_indexed(
     // SAFETY: the CLI requires immutable, prebuilt index/reference artifacts.
     // It never modifies these files, and records their provenance in output.
     let mut index = unsafe {
-        ooff::indexed::ReferenceIndex::open_cached_immutable(
+        oofft::indexed::ReferenceIndex::open_cached_immutable(
             directory,
             &args.reference,
             annotations,
@@ -343,25 +378,36 @@ fn run_indexed(
         unsafe { index.attach_reverse_immutable(reverse) }?;
     }
     let load_seconds = load_started.elapsed().as_secs_f64();
+    let threads = if matches!(args.mode, Mode::Summary) {
+        args.threads
+            .unwrap_or_else(|| std::thread::available_parallelism().map_or(1, usize::from))
+            .min(queries.len())
+    } else {
+        1
+    };
     let mut out = BufWriter::new(std::io::stdout().lock());
     emit(
         &mut out,
         &json!({"type":"manifest","schema_version":1,"ooff_version":env!("CARGO_PKG_VERSION"),
-        "engine":"native-rust-fm-with-independent-interval-verification","mode":format!("{:?}",args.mode).to_lowercase(),
+        "engine":if matches!(args.mode, Mode::Summary) {"native-rust-fm-minimum-distance-counts"} else {"native-rust-fm-with-independent-interval-verification"},"mode":format!("{:?}",args.mode).to_lowercase(),
+        "count_unit":if matches!(args.mode, Mode::Summary) {Some(args.count_unit.name())} else {None},
         "max_edits":args.max_edits,"policy":args.policy,"reference_release":args.reference_release,"scope":args.scope,
         "biotype_policy":args.biotype_policy,"queries_sha256":hash(&args.queries)?,"reference_sha256":index.info.sha256,
         "annotations_sha256":if let Some(hash) = index.cached_annotation_sha256() { hash.to_owned() } else { hash(annotations)? },"index_manifest_sha256":hash(&directory.join("manifest.json"))?,
         "reference_records":index.record_count(),"reference_bases":index.reference_bases(),"unknown_bases_excluded":index.info.unknown_bases,
         "normalization":"uppercase; U to T; retain soft-masked sequence","orientation":"reverse-complement ASO against RNA-sense record",
-        "coordinates":"zero-based half-open","site_identity":"query ID, record ID, start, end; one minimum-cost alignment per interval",
+        "coordinates":"zero-based half-open","site_identity":if matches!(args.mode, Mode::Summary) && args.count_unit == oofft::summary::CountUnit::GenomicSite {"query ID, contig, strand, ordered genomic blocks; minimum edit distance across records"} else {"query ID, record ID, start, end; one minimum-cost alignment per interval"},
         "tie_policy":"traceback prefers diagonal, I, D","cigar_direction":"RNA-sense (reverse ASO order)",
         "chemistry_annotations":"5-10-5 MOE wings/DNA gap; no positional or thermodynamic exclusion",
         "allele_policy":"metadata only; intended-gene exclusion does not assess spared alleles",
         "unknown_policy":"split records at ambiguity; no-hit status incomplete when unknown bases exist",
         "annotation_cache":args.annotation_cache,"paired_directions":args.reverse_index.is_some(),
-        "reverse_index_manifest_sha256":args.reverse_index.as_ref().map(|p| hash(&p.join("manifest.json"))).transpose()?,"max_sites":args.max_sites,"threads":1,"index_load_seconds":load_seconds,
+        "reverse_index_manifest_sha256":args.reverse_index.as_ref().map(|p| hash(&p.join("manifest.json"))).transpose()?,"max_sites":args.max_sites,"threads":threads,"index_load_seconds":load_seconds,
         "arch":std::env::consts::ARCH,"os":std::env::consts::OS,"completion_contract":"output is incomplete unless run_complete is present"}),
     )?;
+    if matches!(args.mode, Mode::Summary) {
+        return run_summary_indexed(&args, queries, patterns, &index, threads, &mut out, started);
+    }
     let search_started = Instant::now();
     let mut total = 0;
     for (q, pattern) in queries.iter().zip(patterns) {
@@ -393,6 +439,164 @@ fn run_indexed(
     emit(
         &mut out,
         &json!({"type":"run_complete","seconds":started.elapsed().as_secs_f64(),"search_and_output_seconds":search_started.elapsed().as_secs_f64(),"reported_sites":total}),
+    )?;
+    out.flush()?;
+    Ok(())
+}
+
+fn count_summary(
+    args: &Args,
+    query: &Query,
+    counts: &oofft::summary::Counts,
+    unknown: usize,
+) -> Value {
+    let bins: serde_json::Map<String, Value> = (0..4)
+        .map(|d| {
+            (
+                d.to_string(),
+                if d <= args.max_edits as usize {
+                    json!(counts.by_edit_distance[d])
+                } else {
+                    Value::Null
+                },
+            )
+        })
+        .collect();
+    let mut row = json!({"type":"query_summary", "query_id":query.id,
+        "status":if unknown > 0 {"incomplete"} else if counts.total() > 0 {"offtarget_found"} else {"none_found_within_scope"},
+        "count_unit":args.count_unit.name(), "edit_distance_counts":bins,
+        "total_sites":counts.total(), "candidate_found":counts.total()>0,
+        "counts_complete":unknown==0, "unknown_bases_excluded":unknown});
+    if args.genes {
+        row["offtarget_genes"] = json!(counts.genes);
+    }
+    row
+}
+
+fn run_summary_plain(
+    args: &Args,
+    queries: &[Query],
+    patterns: &[Vec<u8>],
+    unknown: usize,
+    out: &mut impl Write,
+    started: Instant,
+) -> Result<(), Box<dyn Error>> {
+    let mut total = 0u64;
+    // One query's deduplication state at a time, even without an index.
+    for (query, pattern) in queries.iter().zip(patterns) {
+        let mut counts = oofft::summary::Counts::new(args.count_unit, args.genes);
+        for r in records::<Record>(&args.reference)? {
+            let r = r?;
+            if r.genes.iter().all(|g| query.intended_genes.contains(g)) {
+                continue;
+            }
+            let text = normalize(&r.sequence, false)?;
+            for (a, b, owned_end) in chunks(
+                &text,
+                args.chunk_bases,
+                pattern.len() + args.max_edits as usize,
+            ) {
+                oofft::search_chunk_intervals(
+                    std::slice::from_ref(pattern),
+                    &text[a..b],
+                    args.max_edits as usize,
+                    |_, start, end, d| {
+                        if a + start < owned_end {
+                            counts.add(&r, &query.intended_genes, a + start, a + end, d);
+                        }
+                        true
+                    },
+                );
+            }
+        }
+        total += counts.total();
+        emit(out, &count_summary(args, query, &counts, unknown))?;
+    }
+    emit(
+        out,
+        &json!({"type":"run_complete", "seconds":started.elapsed().as_secs_f64(), "total_sites":total,"queries":queries.len()}),
+    )?;
+    out.flush()?;
+    Ok(())
+}
+
+fn run_summary_indexed(
+    args: &Args,
+    queries: &[Query],
+    patterns: &[Vec<u8>],
+    index: &oofft::indexed::ReferenceIndex,
+    threads: usize,
+    out: &mut impl Write,
+    started: Instant,
+) -> Result<(), Box<dyn Error>> {
+    use std::sync::{Arc, Mutex, mpsc::sync_channel};
+    let search_started = Instant::now();
+    let total = std::thread::scope(|scope| -> Result<u64, Box<dyn Error>> {
+        let window = threads * 2;
+        let (tasks, jobs) = sync_channel::<usize>(window);
+        let jobs = Arc::new(Mutex::new(jobs));
+        let (sender, receiver) = sync_channel(window);
+        let mut scheduled = queries.len().min(window);
+        for q in 0..scheduled {
+            tasks.send(q)?;
+        }
+        for _ in 0..threads {
+            let sender = sender.clone();
+            let jobs = jobs.clone();
+            scope.spawn(move || {
+                loop {
+                    let job = { jobs.lock().unwrap().recv() };
+                    let Ok(q) = job else {
+                        break;
+                    };
+                    let result = (|| {
+                        let mut counts = oofft::summary::Counts::new(args.count_unit, args.genes);
+                        index
+                            .count(
+                                &patterns[q],
+                                &queries[q].intended_genes,
+                                args.max_edits as usize,
+                                &mut counts,
+                                None,
+                            )
+                            .map_err(|e| e.to_string())?;
+                        Ok::<_, String>(count_summary(
+                            args,
+                            &queries[q],
+                            &counts,
+                            index.info.unknown_bases,
+                        ))
+                    })();
+                    let failed = result.is_err();
+                    if sender.send((q, result)).is_err() || failed {
+                        break;
+                    }
+                }
+            });
+        }
+        drop(sender);
+        let mut pending = std::collections::BTreeMap::new();
+        let (mut expected, mut total) = (0usize, 0u64);
+        while expected < queries.len() {
+            let (q, result) = receiver.recv()?;
+            pending.insert(q, result?);
+            while let Some(row) = pending.remove(&expected) {
+                total += row["total_sites"].as_u64().unwrap();
+                emit(out, &row)?;
+                expected += 1;
+                if scheduled < queries.len() {
+                    tasks.send(scheduled)?;
+                    scheduled += 1;
+                }
+            }
+        }
+        drop(tasks);
+        Ok(total)
+    })?;
+    emit(
+        out,
+        &json!({"type":"run_complete", "seconds":started.elapsed().as_secs_f64(),
+        "search_and_output_seconds":search_started.elapsed().as_secs_f64(),"queries":queries.len(),"total_sites":total}),
     )?;
     out.flush()?;
     Ok(())

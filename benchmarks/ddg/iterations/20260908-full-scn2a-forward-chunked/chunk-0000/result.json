@@ -1,0 +1,43 @@
+{
+  "chunk": 0,
+  "queries": 256,
+  "sites": 800668,
+  "discovery_seconds": 82.05344605699997,
+  "ddg_seconds": 231.22877366400007,
+  "archive_seconds": 43.6978598820001,
+  "wall_seconds": 356.98675754600004,
+  "cache": {
+    "capacity_pairs": 4000000,
+    "entries": 455384,
+    "generation_resets": 0,
+    "hits": 110157,
+    "misses": 690767
+  },
+  "profile": {
+    "annotation_batches_seconds": 168.87165533500004,
+    "duplex_stages_seconds": 3.60859085,
+    "input_seconds": 11.046658807000016,
+    "native_pairs": 800924,
+    "native_unique_pairs": 455384,
+    "report_parse_seconds": 2.296151697999997,
+    "serialization_seconds": 1.9116722199999991,
+    "setup_seconds": 30.107339514,
+    "spool_seconds": 0.46093424399999994,
+    "stage_times": "cumulative worker seconds; stages overlap across workers",
+    "waves_wall_seconds": 173.86304467699992
+  },
+  "archives": [
+    {
+      "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0000/report.jsonl.gz",
+      "uncompressed_bytes": 668718394,
+      "compressed_bytes": 62836521,
+      "uncompressed_sha256": "083a68491707c886d7c6169537dcab852867b721f3571b595be783dfdbbd0b0e"
+    },
+    {
+      "path": "/home/ubuntu/ddg-simd-20260908/benchmarks/ddg/iterations/20260908-full-scn2a-forward-chunked/chunk-0000/ddg-work/annotated.jsonl.gz",
+      "uncompressed_bytes": 1033253272,
+      "compressed_bytes": 80329315,
+      "uncompressed_sha256": "c06203b8b6998d35f877ba5481666a9d714cad209337900ef504c2a22688390b"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "label": "unrolled-small-loops-golden",
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.176751874,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 1.180341034,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "data/ddg-baselines/reused-workspace/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 1.177809303,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "data/ddg-baselines/reused-workspace/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.165652472,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.14137727,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 1.180117422,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "data/ddg-baselines/reused-workspace/energy-bench",
+        "fixtures/energy_golden.json",
+        "10"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/energy_golden.json": "de03dfbbd6a6791f8c45e5637d9acc0d6bfacd864883a7b8c6e11b89009ed3a9",
+    "target/release/examples/energy-bench": "fe6b6b387ecc1a80dd568dd5f4ecd6b501fc0723c4653e79a144f640c17afecf",
+    "data/ddg-baselines/reused-workspace/energy-bench": "9f3c310f7a7aa7347ecf475b95e87d4642b7863c94319afd56ec1882faff12a3"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.165652472,
+    "native-baseline": 1.180117422
+  },
+  "speedup_vs_native_baseline": 1.0124093161104708
+}

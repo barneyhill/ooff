@@ -1,0 +1,184 @@
+{
+  "label": "20260908T103534.925438-real-site-annotation",
+  "threads": 4,
+  "complete": true,
+  "workload": "Complete real SCN2A/SCN1A site annotation; same files and all report rows",
+  "queries": 10000,
+  "input_directory": "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a",
+  "stdout_sink": "regular file; comparison streamed after timing",
+  "attempts": [
+    {
+      "engine": "vienna-baseline",
+      "repetition": 0,
+      "seconds": 4.197204791998956,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/pre-cross-record/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "profile": {}
+    },
+    {
+      "engine": "ooff",
+      "repetition": 0,
+      "seconds": 1.2902050699922256,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 0.36915314799999993,
+        "duplex_stages_seconds": 0.396940104,
+        "native_pairs": 38222,
+        "native_unique_pairs": 31920,
+        "report_parse_seconds": 0.3563147999999808,
+        "serialization_seconds": 0.2615869440000001
+      }
+    },
+    {
+      "engine": "ooff",
+      "repetition": 1,
+      "seconds": 1.2690028590150177,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 0.36275682000000004,
+        "duplex_stages_seconds": 0.396317141,
+        "native_pairs": 38222,
+        "native_unique_pairs": 31920,
+        "report_parse_seconds": 0.34970995199998584,
+        "serialization_seconds": 0.26182611699999997
+      }
+    },
+    {
+      "engine": "vienna-baseline",
+      "repetition": 1,
+      "seconds": 4.208142065006541,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/pre-cross-record/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "profile": {}
+    },
+    {
+      "engine": "vienna-baseline",
+      "repetition": 2,
+      "seconds": 4.200931692001177,
+      "returncode": 0,
+      "command": [
+        "data/ddg-baselines/pre-cross-record/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600"
+      ],
+      "profile": {}
+    },
+    {
+      "engine": "ooff",
+      "repetition": 2,
+      "seconds": 1.2931184489862062,
+      "returncode": 0,
+      "command": [
+        "target/release/oofft-ddg",
+        "--sites",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl",
+        "--queries",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl",
+        "--reference",
+        "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl",
+        "--rnaduplex",
+        "/home/barneyh/.local/bin/RNAduplex",
+        "--threads",
+        "4",
+        "--timeout",
+        "600",
+        "--energy-engine",
+        "rust"
+      ],
+      "profile": {
+        "annotation_batches_seconds": 0.36635754700000006,
+        "duplex_stages_seconds": 0.403874494,
+        "native_pairs": 38222,
+        "native_unique_pairs": 31920,
+        "report_parse_seconds": 0.3509704219999782,
+        "serialization_seconds": 0.261987573
+      }
+    }
+  ],
+  "sha256": {
+    "data/ddg-baselines/pre-cross-record/oofft-ddg": "3ffe445afb6ff3f5ac6300b72122e804d7d2716c739cf2a0ecedcff96fc4ab74",
+    "target/release/oofft-ddg": "fa381ee36172385fb1eb536bde67cbfd8a1211f5bb0fb5b6fc6580799f2276d7",
+    "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/queries.jsonl": "9fb81670fc29d6c4d2411f0f06e822f375df30b5290c742f0fccc89c8d77164f",
+    "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/reference.jsonl": "fcd09d7a714af0b48653e9acaaac9c8c8627438101f05552c2673536831942a7",
+    "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/report.jsonl": "6b9f9946474e81363e16da5e9efbe1ce0ab09d32d3b3ef92299f580bc56c5cb4"
+  },
+  "all_fields_match": true,
+  "sites": 28222,
+  "medians": {
+    "vienna-baseline": 4.200931692001177,
+    "ooff": 1.2902050699922256
+  },
+  "speedup": 3.2560185893754787
+}

@@ -1,0 +1,11 @@
+{
+  "vienna_version": "2.7.0",
+  "model": "RNA:RNA default Turner 2004, 37 C, default salt",
+  "files": {
+    "src/energy/turner2004_37c.json": "a26b9c69e67e7a669f71e097f51841cce71f2189c9d78de8a809876cdcaaf93f",
+    "benchmarks/ddg/export_parameters.c": "3e449049995cd6515324abfcaedef10d2b2ae9b55e142f23bfd5ecf87867a62f",
+    "/home/barneyh/.local/lib/libRNA.a": "5c655c67e8dae6535110ef33f92da99278cbf5cad5304b863aef81ec38e37b25",
+    "fixtures/energy_loops_golden.json": "226d1cb23baca40e02c6debba8af240894090786cec7a159de5b5e0a8196df24",
+    "benchmarks/ddg/loop_oracle.c": "49628bbf19ab98b02df2a45a166dd277282c8de8bf501383623ea87db0f17713"
+  }
+}

@@ -1,4 +1,4 @@
-use ooff::{IntervalDistance, align};
+use oofft::{IntervalDistance, align};
 
 #[test]
 fn fixed_interval_bit_distance_matches_global_scalar_oracle() {

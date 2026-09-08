@@ -1,0 +1,12 @@
+{
+  "complete": true,
+  "cases": 2931542,
+  "threads": 8,
+  "vienna_version": "RNAduplex 2.7.0",
+  "seconds": 68.66491572500001,
+  "input": "data/reuse/full-reference-1000-20260908/all-unique-pairs.jsonl",
+  "input_sha256": "476202a2728bfec719297c92362f1fcee6e9d92eaa475cfe3e3113180928946b",
+  "rnaduplex_sha256": "9d59eb81ed7cf0b45146ca1685d43be39e4270885ed3dd5a505a4032f670cf20",
+  "output_sha256": "73025f67c51b2212b5e8b70d10cce9ac696ae88a9f832e8703871790c05503a2",
+  "scope": "Independent actual ViennaRNA oracle generation; not a native speed measurement"
+}

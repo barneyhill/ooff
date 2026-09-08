@@ -1,6 +1,8 @@
 //! Full-query unit-cost matching against oriented, known RNA sequence.
+pub mod energy;
 pub mod fm;
 pub mod indexed;
+pub mod summary;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Deserialize)]
@@ -14,6 +16,9 @@ pub struct Query {
     /// Caller-supplied energy annotation; never used to exclude candidate sites.
     #[serde(default)]
     pub ddg: Option<f64>,
+    /// Optional intended RNA target for subsequent energy annotation, written 5' to 3'.
+    #[serde(default, alias = "targetDnaSequence")]
+    pub target: Option<String>,
 }
 
 /// Blocks are genomic intervals in transcript order. The sequence is RNA-sense.
@@ -75,14 +80,17 @@ impl Record {
     }
 
     pub fn map_interval(&self, start: usize, end: usize) -> Vec<Block> {
+        self.mapped_blocks(start, end).collect()
+    }
+
+    pub fn mapped_blocks(&self, start: usize, end: usize) -> impl Iterator<Item = Block> + '_ {
         let mut offset = 0;
-        let mut mapped = Vec::new();
-        for block in &self.blocks {
+        self.blocks.iter().filter_map(move |block| {
             let len = block.end - block.start;
             let a = start.max(offset);
             let b = end.min(offset + len);
-            if a < b {
-                mapped.push(if self.strand == "+" {
+            let mapped = (a < b).then(|| {
+                if self.strand == "+" {
                     Block {
                         start: block.start + a - offset,
                         end: block.start + b - offset,
@@ -92,11 +100,11 @@ impl Record {
                         start: block.end - (b - offset),
                         end: block.end - (a - offset),
                     }
-                });
-            }
+                }
+            });
             offset += len;
-        }
-        mapped
+            mapped
+        })
     }
 }
 
@@ -422,9 +430,22 @@ pub fn search_chunk(
     k: usize,
     mut emit: impl FnMut(usize, Site) -> bool,
 ) {
-    if patterns.is_empty() || text.is_empty() {
-        return;
-    }
+    search_chunk_intervals(patterns, text, k, |q, start, end, distance| {
+        let (_, ops) = align(&patterns[q], &text[start..end]);
+        emit(
+            q,
+            site(&patterns[q], &text[start..end], start, distance, &ops),
+        )
+    });
+}
+
+/// Enumerate verified intervals without allocating traceback or edit annotations.
+pub fn search_chunk_intervals(
+    patterns: &[Vec<u8>],
+    text: &[u8],
+    k: usize,
+    mut emit: impl FnMut(usize, usize, usize, usize) -> bool,
+) {
     for (q, pattern) in patterns.iter().enumerate() {
         let verifier = IntervalDistance::new(pattern);
         'query: for end in endpoints(pattern, text, k) {
@@ -433,11 +454,8 @@ pub fn search_chunk(
                     continue;
                 }
                 let start = end - span;
-                if verifier.distance(&text[start..end]) > k {
-                    continue;
-                }
-                let (cost, ops) = align(pattern, &text[start..end]);
-                if cost <= k && !emit(q, site(pattern, &text[start..end], start, cost, &ops)) {
+                let distance = verifier.distance(&text[start..end]);
+                if distance <= k && !emit(q, start, end, distance) {
                     break 'query;
                 }
             }

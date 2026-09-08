@@ -1,10 +1,10 @@
-use ooff::fm::Index;
+use oofft::fm::Index;
 use std::collections::BTreeMap;
 
 #[test]
 fn coarse_record_lookup_preserves_boundaries() {
     let starts = vec![3, 10, 65535, 65536, 65540, 131080];
-    let lookup = ooff::fm::RecordLookup::new(starts.clone(), 200000);
+    let lookup = oofft::fm::RecordLookup::new(starts.clone(), 200000);
     for position in [
         0, 2, 3, 4, 9, 10, 65534, 65535, 65536, 65539, 65540, 131071, 131072, 131079, 131080,
         199999,

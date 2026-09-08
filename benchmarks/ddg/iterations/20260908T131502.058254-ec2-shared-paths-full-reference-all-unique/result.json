@@ -1,0 +1,110 @@
+{
+  "label": "ec2-shared-paths-full-reference-all-unique",
+  "platform": "EC2 c7i.2xlarge Xeon 8488C 4 cores 8 threads",
+  "batch_requested": false,
+  "threads": 8,
+  "complete": true,
+  "workload": "Compute-only golden pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 2.5927235619999998,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "paths",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 1.925291803,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 1.9253087949999999,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 2.613516887,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "paths",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 2.619131349,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "paths",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 1.931220305,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "data/reuse/full-reference-1000-20260908/oracle-all/cases.json",
+        "1",
+        "8",
+        "batch",
+        "16"
+      ]
+    }
+  ],
+  "sha256": {
+    "data/reuse/full-reference-1000-20260908/oracle-all/cases.json": "73025f67c51b2212b5e8b70d10cce9ac696ae88a9f832e8703871790c05503a2",
+    "target/release/examples/energy-bench": "6b6da09ea53e5d5d544756470976dbeff850bc6ee8fb2dfa9561f3f0dd4053fd"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 2.613516887,
+    "native-baseline": 1.9253087949999999
+  },
+  "speedup_vs_native_baseline": 0.7366735621938225
+}

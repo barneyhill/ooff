@@ -1,0 +1,116 @@
+{
+  "label": "pulp-neon-golden",
+  "platform": "Raspberry Pi 5, Cortex-A76, aarch64, pulp 0.22.3 NEON",
+  "cases": 1825,
+  "batch_requested": true,
+  "threads": 1,
+  "complete": true,
+  "workload": "Compute-only 1,825 diverse oracle pairs, includes pair encoding and DP, excludes IO/startup",
+  "attempts": [
+    {
+      "engine": "rust-kernel",
+      "repetition": 0,
+      "seconds": 1.004052257,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 0,
+      "seconds": 1.176732192,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 1,
+      "seconds": 1.151240257,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 1,
+      "seconds": 1.018021496,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "rust-kernel",
+      "repetition": 2,
+      "seconds": 1.000721095,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "target/release/examples/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "16"
+      ]
+    },
+    {
+      "engine": "native-baseline",
+      "repetition": 2,
+      "seconds": 1.150999906,
+      "returncode": 0,
+      "measurement_kind": "kernel_compute",
+      "command": [
+        "/tmp/oofft-pre-pulp/energy-bench",
+        "fixtures/energy_golden.json",
+        "10",
+        "1",
+        "batch",
+        "8"
+      ]
+    }
+  ],
+  "sha256": {
+    "fixtures/energy_golden.json": "de03dfbbd6a6791f8c45e5637d9acc0d6bfacd864883a7b8c6e11b89009ed3a9",
+    "target/release/examples/energy-bench": "42df31c48d5a5062f54aba6707ea6a5bc5429d41b7e66ff048ff4b7554d7796c",
+    "/tmp/oofft-pre-pulp/energy-bench": "ac855f05bad42dfcba6e78f09a08a61962aa80e3b10a6df80cdc999d043db65f"
+  },
+  "all_fields_match": true,
+  "medians": {
+    "rust-kernel": 1.004052257,
+    "native-baseline": 1.151240257
+  },
+  "speedup_vs_native_baseline": 1.1465939635849054,
+  "retained_binaries": {
+    "native-baseline": "data/ddg-pulp/20260908/pre-pulp-energy-bench",
+    "rust-kernel": "data/ddg-pulp/20260908/pulp-energy-bench"
+  }
+}

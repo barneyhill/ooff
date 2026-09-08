@@ -1,0 +1,7 @@
+{
+  "cases": 20543,
+  "original_cases": 28222,
+  "source": "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases.json",
+  "output": "data/ddg-real-sites/20260908T103345.681632-scn2a10000-scn1a/energy-cases-unique.json",
+  "sha256": "f6ccdd99fa6972db6012989f099b12d5b2edcf274e8363a7926ef0f3be989c1c"
+}
