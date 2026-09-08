@@ -26,6 +26,8 @@ jobs:
             target: x86_64-apple-darwin
     env:
       CARGO_TERM_COLOR: always
+      # Speed up exhaustive DP oracle tests while retaining test debug assertions.
+      CARGO_PROFILE_TEST_OPT_LEVEL: '1'
       # Override the local benchmark's target-cpu=native for distributable builds.
       RUSTFLAGS: -C target-cpu=generic
       MACOSX_DEPLOYMENT_TARGET: '13.0'

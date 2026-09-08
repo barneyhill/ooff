@@ -284,7 +284,8 @@ pub struct ReferenceIndex {
     indexes: Vec<Index>,
     record_lookups: Vec<crate::fm::RecordLookup>,
     reverse_indexes: Option<Vec<Index>>,
-    sequence: memmap2::Mmap,
+    source: File,
+    sequence: OnceLock<std::io::Result<memmap2::Mmap>>,
     records: Vec<Record>,
     annotation_cache: Option<(AnnotationCache, memmap2::Mmap)>,
     cached_records: Vec<OnceLock<Box<Record>>>,
@@ -385,14 +386,13 @@ impl ReferenceIndex {
             })
             .collect();
         let source = File::open(reference)?;
-        // SAFETY: the same immutability contract applies to the source reference.
-        let sequence = unsafe { memmap2::MmapOptions::new().map(&source) }?;
         Ok(Self {
             manifest,
             indexes,
             record_lookups,
             reverse_indexes: None,
-            sequence,
+            source,
+            sequence: OnceLock::new(),
             records,
             annotation_cache,
             cached_records,
@@ -436,8 +436,18 @@ impl ReferenceIndex {
         if start >= end || end > r.length {
             return Err("indexed hit outside reference record".into());
         }
+        // Counts never read reference sequence. Map it only when a report or
+        // witness needs verification, avoiding an unused full-FASTA address map.
+        let sequence = self
+            .sequence
+            .get_or_init(|| {
+                // SAFETY: open_immutable requires the source to remain immutable.
+                unsafe { memmap2::MmapOptions::new().map(&self.source) }
+            })
+            .as_ref()
+            .map_err(|error| std::io::Error::new(error.kind(), error.to_string()))?;
         let bytes: Vec<_> = (start..end)
-            .map(|p| self.sequence[r.offset + (p / r.line_bases) * r.line_bytes + p % r.line_bases])
+            .map(|p| sequence[r.offset + (p / r.line_bases) * r.line_bytes + p % r.line_bases])
             .collect();
         normalize(std::str::from_utf8(&bytes)?, false).map_err(Into::into)
     }

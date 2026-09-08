@@ -148,3 +148,10 @@ oofft-index cache-annotations --index compact-index --reference reference.fa \
 Keep the indexed FASTA, index shards and annotations immutable during searches.
 The relocation script changes only reference metadata after SHA-256 verification;
 it does not rebuild or modify the index shards.
+
+The final local integration validation repeated the same 1,000 queries with a
+**5 GiB address-space limit** and lazy FASTA mapping: **45.816 s**, **3,137,920 KiB
+(2.99 GiB) peak RSS**, all summaries identical. This followed earlier runs with
+retained OS cache; do not attribute the entire timing difference to lazy mapping.
+The limit is an OligoAI child-process setting, not a universal oofft memory promise.
+Counts do not map FASTA sequence; screen/report map it lazily when needed.

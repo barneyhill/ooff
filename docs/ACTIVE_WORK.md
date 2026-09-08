@@ -1,3 +1,37 @@
+## 2026-09-08 17:19 UTC — deployed local OligoAI integration
+
+OligoAI now uses native oofft via src/oofft.ts; four bins retained in SQLite,
+UI and CSV. references/oofft links to /home/barneyh/ooff/data/reference-compact-v1.
+Installed oofft and oofft-index under its bin/. Linux adapter uses prlimit 5 GiB
+address-space cap and disables cores; timeout default4h, threads4, settings in
+/home/barneyh/oligoai-v2/OOFFT.md. Failures/incomplete process output return N/A.
+Existing optional transcript specificity untouched. Old saved gene counts marked
+legacy; no existing result DBs modified. Pre-existing dirty app changes preserved.
+Original app files backed up /tmp/oligoai-before-oofft-20260908. App repo edits
+are NOT committed (pre-existing user modifications also present).
+
+No unfinished jobs in journal at deployment; sudo systemctl restart oligoai.service
+succeeded. HTTP /oligoai, /api/config and new design.js all200. Adapter fake-process,
+native synthetic compact-index and SQLite tests allpass (4 tests/14 assertions).
+Production-reference adapter first SCN2A query validated [1,4,17,728], total750.
+
+Latest summary change lazily maps FASTA only for report/screen verification;
+count mode avoids unused2.4GB address reservation. This was needed to fit a5GiB
+child address-space limit. Full1000-query capped run45.815578s,3137920KiB RSS,
+all summaries exactly equal earlierfullindexEC2/Pisamples. Metadata inledger.
+FirstPi sample75.214s, repeat61.157s; latestwarm45.816s is NOT controlledproof
+of lazy-map speedup. FullSCN2A Pi latency not measured (roughly1.5–2.4h sample
+extrapolation, repeat-filtered20mers). EC2fullactual7m19s retained.
+
+Release commits pushed6c249a9(initial),dc6d8ec(x86lintfix). CIinitialx86lintfailed;
+reproduced/fixed/verifiedonEC2. LatestlazyFASTAchangeandCItestoptimization(opt-level1,
+debugassertionsretained)stillneedscommit/push. No tag or cratespublication yet.
+Local full release tests42ordinary plus2liveVienna passed; targetedsummarytests
+rerunafterlazychange passed. Freshx86pulpenergies matchliveVienna2.7.0 onEC2.
+Async choicewebPi+EC2counts/local/allEC2unanswered; proceededwithalready-authorized
+localmemoryfix. No cloudmigration/offloaderinstalled. Worker stillrunning,stopwhen
+releasevalidationnolongerrequiresit; retainedvolumesmustremain.
+
 ## 2026-09-08 17:00 UTC — compact index and OligoAI shipping work
 
 Latest user steering: fix Pi memory or move OligoAI to EC2. Compact sampled-SA16
