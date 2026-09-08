@@ -144,8 +144,8 @@ def main():
     rss=max(r.get("resources",{}).get("max_rss_kib",0) for r in [a,b])/1024
     load=a.get("output",{}).get("load_seconds")
     state="matched; complete" if complete and equal else "MISMATCH" if complete else "FAILED/TIMEOUT"
-    row=f'| {ident} | {now.strftime("%H:%M:%S")} | {args.label} | {args.reference}; n={info.get("actual_queries",args.n)}; k={args.k} | {args.mode}; 1 | load {fmt(load)} | {fmt(a.get("median_search_seconds"))} | {fmt(b.get("median_search_seconds"))} | {fmt(speedup)} | {rss:.1f} | {state} | [{ident}]({folder}/result.json) |\n'
-    ledger=Path("BENCHMARKS.md")
+    row=f'| {ident} | {now.strftime("%H:%M:%S")} | {args.label} | {args.reference}; n={info.get("actual_queries",args.n)}; k={args.k} | {args.mode}; 1 | load {fmt(load)} | {fmt(a.get("median_search_seconds"))} | {fmt(b.get("median_search_seconds"))} | {fmt(speedup)} | {rss:.1f} | {state} | [{ident}]({folder.relative_to("benchmarks")}/result.json) |\n'
+    ledger=Path("benchmarks/NATIVE_ITERATIONS.md")
     content=ledger.read_text()
     content=content.replace("\n## Interpretation",row+"\n## Interpretation",1)
     ledger.write_text(content)

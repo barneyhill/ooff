@@ -59,32 +59,59 @@ for tool in tools:
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-plt.rcParams.update({'font.family':'DejaVu Sans','font.size':10,'axes.spines.top':False,'axes.spines.right':False,'svg.fonttype':'none'})
-fig,ax=plt.subplots(figsize=(9,4.8))
-labels={'ooff':'oofft','bwa':'BWA-aln','blast':'BLASTN-short','minimap2':'minimap2','sassy':'Sassy2'}
-colors={'ooff':'#007C91','bwa':'#C85132','blast':'#7965AC','minimap2':'#88703A','sassy':'#4677B4'}
+plt.rcParams.update({
+    'font.family': 'DejaVu Sans', 'font.size': 10,
+    'text.color': '#263343', 'axes.labelcolor': '#394657',
+    'xtick.color': '#536171', 'ytick.color': '#536171',
+    'axes.spines.top': False, 'axes.spines.right': False,
+    'axes.spines.left': False, 'axes.spines.bottom': False,
+    'svg.fonttype': 'none', 'svg.hashsalt': 'oofft-screening',
+})
+fig, ax = plt.subplots(figsize=(9.2, 4.9))
+labels = {'ooff': 'oofft', 'bwa': 'BWA-aln', 'blast': 'BLASTN-short',
+          'minimap2': 'minimap2', 'sassy': 'Sassy2'}
+colors = {'ooff': '#087F8C', 'bwa': '#BA6541', 'blast': '#8A6BA8',
+          'minimap2': '#63798B', 'sassy': '#5078B5'}
+# Direct labels replace the legend; only completed repeated runs form curves.
+# Thin vertical ranges show observed min/max, not confidence intervals.
 for tool in tools:
-    ns=sorted(n for (t,n),rs in groups.items() if t==tool and len(rs)>=3)
-    ys=[statistics.median(r['wall_seconds'] for r in groups[(tool,n)]) for n in ns]
-    ax.plot(ns,ys,label=labels[tool],color=colors[tool],marker='o',linewidth=2)
-    censored=[r for r in rows if r['tool']==tool and r['timed_out']]
-    for n in sorted({r['queries'] for r in censored}):
-        lower_bound=statistics.median(r['wall_seconds'] for r in censored if r['queries']==n)
-        ax.annotate('timeout',xy=(n,lower_bound),xytext=(0,12 if tool=='sassy' else 0),textcoords='offset points',ha='center',fontsize=8,color=colors[tool])
-for r in rows:
-    if r['failure_reason']=='out_of_memory':
-        ax.text(.98,.04,f"{labels[r['tool']]}: OOM at {r['queries']:,} ASOs (32 GiB)",
-                transform=ax.transAxes,ha='right',fontsize=9,color=colors[r['tool']])
-ax.set_xscale('log',base=10);ax.set_yscale('log',base=10)
-ticks=sorted(plot_counts);ax.set_xticks(ticks,[f'{n:,}' for n in ticks])
-ax.set_xlabel('Number of ASOs');ax.set_ylabel('Search time (seconds)')
-ax.grid(axis='y',alpha=.17);ax.set_axisbelow(True)
-ax.legend(ncol=len(tools),loc='upper left',frameon=False,fontsize=9)
-ax.set_ylim(.3,2500)
-fig.suptitle('ASO screening against the human RNA reference',x=.10,ha='left',fontsize=15,fontweight='bold')
-fig.text(.10,.885,'Median screening time · 8 search threads · log10 axes',fontsize=10,color='#444444')
-fig.text(.10,.035,'Index build: oofft 206 s · BWA 2,753 s · BLAST 16 s · minimap2 74 s · Sassy2: no persistent index.\nSearch includes loading, output and verification. Build costs excluded. Heuristic tools may miss hits; see methods.',fontsize=8,color='#444444')
-fig.subplots_adjust(left=.10,right=.98,top=.83,bottom=.23)
-for suffix in ['.svg','.png']:
-    fig.savefig(a.output.with_suffix(suffix),dpi=180,facecolor='white')
+    ns = sorted(n for (t, n), rs in groups.items() if t == tool and len(rs) >= 3)
+    values = [[r['wall_seconds'] for r in groups[(tool, n)]] for n in ns]
+    ys = [statistics.median(v) for v in values]
+    color = colors[tool]
+    ax.vlines(ns, [min(v) for v in values], [max(v) for v in values],
+              color=color, linewidth=1.2, alpha=.45, zorder=2)
+    ax.plot(ns, ys, color=color, marker='o', markersize=5 if tool == 'ooff' else 4,
+            markeredgecolor='white', markeredgewidth=.7,
+            linewidth=2.6 if tool == 'ooff' else 1.7, zorder=4 if tool == 'ooff' else 3)
+    label = labels[tool]
+    if ns[-1] == max(plot_counts):
+        label += f"  {ys[-1]:.2f} s"
+    ax.annotate(label, (ns[-1], ys[-1]), xytext=(10, 0),
+                textcoords='offset points', color=color, fontsize=10,
+                fontweight='bold' if tool == 'ooff' else 'normal', va='center')
+ax.set_xscale('log', base=10)
+ax.set_yscale('log', base=10)
+ax.set_xticks(sorted(plot_counts), ['10', '100', '1,000', '10,000', '100,000'])
+ax.set_yticks([.1, 1, 10, 100, 1000], ['0.1', '1', '10', '100', '1,000'])
+ax.minorticks_off()
+ax.tick_params(length=0, pad=9)
+ax.set_xlim(7, 850000)
+ax.set_ylim(.30, 850)
+ax.set_xlabel('ASOs per batch', labelpad=14)
+ax.set_ylabel('Elapsed time (s)', labelpad=12)
+ax.grid(axis='y', color='#E5EAF0', linewidth=.8)
+ax.set_axisbelow(True)
+fig.text(.085, .945, 'Human RNA off-target screening', fontsize=16, fontweight='bold')
+fig.text(.085, .892, '8 logical CPUs  ·  ≤3 edits  ·  median of 3 runs  ·  log₁₀ axes',
+         fontsize=10, color='#647182')
+fig.text(.085, .035,
+         'Loading + search + output + verification; index build excluded. Ranges show observed min–max.',
+         fontsize=8.5, color='#647182')
+fig.subplots_adjust(left=.085, right=.98, top=.83, bottom=.20)
+for suffix in ['.svg', '.png']:
+    fig.savefig(a.output.with_suffix(suffix), dpi=200, facecolor='white',
+                metadata={'Date': None} if suffix == '.svg' else None)
+svg = a.output.with_suffix('.svg')
+svg.write_text('\n'.join(line.rstrip() for line in svg.read_text().splitlines()) + '\n')
 print(a.output.with_suffix('.png'))

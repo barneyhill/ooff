@@ -33,8 +33,8 @@ with (folder/"stdout.json").open("x") as out,(folder/"stderr.log").open("x") as 
 record={"id":ident,"kind":"index_build","configuration":vars(args),"command":command,"returncode":result.returncode,"wall_seconds":time.monotonic()-start}
 if result.returncode==0:record["output"]=json.loads((folder/"stdout.json").read_text())
 (folder/"result.json").write_text(json.dumps(record,indent=2)+"\n")
-row=f'| {ident} | {now.strftime("%H:%M:%S")} | {args.label} | {args.reference} | index/cache build; threads={args.threads} | {record["wall_seconds"]:.6f} | — | — | — | see artifact | '+("complete" if result.returncode==0 else "FAILED")+f' | [{ident}]({folder}/result.json) |\n'
-p=Path("BENCHMARKS.md");p.write_text(p.read_text().replace("\n## Interpretation",row+"\n## Interpretation",1))
+row=f'| {ident} | {now.strftime("%H:%M:%S")} | {args.label} | {args.reference} | index/cache build; threads={args.threads} | {record["wall_seconds"]:.6f} | — | — | — | see artifact | '+("complete" if result.returncode==0 else "FAILED")+f' | [{ident}]({folder.relative_to("benchmarks")}/result.json) |\n'
+p=Path("benchmarks/NATIVE_ITERATIONS.md");p.write_text(p.read_text().replace("\n## Interpretation",row+"\n## Interpretation",1))
 with open("benchmarks/iterations/runs.jsonl","a") as f:f.write(json.dumps(record)+"\n")
 subprocess.run(["python3","benchmarks/refresh_ledger.py"],check=True)
 print(row,flush=True)

@@ -1,4 +1,4 @@
-# Native Rust site ΔΔG and ViennaRNA compatibility
+# Relative hybridization energy (ΔΔG)
 
 ## Annotate discovered off-target sites (default report workflow)
 
@@ -10,7 +10,8 @@ is supplied. Whole-transcript mode uses ViennaRNA RNAplex and requires
 
 The native engine matches 1,825 pinned complete duplex energies and 11,160,000
 loop-energy evaluations, with additional live ViennaRNA 2.7.0 checks and complete
-real-site comparisons. On EC2 c7i.2xlarge (Xeon Platinum 8488C; four physical
+real-site comparisons. The following recorded benchmark used the earlier
+intrinsic SIMD backend; the current runtime backend is described below. On EC2 c7i.2xlarge (Xeon Platinum 8488C; four physical
 cores, eight hardware threads), annotating **273,825 sites from 100,000 distinct
 SCN2A ASOs against SCN1A pre-mRNA** measured:
 
@@ -81,8 +82,8 @@ intended allele is not perfectly complementary. This field can be present in
 the original discovery queries. Intended-target energy is computed once per
 query in site mode, and reused across its hits.
 
-Default site scoring uses **RNAduplex(ASO, intended target) minus
-RNAduplex(ASO, hit interval)**, in kcal/mol. The hit interval is taken directly
+Site scoring uses **ΔG(ASO, hit interval) minus
+ΔG(ASO, intended target)**, in kcal/mol. The hit interval is taken directly
 from the report's zero-based half-open RNA-sense coordinates. Its length can
 differ from ASO length because of indels. No flank is added and no exact-match
 shortcut is applied. RNAduplex optimizes a duplex within these sequences;
@@ -93,9 +94,9 @@ Each site receives a `ddg` plus an `energy_annotation` object containing compone
 energies, calculation scope, model, sign, scored interval and on-target basis.
 An earlier caller-supplied `ddg` is preserved as `supplied_ddg`.
 
-Add **`--whole-transcript`** to annotate with the existing OligoAI calculation:
+Add **`--whole-transcript --energy-engine vienna`** for full-record scoring:
 RNAduplex for the intended pair, RNAplex's best interaction anywhere in the
-supplied full RNA record, and OligoAI's exact-match shortcut. The reported site
+supplied full RNA record, and an exact-match shortcut. The reported site
 coordinates remain unchanged; the best RNAplex position is stored separately.
 Multiple sites for an ASO in one record can consequently have the same score.
 The flag does not reconstruct mature transcripts from genomic gene bodies:
@@ -104,15 +105,6 @@ the input record defines the scan scope, including pre-mRNA when supplied.
 Both modes use ViennaRNA's RNA:RNA defaults, not a modified-gapmer energy model.
 Site-mode workers stay within `--threads`; whole-transcript mode retains up to
 that many RNAplex processes plus one RNAduplex process.
-
-## Standalone whole-transcript compatibility workflow
-
-`oofft-ddg` uses the transcript-scoring workflow from the local
-OligoAI v2 `computeSpecificity` implementation. It calls the installed ViennaRNA
-engines rather than substituting a new thermodynamic recurrence. The native
-orchestrator deduplicates identical ASOs and intended-target pairs, indexes only
-requested exact-match sequences, and partitions remaining RNAplex queries across
-worker processes. Each unique off-target ASO is evaluated once per invocation.
 
 ## Scientific context and sign
 
@@ -128,214 +120,71 @@ Positive values mean weaker off-target binding; negative values mean stronger
 off-target binding. For example, −15 − (−20) = +5 kcal/mol. This applies to site
 annotation and whole-transcript mode, with both energy engines.
 
-This reverses the earlier OligoAI v2/output convention. Component ΔG energies
-are unchanged; existing output files retain their historical sign. The
-`ddg_sign` metadata explicitly records `dg_other - dg_target`. Old score cutoffs
-and sort directions must be adjusted when consuming new outputs. ViennaRNA
+The `ddg_sign` metadata records `dg_other - dg_target`. ViennaRNA
 energies are not the paper's RNAstructure values.
 The default installed ViennaRNA 2.7.0 model is RNA:RNA at 37°C; MOE/cEt/PS chemistry
 is not explicitly modeled. No energy cutoff is applied to oofft candidate search.
 
-OligoAI's exact-match shortcut is also preserved: if the intended target k-mer
+Whole-transcript mode uses an exact-match shortcut: if the intended target k-mer
 occurs anywhere in the off-target sequence, `ddg` is zero, both component energies
 are null, and the first 1-based target position is returned. This is an explicit
 application rule, not a claim that context-dependent duplex energies are equal.
-A too-short off-target returns unknown values. RNAplex coordinates are reported
-using the same target-start convention as OligoAI; they do not imply a fixed
+A too-short off-target returns unknown values. RNAplex coordinates use a 1-based target-start convention; they do not imply a fixed
 physical duplex span equal to the ASO length.
 
-## Run
+## Standalone full-record scoring
 
-Install ViennaRNA's RNAplex and RNAduplex, then build the Rust executable:
+With ViennaRNA RNAplex and RNAduplex on PATH:
 
 ```sh
-cargo build --release --locked --bin oofft-ddg
-./target/release/oofft-ddg \
-  --queries queries.jsonl --off-target other-transcript.fa \
-  --rnaplex /home/barneyh/.local/bin/RNAplex \
-  --rnaduplex /home/barneyh/.local/bin/RNAduplex \
+oofft-ddg --queries queries.jsonl --off-target other-transcript.fa \
   --threads 4 --timeout 600 > energies.jsonl
 ```
 
-Each input line has `id`, `aso`, and `target` (both written 5′→3′). The aliases
-`asoDnaSequence` and `targetDnaSequence` are accepted. DNA/RNA case and T/U are
-normalized explicitly. ASO and intended target must have the same length; they
-need not be perfectly complementary. Input IDs must be unique. Supply one
-record for the off-target RNA. The short-query batch may contain different ASO
-lengths; the original OligoAI function uses one chemistry-derived length per call.
+Each query has `id`, `aso` and `target`, both sequences written 5′→3′. The aliases
+`asoDnaSequence` and `targetDnaSequence` are accepted. Intended target and ASO
+must have the same length; different queries can have different lengths. Supply
+one off-target RNA record. `--rnaplex` and `--rnaduplex` override executable paths.
 
-Output contains `id`, `ddg`, `dg_target`, `dg_other`, `exact_off_target_match`,
-and `dg_other_position`, in input order. Energies use kcal/mol and the engines'
-two-decimal output precision. A total timeout bounds the external calculation;
-failed subprocesses cause a nonzero exit instead of manufacturing energy values.
-The completion manifest is written to stderr and the work directory. Temporary
-inputs and raw RNAplex output are retained in that directory; `--work-dir` selects
-a new explicit directory instead of a unique directory under `/tmp`.
-`--threads` controls RNAplex workers; one RNAduplex process runs concurrently.
+Results include `ddg`, `dg_target`, `dg_other`, `exact_off_target_match` and
+`dg_other_position`, in input order. Energies use kcal/mol. Failed subprocesses
+or timeouts produce nonzero exits. The completion manifest is written to stderr
+and the work directory. `--work-dir` selects a new directory for retained inputs
+and raw engine output.
 
-## Verification
+## Validation
 
-`benchmarks/ddg/oligoai_oracle.ts` imports and executes the actual local OligoAI
-function. `verify_rpi.py` compares every output field, not just correlations or
-rankings. Component energies, exact-match status, missing values, query order
-and target positions must agree. The oracle ΔΔG is negated to convert the
-legacy OligoAI sign to the Watt convention. ΔΔG comparison permits only 1e-12 kcal/mol for
-floating subtraction versus integer-cent arithmetic; this is far below the
-engines' 0.01-kcal/mol output precision. No changed energy value is accepted.
-All measured attempts, including failed parser development, are retained under
-`benchmarks/ddg/iterations/`. Real workloads use the local OligoAI SCN2A and SCN1A
-canonical pre-mRNA records; selected sequence hashes and origins are recorded
-in `data/ddg-inputs/manifest.json`.
-
-## Measured performance and reproduction
-
-Three repetitions on the Raspberry Pi, using ViennaRNA 2.7.0 and four RNAplex
-workers plus the concurrent RNAduplex process:
-
-| Workload against 142,208-base SCN1A pre-mRNA | OligoAI median | oofft median | Speedup |
-| --- | ---: | ---: | ---: |
-| 128 distinct non-exact SCN2A designs | 19.872 s | 5.095 s | 3.90× |
-| 128 rows repeating 16 designs | 19.564 s | 0.658 s | 29.75× |
-| 1,000 exact matches, shortcut only | 0.099 s | 0.011 s | 9.17× |
-
-These measure complete process runtimes. The repeated-design speedup benefits
-from deduplication; the exact-match case performs no thermodynamic calculation.
-All fields matched in every repetition. This validates compatibility on the
-tested inputs, not a proof for every possible sequence or a new physical model.
-
-With the local OligoAI v2 checkout and Bun available:
+Pinned fixtures cover 1,825 complete duplex energies and 11,160,000 loop-energy
+evaluations. Live tests compare against ViennaRNA 2.7.0:
 
 ```sh
-python3 benchmarks/ddg/prepare_rpi.py
-for workload in unique128 repeated128 exact1000; do
-  python3 benchmarks/ddg/verify_rpi.py --label "$workload" \
-    --queries "data/ddg-inputs/$workload.jsonl" \
-    --off-target data/ddg-inputs/SCN1A.fa --repetitions 3
-done
-python3 benchmarks/ddg/refresh.py
+RNA_DUPLEX=/path/to/ViennaRNA-2.7.0/bin/RNAduplex \
+  cargo test --release --test energy_vienna -- --ignored
 ```
 
-The preparation script extracts the two pinned transcript IDs from OligoAI's
-canonical pre-mRNA FASTA; `--reference` overrides its path. Oracle execution
-uses the existing local TypeScript source, with its original backend paths.
-Hashes of the source, engines, native executable and input files accompany each
-iteration. [Markdown ledger](../benchmarks/ddg/ITERATIONS.md) and
-[CSV](../benchmarks/ddg/iterations.csv) retain failures as well as successes.
-CI runs subprocess-contract, exact-match, missing-value and timeout tests using
-fixture executables; the separate local oracle runs use real ViennaRNA engines.
+The site oracle (`benchmarks/ddg/verify_sites.py`) independently scores discovered
+intervals with RNAduplex and checks energies and preserved report metadata,
+including 17–23 nt intervals for 20 nt ASOs. CI also checks subprocess contracts,
+missing values and timeouts. Historical full-record compatibility comparisons
+and every benchmark attempt remain in the [energy ledger](../benchmarks/ddg/ITERATIONS.md).
 
-The site-annotation oracle (`python3 benchmarks/ddg/verify_sites.py`) runs native
-discovery, scores its actual intervals independently with RNAduplex, and checks
-all energies and preserved report metadata. Its expanded fixture covers interval
-lengths 17–23 for 20-base ASOs. The whole-transcript annotation path is separately
-compared against the actual OligoAI function for every report site.
+## Parallel execution and caching
 
+The native engine uses `pulp` for runtime SIMD dispatch: AVX-512/AVX2 on supported
+x86 CPUs, NEON on AArch64, and scalar fallback. It groups independent duplexes by
+sequence length and distributes scoring across `--threads` workers. The same
+thermodynamic recurrence and parameter tables apply to all backends.
 
-## Automatic SIMD and shared calculations
+Site scoring enables a shared cache by default. `--energy-cache-pairs 4000000`
+sets its entry limit; `--energy-cache-pairs 0` disables it. Keys contain complete
+normalized ASO and target sequences. The cache spans records, batches and workers
+within one invocation, and resets when full. It reuses energies while preserving
+every output site and query-specific intended-target score. The entry limit is
+not a memory limit. Whole-transcript RNAplex scoring is separate.
 
-The native site engine (`--energy-engine rust`) batches independent duplexes
-by sequence lengths. `pulp` 0.22.3 supplies runtime CPU dispatch and portable
-integer vector operations on stable Rust: x86 V4 uses 16 lanes, V3 uses 8,
-and AArch64 NEON uses 4. Unsupported CPUs and incomplete vector groups use
-scalar Rust. One generic recurrence implements all three widths, including the
-retained experimental shared-prefix and min-plus modes. Builds do not require
-`target-cpu=native`; `--no-default-features` disables this batch SIMD backend.
-Parameter gathers currently use per-lane table reads because pulp has no portable
-gather API. This is a performance consideration, not a change to energy values.
-
-On Raspberry Pi 5, three alternating runs of the new NEON backend and the
-previous scalar batch backend measured **2.12×** kernel speedup on 20,543
-retained unique real-site pairs (three passes), and **1.15×** on the diverse
-oracle fixture (ten passes). Every output energy matched. See
-[the pulp migration measurements](../benchmarks/ddg/PULP.md) for exact workloads,
-commands, limitations and all iterations. These do not measure full-reference
-discovery or end-to-end annotation.
-
-The following x86 measurements were made with the **previous intrinsic backend**;
-they are retained historical results, not measurements of the pulp replacement.
-
-On EC2 c7i.2xlarge (Xeon Platinum 8488C, four physical cores/eight threads),
-28,222 actual site pairs scored three times with eight workers took a median
-0.071810 s in automatic AVX-512 versus 2.020381 s in direct ViennaRNA 2.7.0
-`duplexfold`: **28.14x compute-only speedup**. Both implementations validate each
-energy, use the same worker count, and exclude input parsing from their timers.
-The Rust timer includes worker creation, encoding, batching and result checks;
-the C comparator includes its parallel region and energy checks. This is not an
-end-to-end annotation speedup or a full-human-reference timing estimate.
-
-Separate repeated A/B runs measured AVX-512 about 1.4x faster than AVX2 at both
-one and eight workers. All raw repetitions, commands, binary/input hashes and
-failed experiments are retained in the [ledger](../benchmarks/ddg/ITERATIONS.md).
-The live oracle test can be reproduced with:
-
-```sh
-RNA_DUPLEX=/path/to/ViennaRNA-2.7.0/bin/RNAduplex   cargo test --release --test energy_vienna -- --ignored
-```
-
-Two additional exact algorithms remain experimental and disabled by default:
-
-- Shared-prefix DP sorts same-ASO pairs by reversed target sequence and reuses
-  completed columns. It recomputes the final shared column because the energy
-  terms inspect the next base. On 20,543 unique full sequence pairs, scalar reuse
-  was 1.84x faster than scalar without reuse, avoiding about 55% of columns.
-  Combined SIMD reuse was about 4% slower than ordinary AVX-512: requiring all
-  lanes to share a previous prefix leaves little reuse in the current grouping.
-- Anti-diagonal min-plus DP replaces the generic internal-loop size scan with
-  three range-minimum queries per total loop size. For predecessor `k,l` and
-  current cell `i,j`, fix `d = i+j-k-l-2`. The asymmetry term becomes
-  `min(alpha * abs(2*i-d-2-2*k), cap)`. Sparse tables over `G`, `G-2*alpha*k`
-  and `G+2*alpha*k` evaluate its exact minimum over the valid predecessor range.
-  This passed pinned and live Vienna comparisons, but table construction and
-  queries made it 1.52x slower than ordinary AVX-512 on these short unique pairs.
-
-These experiments do not prune candidate duplexes or approximate thermodynamics.
-Matrix-style minimum-plus operations fit the recurrence; ordinary dense
-multiply-add matrix multiplication does not replace its dependencies. The main
-unresolved shared-work opportunity is grouping/trie traversal that preserves
-prefix reuse across different SIMD batches. A follow-up census of the retained 1,000-ASO full-reference pilot found
-45,113,535 intervals but only 2,931,542 unique ASO/target pairs. Scoring all those
-unique pairs measured 1.924 s in ordinary native AVX-512 versus 63.976 s in direct
-ViennaRNA, with eight workers each (33.25×). These exclude deduplication and report
-I/O. New shared-path SIMD scheduling regressed and remains disabled. See the
-[reuse investigation](../benchmarks/ddg/REUSE_INVESTIGATION.md) for exact counts,
-all timings, and the unimplemented trie-frontier work model.
-
-### Global site-energy cache
-
-Site annotation enables an invocation-wide cache by default for both Rust and
-ViennaRNA. `--energy-cache-pairs 4000000` controls its maximum entry count;
-`--energy-cache-pairs 0` disables it. Keys contain the complete normalized ASO
-and target sequences. Only duplex energies are reused: every interval, original
-metadata field and query-specific intended-target energy/ΔΔG is preserved.
-The cache is shared across records, batches and workers, but not persisted
-between processes. Whole-transcript RNAplex scoring is unchanged.
-
-The cache allocates as populated; its entry limit is not a byte limit. At capacity
-it clears its entries and starts a new generation. Concurrent misses can compute
-the same pair before either result is inserted, allowing numerical workers to
-run without a cache lock. The manifest records hits, misses, entries and generation
-resets. Historical timings preceding this change retain their original cache
-behavior; no new end-to-end speedup is implied by the sequence-reuse census.
-
-### Full-gene walk benchmark policy
-
-The SCN2A design-walk benchmark excludes any 20-mer overlapping lowercase
-(soft-masked) bases. It includes introns and uses a one-base step. The retained
-197,318-nt gene body yields 114,926 eligible positions and 114,889 distinct ASOs.
-Including masked windows would instead give 197,299 positions and 196,063 distinct
-ASOs. All original positions are retained in the benchmark's origins file.
-
-Masking applies only to selecting ASO designs: the off-target reference retains
-repeat sequence. Ensembl defines soft masking as lowercase repeat sequence
-([API documentation](https://rest.ensembl.org/documentation/info/sequence_region)).
-This is a conservative design-pool choice, not an automatic oofft discovery filter
-or a claim that every repeat-overlapping ASO is unusable.
-
-`benchmarks/ddg/walk_chunked.py` measures existing CLI discovery, native site
-annotation and lossless gzip output for the entire eligible pool. Eight worker
-slots run one single-threaded CLI stage at a time; the forward-only index fits
-the 16-GiB worker. Every unique ASO belongs to exactly one chunk, preserving all
-possible full-sequence-pair cache reuse. All site rows are archived, with raw-byte
-SHA256 hashes; no hit cap is used. Index construction is outside this timing.
-`check_full_walk.py` verifies that chunked and monolithic workflows produce
-identical annotated site rows and that the archived bytes match their hashes.
+Backend-specific timing results and experimental optimizations are documented
+in the [SIMD measurements](../benchmarks/ddg/PULP.md) and
+[optimization notes](../benchmarks/ddg/OPTIMIZATION_NOTES.md). Earlier intrinsic
+backend timings should not be interpreted as fresh measurements of the pulp
+backend. Full-reference discovery and output costs are excluded from kernel-only
+comparisons.

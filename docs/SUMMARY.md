@@ -1,6 +1,6 @@
 # Default off-target summaries
 
-`oofft` now defaults to exhaustive per-ASO counts at edit distances 0, 1, 2 and
+`oofft` defaults to exhaustive per-ASO counts at edit distances 0, 1, 2 and
 3. Each `query_summary` contains `edit_distance_counts` and `total_sites`.
 It does not calculate ddG or emit individual hits, gene IDs or alignments.
 Explicit `oofft summary` is equivalent to omitting the positional mode.
@@ -48,7 +48,7 @@ counts with the existing detailed report.
 
 Detailed reports retain their established reference-record interval identity.
 Their row count can therefore exceed the default distinct-genomic-site count.
-No new ddG flag is introduced. The separate existing annotation tool is unchanged.
+Energy scoring is available through the separate [ΔΔG annotation tool](DDG.md).
 
 When `-k` is below 3, bins above the searched distance are `null`, not misleading
 zeroes. Unknown reference bases are excluded and set `counts_complete: false`.

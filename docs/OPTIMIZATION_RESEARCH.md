@@ -15,7 +15,7 @@ These are algorithm references, not native dependencies. No third-party implemen
 4. **Compressed or sampled suffix arrays (not implemented).** Full suffix arrays dominate storage and cold paging. Compression may reduce memory, but locating millions of sites can become slower. Profile cold paging and locate costs before adopting a different representation.
 5. **Batch sharing (not implemented).** Many allele-derived ASOs overlap. Sharing verified search states could help large batches, provided eligibility and per-query minimum distances remain separate.
 
-Every executed attempt is recorded in `benchmarks/CLASSIC_ITERATIONS.md` and `benchmarks/classic/summary.csv` (component timing), with raw JSON/logs in unique iteration directories. Original optimization iterations remain in `BENCHMARKS.md` and `benchmarks/iterations/`. Research ideas without measurements are not benchmark results.
+Every executed attempt is recorded in `benchmarks/CLASSIC_ITERATIONS.md` and `benchmarks/classic/summary.csv` (component timing), with raw JSON/logs in unique iteration directories. Original optimization iterations remain in `benchmarks/NATIVE_ITERATIONS.md` and `benchmarks/iterations/`. Research ideas without measurements are not benchmark results.
 
 
 ## Measured outcomes

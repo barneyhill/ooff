@@ -67,8 +67,8 @@ for row in rows:
 def fmt(x):return f"{x:.6f}" if isinstance(x,float) else str(x) if x not in ("",None) else "—"
 table="## Iterations\n\n| ID | Change | Dataset | Queries | k | Mode / threads | Build s | Load s | ooff search s | Sassy search s | Search speedup | First-batch speedup | Peak RSS MiB (max of pair) | Result | Artifacts |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n"
 for r in rows:
-    table+="| "+" | ".join(map(fmt,[r["id"],r["label"],r["reference"],r["queries"],r["k"],f'{r["mode"]} / {r["threads"]}',r["preparation_seconds"],r["load_seconds"],r["ooff_seconds"],r["sassy_seconds"],r["speedup"],r["first_batch_speedup"],r["peak_rss_mib"],r["status"],f'[JSON]({r["artifact"]})']))+" |\n"
-p=Path("BENCHMARKS.md");content=p.read_text();before=content.split("## Iterations",1)[0];after=content.split("## Interpretation",1)[1]
+    table+="| "+" | ".join(map(fmt,[r["id"],r["label"],r["reference"],r["queries"],r["k"],f'{r["mode"]} / {r["threads"]}',r["preparation_seconds"],r["load_seconds"],r["ooff_seconds"],r["sassy_seconds"],r["speedup"],r["first_batch_speedup"],r["peak_rss_mib"],r["status"],f'[JSON]({Path(r["artifact"]).relative_to("benchmarks")})']))+" |\n"
+p=Path("benchmarks/NATIVE_ITERATIONS.md");content=p.read_text();before=content.split("## Iterations",1)[0];after=content.split("## Interpretation",1)[1]
 p.write_text(before+table+"\n## Interpretation"+after)
 if rows:
     with (root/"summary.csv").open("w",newline="") as f:
