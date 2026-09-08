@@ -28,7 +28,7 @@ RNA_DUPLEX=/path/to/ViennaRNA-2.7.0/bin/RNAduplex \
   cargo test --release --test energy_vienna -- --ignored
 ```
 
-GitHub Actions runs Rust tests, formatting, Clippy, source-package verification
+GitHub Actions runs Rust tests, formatting, Clippy, library documentation checks, source-package verification
 and packaged-binary smoke checks on Linux and macOS, x86-64 and ARM64. CI uses
 pinned energy fixtures; the live command above requires a ViennaRNA installation.
 See [release checks](RELEASING.md).

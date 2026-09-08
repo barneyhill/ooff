@@ -63,6 +63,10 @@ jobs:
           PYTHON
             exit 1
           fi
+      - name: Check library documentation
+        env:
+          RUSTDOCFLAGS: -D warnings
+        run: cargo doc --locked --no-deps --lib
       - run: cargo test --locked --all-targets
       - name: Test scalar fallback without SIMD dependency
         run: cargo test --locked --no-default-features --test energy --test energy_vienna

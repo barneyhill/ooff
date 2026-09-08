@@ -1,4 +1,18 @@
-//! Full-query unit-cost matching against oriented, known RNA sequence.
+//! Off-target discovery and counting for antisense oligonucleotides.
+//!
+//! Queries are ASOs written 5′→3′. Search compares their reverse complements
+//! with RNA-sense reference records using unit-cost substitutions, insertions
+//! and deletions. Reference blocks use zero-based, half-open genomic intervals
+//! in transcript order.
+//!
+//! The command-line interface is the primary user interface. The library exposes
+//! reference preparation, FM indexing, distinct-site counting and optional RNA
+//! duplex energy calculations for integration and validation.
+//!
+//! See the [usage guide](https://github.com/barneyhill/oofft/blob/main/docs/USAGE.md)
+//! for input formats and the
+//! [count semantics](https://github.com/barneyhill/oofft/blob/main/docs/SUMMARY.md)
+//! for reference scope, exclusions and incomplete results.
 pub mod energy;
 pub mod fm;
 pub mod indexed;

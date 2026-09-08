@@ -1,5 +1,8 @@
 # oofft
 
+[![CI](https://github.com/barneyhill/oofft/actions/workflows/ci.yml/badge.svg)](https://github.com/barneyhill/oofft/actions/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/oofft.svg)](https://crates.io/crates/oofft)
+
 **Fast off-target search for antisense oligonucleotides.**
 
 Count candidate binding sites across annotated pre-mRNA and mature RNA, including
@@ -28,7 +31,8 @@ cargo install oofft --locked
 ```
 
 [Prebuilt binaries](https://github.com/barneyhill/oofft/releases) are available
-for Linux and macOS, on Intel/AMD and ARM.
+for Linux and macOS, on Intel/AMD and ARM. Building from source requires
+Rust 1.94 or later, a C compiler and OpenMP ([build requirements](docs/USAGE.md#build-requirements)).
 
 ```sh
 # Download and index the human reference once.

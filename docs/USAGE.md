@@ -159,3 +159,26 @@ No match means none within the supplied known sequence and selected edit budget.
 Count mode does not calculate ΔΔG. Use the separate [energy annotator](DDG.md)
 for reported sites. Sequence similarity and modeled energies support experimental
 prioritization; they do not establish knockdown or clinical safety.
+
+## Build requirements
+
+Prebuilt release archives contain `oofft`, `oofft-index` and `oofft-ddg`.
+Linux archives require glibc 2.35 or later and the OpenMP runtime (`libgomp1`
+on Debian/Ubuntu). macOS archives require macOS 13 or later and bundle OpenMP.
+
+To build from source, install Rust 1.94 or later and a C compiler with OpenMP
+support. On Debian/Ubuntu, install `build-essential`; on macOS, install the
+Xcode command-line tools and Homebrew `libomp`:
+
+```sh
+# macOS source builds
+brew install libomp
+CFLAGS="-I$(brew --prefix libomp)/include" cargo install oofft --locked
+```
+
+The repository pins its development toolchain in `rust-toolchain.toml`.
+Its local Cargo configuration enables native CPU optimization; use
+`RUSTFLAGS='' cargo build --release --locked` for portable target defaults.
+ViennaRNA is only needed for the external energy engines and live oracle tests;
+the Rust energy engine runs independently. Sassy2 and the other comparator tools
+are benchmark dependencies only.
