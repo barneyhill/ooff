@@ -1,3 +1,36 @@
+## 2026-09-08 — v0.1.1 published; OligoAI using release binaries
+
+This checkpoint supersedes publication and worker status in older entries below.
+Canonical repository: https://github.com/barneyhill/oofft (renamed from ooff).
+Release v0.1.1 targets 5481582bf3fbe5443fc4c00cf671f28adce7ca81.
+GitHub release: https://github.com/barneyhill/oofft/releases/tag/v0.1.1
+Crate: https://crates.io/crates/oofft/0.1.1
+Release run 34258652573 attempt 2 completed successfully after account email
+verification. All four platform checks passed; registry API confirms 0.1.1.
+Do not move the published tag. The earlier tag mismatch and unverified-email
+failures remain in Actions history. Guarded publisher retry workflow added in
+7444f97; release documentation now derives tags from Cargo.toml.
+
+Verified the published ARM64 archive against SHA256SUMS:
+ee7ea2bb3d3b17f10c8a0b40d33a1274deb6c976a6de7d5cea6c7e72ebed347d.
+Installed all three release binaries in data/reference-compact-v1/bin; all help
+commands passed. Live OligoAI production adapter rechecked using these binaries:
+SCN2A sample bins [1,4,17,728], total 750, counts_complete=false (reference scope
+has unknown bases). This is a successful run with qualified reference coverage.
+OligoAI app changes remain uncommitted alongside pre-existing user modifications.
+Durable deployment backup and exact integration patch are retained under ignored
+data/oligoai-integration/20260908/.
+
+Pi sample memory measured about 3 GiB RSS, with a 5 GiB child address-space cap.
+1,000 ASOs took 45.8–75.2 seconds across recorded attempts. Full repeat-filtered
+SCN2A walk remains an estimated 1.5–2.4 hours on Pi, not a measured full run.
+EC2 measured full walk: 438.953 seconds. Reference is Ensembl 110 human gene bodies
+including introns plus transcripts, not intergenic whole chromosomes.
+EC2 worker i-0b5bad3102a5345c5 is confirmed stopped; volumes retained.
+
+Release commits are managed in /tmp/oofft-release because this workspace's .git
+is read-only. Its working-tree metadata does not reflect the pushed commits.
+
 ## 2026-09-08 17:19 UTC — deployed local OligoAI integration
 
 OligoAI now uses native oofft via src/oofft.ts; four bins retained in SQLite,

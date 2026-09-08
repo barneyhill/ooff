@@ -22,17 +22,23 @@ and its license with relative library paths and ad-hoc signatures. They are not
 Apple-notarized. Linux builds target Ubuntu 22.04 (glibc 2.35) and require libgomp1.
 CPU-specific `target-cpu=native` is overridden by `target-cpu=generic` in CI.
 
-For the first release, after the main-branch CI is green:
+For each release, update Cargo.toml and Cargo.lock, commit and push those changes,
+then wait for main-branch CI to pass. Derive the tag from the committed version:
 
 ```sh
-git tag v0.1.0
-git push origin v0.1.0
+set -eu
+version=$(python3 -c 'import tomllib; print(tomllib.load(open("Cargo.toml", "rb"))["package"]["version"])')
+git tag "v$version"
+git push origin "v$version"
 ```
 
 Subsequent releases must update Cargo.toml/Cargo.lock before tagging. Published
 crate versions cannot be overwritten. If crates.io fails, fix the reported registry error and rerun the failed job.
 The GitHub upload is safe to retry for the same tag; do not attempt to republish
-a crate version that already exists.
+a crate version that already exists. The `Retry release publication` workflow
+can also retry a failed publisher by run ID. It requires all build checks to have
+passed and the release tag to still identify the tested commit. Verify the
+crates.io account email before publishing.
 
 The package include list excludes large benchmark artifacts and the local Cargo
 CPU configuration. Benchmark records and source snapshots remain in Git and on
