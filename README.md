@@ -6,10 +6,9 @@ Count candidate binding sites across annotated pre-mRNA and mature RNA, includin
 substitutions, insertions and deletions. Written in Rust, with reusable FM indexes,
 parallel counting and optional relative hybridization energy (ΔΔG) annotation.
 
-## Scientific basis
-
-[Andersson et al. (2025)](https://doi.org/10.1089/nat.2024.0072), the updated
-industry recommendations, describe prioritizing RNase H1 ASO off-targets with
+Updated industry recommendations from
+[Andersson et al. (2025)](https://doi.org/10.1089/nat.2024.0072) prioritize
+RNase H1 ASO off-targets with
 **≤3 mismatches** when experimental expression data are absent. oofft searches
 **≤3 total edits** by default, counting each substituted, inserted or deleted
 base once. This is an implementation choice extending mismatch-only search;
