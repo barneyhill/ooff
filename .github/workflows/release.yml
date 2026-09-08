@@ -48,16 +48,36 @@ jobs:
           pattern: oofft-*
           path: dist
           merge-multiple: true
-      - name: Publish to crates.io
-        env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_API }}
-        run: |
-          test -n "$CARGO_REGISTRY_TOKEN" || { echo 'Missing CRATES_IO_API secret'; exit 1; }
-          cargo publish --locked
       - name: Publish GitHub binaries and checksums
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           (cd dist && sha256sum ./*.tar.gz > SHA256SUMS)
-          gh release create "$RELEASE_TAG" dist/*.tar.gz dist/SHA256SUMS --verify-tag --generate-notes --title "oofft $RELEASE_TAG"
+          if gh release view "$RELEASE_TAG" > /dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/*.tar.gz dist/SHA256SUMS --clobber
+          else
+            gh release create "$RELEASE_TAG" dist/*.tar.gz dist/SHA256SUMS --verify-tag --generate-notes --title "oofft $RELEASE_TAG"
+          fi
+      - name: Publish to crates.io
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CRATES_IO_API }}
+        run: |
+          test -n "$CARGO_REGISTRY_TOKEN" || { echo 'Missing CRATES_IO_API secret'; exit 1; }
+          set +e
+          cargo publish --locked 2>&1 | tee /tmp/crates-publish.log
+          publish_status=${PIPESTATUS[0]}
+          set -e
+          if [ "$publish_status" -ne 0 ]; then
+            python3 - <<'PYERROR'
+          import os
+          from pathlib import Path
+          message = Path('/tmp/crates-publish.log').read_text()[-4000:]
+          token = os.environ.get('CARGO_REGISTRY_TOKEN', '')
+          if token:
+              message = message.replace(token, '[redacted]')
+          message = message.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+          print('::error title=crates.io publish failed::' + message)
+          PYERROR
+            exit "$publish_status"
+          fi

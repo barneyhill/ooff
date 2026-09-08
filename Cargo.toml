@@ -2,7 +2,7 @@
 name = "oofft"
 default-run = "oofft"
 autobins = false
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 rust-version = "1.94"
 description = "ASO candidate-site discovery with explicit search scope"
