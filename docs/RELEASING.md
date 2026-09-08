@@ -20,7 +20,9 @@ are emitted as a check annotation, with the token explicitly redacted. Each arch
 script, and MIT/ViennaRNA parameter notices. macOS archives bundle the OpenMP runtime
 and its license with relative library paths and ad-hoc signatures. They are not
 Apple-notarized. Linux builds target Ubuntu 22.04 (glibc 2.35) and require libgomp1.
-CPU-specific `target-cpu=native` is overridden by `target-cpu=generic` in CI.
+CI overrides local `target-cpu=native` with an empty `RUSTFLAGS`, using Rust’s
+portable defaults for each target. Apple ARM retains its required baseline
+crypto features; optional energy SIMD still dispatches at runtime.
 
 For each release, update Cargo.toml and Cargo.lock, commit and push those changes,
 then wait for main-branch CI to pass. Derive the tag from the committed version:

@@ -28,8 +28,9 @@ jobs:
       CARGO_TERM_COLOR: always
       # Speed up exhaustive DP oracle tests while retaining test debug assertions.
       CARGO_PROFILE_TEST_OPT_LEVEL: '1'
-      # Override the local benchmark's target-cpu=native for distributable builds.
-      RUSTFLAGS: -C target-cpu=generic
+      # Override local target-cpu=native with Rust's portable target defaults.
+      # Apple ARM defaults include baseline crypto features required by ring.
+      RUSTFLAGS: ''
       MACOSX_DEPLOYMENT_TARGET: '13.0'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
